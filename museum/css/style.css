@@ -4,6 +4,8 @@
   --main-fz: 22px;
 
   --bg-dark: #030303;
+
+  scroll-behavior: smooth;
 }
 
 body {
