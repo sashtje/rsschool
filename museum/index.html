@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
   <title>museum</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -151,9 +151,47 @@
       </div>
     </section>
 
-    <section class="section section_dark" id="tickets">
+    <section class="section section_tickets section_dark" id="tickets">
       <div class="container">
-      
+        <h2 class="section__title section__title_dark section__title_underline">Buy tickets</h2>
+        <div class="section__row">
+          <img class="section__photo" src="assets/img/bt-image.jpg" alt="painting" width="720" height="550">
+          <div class="tickets">
+            <div class="section__row">
+              <div class="tickets__type">
+                <h4 class="tickets__title">Ticket Type</h4>
+                <input type="radio" name="ticket-type" id="permanent" checked>
+                <label for="permanent">Permanent exhibition</label>
+                <input type="radio" name="ticket-type" id="temporary">
+                <label for="temporary">Temporary exhibition</label>
+                <input type="radio" name="ticket-type" id="combined">
+                <label for="combined">Combined Admission</label>
+              </div>
+              <div class="tickets__amount">
+                <h4 class="tickets__title">Amount</h4>
+                <p class="tickets__label">Basic 18+</p>
+
+                <div class="number-choice">
+                  <button class="number-choice__btn" onclick="this.nextElementSibling.stepDown()">–</button>
+                  <input class="number-choice__number" type="number" min="0" max="20" value="1" readonly>
+                  <button class="number-choice__btn" onclick="this.previousElementSibling.stepUp()">+</button>
+                </div>
+
+                <p class="tickets__label tickets__label_margin">Senior 65+</p>
+
+                <div class="number-choice">
+                  <button class="number-choice__btn" onclick="this.nextElementSibling.stepDown()">–</button>
+                  <input class="number-choice__number" type="number" min="0" max="20" value="1" readonly>
+                  <button class="number-choice__btn" onclick="this.previousElementSibling.stepUp()">+</button>
+                </div>
+
+                <p class="tickets__price">Total €220</p>
+              </div>
+            </div>
+
+            <div class="btn-wrapper"><button class="tickets__btn">Buy Now</button></div>
+          </div>
+        </div>
       </div>
     </section>
 

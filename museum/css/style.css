@@ -384,10 +384,6 @@ body {
     brightness(114%) contrast(83%);
 }
 
-.section_video .section__row {
-  justify-content: baseline;
-}
-
 .section_video .section__title,
 .section_video .section__text {
   flex: 0 1 50%;
@@ -395,4 +391,175 @@ body {
 
 .section_video .section__text {
   margin-top: 5px;
+}
+
+.section_tickets .section__title {
+  margin-bottom: 75px;
+}
+
+.tickets {
+  flex: 0 1 660px;
+}
+
+.section_tickets .section__photo {
+  margin: 0;
+}
+
+.tickets__type input {
+  display: none;
+}
+
+.tickets__type label {
+  position: relative;
+  padding-left: 40px;
+  display: block;
+  margin-top: 50px;
+  font-weight: 300;
+  line-height: 26px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.tickets__type label:hover {
+  color: var(--color-hover);
+}
+
+.tickets__type label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  transition: 0.5s;
+}
+
+.tickets__type label::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 5px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0);
+  transition: 0.5s;
+}
+
+.tickets__type input:checked + label::after {
+  background: rgba(255, 255, 255, 1);
+}
+
+.tickets__type label:hover::before {
+  border-color: var(--color-hover);
+}
+
+.tickets__type input:checked + label:hover::after {
+  background: var(--color-hover);
+}
+
+.tickets__title {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 33px;
+  color: #ffffff;
+}
+
+.tickets__amount .tickets__title {
+  text-align: right;
+  margin-bottom: 11px;
+}
+
+.tickets__label {
+  font-weight: 300;
+  line-height: 26px;
+  margin-bottom: 14px;
+}
+
+.tickets__price {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 33px;
+  letter-spacing: 1.65px;
+  margin: 50px 0;
+  text-align: right;
+}
+
+.tickets__btn {
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 26px;
+  letter-spacing: 2px;
+  color: #000000;
+  background: #ffffff;
+  border-radius: 2px;
+  padding: 12px 40px;
+  transition: 0.5s;
+}
+
+.btn-wrapper {
+  text-align: right;
+}
+
+.tickets__btn:hover {
+  background: var(--color-hover);
+}
+
+.tickets__label_margin {
+  margin-top: 35px;
+}
+
+.number-choice {
+  width: 150px;
+  height: 50px;
+  border: 3px solid #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 14px;
+}
+
+.number-choice__btn {
+  font-size: 32px;
+  line-height: 37px;
+  color: #ffffff;
+  transition: 0.5s;
+}
+
+.number-choice__btn:hover {
+  color: var(--color-hover);
+}
+
+.number-choice__number {
+  all: unset;
+  width: 3em;
+  text-align: center;
+  font-weight: 300;
+  line-height: 26px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="number"]:hover,
+input[type="number"]:focus {
+  -moz-appearance: number-input;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
