@@ -95,6 +95,7 @@ body {
 
 .section {
   background-color: var(--bg-light);
+  padding: 75px 0;
 }
 
 .section_welcome {
@@ -103,10 +104,6 @@ body {
   background-image: url("../assets/img/welcome-louvre.jpg");
   background-repeat: no-repeat;
   background-position: calc(50% + 353px) 100%;
-}
-
-.section_visiting {
-  padding: 75px 0;
 }
 
 .section_dark {
@@ -221,4 +218,37 @@ body {
   line-height: 21px;
   color: #000000;
   margin-top: 10px;
+}
+
+.section__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.section__column {
+  flex: 0 1 660px;
+}
+
+.section__explore .section__title {
+  margin-bottom: 75px;
+}
+
+.section__text {
+  font-weight: 300;
+  line-height: 38px;
+  color: #ffffff;
+}
+
+.section__text + .section__text {
+  margin-top: 25px;
+}
+
+.section__text_highlight {
+  color: #9d8665;
+}
+
+.section__photo {
+  display: block;
+  margin-top: 15px;
 }
