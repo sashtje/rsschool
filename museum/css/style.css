@@ -563,3 +563,34 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.section_contacts .section__title {
+  margin-bottom: 75px;
+}
+
+.section_contacts .section__photo {
+  margin: 0;
+}
+
+.contacts {
+}
+
+.contacts__title {
+  margin-top: 10px;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 33px;
+  margin-bottom: 36px;
+}
+
+.contacts__address,
+.contacts__phone,
+.contacts__mail {
+  font-weight: 300;
+  line-height: 26px;
+  color: #000000;
+}
+
+.contacts address p + p {
+  margin-top: 20px;
+}
