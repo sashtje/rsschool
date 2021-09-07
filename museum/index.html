@@ -127,9 +127,27 @@
       </div>
     </section>
 
-    <section class="section section_big-padding-top" id="video">
+    <section class="section section_video" id="video">
       <div class="container">
-      
+        <div class="section__video-player video-player">
+          <div class="video-player__poster">
+            <img class="video-player__poster-photo" src="assets/img/vj-louvre.jpg" alt="video louvre" width="1440" height="629">
+            <button class="video-player__big-play"><img src="assets/svg/big-play.svg" alt="big play button" width="220" height="220"></button>
+          </div>
+          <div class="video-player__panel">
+            <button class="video-player__btn video-player__previous"><img src="assets/svg/previous.svg" alt="prev" width="27" height="30"></button>
+            <button class="video-player__btn video-player__play"><img src="assets/svg/play.svg" alt="play" width="23" height="30"></button>
+            <button class="video-player__btn video-player__next"><img src="assets/svg/next.svg" alt="next" width="27" height="30"></button>
+            <input class="video-player__range video-player__range-time" type="range" value="47" min="0" max="100" step="1">
+            <button class="video-player__btn video-player__volume"><img src="assets/svg/volume.svg" alt="volume" width="38" height="30"></button>
+            <input class="video-player__range video-player__range-volume" type="range" value="43" min="0" max="100" step="1">
+            <button class="video-player__btn video-player__full-screen"><img src="assets/svg/full-screen.svg" alt="full screen" width="36" height="36"></button>
+          </div>
+        </div>
+        <div class="section__row">
+          <h2 class="section__title section__title_light">Video journey</h2>
+          <p class="section__text">Enter and visit one of the most famous museums in the world and enjoy masterpieces such as Mona Lisa or Hammurabi's Code</p>
+        </div>
       </div>
     </section>
 
@@ -151,5 +169,7 @@
       
     </div>
   </footer>
+
+  <script src="index.js"></script>
 </body>
 </html>
