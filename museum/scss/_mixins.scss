@@ -1,0 +1,19 @@
+@mixin flex($jc-align: center, $ai-align: center) {
+  display: flex;
+  justify-content: $jc-align;
+  align-items: $ai-align;
+}
+
+@mixin title-font-style($fz, $lh, $color) {
+  font-family: var(--titles-font-family);
+  font-size: $fz;
+  line-height: $lh;
+  letter-spacing: var(--titles-letter-spacing);
+  text-transform: uppercase;
+  color: $color;
+}
+
+@mixin transition-hover() {
+  transition: 0.5s;
+  cursor: pointer;
+}

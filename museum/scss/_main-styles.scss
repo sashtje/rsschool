@@ -1,0 +1,34 @@
+/* common styles */
+:root {
+  --main-text-font-family: "Roboto", sans-serif;
+  --titles-font-family: "Forum", cursive;
+
+  --video-titles-fz: 18px;
+  --main-text-fz: 22px;
+  --logo-fz: 28px;
+  --cards-title: 32px;
+  --titles-fz: 80px;
+
+  --menus-font-weight: 100;
+  --main-text-font-weight: 300;
+  --titles-font-weight: 400;
+  --contacts-subtitle-font-weight: 500;
+  --tickets-subtitle-font-weight: 700;
+
+  --titles-letter-spacing: 5px;
+  --links-letter-spacing: 2px;
+
+  --bg-dark: #030303;
+  --bg-light: #ffffff;
+  --color-hover: #9d8665;
+  --color-btn: #710707;
+
+  scroll-behavior: smooth;
+}
+
+/* Roboto 22px / 26px */
+body {
+  font-family: var(--main-text-font-family);
+  font-size: var(--main-text-fz);
+  line-height: 26px;
+}
