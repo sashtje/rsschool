@@ -30,6 +30,10 @@
     @include hover-filter();
   }
 
+  &:active {
+    @include active-filter();
+  }
+
   // .logo__image
   &__image {
     width: 49px;
@@ -67,8 +71,13 @@
     @include transition-hover();
   }
 
-  // .main-menu__link:hover, active
+  // .main-menu__link:hover
   &__link:hover {
     color: var(--color-hover);
+  }
+
+  // .main-menu__link:active
+  &__link:hover {
+    color: var(--color-active);
   }
 }

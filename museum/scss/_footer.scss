@@ -70,7 +70,12 @@
 
   &__rsschool-link:hover,
   &__my-github-link:hover {
-    @include hover-filter();
+    color: var(--color-hover);
+  }
+
+  &__rsschool-link:active,
+  &__my-github-link:active {
+    color: var(--color-active);
   }
 }
 
@@ -91,5 +96,10 @@
   // .social-media__link:hover
   &__link:hover {
     @include hover-filter();
+  }
+
+  // .social-media__link:active
+  &__link:hover {
+    @include active-filter();
   }
 }

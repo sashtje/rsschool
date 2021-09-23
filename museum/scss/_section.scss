@@ -1,0 +1,33 @@
+.section {
+  background-color: var(--bg-light);
+  padding: 75px 0;
+  color: var(--color-text);
+
+  // .section__container
+  &__container {
+    @extend %container;
+  }
+  // .section__title
+  &__title {
+    @include title-font-style(var(--titles-fz), 90px, var(--color-hover));
+
+    // .section__title_underline
+    &_underline {
+      padding-bottom: 25px;
+      border-bottom: 3px solid #710707;
+    }
+  }
+  // .section__content
+  &__content {
+    margin-top: 75px;
+  }
+}
+
+.section_dark {
+  background-color: var(--bg-dark);
+  color: var(--bg-light);
+
+  .section__title {
+    color: var(--bg-light);
+  }
+}
