@@ -99,7 +99,7 @@
   }
 
   // .social-media__link:active
-  &__link:hover {
+  &__link:active {
     @include active-filter();
   }
 }
