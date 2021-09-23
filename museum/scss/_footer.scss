@@ -1,0 +1,95 @@
+.footer {
+  padding-top: 84px;
+  background-color: var(--bg-dark);
+
+  // .footer__container
+  &__container {
+    @extend %container;
+  }
+
+  // .footer__inner-top
+  &__inner-top {
+    display: flex;
+    align-items: center;
+    padding-bottom: 40px;
+  }
+
+  // .footer__logo
+  &__logo {
+    align-self: flex-start;
+    flex: 0 1 195px;
+  }
+
+  // .footer__menu
+  &__menu {
+    flex: 0 1 370px;
+    margin-left: 137px;
+    margin-right: auto;
+  }
+
+  // .footer__social-media
+  &__social-media {
+    flex: 0 1 340px;
+    align-self: flex-end;
+  }
+
+  // .footer__delimiter
+  &__delimiter {
+    height: 3px;
+    background-color: var(--color-delimiter);
+  }
+
+  // .footer__inner-bottom
+  &__inner-bottom {
+    padding: 45px 0;
+    line-height: 22px;
+    letter-spacing: var(--links-letter-spacing);
+    font-weight: var(--menus-font-weight);
+    display: flex;
+    align-content: center;
+  }
+
+  // .footer__time
+  &__time,
+  &__rsschool-link,
+  &__my-github-link {
+    color: var(--bg-light);
+    padding: 7px 0;
+  }
+
+  &__rsschool-link,
+  &__my-github-link {
+    @include transition-hover();
+  }
+
+  // .footer__rsschool-link
+  &__rsschool-link {
+    margin-left: 488px;
+    margin-right: auto;
+  }
+
+  &__rsschool-link:hover,
+  &__my-github-link:hover {
+    @include hover-filter();
+  }
+}
+
+.social-media {
+  @include flex(space-between);
+  padding-bottom: 16px;
+
+  // .social-media__link
+  &__link {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--color-delimiter);
+    @include flex();
+    @include transition-hover();
+  }
+
+  // .social-media__link:hover
+  &__link:hover {
+    @include hover-filter();
+  }
+}

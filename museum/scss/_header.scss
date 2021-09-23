@@ -27,8 +27,7 @@
 
   // .logo:hover
   &:hover {
-    filter: invert(55%) sepia(25%) saturate(457%) hue-rotate(356deg)
-      brightness(93%) contrast(89%);
+    @include hover-filter();
   }
 
   // .logo__image
@@ -48,6 +47,16 @@
     margin: 0 -5px;
   }
 
+  // .main-menu__list-columns
+  &__list-columns {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 142px;
+    gap: 11px;
+    align-content: space-between;
+  }
+
   // .main-menu__link
   &__link {
     display: block;
@@ -59,8 +68,7 @@
   }
 
   // .main-menu__link:hover, active
-  &__link:hover,
-  &__link:active {
+  &__link:hover {
     color: var(--color-hover);
   }
 }

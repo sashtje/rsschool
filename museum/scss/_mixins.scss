@@ -17,3 +17,8 @@
   transition: 0.5s;
   cursor: pointer;
 }
+
+@mixin hover-filter() {
+  filter: invert(55%) sepia(25%) saturate(457%) hue-rotate(356deg)
+    brightness(93%) contrast(89%);
+}

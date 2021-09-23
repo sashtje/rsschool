@@ -209,6 +209,7 @@ img {
   --bg-light: #ffffff;
   --color-hover: #9d8665;
   --color-btn: #710707;
+  --color-delimiter: #666666;
   scroll-behavior: smooth;
 }
 
@@ -219,7 +220,7 @@ body {
   line-height: 26px;
 }
 
-.header__container {
+.footer__container, .header__container {
   max-width: 1440px;
   margin: 0 auto;
 }
@@ -265,6 +266,14 @@ body {
   align-items: center;
   margin: 0 -5px;
 }
+.main-menu__list-columns {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 142px;
+  gap: 11px;
+  align-content: space-between;
+}
 .main-menu__link {
   display: block;
   padding: 7px 5px;
@@ -274,8 +283,79 @@ body {
   transition: 0.5s;
   cursor: pointer;
 }
-.main-menu__link:hover, .main-menu__link:active {
+.main-menu__link:hover {
   color: var(--color-hover);
+}
+
+.footer {
+  padding-top: 84px;
+  background-color: var(--bg-dark);
+}
+.footer__inner-top {
+  display: flex;
+  align-items: center;
+  padding-bottom: 40px;
+}
+.footer__logo {
+  align-self: flex-start;
+  flex: 0 1 195px;
+}
+.footer__menu {
+  flex: 0 1 370px;
+  margin-left: 137px;
+  margin-right: auto;
+}
+.footer__social-media {
+  flex: 0 1 340px;
+  align-self: flex-end;
+}
+.footer__delimiter {
+  height: 3px;
+  background-color: var(--color-delimiter);
+}
+.footer__inner-bottom {
+  padding: 45px 0;
+  line-height: 22px;
+  letter-spacing: var(--links-letter-spacing);
+  font-weight: var(--menus-font-weight);
+  display: flex;
+  align-content: center;
+}
+.footer__time, .footer__rsschool-link, .footer__my-github-link {
+  color: var(--bg-light);
+  padding: 7px 0;
+}
+.footer__rsschool-link, .footer__my-github-link {
+  transition: 0.5s;
+  cursor: pointer;
+}
+.footer__rsschool-link {
+  margin-left: 488px;
+  margin-right: auto;
+}
+.footer__rsschool-link:hover, .footer__my-github-link:hover {
+  filter: invert(55%) sepia(25%) saturate(457%) hue-rotate(356deg) brightness(93%) contrast(89%);
+}
+
+.social-media {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+}
+.social-media__link {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--color-delimiter);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.social-media__link:hover {
+  filter: invert(55%) sepia(25%) saturate(457%) hue-rotate(356deg) brightness(93%) contrast(89%);
 }
 
 /*# sourceMappingURL=style.css.map */
