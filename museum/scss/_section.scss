@@ -121,4 +121,28 @@
     margin-top: 15px;
     flex: 0 0 720px;
   }
+
+  // .section__video-description
+  &__video-description {
+    display: flex;
+
+    & .section__title {
+      flex: 0 1 50%;
+    }
+  }
+  // .section__video-text
+  &__video-text {
+    flex: 0 1 50%;
+    margin-top: 10px;
+    line-height: 38px;
+    font-weight: var(--main-text-font-weight);
+  }
+  // .section__video-player
+  &__video-player {
+    margin-top: 75px;
+  }
+  // .section__video-slider
+  &__video-slider {
+    margin-top: 40px;
+  }
 }
