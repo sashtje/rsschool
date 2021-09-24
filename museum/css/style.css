@@ -366,6 +366,30 @@ body {
 .section_dark .section__title {
   color: var(--bg-light);
 }
+.section__explore-content {
+  display: flex;
+  justify-content: space-between;
+}
+.section__explore-content .section__title {
+  margin-bottom: 75px;
+}
+.section__explore-description {
+  flex: 0 1 660px;
+}
+.section__explore-text {
+  font-weight: var(--main-text-font-weight);
+  line-height: 38px;
+}
+.section__explore-text_highlight {
+  color: var(--color-selection-text);
+}
+.section__explore-text + .section__explore-text {
+  margin-top: 25px;
+}
+.section__compare-photos {
+  margin-top: 15px;
+  flex: 0 0 720px;
+}
 
 .carousel {
   position: absolute;
@@ -484,6 +508,29 @@ body {
   line-height: 21px;
   color: var(--color-text);
   margin-top: 10px;
+}
+
+.compare-photos {
+  position: relative;
+  height: 700px;
+}
+.compare-photos__photo {
+  position: absolute;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+.compare-photos__photo img {
+  display: block;
+  vertical-align: middle;
+}
+.compare-photos__slider {
+  position: absolute;
+  z-index: 1;
+  cursor: ew-resize;
+  width: 39px;
+  height: 700px;
+  background-image: url("../assets/svg/explore-slider.svg");
 }
 
 .contacts {
