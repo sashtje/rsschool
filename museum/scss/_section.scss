@@ -17,17 +17,72 @@
       border-bottom: 3px solid #710707;
     }
   }
+
+  // .section_welcome
+  &_welcome {
+    padding: 0;
+  }
+  // .section__welcome-content
+  &__welcome-content {
+    height: 810px;
+    position: relative;
+  }
+  // .section__welcome-block
+  &__welcome-block {
+    position: relative;
+    padding-top: 150px;
+    z-index: 1;
+  }
+  // .section__subtitle
+  &__welcome-subtitle {
+    margin-top: 25px;
+
+    font-size: var(--logo-fz);
+    line-height: 33px;
+    font-weight: var(--main-text-font-weight);
+    letter-spacing: var(--links-letter-spacing);
+  }
+  // .section__btn
+  &__btn {
+    display: block;
+    margin-top: 75px;
+    width: 360px;
+    height: 75px;
+    text-align: center;
+    vertical-align: middle;
+
+    font-weight: var(--main-text-font-weight);
+    line-height: 75px;
+    letter-spacing: var(--links-letter-spacing);
+    color: var(--bg-light);
+
+    background-color: var(--color-btn);
+    border-radius: 10px;
+
+    @include transition-hover();
+
+    &:hover {
+      background-color: var(--color-hover);
+    }
+  }
+  // .section__carousel
+  &__carousel {
+    bottom: 0;
+    right: 0;
+  }
+
   // .section__content
   &__content {
     margin-top: 75px;
   }
-}
 
-.section_dark {
-  background-color: var(--bg-dark);
-  color: var(--bg-light);
-
-  .section__title {
+  // .section_dark
+  &_dark {
+    background-color: var(--bg-dark);
     color: var(--bg-light);
+
+    .section__title {
+      color: var(--bg-light);
+    }
   }
 }

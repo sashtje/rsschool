@@ -51,9 +51,51 @@
   <main class="main">
     <section class="section section_welcome section_dark" id="welcome">
       <div class="section__container">
-        <h2 class="section__title section__title_dark">Welcome<br>to the Louvre</h2>
-        <p class="section__subtitle">From the castle to the museum</p>
-        <a class="section__btn" href="https://www.google.com/maps/@48.8618159,2.3366818,3a,75y,81.55h,73.4t/data=!3m7!1e1!3m5!1sAF1QipOVxZQuSy3Bx9T_HpH_7FtBHDTXvI6SF-A10ocT!2e10!3e12!7i5472!8i2736" target="_blank">Discover the Louvre</a>
+        <div class="section__welcome-content">
+          <div class="section__welcome-block">
+            <h2 class="section__title">Welcome<br>to the Louvre</h2>
+            <p class="section__welcome-subtitle">From the castle to the museum</p>
+            <a class="section__btn" href="tours/tour1.html" target="_blank">Discover the Louvre</a>
+          </div>
+          <div class="section__carousel carousel">
+            <div class="carousel__container">
+              <div class="carousel__item">
+                <img class="carousel__item-photo" src="assets/img/welcome-slider/1.jpg" alt="photo 1" width="1000" height="750">
+              </div>
+              <div class="carousel__item">
+                <img class="carousel__item-photo" src="assets/img/welcome-slider/2.jpg" alt="photo 2" width="1000" height="750">
+              </div>
+              <div class="carousel__item">
+                <img class="carousel__item-photo" src="assets/img/welcome-slider/3.jpg" alt="photo 3" width="1000" height="750">
+              </div>
+              <div class="carousel__item">
+                <img class="carousel__item-photo" src="assets/img/welcome-slider/4.jpg" alt="photo 4" width="1000" height="750">
+              </div>
+              <div class="carousel__item">
+                <img class="carousel__item-photo" src="assets/img/welcome-slider/5.jpg" alt="photo 5" width="1000" height="750">
+              </div>
+            </div>
+
+            <div class="carousel__controls">
+              <div class="carousel__current-slide">
+                0<span id="current-slide-number">1</span> | 05
+              </div>
+
+              <div class="carousel__squares">
+                <div class="carousel__squares-item carousel__squares-item_checked"></div>
+                <div class="carousel__squares-item"></div>
+                <div class="carousel__squares-item"></div>
+                <div class="carousel__squares-item"></div>
+                <div class="carousel__squares-item"></div>
+              </div>
+
+              <div class="carousel__btns">
+                <div class="carousel__arrow-btn" id="prev-slide"><img src="assets/svg/carousel/arrow-left.svg" alt="prev slide" width="30" height="8"></div>
+                <div class="carousel__arrow-btn" id="next-slide"><img src="assets/svg/carousel/arrow-right.svg" alt="next slide" width="30" height="8"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
