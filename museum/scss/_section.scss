@@ -145,4 +145,15 @@
   &__video-slider {
     margin-top: 40px;
   }
+
+  &_gallery {
+    padding-bottom: 0;
+  }
+
+  // .section__gallery-container
+  &__gallery-container {
+    margin-top: 75px;
+    height: 1960px;
+    overflow-y: hidden;
+  }
 }

@@ -412,6 +412,14 @@ body {
 .section__video-slider {
   margin-top: 40px;
 }
+.section_gallery {
+  padding-bottom: 0;
+}
+.section__gallery-container {
+  margin-top: 75px;
+  height: 1960px;
+  overflow-y: hidden;
+}
 
 .carousel {
   position: absolute;
@@ -674,6 +682,32 @@ body {
 }
 .video-slider__controls-dot:hover {
   background-color: var(--color-btn);
+}
+
+.gallery {
+  position: relative;
+}
+.gallery__inner-container {
+  height: 3046px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 24px 36px;
+}
+.gallery__inner-container img {
+  max-width: 456px;
+}
+.gallery__inner-container img:first-child, .gallery__inner-container img:nth-child(11) {
+  padding-top: 50px;
+}
+.gallery::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 360px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
 }
 
 .contacts {
