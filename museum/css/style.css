@@ -694,10 +694,10 @@ body {
   flex-direction: column;
   gap: 24px 36px;
 }
-.gallery__inner-container img {
+.gallery__item {
   max-width: 456px;
 }
-.gallery__inner-container img:first-child, .gallery__inner-container img:nth-child(11) {
+.gallery__item:first-child, .gallery__item:nth-child(11) {
   padding-top: 50px;
 }
 .gallery::after {

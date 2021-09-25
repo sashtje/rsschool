@@ -8,14 +8,14 @@
     flex-wrap: wrap;
     flex-direction: column;
     gap: 24px 36px;
+  }
 
-    & img {
-      max-width: 456px;
+  &__item {
+    max-width: 456px;
 
-      &:first-child,
-      &:nth-child(11) {
-        padding-top: 50px;
-      }
+    &:first-child,
+    &:nth-child(11) {
+      padding-top: 50px;
     }
   }
 
