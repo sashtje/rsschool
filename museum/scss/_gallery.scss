@@ -3,18 +3,39 @@
 
   // .gallery__inner-container
   &__inner-container {
-    height: 3046px;
+    height: 3020px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    gap: 24px 36px;
+    align-content: space-between;
+
+    &::before,
+    &::after {
+      content: "";
+      flex-basis: 100%;
+      width: 0;
+      order: 2;
+    }
   }
 
   &__item {
     max-width: 456px;
+    margin-bottom: 24px;
+
+    &:nth-child(3n + 1) {
+      order: 1;
+    }
+
+    &:nth-child(3n + 2) {
+      order: 2;
+    }
+
+    &:nth-child(3n) {
+      order: 3;
+    }
 
     &:first-child,
-    &:nth-child(11) {
+    &:nth-child(3) {
       padding-top: 50px;
     }
   }

@@ -420,6 +420,16 @@ body {
   height: 1960px;
   overflow-y: hidden;
 }
+.section_tickets {
+  padding-bottom: 0;
+}
+.section__parallax {
+  margin-top: 75px;
+  height: 400px;
+  background-image: url("../assets/img/parallax.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+}
 
 .carousel {
   position: absolute;
@@ -688,16 +698,32 @@ body {
   position: relative;
 }
 .gallery__inner-container {
-  height: 3046px;
+  height: 3020px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  gap: 24px 36px;
+  align-content: space-between;
+}
+.gallery__inner-container::before, .gallery__inner-container::after {
+  content: "";
+  flex-basis: 100%;
+  width: 0;
+  order: 2;
 }
 .gallery__item {
   max-width: 456px;
+  margin-bottom: 24px;
 }
-.gallery__item:first-child, .gallery__item:nth-child(11) {
+.gallery__item:nth-child(3n+1) {
+  order: 1;
+}
+.gallery__item:nth-child(3n+2) {
+  order: 2;
+}
+.gallery__item:nth-child(3n) {
+  order: 3;
+}
+.gallery__item:first-child, .gallery__item:nth-child(3) {
   padding-top: 50px;
 }
 .gallery::after {

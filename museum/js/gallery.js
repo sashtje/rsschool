@@ -18,8 +18,11 @@ function fillGallery() {
 
   for (let i = 0; i < 15; i++) {
     let currImg = getCurrImg(arrImgNames);
-    let img = `<img class="gallery__item" src="assets/img/gallery/gallery${currImg}.jpg" alt="gallery${currImg}">`;
-    galleryInnerContainer.innerHTML += img;
+    let img = document.createElement("img");
+    img.classList.add("gallery__item");
+    img.src = `assets/img/gallery/gallery${currImg}.jpg`;
+    img.alt = `gallery${currImg}`;
+    galleryInnerContainer.append(img);
   }
 }
 
