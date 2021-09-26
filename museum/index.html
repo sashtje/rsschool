@@ -275,6 +275,98 @@
         </div>
       </div>
 
+      <div class="section__tickets-form">
+        <form class="tickets-form" action="#">
+          <div class="tickets-form__btn-close" id="close-tickets-form"></div>
+          <div class="tickets-form__container">
+            <div class="tickets-form__left-column">
+              <h2 class="tickets-form__title">Booking tickets</h2>
+              <div class="tickets-form__subtitle">Tour to Louvre</div>
+              <input class="tickets-form__input tickets-form__date" type="date" name="date">
+              <input class="tickets-form__input tickets-form__time" type="time" name="time">
+
+              <input class="tickets-form__input tickets-form__name" type="text" name="name">
+              <input class="tickets-form__input tickets-form__email" type="email" name="email">
+              <input class="tickets-form__input tickets-form__tel" type="tel" name="tel">
+              <select class="tickets-form__input tickets-form__select-ticket-type" name="ticket-type">
+                <option value="permanent">Permanent exhibition</option>
+                <option value="temporary">Temporary exhibition</option>
+                <option value="combined">Combined Admission</option>
+              </select>
+
+              <div class="tickets-form__entry-tickets-block">
+                <h4 class="tickets-form__entry-tickets-title">Entry ticket</h4>
+                <div class="tickets-form__entry-tickets-delimiter"></div>
+                <div class="tickets-form__entry-tickets-row">
+                  Basic 18+ (20 €)
+                  <div class="number-choice">
+                    <button class="number-choice__btn" onclick="this.nextElementSibling.stepDown()">–</button>
+                    <input class="number-choice__number" type="number" min="0" max="20" value="2" readonly>
+                    <button class="number-choice__btn" onclick="this.previousElementSibling.stepUp()">+</button>
+                  </div>
+                </div>
+                <div class="tickets-form__entry-tickets-row">
+                  Senior 65+ (10 €)
+                  <div class="number-choice">
+                    <button class="number-choice__btn" onclick="this.nextElementSibling.stepDown()">–</button>
+                    <input class="number-choice__number" type="number" min="0" max="20" value="2" readonly>
+                    <button class="number-choice__btn" onclick="this.previousElementSibling.stepUp()">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tickets-form__right-column">
+              <div class="tickets-form__overview">
+                <h4 class="tickets-form__overview-title">Overview</h4>
+                <div class="tickets-form__overview-subtitle">Tour to Louvre</div>
+                <p class="tickets-form__overview-date">Friday, August 19</p>
+                <p class="tickets-form__overview-time">16 : 30</p>
+                <p class="tickets-form__overview-ticket-type">Temporary exhibition</p>
+              </div>
+              <table class="tickets-form__overview-table overview-table">
+                <tfoot>
+                  <tr>
+                    <td>Total:</td>
+                    <td>60 €</td>
+                  </tr>
+                </tfoot>
+                <tbody>
+                  <tr>
+                    <td><span class="overview-table__number">2</span>Basic (20 €)</td>
+                    <td>40 €</td>
+                  </tr>
+                  <tr>
+                    <td><span class="overview-table__number">2</span>Senior (10 €)</td>
+                    <td>20 €</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="tickets-form__overview-bank-cards">
+                <div class="tickets-form__overview-bank-card-down bank-card">
+                  <label class="bank-card__label" for="cvc">CVC/CVV</label>
+                  <input class="bank-card__input bank-card__input-cvc" type="text" name="cvc/cvv" id="cvc">
+                  <p class="bank-card__description">The last<br>3 or 4 digits on back<br>of the card</p>
+                </div>
+                <div class="tickets-form__overview-bank-card-up bank-card">
+                  <label class="bank-card__number" for="number-card">Card number</label>
+                  <input class="bank-card__input bank-card__input-card-number" type="text" name="bank-card-number" id="number-card">
+                  <p class="bank-card__label">Expiration date</p>
+                  <input class="bank-card__input bank-card__input-number" type="number" name="expiration month" min="01" max="12" step="1" value="03">
+                  <input class="bank-card__input bank-card__input-number" type="number" name="expiration year" min="2021" max="2040" step="1" value="2024">
+
+                  <label class="bank-card__cardholder-name" for="cardholder-name">Cardholder name</label>
+                  <input class="bank-card__input bank-card__input-cardholder-name" type="text" name="cardholder-name" id="cardholder-name">
+                </div>
+              </div>
+
+              <input class="tickets-form__overview-btn-submit" type="submit">
+            </div>
+          </div>
+        </form>
+      </div>
+
       <div class="section__parallax"></div>
     </section>
 

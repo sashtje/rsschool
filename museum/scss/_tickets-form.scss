@@ -1,0 +1,184 @@
+.tickets-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  width: 1440px;
+  background-color: var(--bg-light);
+  padding: 91px 0;
+
+  // .tickets-form__btn-close
+  &__btn-close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    content: "";
+    width: 25px;
+    height: 25px;
+    background-image: url("../assets/svg/tickets-form/close.svg");
+    background-size: 25px 25px;
+    @include transition-hover();
+
+    &:hover {
+      @include hover-filter();
+    }
+  }
+
+  // .tickets-form__container
+  &__container {
+    max-width: 970px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  // .tickets-form__left-column
+  &__left-column {
+    flex: 0 1 400px;
+  }
+
+  // .tickets-form__title
+  &__title {
+  }
+
+  // .tickets-form__subtitle
+  &__subtitle {
+  }
+
+  // .tickets-form__input
+  &__input {
+  }
+
+  // .tickets-form__date
+  &__date {
+  }
+
+  // .tickets-form__time
+  &__time {
+  }
+
+  // .tickets-form__name
+  &__name {
+  }
+
+  // .tickets-form__email
+  &__email {
+  }
+
+  // .tickets-form__tel
+  &__tel {
+  }
+
+  // .tickets-form__select-ticket-type
+  &__select-ticket-type {
+  }
+
+  // .tickets-form__entry-tickets-block
+  &__entry-tickets-block {
+  }
+
+  // .tickets-form__entry-tickets-title
+  &__entry-tickets-title {
+  }
+
+  // .tickets-form__entry-tickets-delimiter
+  &__entry-tickets-delimiter {
+  }
+
+  // .tickets-form__entry-tickets-row
+  &__entry-tickets-row {
+  }
+
+  // .tickets-form__right-column
+  &__right-column {
+    flex: 0 1 530px;
+  }
+
+  // .tickets-form__overview
+  &__overview {
+  }
+
+  // .tickets-form__overview-title
+  &__overview-title {
+  }
+
+  // .tickets-form__overview-subtitle
+  &__overview-subtitle {
+  }
+
+  // .tickets-form__overview-date
+  &__overview-date {
+  }
+
+  // .tickets-form__overview-time
+  &__overview-time {
+  }
+
+  // .tickets-form__overview-ticket-type
+  &__overview-ticket-type {
+  }
+
+  // .tickets-form__overview-table
+  &__overview-table {
+  }
+
+  // .tickets-form__overview-bank-cards
+  &__overview-bank-cards {
+  }
+
+  // .tickets-form__overview-bank-card-down
+  &__overview-bank-card-down {
+  }
+
+  // .tickets-form__overview-bank-card-up
+  &__overview-bank-card-up {
+  }
+
+  // .tickets-form__overview-btn-submit
+  &__overview-btn-submit {
+  }
+}
+
+.overview-table {
+  // .overview-table__number
+  &__number {
+  }
+}
+
+.bank-card {
+  // .bank-card__label
+  &__label {
+  }
+
+  // .bank-card__input
+  &__input {
+  }
+
+  // .bank-card__input-cvc
+  &__input-cvc {
+  }
+
+  // .bank-card__description
+  &__description {
+  }
+
+  // .bank-card__number
+  &__number {
+  }
+
+  // .bank-card__input-card-number
+  &__input-card-number {
+  }
+
+  // .bank-card__input-number
+  &__input-number {
+  }
+
+  // .bank-card__cardholder-name
+  &__cardholder-name {
+  }
+
+  // .bank-card__input-cardholder-name
+  &__input-cardholder-name {
+  }
+}
