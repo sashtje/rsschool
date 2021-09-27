@@ -99,6 +99,11 @@
     &:-ms-input-placeholder {
       color: var(--bg-dark);
     }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
   }
 
   &__date-time {
@@ -161,6 +166,15 @@
     padding: 0 0 0 44px;
   }
 
+  &__select {
+    display: block;
+    position: relative;
+
+    /* & select {
+      display: none;
+    } */
+  }
+
   // .tickets-form__select-ticket-type
   &__select-ticket-type {
     background-image: url("../assets/svg/tickets-form/ticket-type.svg"),
@@ -168,12 +182,39 @@
     background-size: 15px 15px, 17px 17px;
     background-position: 15px 50%, calc(100% - 15px) center;
     padding: 0 0 0 41px;
-    -moz-appearance: none;
-    -webkit-appearance: none;
     cursor: pointer;
 
-    & option {
-      padding: 0;
+    &_is-open {
+      background-image: url("../assets/svg/tickets-form/ticket-type.svg"),
+        url("../assets/svg/tickets-form/arrow-select-up.svg");
+    }
+  }
+
+  &__dropdown-list {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 45px;
+    width: 400px;
+    border: 1px solid var(--bg-dark);
+    border-top: none;
+    background-color: var(--bg-light);
+
+    &_visible {
+      display: block;
+    }
+  }
+
+  &__dropdown-item {
+    padding: 13px 41px;
+    font-weight: var(--main-text-font-weight);
+    font-size: var(--video-titles-fz);
+    line-height: 21px;
+    color: var(--bg-dark);
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--color-bg-select);
     }
   }
 
@@ -428,6 +469,10 @@
     height: 35px;
     border: 0.5px solid var(--color-number-tickets);
     padding: 0 10px;
+
+    &:focus {
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
   }
 
   // .bank-card__input-cvc

@@ -224,6 +224,7 @@ img {
   --color-card-down: #939393;
   --color-card-up: #bcbcbc;
   --color-card-stripe: #161615;
+  --color-bg-select: #e7e7e7;
   scroll-behavior: smooth;
 }
 
@@ -1024,6 +1025,10 @@ body {
 .tickets-form__input:-ms-input-placeholder {
   color: var(--bg-dark);
 }
+.tickets-form__input:focus {
+  outline: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
 .tickets-form__date-time {
   display: flex;
   justify-content: space-between;
@@ -1069,17 +1074,46 @@ body {
   background-size: 14px 23px;
   padding: 0 0 0 44px;
 }
+.tickets-form__select {
+  display: block;
+  position: relative;
+  /* & select {
+    display: none;
+  } */
+}
 .tickets-form__select-ticket-type {
   background-image: url("../assets/svg/tickets-form/ticket-type.svg"), url("../assets/svg/tickets-form/arrow.svg");
   background-size: 15px 15px, 17px 17px;
   background-position: 15px 50%, calc(100% - 15px) center;
   padding: 0 0 0 41px;
-  -moz-appearance: none;
-  -webkit-appearance: none;
   cursor: pointer;
 }
-.tickets-form__select-ticket-type option {
-  padding: 0;
+.tickets-form__select-ticket-type_is-open {
+  background-image: url("../assets/svg/tickets-form/ticket-type.svg"), url("../assets/svg/tickets-form/arrow-select-up.svg");
+}
+.tickets-form__dropdown-list {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 45px;
+  width: 400px;
+  border: 1px solid var(--bg-dark);
+  border-top: none;
+  background-color: var(--bg-light);
+}
+.tickets-form__dropdown-list_visible {
+  display: block;
+}
+.tickets-form__dropdown-item {
+  padding: 13px 41px;
+  font-weight: var(--main-text-font-weight);
+  font-size: var(--video-titles-fz);
+  line-height: 21px;
+  color: var(--bg-dark);
+  cursor: pointer;
+}
+.tickets-form__dropdown-item:hover {
+  background-color: var(--color-bg-select);
 }
 .tickets-form__entry-tickets-block {
   padding: 10px 15px 15px 15px;
@@ -1283,6 +1317,9 @@ body {
   height: 35px;
   border: 0.5px solid var(--color-number-tickets);
   padding: 0 10px;
+}
+.bank-card__input:focus {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .bank-card__input-cvc {
   width: 75px;

@@ -292,12 +292,21 @@
               <input class="tickets-form__input tickets-form__email" type="email" name="email" placeholder="E-mail" autocomplete="off">
               <input class="tickets-form__input tickets-form__tel" type="tel" name="tel" placeholder="Phone" autocomplete="off">
 
-              <select class="tickets-form__input tickets-form__select-ticket-type" name="ticket-type">
-                <option value="" disabled selected hidden>Ticket Type</option>
-                <option value="permanent">Permanent exhibition</option>
-                <option value="temporary">Temporary exhibition</option>
-                <option value="combined">Combined Admission</option>
-              </select>
+              <div class="tickets-form__select">
+                <input class="tickets-form__input tickets-form__select-ticket-type" type="text" name="ticket-type" readonly placeholder="Ticket Type">
+
+                <select name="ticket-type-select" hidden>
+                  <option value="permanent">Permanent exhibition</option>
+                  <option value="temporary">Temporary exhibition</option>
+                  <option value="combined">Combined Admission</option>
+                </select>
+
+                <ul class="tickets-form__dropdown-list">
+                  <li class="tickets-form__dropdown-item">Permanent exhibition</li>
+                  <li class="tickets-form__dropdown-item">Temporary exhibition</li>
+                  <li class="tickets-form__dropdown-item">Combined Admission</li>
+                </ul>
+              </div>
 
               <div class="tickets-form__entry-tickets-block">
                 <h4 class="tickets-form__entry-tickets-title">Entry ticket</h4>
@@ -329,12 +338,6 @@
                 <p class="tickets-form__overview-text tickets-form__overview-ticket-type">Temporary exhibition</p>
               </div>
               <table class="tickets-form__overview-table overview-table">
-                <tfoot>
-                  <tr>
-                    <td>Total:</td>
-                    <td>60 €</td>
-                  </tr>
-                </tfoot>
                 <tbody>
                   <tr>
                     <td><span class="overview-table__number">2</span>Basic (20 €)</td>
@@ -345,6 +348,12 @@
                     <td>20 €</td>
                   </tr>
                 </tbody>
+                <tfoot>
+                  <tr>
+                    <td>Total:</td>
+                    <td>60 €</td>
+                  </tr>
+                </tfoot>
               </table>
 
               <div class="tickets-form__overview-bank-cards-block">
