@@ -24,3 +24,26 @@ buttons.forEach((button) => {
 });
 
 //======================================
+const buyNowBtn = document.getElementById("buy-now-btn");
+const formWrapper = document.getElementById("tickets-form-wrapper");
+const closeTicketsFormBtn = document.getElementById("close-tickets-form");
+const form = document.getElementById("tickets-form");
+
+buyNowBtn.addEventListener("click", function () {
+  formWrapper.classList.add("form-is-shown");
+});
+
+closeTicketsFormBtn.addEventListener("click", function () {
+  if (formWrapper.classList.contains("form-is-shown")) {
+    formWrapper.classList.remove("form-is-shown");
+  } else return;
+});
+
+formWrapper.addEventListener("click", function (e) {
+  console.log(e.target.id);
+  if (e.target.id == "tickets-form-wrapper") {
+    if (formWrapper.classList.contains("form-is-shown")) {
+      formWrapper.classList.remove("form-is-shown");
+    }
+  } else return;
+});
