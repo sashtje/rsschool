@@ -13,6 +13,14 @@
   color: $color;
 }
 
+@mixin title-font-style-without-let-space($fz, $lh, $color) {
+  font-family: var(--titles-font-family);
+  font-size: $fz;
+  line-height: $lh;
+  text-transform: uppercase;
+  color: $color;
+}
+
 @mixin transition-hover() {
   transition: 0.5s;
   cursor: pointer;

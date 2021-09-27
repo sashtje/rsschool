@@ -39,146 +39,420 @@
 
   // .tickets-form__title
   &__title {
+    padding-top: 41px;
+    background-image: url("../assets/svg/tickets-form/logo-gold.svg");
+    background-size: 85px 41px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    @include title-font-style-without-let-space(
+      var(--title-book-tickets),
+      55px,
+      var(--color-hover)
+    );
+    margin-bottom: 15px;
   }
 
   // .tickets-form__subtitle
   &__subtitle {
+    font-size: var(--video-titles-fz);
+    line-height: 21px;
+    color: var(--color-btn);
+    padding-bottom: 10px;
+    border-bottom: 3px solid rgba(116, 12, 17, 0.9);
+    margin-bottom: 60px;
   }
 
   // .tickets-form__input
   &__input {
+    width: 100%;
+    height: 45px;
+    border: 1px solid var(--bg-dark);
+    margin-bottom: 20px;
+    font-family: var(--main-text-font-family);
+    font-weight: normal;
+    font-size: var(--video-titles-fz);
+    line-height: 21px;
+    color: var(--bg-dark);
+    padding: 0 0 0 45px;
+
+    background-position: 15px 50%;
+    background-repeat: no-repeat;
+
+    &::-webkit-input-placeholder {
+      color: var(--bg-dark);
+    }
+
+    &::-moz-placeholder {
+      color: var(--bg-dark);
+    }
+
+    &:-moz-placeholder {
+      color: var(--bg-dark);
+    }
+
+    &:-ms-input-placeholder {
+      color: var(--bg-dark);
+    }
+  }
+
+  &__date-time {
+    display: flex;
+    justify-content: space-between;
   }
 
   // .tickets-form__date
   &__date {
+    flex: 0 1 190px;
+    background-image: url("../assets/svg/tickets-form/date.svg");
+    background-size: 15px 15px;
+
+    &::-webkit-calendar-picker-indicator {
+      background: orange;
+    }
   }
 
   // .tickets-form__time
   &__time {
+    flex: 0 1 190px;
+    background-image: url("../assets/svg/tickets-form/time.svg");
+    background-size: 15px 15px;
   }
 
   // .tickets-form__name
   &__name {
+    background-image: url("../assets/svg/tickets-form/name.svg");
+    background-size: 13px 15px;
+    padding: 0 0 0 43px;
   }
 
   // .tickets-form__email
   &__email {
+    background-image: url("../assets/svg/tickets-form/email.svg");
+    background-size: 15px 11px;
+    padding: 0 0 0 44px;
   }
 
   // .tickets-form__tel
   &__tel {
+    background-image: url("../assets/svg/tickets-form/tel.svg");
+    background-size: 14px 23px;
+    padding: 0 0 0 44px;
   }
 
   // .tickets-form__select-ticket-type
   &__select-ticket-type {
+    background-image: url("../assets/svg/tickets-form/ticket-type.svg");
+    background-size: 15px 15px;
+    padding: 0 0 0 41px;
+
+    & option {
+      padding: 0;
+    }
   }
 
   // .tickets-form__entry-tickets-block
   &__entry-tickets-block {
+    padding: 10px 15px 15px 15px;
+    border: 1px solid var(--bg-dark);
   }
 
   // .tickets-form__entry-tickets-title
   &__entry-tickets-title {
-  }
-
-  // .tickets-form__entry-tickets-delimiter
-  &__entry-tickets-delimiter {
+    font-family: var(--titles-font-family);
+    font-size: var(--video-titles-fz);
+    line-height: 20px;
+    text-transform: capitalize;
+    color: var(--color-hover);
+    padding-bottom: 5px;
+    border-bottom: 2px solid rgba(116, 12, 17, 0.9);
+    margin-bottom: 15px;
   }
 
   // .tickets-form__entry-tickets-row
   &__entry-tickets-row {
+    @include flex(space-between);
+    font-size: var(--video-titles-fz);
+    line-height: 21px;
+    color: var(--bg-dark);
+
+    & + .tickets-form__entry-tickets-row {
+      margin-top: 18px;
+    }
   }
 
   // .tickets-form__right-column
   &__right-column {
     flex: 0 1 530px;
+    border: 1px solid var(--bg-dark);
+    padding: 25px 30px;
   }
 
   // .tickets-form__overview
   &__overview {
+    background-image: url("../assets/img/tickets-form/louvre.jpg");
+    background-size: 150px 120px;
+    background-repeat: no-repeat;
+    background-position: right top;
   }
 
   // .tickets-form__overview-title
   &__overview-title {
+    font-weight: var(--contacts-subtitle-font-weight);
+    font-size: var(--cards-title);
+    line-height: 37px;
+    color: var(--color-overview);
+    margin-bottom: 2px;
   }
 
   // .tickets-form__overview-subtitle
   &__overview-subtitle {
+    font-weight: var(--contacts-subtitle-font-weight);
+    color: rgba(116, 12, 17, 0.9);
+    margin-bottom: 10px;
+  }
+
+  &__overview-text {
+    font-weight: var(--main-text-font-weight);
+    font-size: var(--video-titles-fz);
+    line-height: 21px;
+    color: var(--bg-dark);
+    padding-left: 30px;
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
   }
 
   // .tickets-form__overview-date
   &__overview-date {
+    margin-bottom: 5px;
+    background-image: url("../assets/svg/tickets-form/date.svg");
   }
 
   // .tickets-form__overview-time
   &__overview-time {
+    margin-bottom: 5px;
+    background-image: url("../assets/svg/tickets-form/time.svg");
   }
 
   // .tickets-form__overview-ticket-type
   &__overview-ticket-type {
+    margin-bottom: 22px;
+    background-image: url("../assets/svg/tickets-form/radio-checked.svg");
   }
 
   // .tickets-form__overview-table
   &__overview-table {
+    margin-bottom: 10px;
   }
 
   // .tickets-form__overview-bank-cards
-  &__overview-bank-cards {
+  &__overview-bank-cards-block {
+    position: relative;
+    height: 241px;
+  }
+
+  &__overview-bank-card {
+    position: absolute;
+    width: 360px;
+    border-radius: 3px;
   }
 
   // .tickets-form__overview-bank-card-down
   &__overview-bank-card-down {
+    background-color: var(--color-card-down);
+    right: 0;
+    bottom: 0;
+    padding-top: 85px;
+
+    &::after {
+      position: absolute;
+      top: 25px;
+      left: 0;
+      content: "";
+      width: 100%;
+      height: 45px;
+      background-color: var(--color-card-stripe);
+    }
   }
 
   // .tickets-form__overview-bank-card-up
   &__overview-bank-card-up {
+    background-color: var(--color-card-up);
+    padding: 15px 20px;
+    left: 0;
+    top: 0;
+
+    background-image: url("../assets/svg/tickets-form/visa.svg"),
+      url("../assets/svg/tickets-form/mastercard.svg");
+    background-size: 55px 16px, 53px 32px;
+    background-position: 285px 34px, 287px 65px;
+    background-repeat: no-repeat;
+  }
+
+  &__overview-btn-wrapper {
+    margin-top: 26px;
+    text-align: right;
   }
 
   // .tickets-form__overview-btn-submit
   &__overview-btn-submit {
+    width: 220px;
+    height: 45px;
+    background-color: rgba(113, 7, 7, 0.9);
+    font-family: var(--main-text-font-family);
+    font-size: var(--main-text-fz);
+    line-height: 26px;
+    color: var(--bg-light);
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+
+    & .circle {
+      position: absolute;
+      background-color: #ffffff;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      animation: scale 0.5s ease-out;
+    }
+  }
+}
+
+@keyframes scale {
+  to {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
   }
 }
 
 .overview-table {
+  width: 100%;
+  color: var(--bg-dark);
+
+  & td:last-child {
+    text-align: right;
+  }
+
+  & tbody td:first-child {
+    vertical-align: middle;
+  }
+
+  & tbody td {
+    padding-bottom: 9px;
+  }
+
+  & tbody tr:first-child td {
+    padding-bottom: 5px;
+  }
+
+  & tfoot {
+    border-top: 2px solid rgba(116, 12, 17, 1);
+
+    & td {
+      padding-top: 10px;
+      font-size: var(--cards-title);
+      line-height: 37px;
+
+      &:last-child {
+        font-weight: var(--contacts-subtitle-font-weight);
+      }
+    }
+  }
+
   // .overview-table__number
   &__number {
+    display: inline-block;
+    width: 32px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: var(--bg-dark);
+    border: 1px solid var(--color-text);
+    font-size: var(--video-titles-fz);
+    line-height: 21px;
+    color: var(--color-number-tickets);
+    text-align: center;
+    margin-right: 10px;
   }
 }
 
 .bank-card {
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--color-card-stripe);
+
   // .bank-card__label
   &__label {
+    display: block;
+    margin-left: 274px;
+    margin-bottom: 5px;
   }
 
   // .bank-card__input
   &__input {
+    font-family: var(--main-text-font-family);
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--color-card-stripe);
+    border: none;
+    height: 35px;
+    border: 0.5px solid var(--color-number-tickets);
   }
 
   // .bank-card__input-cvc
   &__input-cvc {
+    width: 75px;
+    margin-left: 265px;
+    margin-bottom: 6px;
   }
 
   // .bank-card__description
   &__description {
+    margin-left: 275px;
+    width: 55px;
+    font-size: 10px;
+    line-height: 12px;
+    margin-bottom: 15px;
   }
 
   // .bank-card__number
   &__number {
+    display: block;
+    margin-bottom: 5px;
   }
 
   // .bank-card__input-card-number
   &__input-card-number {
+    width: 215px;
+    margin-bottom: 10px;
+  }
+
+  &__expiration-date {
+    margin-bottom: 5px;
   }
 
   // .bank-card__input-number
   &__input-number {
+    width: 100px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+
+    & + .bank-card__input-number {
+      margin-left: 15px;
+    }
   }
 
   // .bank-card__cardholder-name
   &__cardholder-name {
+    display: block;
+    margin-bottom: 5px;
   }
 
   // .bank-card__input-cardholder-name
   &__input-cardholder-name {
+    width: 100%;
   }
 }

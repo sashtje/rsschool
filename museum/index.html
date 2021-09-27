@@ -282,12 +282,14 @@
             <div class="tickets-form__left-column">
               <h2 class="tickets-form__title">Booking tickets</h2>
               <div class="tickets-form__subtitle">Tour to Louvre</div>
-              <input class="tickets-form__input tickets-form__date" type="date" name="date">
-              <input class="tickets-form__input tickets-form__time" type="time" name="time">
+              <div class="tickets-form__date-time">
+                <input class="tickets-form__input tickets-form__date" type="date" name="date">
+                <input class="tickets-form__input tickets-form__time" type="time" name="time">
+              </div>
 
-              <input class="tickets-form__input tickets-form__name" type="text" name="name">
-              <input class="tickets-form__input tickets-form__email" type="email" name="email">
-              <input class="tickets-form__input tickets-form__tel" type="tel" name="tel">
+              <input class="tickets-form__input tickets-form__name" type="text" name="name" placeholder="Name">
+              <input class="tickets-form__input tickets-form__email" type="email" name="email" placeholder="E-mail">
+              <input class="tickets-form__input tickets-form__tel" type="tel" name="tel" placeholder="Phone">
               <select class="tickets-form__input tickets-form__select-ticket-type" name="ticket-type">
                 <option value="permanent">Permanent exhibition</option>
                 <option value="temporary">Temporary exhibition</option>
@@ -296,21 +298,20 @@
 
               <div class="tickets-form__entry-tickets-block">
                 <h4 class="tickets-form__entry-tickets-title">Entry ticket</h4>
-                <div class="tickets-form__entry-tickets-delimiter"></div>
                 <div class="tickets-form__entry-tickets-row">
                   Basic 18+ (20 €)
-                  <div class="number-choice">
-                    <button class="number-choice__btn" onclick="this.nextElementSibling.stepDown()">–</button>
+                  <div class="number-choice number-choice_form">
+                    <button class="number-choice__btn number-choice__btn-minus" onclick="this.nextElementSibling.stepDown()"></button>
                     <input class="number-choice__number" type="number" min="0" max="20" value="2" readonly>
-                    <button class="number-choice__btn" onclick="this.previousElementSibling.stepUp()">+</button>
+                    <button class="number-choice__btn number-choice__btn-plus" onclick="this.previousElementSibling.stepUp()"></button>
                   </div>
                 </div>
                 <div class="tickets-form__entry-tickets-row">
                   Senior 65+ (10 €)
-                  <div class="number-choice">
-                    <button class="number-choice__btn" onclick="this.nextElementSibling.stepDown()">–</button>
+                  <div class="number-choice number-choice_form">
+                    <button class="number-choice__btn number-choice__btn-minus" onclick="this.nextElementSibling.stepDown()"></button>
                     <input class="number-choice__number" type="number" min="0" max="20" value="2" readonly>
-                    <button class="number-choice__btn" onclick="this.previousElementSibling.stepUp()">+</button>
+                    <button class="number-choice__btn number-choice__btn-plus" onclick="this.previousElementSibling.stepUp()"></button>
                   </div>
                 </div>
               </div>
@@ -320,9 +321,9 @@
               <div class="tickets-form__overview">
                 <h4 class="tickets-form__overview-title">Overview</h4>
                 <div class="tickets-form__overview-subtitle">Tour to Louvre</div>
-                <p class="tickets-form__overview-date">Friday, August 19</p>
-                <p class="tickets-form__overview-time">16 : 30</p>
-                <p class="tickets-form__overview-ticket-type">Temporary exhibition</p>
+                <p class="tickets-form__overview-text tickets-form__overview-date">Friday, August 19</p>
+                <p class="tickets-form__overview-text tickets-form__overview-time">16 : 30</p>
+                <p class="tickets-form__overview-text tickets-form__overview-ticket-type">Temporary exhibition</p>
               </div>
               <table class="tickets-form__overview-table overview-table">
                 <tfoot>
@@ -343,16 +344,16 @@
                 </tbody>
               </table>
 
-              <div class="tickets-form__overview-bank-cards">
-                <div class="tickets-form__overview-bank-card-down bank-card">
+              <div class="tickets-form__overview-bank-cards-block">
+                <div class="tickets-form__overview-bank-card-down tickets-form__overview-bank-card bank-card">
                   <label class="bank-card__label" for="cvc">CVC/CVV</label>
                   <input class="bank-card__input bank-card__input-cvc" type="text" name="cvc/cvv" id="cvc">
                   <p class="bank-card__description">The last<br>3 or 4 digits on back<br>of the card</p>
                 </div>
-                <div class="tickets-form__overview-bank-card-up bank-card">
+                <div class="tickets-form__overview-bank-card-up tickets-form__overview-bank-card bank-card">
                   <label class="bank-card__number" for="number-card">Card number</label>
                   <input class="bank-card__input bank-card__input-card-number" type="text" name="bank-card-number" id="number-card">
-                  <p class="bank-card__label">Expiration date</p>
+                  <p class="bank-card__expiration-date">Expiration date</p>
                   <input class="bank-card__input bank-card__input-number" type="number" name="expiration month" min="01" max="12" step="1" value="03">
                   <input class="bank-card__input bank-card__input-number" type="number" name="expiration year" min="2021" max="2040" step="1" value="2024">
 
@@ -361,7 +362,9 @@
                 </div>
               </div>
 
-              <input class="tickets-form__overview-btn-submit" type="submit">
+              <div class="tickets-form__overview-btn-wrapper">
+                <button class="tickets-form__overview-btn-submit ripple">Book</button>
+              </div>
             </div>
           </div>
         </form>
@@ -444,5 +447,6 @@
 
   <script src="js/index.js"></script>
   <script src="js/gallery.js"></script>
+  <script src="js/ripple.js"></script>
 </body>
 </html>
