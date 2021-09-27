@@ -283,14 +283,17 @@
               <h2 class="tickets-form__title">Booking tickets</h2>
               <div class="tickets-form__subtitle">Tour to Louvre</div>
               <div class="tickets-form__date-time">
-                <input class="tickets-form__input tickets-form__date" type="date" name="date">
-                <input class="tickets-form__input tickets-form__time" type="time" name="time">
+                <input class="tickets-form__input tickets-form__date" type="text" name="date" onmouseover="(this.type='date')" onmouseout="(this.type='text')" onblur="(this.type='text')" placeholder="Date">
+
+                <input class="tickets-form__input tickets-form__time" type="text" name="time" onmouseover="(this.type='time')" onmouseout="(this.type='text')" onblur="(this.type='text')" placeholder="Time">
               </div>
 
-              <input class="tickets-form__input tickets-form__name" type="text" name="name" placeholder="Name">
-              <input class="tickets-form__input tickets-form__email" type="email" name="email" placeholder="E-mail">
-              <input class="tickets-form__input tickets-form__tel" type="tel" name="tel" placeholder="Phone">
+              <input class="tickets-form__input tickets-form__name" type="text" name="name" placeholder="Name" autocomplete="off">
+              <input class="tickets-form__input tickets-form__email" type="email" name="email" placeholder="E-mail" autocomplete="off">
+              <input class="tickets-form__input tickets-form__tel" type="tel" name="tel" placeholder="Phone" autocomplete="off">
+
               <select class="tickets-form__input tickets-form__select-ticket-type" name="ticket-type">
+                <option value="" disabled selected hidden>Ticket Type</option>
                 <option value="permanent">Permanent exhibition</option>
                 <option value="temporary">Temporary exhibition</option>
                 <option value="combined">Combined Admission</option>
@@ -354,8 +357,36 @@
                   <label class="bank-card__number" for="number-card">Card number</label>
                   <input class="bank-card__input bank-card__input-card-number" type="text" name="bank-card-number" id="number-card">
                   <p class="bank-card__expiration-date">Expiration date</p>
-                  <input class="bank-card__input bank-card__input-number" type="number" name="expiration month" min="01" max="12" step="1" value="03">
-                  <input class="bank-card__input bank-card__input-number" type="number" name="expiration year" min="2021" max="2040" step="1" value="2024">
+                  <div class="bank-card__input-select-wrapper">
+                    <select class="bank-card__input bank-card__input-select" name="expiration month">
+                      <option value="01">01</option>
+                      <option value="02">02</option>
+                      <option value="03" selected>03</option>
+                      <option value="04">04</option>
+                      <option value="05">05</option>
+                      <option value="06">06</option>
+                      <option value="07">07</option>
+                      <option value="08">08</option>
+                      <option value="09">09</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                    </select>
+                  </div><!--
+                  --><div class="bank-card__input-select-wrapper">
+                    <select class="bank-card__input bank-card__input-select" name="expiration year">
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024" selected>2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                    <option value="2028">2028</option>
+                    <option value="2029">2029</option>
+                    <option value="2030">2030</option>
+                    <option value="2031">2031</option>
+                  </select>
+                  </div>
 
                   <label class="bank-card__cardholder-name" for="cardholder-name">Cardholder name</label>
                   <input class="bank-card__input bank-card__input-cardholder-name" type="text" name="cardholder-name" id="cardholder-name">
@@ -447,6 +478,6 @@
 
   <script src="js/index.js"></script>
   <script src="js/gallery.js"></script>
-  <script src="js/ripple.js"></script>
+  <script src="js/tickets-form.js"></script>
 </body>
 </html>

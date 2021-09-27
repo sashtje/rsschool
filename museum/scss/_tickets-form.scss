@@ -103,19 +103,35 @@
   // .tickets-form__date
   &__date {
     flex: 0 1 190px;
-    background-image: url("../assets/svg/tickets-form/date.svg");
-    background-size: 15px 15px;
+    background-image: url("../assets/svg/tickets-form/date.svg"),
+      url("../assets/svg/tickets-form/arrow.svg");
+    background-size: 15px 15px, 17px 17px;
+    background-position: 15px 50%, calc(100% - 15px) center;
 
     &::-webkit-calendar-picker-indicator {
-      background: orange;
+      opacity: 0;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+      width: 38px;
     }
   }
 
   // .tickets-form__time
   &__time {
     flex: 0 1 190px;
-    background-image: url("../assets/svg/tickets-form/time.svg");
-    background-size: 15px 15px;
+    background-image: url("../assets/svg/tickets-form/time.svg"),
+      url("../assets/svg/tickets-form/arrow.svg");
+    background-size: 15px 15px, 17px 17px;
+    background-position: 15px 50%, calc(100% - 15px) center;
+
+    &::-webkit-calendar-picker-indicator {
+      opacity: 0;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+      width: 40px;
+    }
   }
 
   // .tickets-form__name
@@ -141,9 +157,14 @@
 
   // .tickets-form__select-ticket-type
   &__select-ticket-type {
-    background-image: url("../assets/svg/tickets-form/ticket-type.svg");
-    background-size: 15px 15px;
+    background-image: url("../assets/svg/tickets-form/ticket-type.svg"),
+      url("../assets/svg/tickets-form/arrow.svg");
+    background-size: 15px 15px, 17px 17px;
+    background-position: 15px 50%, calc(100% - 15px) center;
     padding: 0 0 0 41px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
 
     & option {
       padding: 0;
@@ -400,6 +421,7 @@
     border: none;
     height: 35px;
     border: 0.5px solid var(--color-number-tickets);
+    padding: 0 10px;
   }
 
   // .bank-card__input-cvc
@@ -434,15 +456,39 @@
     margin-bottom: 5px;
   }
 
-  // .bank-card__input-number
-  &__input-number {
+  &__input-select-wrapper {
+    position: relative;
     width: 100px;
     margin-bottom: 10px;
-    padding-left: 10px;
+    display: inline-block;
 
-    & + .bank-card__input-number {
+    &::after {
+      position: absolute;
+      right: 28px;
+      top: 0;
+      content: "";
+      width: 0.5px;
+      height: 100%;
+      background-color: var(--color-number-tickets);
+    }
+
+    & + .bank-card__input-select-wrapper {
       margin-left: 15px;
     }
+  }
+
+  // .bank-card__input-select
+  &__input-select {
+    width: 100%;
+    padding: 0 10px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    background-image: url("../assets/svg/tickets-form/arrow-up.svg"),
+      url("../assets/svg/tickets-form/arrow-down.svg");
+    background-size: 7px 4px, 6px 4px;
+    background-position: 82px 12px, 82px 19px;
+    background-repeat: no-repeat;
   }
 
   // .bank-card__cardholder-name
