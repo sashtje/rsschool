@@ -4,9 +4,10 @@ buttons.forEach((button) => {
   button.addEventListener("click", function (e) {
     const x = e.clientX;
     const y = e.clientY;
+    const buttonRipple = e.target.getBoundingClientRect();
 
-    const buttonTop = e.target.offsetTop;
-    const buttonLeft = e.target.offsetLeft;
+    const buttonTop = buttonRipple.top;
+    const buttonLeft = buttonRipple.left;
 
     const xInside = x - buttonLeft;
     const yInside = y - buttonTop;
