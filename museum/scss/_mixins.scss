@@ -1,0 +1,37 @@
+@mixin flex($jc-align: center, $ai-align: center) {
+  display: flex;
+  justify-content: $jc-align;
+  align-items: $ai-align;
+}
+
+@mixin title-font-style($fz, $lh, $color) {
+  font-family: var(--titles-font-family);
+  font-size: $fz;
+  line-height: $lh;
+  letter-spacing: var(--titles-letter-spacing);
+  text-transform: uppercase;
+  color: $color;
+}
+
+@mixin title-font-style-without-let-space($fz, $lh, $color) {
+  font-family: var(--titles-font-family);
+  font-size: $fz;
+  line-height: $lh;
+  text-transform: uppercase;
+  color: $color;
+}
+
+@mixin transition-hover() {
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+@mixin hover-filter() {
+  filter: invert(55%) sepia(25%) saturate(457%) hue-rotate(356deg)
+    brightness(93%) contrast(89%);
+}
+
+@mixin active-filter() {
+  filter: invert(55%) sepia(25%) saturate(457%) hue-rotate(356deg)
+    brightness(70%) contrast(89%);
+}

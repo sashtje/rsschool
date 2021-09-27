@@ -1,0 +1,27 @@
+.compare-photos {
+  position: relative;
+  height: 700px;
+
+  // .compare-photos__photo
+  &__photo {
+    position: absolute;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+
+    & img {
+      display: block;
+      vertical-align: middle;
+    }
+  }
+
+  // .compare-photos__slider
+  &__slider {
+    position: absolute;
+    z-index: 1;
+    cursor: ew-resize;
+    width: 39px;
+    height: 700px;
+    background-image: url("../assets/svg/explore-slider.svg");
+  }
+}

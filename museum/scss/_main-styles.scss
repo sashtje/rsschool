@@ -1,0 +1,50 @@
+/* common styles */
+:root {
+  --main-text-font-family: "Roboto", sans-serif;
+  --titles-font-family: "Forum", cursive;
+
+  --video-titles-fz: 18px;
+  --main-text-fz: 22px;
+  --logo-fz: 28px;
+  --cards-title: 32px;
+  --title-book-tickets: 50px;
+  --titles-fz: 80px;
+
+  --menus-font-weight: 100;
+  --main-text-font-weight: 300;
+  --titles-font-weight: 400;
+  --contacts-subtitle-font-weight: 500;
+  --tickets-subtitle-font-weight: 700;
+
+  --titles-letter-spacing: 5px;
+  --links-letter-spacing: 2px;
+
+  --bg-dark: #030303;
+  --bg-light: #ffffff;
+  --color-hover: #9d8665;
+  --color-active: #7e6c51;
+  --color-checked-slider-square: #d2b183;
+  --color-selection-text: #caaa7d;
+  --color-btn: #710707;
+  --color-delimiter: #666666;
+  --color-text: #000000;
+  --color-hover-controls: #989898;
+  --color-range: #c4c4c4;
+  --color-dots: #999999;
+  --color-checked-dot: #333333;
+  --color-overview: #272727;
+  --color-number-tickets: #a4a4a3;
+  --color-card-down: #939393;
+  --color-card-up: #bcbcbc;
+  --color-card-stripe: #161615;
+  --color-bg-select: #e7e7e7;
+
+  scroll-behavior: smooth;
+}
+
+/* Roboto 22px / 26px */
+body {
+  font-family: var(--main-text-font-family);
+  font-size: var(--main-text-fz);
+  line-height: 26px;
+}

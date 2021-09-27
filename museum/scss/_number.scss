@@ -1,0 +1,69 @@
+.number-choice {
+  width: 150px;
+  height: 50px;
+  border: 3px solid var(--color-text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 14px;
+
+  &_form {
+    width: 105px;
+    height: 25px;
+    padding: 0;
+    border: none;
+
+    & .number-choice__number {
+      width: 35px;
+      height: 25px;
+      font-weight: normal;
+      font-size: var(--video-titles-fz);
+      line-height: 21px;
+      color: var(--bg-dark);
+      border: 1px solid var(--bg-dark);
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    & .number-choice__btn {
+      width: 35px;
+      height: 25px;
+      background-color: var(--bg-dark);
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+
+      &-minus {
+        background-image: url("../assets/svg/tickets-form/btn-minus.svg");
+      }
+
+      &-plus {
+        background-image: url("../assets/svg/tickets-form/btn-plus.svg");
+      }
+
+      &:hover {
+        background-color: var(--color-hover);
+      }
+    }
+  }
+
+  // .number-choice__btn
+  &__btn {
+    font-size: var(--cards-title);
+    line-height: 37px;
+    color: var(--color-text);
+    @include transition-hover();
+
+    &:hover {
+      color: var(--color-hover);
+    }
+  }
+  // .number-choice__number
+  &__number {
+    @extend %number;
+    width: 3em;
+    font-family: var(--main-text-font-family);
+    font-weight: var(--main-text-font-weight);
+    font-size: var(--main-text-fz);
+    line-height: 26px;
+  }
+}
