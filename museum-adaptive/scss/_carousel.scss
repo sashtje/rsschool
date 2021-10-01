@@ -49,6 +49,10 @@
   &__current-slide {
     font-weight: var(--titles-font-weight);
     line-height: 40px;
+
+    &-delimiter {
+      margin: 0 10px;
+    }
   }
 
   // .carousel__squares
