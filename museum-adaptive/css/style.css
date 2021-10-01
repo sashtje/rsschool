@@ -236,8 +236,9 @@ body {
 }
 
 .footer__container, .section__container, .header__container {
-  max-width: 1440px;
+  max-width: 1480px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .number-choice__number {
@@ -1416,10 +1417,25 @@ body {
   padding-top: 84px;
   background-color: var(--bg-dark);
 }
+@media screen and (max-width: 1025px) {
+  .footer {
+    padding-top: 60px;
+  }
+}
+@media screen and (max-width: 769px) {
+  .footer {
+    padding-top: 48px;
+  }
+}
+@media screen and (max-width: 421px) {
+  .footer {
+    padding-top: 40px;
+  }
+}
 .footer__inner-top {
   display: flex;
   align-items: center;
-  padding-bottom: 40px;
+  padding-bottom: 43px;
 }
 .footer__logo {
   align-self: flex-start;
@@ -1438,6 +1454,16 @@ body {
   height: 3px;
   background-color: var(--color-delimiter);
 }
+@media screen and (max-width: 769px) {
+  .footer__delimiter {
+    height: 1px;
+  }
+}
+@media screen and (max-width: 421px) {
+  .footer__delimiter {
+    height: 2px;
+  }
+}
 .footer__inner-bottom {
   padding: 45px 0;
   line-height: 22px;
@@ -1445,18 +1471,30 @@ body {
   font-weight: var(--menus-font-weight);
   display: flex;
   align-content: center;
+  justify-content: space-between;
+}
+@media screen and (max-width: 769px) {
+  .footer__inner-bottom {
+    padding: 35px 0;
+  }
 }
 .footer__time, .footer__rsschool-link, .footer__my-github-link {
   color: var(--bg-light);
-  padding: 7px 0;
+  padding: 5px 0;
+}
+@media screen and (max-width: 421px) {
+  .footer__time, .footer__rsschool-link, .footer__my-github-link {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 569px) {
+  .footer__rsschool-link {
+    display: none;
+  }
 }
 .footer__rsschool-link, .footer__my-github-link {
   transition: 0.5s;
   cursor: pointer;
-}
-.footer__rsschool-link {
-  margin-left: 488px;
-  margin-right: auto;
 }
 .footer__rsschool-link:hover, .footer__my-github-link:hover {
   color: var(--color-hover);

@@ -2,6 +2,18 @@
   padding-top: 84px;
   background-color: var(--bg-dark);
 
+  @media screen and (max-width: 1025px) {
+    padding-top: 60px;
+  }
+
+  @media screen and (max-width: 769px) {
+    padding-top: 48px;
+  }
+
+  @media screen and (max-width: 421px) {
+    padding-top: 40px;
+  }
+
   // .footer__container
   &__container {
     @extend %container;
@@ -11,7 +23,7 @@
   &__inner-top {
     display: flex;
     align-items: center;
-    padding-bottom: 40px;
+    padding-bottom: 43px;
   }
 
   // .footer__logo
@@ -37,6 +49,14 @@
   &__delimiter {
     height: 3px;
     background-color: var(--color-delimiter);
+
+    @media screen and (max-width: 769px) {
+      height: 1px;
+    }
+
+    @media screen and (max-width: 421px) {
+      height: 2px;
+    }
   }
 
   // .footer__inner-bottom
@@ -47,6 +67,11 @@
     font-weight: var(--menus-font-weight);
     display: flex;
     align-content: center;
+    justify-content: space-between;
+
+    @media screen and (max-width: 769px) {
+      padding: 35px 0;
+    }
   }
 
   // .footer__time
@@ -54,18 +79,22 @@
   &__rsschool-link,
   &__my-github-link {
     color: var(--bg-light);
-    padding: 7px 0;
+    padding: 5px 0;
+
+    @media screen and (max-width: 421px) {
+      font-size: 16px;
+    }
+  }
+
+  &__rsschool-link {
+    @media screen and (max-width: 569px) {
+      display: none;
+    }
   }
 
   &__rsschool-link,
   &__my-github-link {
     @include transition-hover();
-  }
-
-  // .footer__rsschool-link
-  &__rsschool-link {
-    margin-left: 488px;
-    margin-right: auto;
   }
 
   &__rsschool-link:hover,
