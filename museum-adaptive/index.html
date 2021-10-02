@@ -809,7 +809,7 @@
         <div class="section__parallax"></div>
       </section> -->
 
-      <!-- <section class="section" id="contacts">
+      <section class="section" id="contacts">
         <div class="section__container">
           <h2 class="section__title section__title_underline">Contacts</h2>
 
@@ -836,16 +836,30 @@
                 </p>
               </address>
             </div>
-            <img
-              class="contacts__photo"
-              src="assets/img/contacts-map.png"
-              alt="contacts map"
-              width="960"
-              height="620"
-            />
+            <div class="contacts__photo">
+              <picture>
+                <source
+                  media="(min-width: 1025px)"
+                  srcset="assets/img/map/contacts-map.png"
+                />
+                <source
+                  media="(min-width: 769px)"
+                  srcset="assets/img/map/1024/contacts-map.png"
+                />
+                <source
+                  media="(min-width: 421px)"
+                  srcset="assets/img/map/768/contacts-map.png"
+                />
+                <source
+                  media="(min-width: 0px)"
+                  srcset="assets/img/map/420/contacts-map.png"
+                />
+                <img src="assets/img/map/contacts-map.png" alt="contacts map" />
+              </picture>
+            </div>
           </div>
         </div>
-      </section> -->
+      </section>
     </main>
 
     <footer class="footer">
