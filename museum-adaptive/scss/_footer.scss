@@ -23,26 +23,92 @@
   &__inner-top {
     display: flex;
     align-items: center;
-    padding-bottom: 43px;
+    padding-bottom: 50px;
+
+    @media screen and (max-width: 954px) {
+      justify-content: space-between;
+      padding-bottom: 40px;
+    }
+
+    @media screen and (max-width: 749px) {
+      flex-direction: column;
+    }
   }
 
   // .footer__logo
   &__logo {
     align-self: flex-start;
-    flex: 0 1 195px;
+    width: 23.61%;
+
+    @media screen and (max-width: 1025px) {
+      flex: 0 0 195px;
+      margin-right: 40px;
+    }
+
+    @media screen and (max-width: 749px) {
+      flex: 0 0 auto;
+      width: auto;
+      margin-right: 0;
+      margin-bottom: 40px;
+    }
+  }
+
+  &__inner-row-top {
+    width: 76.39%;
+    display: flex;
+    justify-content: space-between;
+
+    @media screen and (max-width: 954px) {
+      flex-direction: column;
+      width: auto;
+      margin-right: 90px;
+      justify-content: flex-start;
+    }
+
+    @media screen and (max-width: 749px) {
+      margin-right: 0;
+      width: 100%;
+    }
   }
 
   // .footer__menu
   &__menu {
-    flex: 0 1 370px;
-    margin-left: 137px;
-    margin-right: auto;
+    flex: 0 1 360px;
+    margin-top: 3px;
+
+    @media screen and (max-width: 1025px) {
+      flex: 0 1 310px;
+      margin-top: 5px;
+    }
+
+    @media screen and (max-width: 954px) {
+      flex: 0 1 auto;
+      width: 340px;
+      margin-top: 10px;
+    }
+
+    @media screen and (max-width: 749px) {
+      width: 100%;
+      margin-top: 0;
+    }
   }
 
   // .footer__social-media
   &__social-media {
     flex: 0 1 340px;
     align-self: flex-end;
+
+    @media screen and (max-width: 954px) {
+      flex: 0 1 auto;
+      width: 340px;
+      margin-top: 35px;
+    }
+
+    @media screen and (max-width: 749px) {
+      margin-top: 40px;
+      align-self: center;
+      width: 260px;
+    }
   }
 
   // .footer__delimiter
@@ -81,7 +147,7 @@
     color: var(--bg-light);
     padding: 5px 0;
 
-    @media screen and (max-width: 421px) {
+    @media screen and (max-width: 749px) {
       font-size: 16px;
     }
   }
@@ -110,7 +176,11 @@
 
 .social-media {
   @include flex(space-between);
-  padding-bottom: 16px;
+  padding-bottom: 5px;
+
+  @media screen and (max-width: 1025px) {
+    padding-bottom: 0;
+  }
 
   // .social-media__link
   &__link {
