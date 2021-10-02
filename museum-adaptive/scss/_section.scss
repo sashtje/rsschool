@@ -80,7 +80,6 @@
     width: 360px;
     height: 75px;
     text-align: center;
-    vertical-align: middle;
 
     font-weight: var(--main-text-font-weight);
     line-height: 75px;
@@ -221,8 +220,23 @@
   &__parallax {
     margin-top: 75px;
     height: 400px;
-    background-image: url("../assets/img/parallax.jpg");
+    background-image: url("../assets/img/parallax/parallax.jpg");
     background-size: cover;
     background-attachment: fixed;
+
+    @media screen and (max-width: 1025px) {
+      margin-top: 60px;
+      background-image: url("../assets/img/parallax/1024/parallax.jpg");
+    }
+
+    @media screen and (max-width: 769px) {
+      margin-top: 40px;
+      background-image: url("../assets/img/parallax/768/parallax.jpg");
+      height: 300px;
+    }
+
+    @media screen and (max-width: 421px) {
+      background-image: url("../assets/img/parallax/420/parallax.jpg");
+    }
   }
 }

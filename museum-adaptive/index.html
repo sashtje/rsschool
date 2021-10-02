@@ -428,17 +428,34 @@
         </div>
       </section> -->
 
-      <!-- <section class="section section_tickets" id="tickets">
+      <section class="section section_tickets" id="tickets">
         <div class="section__container">
           <h2 class="section__title section__title_underline">Buy tickets</h2>
           <div class="section__content tickets">
-            <img
-              class="tickets__photo"
-              src="assets/img/bt-image.jpg"
-              alt="painting"
-              width="720"
-              height="550"
-            />
+            <picture class="tickets__photo">
+              <source
+                media="(min-width: 1025px)"
+                srcset="assets/img/buy-tickets/bt-image.jpg"
+              />
+              <source
+                media="(min-width: 769px)"
+                srcset="assets/img/buy-tickets/1024/bt-image.jpg"
+              />
+              <source
+                media="(min-width: 421px)"
+                srcset="assets/img/buy-tickets/768/bt-image.jpg"
+              />
+              <source
+                media="(min-width: 0px)"
+                srcset="assets/img/buy-tickets/420/bt-image.jpg"
+              />
+              <img
+                class="tickets__photo"
+                src="assets/img/buy-tickets/bt-image.jpg"
+                alt="painting"
+              />
+            </picture>
+
             <div class="tickets__parameters">
               <div class="tickets__row">
                 <div class="tickets__type">
@@ -507,7 +524,7 @@
                     </button>
                   </div>
 
-                  <p class="tickets__price">Total €220</p>
+                  <p class="tickets__price">Total €<span>220</span></p>
                 </div>
               </div>
 
@@ -759,8 +776,7 @@
                         <option value="12">12</option>
                       </select>
                     </div>
-                    <!--
-                  --><!--
+
                     <div class="bank-card__input-select-wrapper">
                       <select
                         class="bank-card__input bank-card__input-select"
@@ -807,7 +823,7 @@
         </div>
 
         <div class="section__parallax"></div>
-      </section> -->
+      </section>
 
       <section class="section" id="contacts">
         <div class="section__container">
