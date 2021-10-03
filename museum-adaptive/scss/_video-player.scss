@@ -3,8 +3,12 @@
   &__player {
     position: relative;
 
-    & video {
+    & picture {
       display: block;
+
+      & img {
+        max-width: 100%;
+      }
     }
   }
   // .video-player__big-play
@@ -14,6 +18,24 @@
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     @include transition-hover();
+    width: 15.28%;
+
+    @media screen and (max-width: 1025px) {
+      width: 15.45%;
+    }
+
+    @media screen and (max-width: 769px) {
+      width: 10.99%;
+    }
+
+    @media screen and (max-width: 421px) {
+      width: 13.16%;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
 
     &:hover {
       filter: invert(65%) sepia(0%) saturate(55%) hue-rotate(221deg)
@@ -22,10 +44,31 @@
   }
   // .video-player__panel
   &__panel {
-    padding: 0 25px 0 30px;
+    position: relative;
+    padding: 0 30px;
     height: 85px;
     @include flex(space-between);
     background-color: var(--color-text);
+
+    @media screen and (max-width: 1025px) {
+      height: 60px;
+      padding: 0 40px;
+    }
+
+    @media screen and (max-width: 999px) {
+      margin-top: 4px;
+    }
+
+    @media screen and (max-width: 769px) {
+      height: 53px;
+      padding: 0 30px;
+    }
+
+    @media screen and (max-width: 421px) {
+      height: 50px;
+      padding: 0 20px;
+      margin-top: 4px;
+    }
   }
   // .video-player__btn
   &__btn {
@@ -36,6 +79,65 @@
         brightness(93%) contrast(92%);
     }
   }
+
+  &__play {
+    width: 23px;
+
+    @media screen and (max-width: 749px) {
+      width: 4.12%;
+    }
+
+    @media screen and (max-width: 421px) {
+      width: 14px;
+    }
+
+    & img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  &__volume {
+    width: 2.61%;
+
+    @media screen and (max-width: 1025px) {
+      width: 24px;
+    }
+
+    @media screen and (max-width: 499px) {
+      width: 5%;
+    }
+
+    @media screen and (max-width: 421px) {
+      width: 17px;
+    }
+
+    & img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  &__full-screen {
+    width: 2.54%;
+
+    @media screen and (max-width: 1025px) {
+      width: 27px;
+    }
+
+    @media screen and (max-width: 499px) {
+      width: 5.29%;
+    }
+
+    @media screen and (max-width: 421px) {
+      width: 18px;
+    }
+
+    & img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
   // .video-player__range
   &__range {
     height: 8px;
@@ -43,6 +145,14 @@
     -webkit-appearance: none;
     margin: 0;
     @include transition-hover();
+
+    @media screen and (max-width: 1025px) {
+      height: 5px;
+    }
+
+    @media screen and (max-width: 421px) {
+      height: 4px;
+    }
 
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
@@ -52,6 +162,16 @@
       background: var(--bg-light);
       border-radius: 50%;
       @include transition-hover();
+
+      @media screen and (max-width: 1025px) {
+        width: 13px;
+        height: 13px;
+      }
+
+      @media screen and (max-width: 421px) {
+        width: 10px;
+        height: 10px;
+      }
     }
 
     &::-moz-range-thumb {
@@ -61,6 +181,21 @@
       border-radius: 50%;
       border: none;
       @include transition-hover();
+
+      @media screen and (max-width: 1025px) {
+        width: 13px;
+        height: 13px;
+      }
+
+      @media screen and (max-width: 769px) {
+        width: 7px;
+        height: 7px;
+      }
+
+      @media screen and (max-width: 421px) {
+        width: 10px;
+        height: 10px;
+      }
     }
 
     &:hover {
@@ -77,7 +212,22 @@
   }
   // .video-player__range-time
   &__range-time {
-    width: 929px;
+    width: 67.32%;
+
+    @media screen and (max-width: 1399px) {
+      width: 62.39%;
+    }
+
+    @media screen and (max-width: 999px) {
+      position: absolute;
+      left: 0;
+      top: -5px;
+      width: 100%;
+    }
+
+    @media screen and (max-width: 421px) {
+      top: -4px;
+    }
 
     background: linear-gradient(
       to right,
@@ -89,7 +239,7 @@
   }
   // .video-player__range-volume
   &__range-volume {
-    width: 155px;
+    width: 11.23%;
 
     background: linear-gradient(
       to right,
@@ -98,5 +248,17 @@
       var(--color-range) 43%,
       var(--color-range) 100%
     );
+
+    @media screen and (max-width: 1399px) {
+      width: 15.82%;
+    }
+
+    @media screen and (max-width: 999px) {
+      width: 72.75%;
+    }
+
+    @media screen and (max-width: 699px) {
+      width: 58.82%;
+    }
   }
 }

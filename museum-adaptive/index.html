@@ -287,7 +287,7 @@
         </div>
       </section> -->
 
-      <!-- <section class="section" id="video">
+      <section class="section section_video" id="video">
         <div class="section__container">
           <div class="section__video-description">
             <h2 class="section__title">Video journey</h2>
@@ -299,27 +299,38 @@
 
           <div class="section__video-player video-player">
             <div class="video-player__player">
-              <video
-                src="assets/video/video0.mp4"
-                poster="assets/img/vj-louvre.jpg"
-              ></video>
+              <picture>
+                <source
+                  media="(min-width: 1025px)"
+                  srcset="assets/img/video/vj-louvre.jpg"
+                />
+                <source
+                  media="(min-width: 769px)"
+                  srcset="assets/img/video/1024/vj-louvre.jpg"
+                />
+                <source
+                  media="(min-width: 421px)"
+                  srcset="assets/img/video/768/vj-louvre.jpg"
+                />
+                <source
+                  media="(min-width: 0px)"
+                  srcset="assets/img/video/420/vj-louvre.jpg"
+                />
+                <img
+                  src="assets/img/video/vj-louvre.jpg"
+                  alt="video tour louvre"
+                />
+              </picture>
               <button class="video-player__big-play">
                 <img
                   src="assets/svg/video-controls/big-play.svg"
                   alt="big play button"
-                  width="220"
-                  height="220"
                 />
               </button>
             </div>
             <div class="video-player__panel">
               <button class="video-player__btn video-player__play">
-                <img
-                  src="assets/svg/video-controls/play.svg"
-                  alt="play"
-                  width="23"
-                  height="31"
-                />
+                <img src="assets/svg/video-controls/play.svg" alt="play" />
               </button>
               <input
                 class="video-player__range video-player__range-time"
@@ -330,12 +341,7 @@
                 step="1"
               />
               <button class="video-player__btn video-player__volume">
-                <img
-                  src="assets/svg/video-controls/volume.svg"
-                  alt="volume"
-                  width="38"
-                  height="31"
-                />
+                <img src="assets/svg/video-controls/volume.svg" alt="volume" />
               </button>
               <input
                 class="video-player__range video-player__range-volume"
@@ -349,8 +355,6 @@
                 <img
                   src="assets/svg/video-controls/fullscreen.svg"
                   alt="full screen"
-                  width="35"
-                  height="35"
                 />
               </button>
             </div>
@@ -416,7 +420,7 @@
             </div>
           </div>
         </div>
-      </section> -->
+      </section>
 
       <section class="section section_dark section_gallery" id="gallery">
         <div class="section__container">
