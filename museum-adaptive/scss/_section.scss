@@ -193,6 +193,20 @@
     margin-top: 75px;
     height: 1960px;
     overflow-y: hidden;
+
+    @media screen and (max-width: 1025px) {
+      margin-top: 60px;
+      height: 1265px;
+    }
+
+    @media screen and (max-width: 769px) {
+      margin-top: 40px;
+      height: 1080px;
+    }
+
+    @media screen and (max-width: 421px) {
+      height: 637px;
+    }
   }
 
   &_tickets {
