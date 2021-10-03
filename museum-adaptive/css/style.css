@@ -471,6 +471,16 @@ body {
   color: var(--bg-light);
 }
 @media screen and (max-width: 769px) {
+  .section_visiting {
+    padding: 40px 0 80px 0;
+  }
+}
+@media screen and (max-width: 421px) {
+  .section_visiting {
+    padding: 40px 0;
+  }
+}
+@media screen and (max-width: 769px) {
   .section_explore {
     padding: 40px 0;
   }
@@ -757,8 +767,28 @@ body {
   justify-content: space-between;
   gap: 75px 10px;
 }
+@media screen and (max-width: 1025px) {
+  .cards {
+    gap: 60px 10px;
+    justify-content: space-evenly;
+  }
+}
+@media screen and (max-width: 769px) {
+  .cards {
+    gap: 40px 10px;
+  }
+}
 .cards__item:hover .cards__item-title::after {
   width: 100%;
+}
+@media screen and (max-width: 340px) {
+  .cards__item-image {
+    max-width: 100%;
+    display: block;
+  }
+  .cards__item-image img {
+    max-width: 100%;
+  }
 }
 .cards__item-title {
   font-family: var(--titles-font-family);
@@ -770,20 +800,63 @@ body {
   margin-top: 25px;
   position: relative;
 }
+@media screen and (max-width: 1025px) {
+  .cards__item-title {
+    font-size: 28px;
+    line-height: 31px;
+    letter-spacing: 3px;
+  }
+}
+@media screen and (max-width: 769px) {
+  .cards__item-title {
+    font-size: 22px;
+    line-height: 24px;
+  }
+}
+@media screen and (max-width: 421px) {
+  .cards__item-title {
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: 5px;
+  }
+}
 .cards__item-title::after {
   position: absolute;
   content: "";
-  bottom: -9px;
+  bottom: -12px;
   left: 0;
   width: 300px;
   height: 2px;
   background: var(--color-btn);
   transition: 0.5s;
 }
+@media screen and (max-width: 1025px) {
+  .cards__item-title::after {
+    width: 150px;
+  }
+}
 .cards__item-subtitle {
   font-weight: var(--menus-font-weight);
   color: var(--color-text);
   margin-top: 22px;
+}
+@media screen and (max-width: 1025px) {
+  .cards__item-subtitle {
+    font-size: 20px;
+    line-height: 23px;
+  }
+}
+@media screen and (max-width: 769px) {
+  .cards__item-subtitle {
+    font-size: 18px;
+    line-height: 21px;
+  }
+}
+@media screen and (max-width: 421px) {
+  .cards__item-subtitle {
+    font-size: 16px;
+    line-height: 19px;
+  }
 }
 .cards__item-text {
   font-weight: var(--menus-font-weight);
@@ -791,6 +864,12 @@ body {
   line-height: 21px;
   color: var(--color-text);
   margin-top: 10px;
+}
+@media screen and (max-width: 1025px) {
+  .cards__item-text {
+    font-size: 16px;
+    line-height: 19px;
+  }
 }
 
 .compare-photos {
