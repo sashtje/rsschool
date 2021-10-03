@@ -240,7 +240,7 @@
         </div>
       </section> -->
 
-      <!-- <section class="section section_dark" id="explore">
+      <section class="section section_explore section_dark" id="explore">
         <div class="section__container">
           <div class="section__explore-content">
             <div class="section__explore-description">
@@ -266,26 +266,76 @@
             </div>
 
             <div class="section__compare-photos compare-photos">
-              <div class="compare-photos__photo">
-                <img
-                  src="assets/img/explore-slider/after.jpg"
-                  alt="Las Meninas"
-                  width="720"
-                  height="700"
+              <picture>
+                <source
+                  media="(min-width: 769px)"
+                  srcset="assets/img/explore-slider-temp/explore.jpg"
                 />
-              </div>
-              <div class="compare-photos__photo compare-photos__photo_overlay">
-                <img
-                  src="assets/img/explore-slider/before.jpg"
-                  alt="Las Meninas"
-                  width="720"
-                  height="700"
+                <source
+                  media="(min-width: 421px)"
+                  srcset="assets/img/explore-slider-temp/768/explore.jpg"
                 />
-              </div>
+                <source
+                  media="(min-width: 0px)"
+                  srcset="assets/img/explore-slider-temp/420/explore.jpg"
+                />
+                <img
+                  src="assets/img/explore-slider-temp/explore.jpg"
+                  alt="Las Meninas"
+                />
+              </picture>
+              <!-- <div class="compare-photos__container">
+                <div class="compare-photos__photo">
+                  <img
+                    src="assets/img/explore-slider/after.jpg"
+                    alt="Las Meninas"
+                    width="720"
+                    height="700"
+                  />
+                  <picture>
+                    <source
+                      media="(min-width: 769px)"
+                      srcset="assets/img/explore-slider/after.jpg"
+                    />
+                    <source
+                      media="(min-width: 421px)"
+                      srcset="assets/img/explore-slider/768/after.jpg"
+                    />
+                    <source
+                      media="(min-width: 0px)"
+                      srcset="assets/img/explore-slider/420/after.jpg"
+                    />
+                  </picture>
+                </div>
+                <div
+                  class="compare-photos__photo compare-photos__photo_overlay"
+                >
+                  <img
+                    src="assets/img/explore-slider/before.jpg"
+                    alt="Las Meninas"
+                    width="720"
+                    height="700"
+                  />
+                  <picture>
+                    <source
+                      media="(min-width: 769px)"
+                      srcset="assets/img/explore-slider/before.jpg"
+                    />
+                    <source
+                      media="(min-width: 421px)"
+                      srcset="assets/img/explore-slider/768/before.jpg"
+                    />
+                    <source
+                      media="(min-width: 0px)"
+                      srcset="assets/img/explore-slider/420/before.jpg"
+                    />
+                  </picture>
+                </div>
+              </div> -->
             </div>
           </div>
         </div>
-      </section> -->
+      </section>
 
       <section class="section section_video" id="video">
         <div class="section__container">

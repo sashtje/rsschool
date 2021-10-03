@@ -94,4 +94,4 @@ function initComparisons() {
   }
 }
 
-initComparisons();
+// initComparisons();
