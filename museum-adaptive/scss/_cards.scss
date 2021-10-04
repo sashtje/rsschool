@@ -1,0 +1,105 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 75px 10px;
+
+  @media screen and (max-width: 1025px) {
+    gap: 60px 10px;
+    justify-content: space-evenly;
+  }
+
+  @media screen and (max-width: 769px) {
+    gap: 40px 10px;
+  }
+
+  // .cards__item
+  &__item {
+    &:hover .cards__item-title::after {
+      width: 100%;
+    }
+  }
+  // .cards__item-image
+  &__item-image {
+    @media screen and (max-width: 340px) {
+      max-width: 100%;
+      display: block;
+
+      & img {
+        max-width: 100%;
+      }
+    }
+  }
+  // .cards__item-title
+  &__item-title {
+    @include title-font-style(var(--cards-title), 35px, var(--color-text));
+    margin-top: 25px;
+    position: relative;
+
+    @media screen and (max-width: 1025px) {
+      font-size: 28px;
+      line-height: 31px;
+      letter-spacing: 3px;
+    }
+
+    @media screen and (max-width: 769px) {
+      font-size: 22px;
+      line-height: 24px;
+    }
+
+    @media screen and (max-width: 421px) {
+      font-size: 18px;
+      line-height: 20px;
+      letter-spacing: 5px;
+    }
+
+    &::after {
+      position: absolute;
+      content: "";
+      bottom: -12px;
+      left: 0;
+      width: 300px;
+      height: 2px;
+      background: var(--color-btn);
+      transition: 0.5s;
+
+      @media screen and (max-width: 1025px) {
+        width: 150px;
+      }
+    }
+  }
+  // .cards__item-subtitle
+  &__item-subtitle {
+    font-weight: var(--menus-font-weight);
+    color: var(--color-text);
+    margin-top: 22px;
+
+    @media screen and (max-width: 1025px) {
+      font-size: 20px;
+      line-height: 23px;
+    }
+
+    @media screen and (max-width: 769px) {
+      font-size: 18px;
+      line-height: 21px;
+    }
+
+    @media screen and (max-width: 421px) {
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+  // .cards__item-text
+  &__item-text {
+    font-weight: var(--menus-font-weight);
+    font-size: var(--video-titles-fz);
+    line-height: 21px;
+    color: var(--color-text);
+    margin-top: 10px;
+
+    @media screen and (max-width: 1025px) {
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+}

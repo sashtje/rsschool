@@ -1,0 +1,708 @@
+.tickets-form {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%) translateX(-100%);
+  width: 1440px;
+  background-color: var(--bg-light);
+  padding: 91px 0;
+  transition: 2s;
+
+  @media screen and (max-width: 1480px) {
+    width: 1024px;
+    padding: 75px 0 30px 0;
+  }
+
+  @media screen and (max-width: 1025px) {
+    width: 100%;
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 590px;
+    padding: 80px 0 40px 0;
+    position: absolute;
+    top: 0;
+    transform: translateY(0%) translateX(-100%);
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    padding: 80px 10px 50px 10px;
+  }
+
+  .form-is-shown & {
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+
+    @media screen and (max-width: 1000px) {
+      left: 50%;
+      transform: translateY(0%) translateX(-50%);
+    }
+  }
+
+  // .tickets-form__btn-close
+  &__btn-close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    content: "";
+    width: 25px;
+    height: 25px;
+    background-image: url("../assets/svg/tickets-form/close.svg");
+    background-size: 25px 25px;
+    @include transition-hover();
+
+    @media screen and (max-width: 1480px) {
+      right: 27px;
+    }
+
+    @media screen and (max-width: 1000px) {
+      right: 30px;
+    }
+
+    &:hover {
+      @include hover-filter();
+    }
+  }
+
+  // .tickets-form__container
+  &__container {
+    max-width: 970px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+
+    @media screen and (max-width: 1000px) {
+      display: block;
+      max-width: 530px;
+    }
+
+    @media screen and (max-width: 600px) {
+      max-width: 360px;
+    }
+  }
+
+  // .tickets-form__left-column
+  &__left-column {
+    flex: 0 1 400px;
+
+    @media screen and (max-width: 1000px) {
+      margin-bottom: 51px;
+    }
+
+    @media screen and (max-width: 600px) {
+      margin-bottom: 49px;
+    }
+  }
+
+  // .tickets-form__title
+  &__title {
+    padding-top: 41px;
+    background-image: url("../assets/svg/tickets-form/logo-gold.svg");
+    background-size: 85px 41px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    @include title-font-style-without-let-space(
+      var(--title-book-tickets),
+      55px,
+      var(--color-hover)
+    );
+    margin-bottom: 15px;
+
+    @media screen and (max-width: 600px) {
+      font-size: 32px;
+      line-height: 35px;
+    }
+  }
+
+  // .tickets-form__subtitle
+  &__subtitle {
+    font-size: var(--video-titles-fz);
+    line-height: 21px;
+    color: var(--color-btn);
+    padding-bottom: 10px;
+    border-bottom: 3px solid rgba(116, 12, 17, 0.9);
+    margin-bottom: 60px;
+
+    @media screen and (max-width: 1000px) {
+      margin-bottom: 40px;
+    }
+
+    @media screen and (max-width: 600px) {
+      border-bottom-width: 2px;
+    }
+  }
+
+  // .tickets-form__input
+  &__input {
+    width: 100%;
+    height: 45px;
+    border: 1px solid var(--bg-dark);
+    margin-bottom: 20px;
+    font-family: var(--main-text-font-family);
+    font-weight: normal;
+    font-size: var(--video-titles-fz);
+    line-height: 21px;
+    color: var(--bg-dark);
+    padding: 0 0 0 45px;
+
+    background-position: 15px 50%;
+    background-repeat: no-repeat;
+
+    &::-webkit-input-placeholder {
+      color: var(--bg-dark);
+    }
+
+    &::-moz-placeholder {
+      color: var(--bg-dark);
+    }
+
+    &:-moz-placeholder {
+      color: var(--bg-dark);
+    }
+
+    &:-ms-input-placeholder {
+      color: var(--bg-dark);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  &__date-time {
+    display: flex;
+    justify-content: space-between;
+
+    @media screen and (max-width: 600px) {
+      display: block;
+    }
+  }
+
+  // .tickets-form__date
+  &__date {
+    flex: 0 1 190px;
+    background-image: url("../assets/svg/tickets-form/date.svg"),
+      url("../assets/svg/tickets-form/arrow.svg");
+    background-size: 15px 15px, 17px 17px;
+    background-position: 15px 50%, calc(100% - 15px) center;
+
+    @media screen and (max-width: 1000px) {
+      flex: 0 1 251px;
+    }
+
+    &::-webkit-calendar-picker-indicator {
+      opacity: 0;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+      width: 38px;
+    }
+  }
+
+  // .tickets-form__time
+  &__time {
+    flex: 0 1 190px;
+    background-image: url("../assets/svg/tickets-form/time.svg"),
+      url("../assets/svg/tickets-form/arrow.svg");
+    background-size: 15px 15px, 17px 17px;
+    background-position: 15px 50%, calc(100% - 15px) center;
+
+    @media screen and (max-width: 1000px) {
+      flex: 0 1 251px;
+    }
+
+    &::-webkit-calendar-picker-indicator {
+      opacity: 0;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+      width: 40px;
+    }
+  }
+
+  // .tickets-form__name
+  &__name {
+    background-image: url("../assets/svg/tickets-form/name.svg");
+    background-size: 13px 15px;
+    padding: 0 0 0 43px;
+  }
+
+  // .tickets-form__email
+  &__email {
+    background-image: url("../assets/svg/tickets-form/email.svg");
+    background-size: 15px 11px;
+    padding: 0 0 0 44px;
+  }
+
+  // .tickets-form__tel
+  &__tel {
+    background-image: url("../assets/svg/tickets-form/tel.svg");
+    background-size: 14px 23px;
+    padding: 0 0 0 44px;
+  }
+
+  &__select {
+    display: block;
+    position: relative;
+
+    /* & select {
+      display: none;
+    } */
+  }
+
+  // .tickets-form__select-ticket-type
+  &__select-ticket-type {
+    background-image: url("../assets/svg/tickets-form/ticket-type.svg"),
+      url("../assets/svg/tickets-form/arrow.svg");
+    background-size: 15px 15px, 17px 17px;
+    background-position: 15px 50%, calc(100% - 15px) center;
+    padding: 0 0 0 41px;
+    cursor: pointer;
+
+    &_is-open {
+      background-image: url("../assets/svg/tickets-form/ticket-type.svg"),
+        url("../assets/svg/tickets-form/arrow-select-up.svg");
+    }
+  }
+
+  &__dropdown-list {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 45px;
+    width: 400px;
+    border: 1px solid var(--bg-dark);
+    border-top: none;
+    background-color: var(--bg-light);
+
+    &_visible {
+      display: block;
+    }
+  }
+
+  &__dropdown-item {
+    padding: 13px 41px;
+    font-weight: var(--main-text-font-weight);
+    font-size: var(--video-titles-fz);
+    line-height: 21px;
+    color: var(--bg-dark);
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--color-bg-select);
+    }
+  }
+
+  // .tickets-form__entry-tickets-block
+  &__entry-tickets-block {
+    padding: 10px 15px 15px 15px;
+    border: 1px solid var(--bg-dark);
+  }
+
+  // .tickets-form__entry-tickets-title
+  &__entry-tickets-title {
+    font-family: var(--titles-font-family);
+    font-size: var(--video-titles-fz);
+    line-height: 20px;
+    text-transform: capitalize;
+    color: var(--color-hover);
+    padding-bottom: 5px;
+    border-bottom: 2px solid rgba(116, 12, 17, 0.9);
+    margin-bottom: 15px;
+  }
+
+  // .tickets-form__entry-tickets-row
+  &__entry-tickets-row {
+    @include flex(space-between);
+    font-size: var(--video-titles-fz);
+    line-height: 21px;
+    color: var(--bg-dark);
+
+    & + .tickets-form__entry-tickets-row {
+      margin-top: 18px;
+    }
+  }
+
+  // .tickets-form__right-column
+  &__right-column {
+    flex: 0 1 530px;
+    border: 1px solid var(--bg-dark);
+    padding: 25px 30px;
+
+    @media screen and (max-width: 1000px) {
+      padding: 25px 15px;
+    }
+  }
+
+  // .tickets-form__overview
+  &__overview {
+    background-image: url("../assets/img/tickets-form/louvre.jpg");
+    background-size: 150px 120px;
+    background-repeat: no-repeat;
+    background-position: right top;
+
+    @media screen and (max-width: 600px) {
+      background-image: url("../assets/img/tickets-form/420/louvre.jpg");
+      background-size: 120px 96px;
+    }
+  }
+
+  // .tickets-form__overview-title
+  &__overview-title {
+    font-weight: var(--contacts-subtitle-font-weight);
+    font-size: var(--cards-title);
+    line-height: 37px;
+    color: var(--color-overview);
+    margin-bottom: 2px;
+  }
+
+  // .tickets-form__overview-subtitle
+  &__overview-subtitle {
+    font-weight: var(--contacts-subtitle-font-weight);
+    color: rgba(116, 12, 17, 0.9);
+    margin-bottom: 10px;
+  }
+
+  &__overview-text {
+    font-weight: var(--main-text-font-weight);
+    font-size: var(--video-titles-fz);
+    line-height: 21px;
+    color: var(--bg-dark);
+    padding-left: 30px;
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+  }
+
+  // .tickets-form__overview-date
+  &__overview-date {
+    margin-bottom: 5px;
+    background-image: url("../assets/svg/tickets-form/date.svg");
+  }
+
+  // .tickets-form__overview-time
+  &__overview-time {
+    margin-bottom: 5px;
+    background-image: url("../assets/svg/tickets-form/time.svg");
+  }
+
+  // .tickets-form__overview-ticket-type
+  &__overview-ticket-type {
+    margin-bottom: 25px;
+    background-image: url("../assets/svg/tickets-form/radio-checked.svg");
+  }
+
+  // .tickets-form__overview-table
+  &__overview-table {
+    margin-bottom: 10px;
+
+    @media screen and (max-width: 1000px) {
+      margin-bottom: 15px;
+    }
+  }
+
+  // .tickets-form__overview-bank-cards
+  &__overview-bank-cards-block {
+    position: relative;
+    height: 240px;
+
+    @media screen and (max-width: 600px) {
+      height: auto;
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+
+  &__overview-bank-card {
+    position: absolute;
+    width: 360px;
+    border-radius: 3px;
+
+    @media screen and (max-width: 600px) {
+      position: static;
+      width: 100%;
+    }
+  }
+
+  // .tickets-form__overview-bank-card-down
+  &__overview-bank-card-down {
+    background-color: var(--color-card-down);
+    right: 0;
+    bottom: 0;
+    padding-top: 85px;
+
+    @media screen and (max-width: 600px) {
+      position: relative;
+    }
+
+    &::after {
+      position: absolute;
+      top: 25px;
+      left: 0;
+      content: "";
+      width: 100%;
+      height: 45px;
+      background-color: var(--color-card-stripe);
+    }
+  }
+
+  // .tickets-form__overview-bank-card-up
+  &__overview-bank-card-up {
+    background-color: var(--color-card-up);
+    padding: 15px 20px;
+    left: 0;
+    top: 0;
+
+    background-image: url("../assets/svg/tickets-form/visa.svg"),
+      url("../assets/svg/tickets-form/mastercard.svg");
+    background-size: 55px 16px, 53px 32px;
+    background-position: 285px 34px, 287px 65px;
+    background-repeat: no-repeat;
+
+    @media screen and (max-width: 600px) {
+      margin-bottom: 25px;
+      background-position: calc(100% - 20px) 34px, calc(100% - 21px) 67px;
+    }
+  }
+
+  &__overview-btn-wrapper {
+    margin-top: 26px;
+    text-align: right;
+
+    @media screen and (max-width: 600px) {
+      margin-top: 40px;
+    }
+  }
+
+  // .tickets-form__overview-btn-submit
+  &__overview-btn-submit {
+    width: 220px;
+    height: 45px;
+    background-color: rgba(113, 7, 7, 0.9);
+    font-family: var(--main-text-font-family);
+    font-size: var(--main-text-fz);
+    line-height: 26px;
+    color: var(--bg-light);
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+
+    @media screen and (max-width: 600px) {
+      font-size: 20px;
+      line-height: 23px;
+    }
+
+    & .circle {
+      position: absolute;
+      background-color: #ffffff;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      animation: scale 0.5s ease-out;
+    }
+  }
+}
+
+@keyframes scale {
+  to {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
+}
+
+.overview-table {
+  width: 100%;
+  color: var(--bg-dark);
+
+  & td:last-child {
+    text-align: right;
+  }
+
+  & tbody td:first-child {
+    vertical-align: middle;
+  }
+
+  & tbody td {
+    padding-bottom: 9px;
+  }
+
+  & tbody tr:first-child td {
+    padding-bottom: 5px;
+  }
+
+  & tfoot {
+    border-top: 2px solid rgba(116, 12, 17, 1);
+
+    & td {
+      padding-top: 10px;
+      font-size: var(--cards-title);
+      line-height: 37px;
+
+      &:last-child {
+        font-weight: var(--contacts-subtitle-font-weight);
+      }
+    }
+  }
+
+  // .overview-table__number
+  &__number {
+    display: inline-block;
+    width: 32px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: var(--bg-dark);
+    border: 1px solid var(--color-text);
+    font-size: var(--video-titles-fz);
+    line-height: 21px;
+    color: var(--color-number-tickets);
+    text-align: center;
+    margin-right: 10px;
+  }
+}
+
+.bank-card {
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--color-card-stripe);
+
+  @media screen and (max-width: 600px) {
+    font-size: 11px;
+    line-height: 13px;
+  }
+
+  // .bank-card__label
+  &__label {
+    display: block;
+    margin-left: 274px;
+    margin-bottom: 5px;
+
+    @media screen and (max-width: 600px) {
+      .tickets-form__overview-bank-card-down & {
+        font-size: 13px;
+        line-height: 15px;
+        margin-bottom: 3px;
+        margin-right: 30px;
+        margin-left: 0;
+        text-align: right;
+      }
+    }
+  }
+
+  // .bank-card__input
+  &__input {
+    font-family: var(--main-text-font-family);
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--color-card-stripe);
+    border: none;
+    height: 35px;
+    border: 0.5px solid var(--color-number-tickets);
+    padding: 0 10px;
+
+    &:focus {
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  // .bank-card__input-cvc
+  &__input-cvc {
+    width: 75px;
+    margin-left: 265px;
+    margin-bottom: 6px;
+
+    @media screen and (max-width: 600px) {
+      display: block;
+      margin-left: auto;
+      margin-right: 20px;
+    }
+  }
+
+  // .bank-card__description
+  &__description {
+    margin-left: 275px;
+    width: 55px;
+    font-size: 10px;
+    line-height: 12px;
+    margin-bottom: 15px;
+
+    @media screen and (max-width: 600px) {
+      font-size: 9px;
+      line-height: 11px;
+      margin-bottom: 20px;
+      margin-left: auto;
+      margin-right: 25px;
+    }
+  }
+
+  // .bank-card__number
+  &__number {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  // .bank-card__input-card-number
+  &__input-card-number {
+    width: 215px;
+    margin-bottom: 10px;
+  }
+
+  &__expiration-date {
+    margin-bottom: 5px;
+  }
+
+  &__input-select-wrapper {
+    position: relative;
+    width: 100px;
+    margin-bottom: 10px;
+    display: inline-block;
+
+    &::after {
+      position: absolute;
+      right: 28px;
+      top: 0;
+      content: "";
+      width: 0.5px;
+      height: 100%;
+      background-color: var(--color-number-tickets);
+    }
+
+    & + .bank-card__input-select-wrapper {
+      margin-left: 15px;
+
+      @media screen and (max-width: 600px) {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  // .bank-card__input-select
+  &__input-select {
+    width: 100%;
+    padding: 0 10px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    background-image: url("../assets/svg/tickets-form/arrow-up.svg"),
+      url("../assets/svg/tickets-form/arrow-down.svg");
+    background-size: 7px 4px, 6px 4px;
+    background-position: 82px 12px, 82px 19px;
+    background-repeat: no-repeat;
+  }
+
+  // .bank-card__cardholder-name
+  &__cardholder-name {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  // .bank-card__input-cardholder-name
+  &__input-cardholder-name {
+    width: 100%;
+  }
+}
