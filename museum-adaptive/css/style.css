@@ -769,6 +769,12 @@ body {
   transition: background-color 0.5s 2s, right 0.01s 2.5s;
   z-index: 5;
 }
+@media screen and (max-width: 1000px) {
+  .section__tickets-form {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
 .section__tickets-form.form-is-shown {
   right: 0;
   background-color: rgba(0, 0, 0, 0.7);
@@ -1915,9 +1921,41 @@ body {
   padding: 91px 0;
   transition: 2s;
 }
+@media screen and (max-width: 1480px) {
+  .tickets-form {
+    width: 1024px;
+    padding: 75px 0 30px 0;
+  }
+}
+@media screen and (max-width: 1025px) {
+  .tickets-form {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .tickets-form {
+    width: 590px;
+    padding: 80px 0 40px 0;
+    position: absolute;
+    top: 0;
+    transform: translateY(0%) translateX(-100%);
+  }
+}
+@media screen and (max-width: 600px) {
+  .tickets-form {
+    width: 100%;
+    padding: 80px 10px 50px 10px;
+  }
+}
 .form-is-shown .tickets-form {
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
+}
+@media screen and (max-width: 1000px) {
+  .form-is-shown .tickets-form {
+    left: 50%;
+    transform: translateY(0%) translateX(-50%);
+  }
 }
 .tickets-form__btn-close {
   position: absolute;
@@ -1931,6 +1969,16 @@ body {
   transition: 0.5s;
   cursor: pointer;
 }
+@media screen and (max-width: 1480px) {
+  .tickets-form__btn-close {
+    right: 27px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .tickets-form__btn-close {
+    right: 30px;
+  }
+}
 .tickets-form__btn-close:hover {
   filter: invert(55%) sepia(25%) saturate(457%) hue-rotate(356deg) brightness(93%) contrast(89%);
 }
@@ -1940,8 +1988,29 @@ body {
   display: flex;
   justify-content: space-between;
 }
+@media screen and (max-width: 1000px) {
+  .tickets-form__container {
+    display: block;
+    max-width: 530px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .tickets-form__container {
+    max-width: 360px;
+  }
+}
 .tickets-form__left-column {
   flex: 0 1 400px;
+}
+@media screen and (max-width: 1000px) {
+  .tickets-form__left-column {
+    margin-bottom: 51px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .tickets-form__left-column {
+    margin-bottom: 49px;
+  }
 }
 .tickets-form__title {
   padding-top: 41px;
@@ -1956,6 +2025,12 @@ body {
   color: var(--color-hover);
   margin-bottom: 15px;
 }
+@media screen and (max-width: 600px) {
+  .tickets-form__title {
+    font-size: 32px;
+    line-height: 35px;
+  }
+}
 .tickets-form__subtitle {
   font-size: var(--video-titles-fz);
   line-height: 21px;
@@ -1963,6 +2038,16 @@ body {
   padding-bottom: 10px;
   border-bottom: 3px solid rgba(116, 12, 17, 0.9);
   margin-bottom: 60px;
+}
+@media screen and (max-width: 1000px) {
+  .tickets-form__subtitle {
+    margin-bottom: 40px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .tickets-form__subtitle {
+    border-bottom-width: 2px;
+  }
 }
 .tickets-form__input {
   width: 100%;
@@ -1998,11 +2083,21 @@ body {
   display: flex;
   justify-content: space-between;
 }
+@media screen and (max-width: 600px) {
+  .tickets-form__date-time {
+    display: block;
+  }
+}
 .tickets-form__date {
   flex: 0 1 190px;
   background-image: url("../assets/svg/tickets-form/date.svg"), url("../assets/svg/tickets-form/arrow.svg");
   background-size: 15px 15px, 17px 17px;
   background-position: 15px 50%, calc(100% - 15px) center;
+}
+@media screen and (max-width: 1000px) {
+  .tickets-form__date {
+    flex: 0 1 251px;
+  }
 }
 .tickets-form__date::-webkit-calendar-picker-indicator {
   opacity: 0;
@@ -2016,6 +2111,11 @@ body {
   background-image: url("../assets/svg/tickets-form/time.svg"), url("../assets/svg/tickets-form/arrow.svg");
   background-size: 15px 15px, 17px 17px;
   background-position: 15px 50%, calc(100% - 15px) center;
+}
+@media screen and (max-width: 1000px) {
+  .tickets-form__time {
+    flex: 0 1 251px;
+  }
 }
 .tickets-form__time::-webkit-calendar-picker-indicator {
   opacity: 0;
@@ -2110,11 +2210,22 @@ body {
   border: 1px solid var(--bg-dark);
   padding: 25px 30px;
 }
+@media screen and (max-width: 1000px) {
+  .tickets-form__right-column {
+    padding: 25px 15px;
+  }
+}
 .tickets-form__overview {
   background-image: url("../assets/img/tickets-form/louvre.jpg");
   background-size: 150px 120px;
   background-repeat: no-repeat;
   background-position: right top;
+}
+@media screen and (max-width: 600px) {
+  .tickets-form__overview {
+    background-image: url("../assets/img/tickets-form/420/louvre.jpg");
+    background-size: 120px 96px;
+  }
 }
 .tickets-form__overview-title {
   font-weight: var(--contacts-subtitle-font-weight);
@@ -2147,26 +2258,49 @@ body {
   background-image: url("../assets/svg/tickets-form/time.svg");
 }
 .tickets-form__overview-ticket-type {
-  margin-bottom: 22px;
+  margin-bottom: 25px;
   background-image: url("../assets/svg/tickets-form/radio-checked.svg");
 }
 .tickets-form__overview-table {
   margin-bottom: 10px;
 }
+@media screen and (max-width: 1000px) {
+  .tickets-form__overview-table {
+    margin-bottom: 15px;
+  }
+}
 .tickets-form__overview-bank-cards-block {
   position: relative;
-  height: 241px;
+  height: 240px;
+}
+@media screen and (max-width: 600px) {
+  .tickets-form__overview-bank-cards-block {
+    height: auto;
+    display: flex;
+    flex-direction: column-reverse;
+  }
 }
 .tickets-form__overview-bank-card {
   position: absolute;
   width: 360px;
   border-radius: 3px;
 }
+@media screen and (max-width: 600px) {
+  .tickets-form__overview-bank-card {
+    position: static;
+    width: 100%;
+  }
+}
 .tickets-form__overview-bank-card-down {
   background-color: var(--color-card-down);
   right: 0;
   bottom: 0;
   padding-top: 85px;
+}
+@media screen and (max-width: 600px) {
+  .tickets-form__overview-bank-card-down {
+    position: relative;
+  }
 }
 .tickets-form__overview-bank-card-down::after {
   position: absolute;
@@ -2187,9 +2321,20 @@ body {
   background-position: 285px 34px, 287px 65px;
   background-repeat: no-repeat;
 }
+@media screen and (max-width: 600px) {
+  .tickets-form__overview-bank-card-up {
+    margin-bottom: 25px;
+    background-position: calc(100% - 20px) 34px, calc(100% - 21px) 67px;
+  }
+}
 .tickets-form__overview-btn-wrapper {
   margin-top: 26px;
   text-align: right;
+}
+@media screen and (max-width: 600px) {
+  .tickets-form__overview-btn-wrapper {
+    margin-top: 40px;
+  }
 }
 .tickets-form__overview-btn-submit {
   width: 220px;
@@ -2205,6 +2350,12 @@ body {
   cursor: pointer;
   overflow: hidden;
   position: relative;
+}
+@media screen and (max-width: 600px) {
+  .tickets-form__overview-btn-submit {
+    font-size: 20px;
+    line-height: 23px;
+  }
 }
 .tickets-form__overview-btn-submit .circle {
   position: absolute;
@@ -2268,10 +2419,26 @@ body {
   line-height: 14px;
   color: var(--color-card-stripe);
 }
+@media screen and (max-width: 600px) {
+  .bank-card {
+    font-size: 11px;
+    line-height: 13px;
+  }
+}
 .bank-card__label {
   display: block;
   margin-left: 274px;
   margin-bottom: 5px;
+}
+@media screen and (max-width: 600px) {
+  .tickets-form__overview-bank-card-down .bank-card__label {
+    font-size: 13px;
+    line-height: 15px;
+    margin-bottom: 3px;
+    margin-right: 30px;
+    margin-left: 0;
+    text-align: right;
+  }
 }
 .bank-card__input {
   font-family: var(--main-text-font-family);
@@ -2291,12 +2458,28 @@ body {
   margin-left: 265px;
   margin-bottom: 6px;
 }
+@media screen and (max-width: 600px) {
+  .bank-card__input-cvc {
+    display: block;
+    margin-left: auto;
+    margin-right: 20px;
+  }
+}
 .bank-card__description {
   margin-left: 275px;
   width: 55px;
   font-size: 10px;
   line-height: 12px;
   margin-bottom: 15px;
+}
+@media screen and (max-width: 600px) {
+  .bank-card__description {
+    font-size: 9px;
+    line-height: 11px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: 25px;
+  }
 }
 .bank-card__number {
   display: block;
@@ -2326,6 +2509,11 @@ body {
 }
 .bank-card__input-select-wrapper + .bank-card__input-select-wrapper {
   margin-left: 15px;
+}
+@media screen and (max-width: 600px) {
+  .bank-card__input-select-wrapper + .bank-card__input-select-wrapper {
+    margin-left: 10px;
+  }
 }
 .bank-card__input-select {
   width: 100%;

@@ -375,6 +375,11 @@
     transition: background-color 0.5s 2s, right 0.01s 2.5s;
     z-index: 5;
 
+    @media screen and (max-width: 1000px) {
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
     &.form-is-shown {
       right: 0;
       background-color: rgba(0, 0, 0, 0.7);
