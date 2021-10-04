@@ -52,7 +52,7 @@
     </header> -->
 
     <main class="main">
-      <!-- <section class="section section_welcome section_dark" id="welcome">
+      <section class="section section_welcome section_dark" id="welcome">
         <div class="section__container">
           <div class="section__welcome-content">
             <div class="section__welcome-block">
@@ -64,52 +64,113 @@
                 >Discover the Louvre</a
               >
             </div>
+
             <div class="section__carousel carousel">
               <div class="carousel__container">
                 <div class="carousel__item">
-                  <img
-                    class="carousel__item-photo"
-                    src="assets/img/welcome-slider/1.jpg"
-                    alt="photo 1"
-                    width="1000"
-                    height="750"
-                  />
+                  <picture class="carousel__item-photo">
+                    <source
+                      media="(min-width: 1025px)"
+                      srcset="assets/img/welcome-slider/1.jpg"
+                    />
+                    <source
+                      media="(min-width: 769px)"
+                      srcset="assets/img/welcome-slider/1024/1.jpg"
+                    />
+                    <source
+                      media="(min-width: 421px)"
+                      srcset="assets/img/welcome-slider/768/1.jpg"
+                    />
+                    <source
+                      media="(min-width: 0px)"
+                      srcset="assets/img/welcome-slider/420/1.jpg"
+                    />
+                    <img src="assets/img/welcome-slider/1.jpg" alt="photo 1" />
+                  </picture>
                 </div>
                 <div class="carousel__item">
-                  <img
-                    class="carousel__item-photo"
-                    src="assets/img/welcome-slider/2.jpg"
-                    alt="photo 2"
-                    width="1000"
-                    height="750"
-                  />
+                  <picture class="carousel__item-photo">
+                    <source
+                      media="(min-width: 1025px)"
+                      srcset="assets/img/welcome-slider/2.jpg"
+                    />
+                    <source
+                      media="(min-width: 769px)"
+                      srcset="assets/img/welcome-slider/1024/2.jpg"
+                    />
+                    <source
+                      media="(min-width: 421px)"
+                      srcset="assets/img/welcome-slider/768/2.jpg"
+                    />
+                    <source
+                      media="(min-width: 0px)"
+                      srcset="assets/img/welcome-slider/420/2.jpg"
+                    />
+                    <img src="assets/img/welcome-slider/2.jpg" alt="photo 2" />
+                  </picture>
                 </div>
                 <div class="carousel__item">
-                  <img
-                    class="carousel__item-photo"
-                    src="assets/img/welcome-slider/3.jpg"
-                    alt="photo 3"
-                    width="1000"
-                    height="750"
-                  />
+                  <picture class="carousel__item-photo">
+                    <source
+                      media="(min-width: 1025px)"
+                      srcset="assets/img/welcome-slider/3.jpg"
+                    />
+                    <source
+                      media="(min-width: 769px)"
+                      srcset="assets/img/welcome-slider/1024/3.jpg"
+                    />
+                    <source
+                      media="(min-width: 421px)"
+                      srcset="assets/img/welcome-slider/768/3.jpg"
+                    />
+                    <source
+                      media="(min-width: 0px)"
+                      srcset="assets/img/welcome-slider/420/3.jpg"
+                    />
+                    <img src="assets/img/welcome-slider/3.jpg" alt="photo 3" />
+                  </picture>
                 </div>
                 <div class="carousel__item">
-                  <img
-                    class="carousel__item-photo"
-                    src="assets/img/welcome-slider/4.jpg"
-                    alt="photo 4"
-                    width="1000"
-                    height="750"
-                  />
+                  <picture class="carousel__item-photo">
+                    <source
+                      media="(min-width: 1025px)"
+                      srcset="assets/img/welcome-slider/4.jpg"
+                    />
+                    <source
+                      media="(min-width: 769px)"
+                      srcset="assets/img/welcome-slider/1024/4.jpg"
+                    />
+                    <source
+                      media="(min-width: 421px)"
+                      srcset="assets/img/welcome-slider/768/4.jpg"
+                    />
+                    <source
+                      media="(min-width: 0px)"
+                      srcset="assets/img/welcome-slider/420/4.jpg"
+                    />
+                    <img src="assets/img/welcome-slider/4.jpg" alt="photo 4" />
+                  </picture>
                 </div>
                 <div class="carousel__item">
-                  <img
-                    class="carousel__item-photo"
-                    src="assets/img/welcome-slider/5.jpg"
-                    alt="photo 5"
-                    width="1000"
-                    height="750"
-                  />
+                  <picture class="carousel__item-photo">
+                    <source
+                      media="(min-width: 1025px)"
+                      srcset="assets/img/welcome-slider/5.jpg"
+                    />
+                    <source
+                      media="(min-width: 769px)"
+                      srcset="assets/img/welcome-slider/1024/5.jpg"
+                    />
+                    <source
+                      media="(min-width: 421px)"
+                      srcset="assets/img/welcome-slider/768/5.jpg"
+                    />
+                    <source
+                      media="(min-width: 0px)"
+                      srcset="assets/img/welcome-slider/420/5.jpg"
+                    />
+                    <img src="assets/img/welcome-slider/5.jpg" alt="photo 5" />
+                  </picture>
                 </div>
               </div>
 
@@ -153,7 +214,7 @@
             </div>
           </div>
         </div>
-      </section> -->
+      </section>
 
       <section class="section section_visiting" id="visiting">
         <div class="section__container">
