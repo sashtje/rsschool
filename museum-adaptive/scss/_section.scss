@@ -17,6 +17,7 @@
 
   // .section__container
   &__container {
+    position: relative;
     @extend %container;
   }
   // .section__title
@@ -83,6 +84,14 @@
 
     @media screen and (max-width: 421px) {
       padding-top: 5px;
+    }
+
+    &_is-hidden {
+      display: none;
+
+      @media screen and (max-width: 969px) {
+        display: block;
+      }
     }
 
     .section__title {

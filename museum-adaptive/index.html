@@ -26,7 +26,7 @@
             <h1>Louvre</h1>
           </a>
 
-          <div class="header__burger burger"></div>
+          <div class="header__burger burger" id="burger"></div>
 
           <nav class="header__menu main-menu">
             <ul class="main-menu__list">
@@ -58,7 +58,7 @@
       <section class="section section_welcome section_dark" id="welcome">
         <div class="section__container">
           <div class="section__welcome-content">
-            <div class="section__welcome-block">
+            <div class="section__welcome-block" id="welcome-block">
               <h2 class="section__title">Welcome<br />to the Louvre</h2>
               <p class="section__welcome-subtitle">
                 From the castle to the museum
@@ -216,6 +216,156 @@
               </div>
             </div>
           </div>
+
+          <nav class="mr-menu" id="mr-menu">
+            <div class="mr-menu__container main-menu">
+              <ul class="main-menu__mr-menu-list">
+                <li class="main-menu__item">
+                  <a class="main-menu__link" href="#visiting"
+                    >Visiting<span class="main-menu__link-icon"></span
+                  ></a>
+                </li>
+                <li class="main-menu__item">
+                  <a class="main-menu__link" href="#explore"
+                    >Explore<span class="main-menu__link-icon"></span
+                  ></a>
+                </li>
+                <li class="main-menu__item">
+                  <a class="main-menu__link" href="#video"
+                    >Video<span class="main-menu__link-icon"></span
+                  ></a>
+                </li>
+                <li class="main-menu__item">
+                  <a class="main-menu__link" href="#gallery"
+                    >Gallery<span class="main-menu__link-icon"></span
+                  ></a>
+                </li>
+                <li class="main-menu__item">
+                  <a class="main-menu__link" href="#tickets"
+                    >Tickets<span class="main-menu__link-icon"></span
+                  ></a>
+                </li>
+                <li class="main-menu__item">
+                  <a class="main-menu__link" href="#contacts"
+                    >Contacts<span class="main-menu__link-icon"></span
+                  ></a>
+                </li>
+              </ul>
+
+              <div class="mr-menu__photos">
+                <picture class="mr-menu__photo-center">
+                  <source
+                    media="(min-width: 650px)"
+                    srcset="assets/img/adaptive-menu/img1-768.jpg"
+                  />
+                  <source
+                    media="(min-width: 0px)"
+                    srcset="assets/img/adaptive-menu/img1-420.jpg"
+                  />
+                  <img
+                    src="assets/img/adaptive-menu/img1-768.jpg"
+                    alt="photo louvre"
+                  />
+                </picture>
+
+                <picture class="mr-menu__photo-left">
+                  <source
+                    media="(min-width: 650px)"
+                    srcset="assets/img/adaptive-menu/img2-768.jpg"
+                  />
+                  <source
+                    media="(min-width: 0px)"
+                    srcset="assets/img/adaptive-menu/img2-420.jpg"
+                  />
+                  <img
+                    src="assets/img/adaptive-menu/img2-768.jpg"
+                    alt="photo louvre"
+                  />
+                </picture>
+
+                <picture class="mr-menu__photo-right">
+                  <source
+                    media="(min-width: 650px)"
+                    srcset="assets/img/adaptive-menu/img3-768.jpg"
+                  />
+                  <source
+                    media="(min-width: 0px)"
+                    srcset="assets/img/adaptive-menu/img3-420.jpg"
+                  />
+                  <img
+                    src="assets/img/adaptive-menu/img3-768.jpg"
+                    alt="photo louvre"
+                  />
+                </picture>
+              </div>
+
+              <div class="mr-menu__delimiter"></div>
+
+              <ul class="mr-menu__social-media social-media">
+                <li>
+                  <a
+                    class="social-media__link"
+                    href="https://www.youtube.com/user/louvre"
+                    target="_blank"
+                    ><img
+                      src="assets/svg/social-icons/youtube.svg"
+                      alt="youtube"
+                      width="24"
+                      height="24"
+                  /></a>
+                </li>
+                <li>
+                  <a
+                    class="social-media__link"
+                    href="https://www.instagram.com/museelouvre/"
+                    target="_blank"
+                    ><img
+                      src="assets/svg/social-icons/instagram.svg"
+                      alt="instagram"
+                      width="24"
+                      height="24"
+                  /></a>
+                </li>
+                <li>
+                  <a
+                    class="social-media__link"
+                    href="https://www.facebook.com/museedulouvre"
+                    target="_blank"
+                    ><img
+                      src="assets/svg/social-icons/facebook.svg"
+                      alt="facebook"
+                      width="24"
+                      height="24"
+                  /></a>
+                </li>
+                <li>
+                  <a
+                    class="social-media__link"
+                    href="http://twitter.com/museelouvre"
+                    target="_blank"
+                    ><img
+                      src="assets/svg/social-icons/twitter.svg"
+                      alt="twitter"
+                      width="24"
+                      height="24"
+                  /></a>
+                </li>
+                <li>
+                  <a
+                    class="social-media__link"
+                    href="https://www.pinterest.fr/museedulouvre/"
+                    target="_blank"
+                  >
+                    <img
+                      src="assets/svg/social-icons/pinterest.svg"
+                      alt="pinterest"
+                      width="24"
+                      height="24"
+                  /></a>
+                </li>
+              </ul>
+            </div>
+          </nav>
         </div>
       </section>
 
@@ -1193,5 +1343,6 @@
     <script src="js/index.js"></script>
     <script src="js/gallery.js"></script>
     <script src="js/tickets-form.js"></script>
+    <script src="js/menu.js"></script>
   </body>
 </html>
