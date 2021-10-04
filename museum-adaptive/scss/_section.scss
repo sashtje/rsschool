@@ -86,7 +86,7 @@
     }
 
     .section__title {
-      @media screen and (min-width: 770px) and (max-width: 1025px) {
+      @media screen and (min-width: 770px) and (max-width: 1479px) {
         font-size: 50px;
         line-height: 90px;
       }
@@ -105,7 +105,7 @@
     font-weight: var(--main-text-font-weight);
     letter-spacing: var(--links-letter-spacing);
 
-    @media screen and (max-width: 1025px) {
+    @media screen and (max-width: 1479px) {
       font-size: 24px;
       line-height: 28px;
     }
@@ -145,9 +145,6 @@
 
     @media screen and (max-width: 1479px) {
       margin-top: 50px;
-    }
-
-    @media screen and (max-width: 1025px) {
       width: 300px;
       height: 60px;
       font-size: 20px;
