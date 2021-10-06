@@ -402,6 +402,7 @@
     background-image: url("../assets/img/parallax/parallax.jpg");
     background-size: cover;
     background-attachment: fixed;
+    background-position: center top;
 
     @media screen and (max-width: 1025px) {
       margin-top: 60px;
