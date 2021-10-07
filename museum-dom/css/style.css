@@ -440,6 +440,16 @@ body {
   z-index: 1;
   overflow: hidden;
 }
+@media screen and (min-width: 1025px) {
+  .mr-menu {
+    display: none;
+  }
+}
+@media screen and (max-width: 1025px) {
+  .mr-menu {
+    display: block;
+  }
+}
 @media screen and (max-width: 969px) {
   .mr-menu {
     width: 100%;

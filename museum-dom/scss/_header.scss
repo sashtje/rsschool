@@ -209,6 +209,14 @@
   z-index: 1;
   overflow: hidden;
 
+  @media screen and (min-width: 1025px) {
+    display: none;
+  }
+
+  @media screen and (max-width: 1025px) {
+    display: block;
+  }
+
   @media screen and (max-width: 969px) {
     width: 100%;
     left: -100%;
