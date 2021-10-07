@@ -1732,6 +1732,13 @@ body {
 .gallery__item img {
   max-width: 100%;
   display: block;
+  transform: translateY(100px) scale(0.6);
+  opacity: 0;
+  transition: all 0.5s;
+}
+.gallery__item img.gallery__item_is-active {
+  transform: translateY(0px) scale(1);
+  opacity: 1;
 }
 .gallery__item:nth-child(3n+1) {
   order: 1;

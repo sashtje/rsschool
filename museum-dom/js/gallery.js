@@ -48,3 +48,41 @@ function fillGallery() {
 }
 
 fillGallery();
+
+let galleryImages = document.querySelectorAll(".gallery__item img");
+
+/* function debounce(func, wait = 20, immediate = true) {
+  var timeout;
+  return function () {
+    var context = this,
+      args = arguments;
+    var later = function () {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
+} */
+
+function checkSlide() {
+  galleryImages.forEach((galleryImage) => {
+    const imageTop = galleryImage.getBoundingClientRect().top + window.scrollY;
+
+    //half way through the image
+    const slideInAt = window.scrollY + window.innerHeight;
+    //bottom of the image
+    const imageBottom = imageTop + galleryImage.height;
+    const isHalfShown = slideInAt > imageTop;
+    const isNotScrolledPast = window.scrollY < imageBottom;
+    if (isHalfShown && isNotScrolledPast) {
+      galleryImage.classList.add("gallery__item_is-active");
+    } else {
+      galleryImage.classList.remove("gallery__item_is-active");
+    }
+  }); // end forEach
+}
+
+window.addEventListener("scroll", checkSlide);
