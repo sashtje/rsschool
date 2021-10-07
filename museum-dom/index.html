@@ -15,6 +15,12 @@
 
     <link rel="icon" href="assets/favicon.ico" />
 
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
@@ -1169,26 +1175,10 @@
                 </p>
               </address>
             </div>
-            <div class="contacts__photo">
-              <picture>
-                <source
-                  media="(min-width: 1025px)"
-                  srcset="assets/img/map/contacts-map.png"
-                />
-                <source
-                  media="(min-width: 769px)"
-                  srcset="assets/img/map/1024/contacts-map.png"
-                />
-                <source
-                  media="(min-width: 421px)"
-                  srcset="assets/img/map/768/contacts-map.png"
-                />
-                <source
-                  media="(min-width: 0px)"
-                  srcset="assets/img/map/420/contacts-map.png"
-                />
-                <img src="assets/img/map/contacts-map.png" alt="contacts map" />
-              </picture>
+            <div class="contacts__map mapbox">
+              <div class="mapbox__container">
+                <div class="mapbox__map" id="mapbox"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1320,5 +1310,6 @@
     <script src="js/gallery.js"></script>
     <script src="js/tickets-form.js"></script>
     <script src="js/menu.js"></script>
+    <script src="js/mapbox.js"></script>
   </body>
 </html>
