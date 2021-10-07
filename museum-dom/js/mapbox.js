@@ -5,7 +5,7 @@ const map = new mapboxgl.Map({
   container: "mapbox",
   style: "mapbox://styles/sashtje/ckufv51o51zxv18un5wrkwdj6",
   center: [2.3364, 48.86091],
-  zoom: 16,
+  zoom: 15.75,
 });
 
 let nav = new mapboxgl.NavigationControl({
