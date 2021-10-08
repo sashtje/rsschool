@@ -47,26 +47,6 @@ function fillGallery() {
   }
 }
 
-fillGallery();
-
-let galleryImages = document.querySelectorAll(".gallery__item img");
-
-/* function debounce(func, wait = 20, immediate = true) {
-  var timeout;
-  return function () {
-    var context = this,
-      args = arguments;
-    var later = function () {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    };
-    var callNow = immediate && !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) func.apply(context, args);
-  };
-} */
-
 function checkSlide() {
   galleryImages.forEach((galleryImage) => {
     const imageTop = galleryImage.getBoundingClientRect().top + window.scrollY;
@@ -85,4 +65,35 @@ function checkSlide() {
   }); // end forEach
 }
 
-window.addEventListener("scroll", checkSlide);
+function showOrRemoveScrollBtn() {
+  if (
+    document.body.scrollTop > 100 ||
+    document.documentElement.scrollTop > 100
+  ) {
+    scrollBtn.classList.add("is-active");
+  } else {
+    scrollBtn.classList.remove("is-active");
+  }
+}
+
+function scrollHandler() {
+  //make animation for gallery images
+  checkSlide();
+
+  //check for scrollBtn appearance
+  showOrRemoveScrollBtn();
+}
+
+fillGallery();
+
+let galleryImages = document.querySelectorAll(".gallery__item img");
+let scrollBtn = document.getElementById("scrollBtn");
+
+window.addEventListener("scroll", scrollHandler);
+
+scrollBtn.addEventListener("click", function () {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}); //end addEventListener
+
+showOrRemoveScrollBtn();
