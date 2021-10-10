@@ -27,7 +27,6 @@ buttons.forEach((button) => {
 const buyNowBtn = document.getElementById("buy-now-btn");
 const formWrapper = document.getElementById("tickets-form-wrapper");
 const closeTicketsFormBtn = document.getElementById("close-tickets-form");
-const form = document.getElementById("tickets-form");
 
 const select = document.querySelector(".tickets-form__select-ticket-type");
 const dropdownList = document.querySelector(".tickets-form__dropdown-list");
@@ -41,8 +40,9 @@ const dropdownListItemsText = {
   temporary: "Temporary exhibition",
   combined: "Combined Admission",
 };
-let dateInput = document.getElementById("date");
-let timeInput = document.getElementById("time");
+let form = document.forms[0];
+let dateInput = form.elements.date;
+let timeInput = form.elements.time;
 let overviewDateText = document.querySelector(".tickets-form__overview-date");
 let overviewTimeText = document.querySelector(".tickets-form__overview-time");
 
@@ -51,6 +51,17 @@ buyNowBtn.addEventListener("click", function () {
 
   //fill the data in the form
   select.value = dropdownListItemsText[getTicketTypeInputChecked().value];
+
+  //forbid to choose date in the past
+  let currDate = new Date();
+  dateInput.setAttribute(
+    "min",
+    currDate.getFullYear() +
+      "-" +
+      (currDate.getMonth() + 1) +
+      "-" +
+      currDate.getDate()
+  );
 });
 
 closeTicketsFormBtn.addEventListener("click", function () {
@@ -92,3 +103,36 @@ dropdownListItems.forEach(function (listItem) {
 });
 
 //logic for form
+dateInput.addEventListener("change", function () {
+  let chosenDate = new Date(this.value);
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  overviewDateText.innerText =
+    days[chosenDate.getDay()] +
+    ", " +
+    months[chosenDate.getMonth()] +
+    " " +
+    String(chosenDate.getFullYear()).slice(2);
+});
