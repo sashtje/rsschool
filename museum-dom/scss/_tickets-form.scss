@@ -223,16 +223,26 @@
     }
   }
 
+  &__time-wrapper {
+    position: relative;
+    flex: 0 1 190px;
+
+    @media screen and (max-width: 1000px) {
+      flex: 0 1 251px;
+    }
+  }
+
   // .tickets-form__time
   &__time {
-    flex: 0 1 190px;
     background-image: url("../assets/svg/tickets-form/time.svg"),
       url("../assets/svg/tickets-form/arrow.svg");
     background-size: 15px 15px, 17px 17px;
     background-position: 15px 50%, calc(100% - 15px) center;
+    cursor: pointer;
 
-    @media screen and (max-width: 1000px) {
-      flex: 0 1 251px;
+    &_is-open {
+      background-image: url("../assets/svg/tickets-form/time.svg"),
+        url("../assets/svg/tickets-form/arrow-select-up.svg");
     }
 
     &::-webkit-calendar-picker-indicator {
@@ -241,6 +251,37 @@
       padding: 0;
       margin: 0;
       width: 40px;
+    }
+  }
+
+  &__dropdown-list-time {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 45px;
+    width: 100%;
+    border: 1px solid var(--bg-dark);
+    border-top: none;
+    background-color: var(--bg-light);
+    z-index: 1;
+    max-height: 300px;
+    overflow-y: auto;
+
+    &_visible {
+      display: block;
+    }
+  }
+
+  &__dropdown-list-time-item {
+    padding: 10px 41px;
+    font-weight: var(--main-text-font-weight);
+    font-size: var(--video-titles-fz);
+    line-height: 21px;
+    color: var(--bg-dark);
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--color-bg-select);
     }
   }
 
@@ -268,10 +309,6 @@
   &__select {
     display: block;
     position: relative;
-
-    /* & select {
-      display: none;
-    } */
   }
 
   // .tickets-form__select-ticket-type
@@ -294,7 +331,7 @@
     position: absolute;
     left: 0;
     top: 45px;
-    width: 400px;
+    width: 100%;
     border: 1px solid var(--bg-dark);
     border-top: none;
     background-color: var(--bg-light);

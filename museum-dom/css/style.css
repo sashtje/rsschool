@@ -2359,16 +2359,23 @@ body {
   margin: 0;
   width: 38px;
 }
-.tickets-form__time {
+.tickets-form__time-wrapper {
+  position: relative;
   flex: 0 1 190px;
+}
+@media screen and (max-width: 1000px) {
+  .tickets-form__time-wrapper {
+    flex: 0 1 251px;
+  }
+}
+.tickets-form__time {
   background-image: url("../assets/svg/tickets-form/time.svg"), url("../assets/svg/tickets-form/arrow.svg");
   background-size: 15px 15px, 17px 17px;
   background-position: 15px 50%, calc(100% - 15px) center;
+  cursor: pointer;
 }
-@media screen and (max-width: 1000px) {
-  .tickets-form__time {
-    flex: 0 1 251px;
-  }
+.tickets-form__time_is-open {
+  background-image: url("../assets/svg/tickets-form/time.svg"), url("../assets/svg/tickets-form/arrow-select-up.svg");
 }
 .tickets-form__time::-webkit-calendar-picker-indicator {
   opacity: 0;
@@ -2376,6 +2383,33 @@ body {
   padding: 0;
   margin: 0;
   width: 40px;
+}
+.tickets-form__dropdown-list-time {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 45px;
+  width: 100%;
+  border: 1px solid var(--bg-dark);
+  border-top: none;
+  background-color: var(--bg-light);
+  z-index: 1;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.tickets-form__dropdown-list-time_visible {
+  display: block;
+}
+.tickets-form__dropdown-list-time-item {
+  padding: 10px 41px;
+  font-weight: var(--main-text-font-weight);
+  font-size: var(--video-titles-fz);
+  line-height: 21px;
+  color: var(--bg-dark);
+  cursor: pointer;
+}
+.tickets-form__dropdown-list-time-item:hover {
+  background-color: var(--color-bg-select);
 }
 .tickets-form__name {
   background-image: url("../assets/svg/tickets-form/name.svg");
@@ -2395,9 +2429,6 @@ body {
 .tickets-form__select {
   display: block;
   position: relative;
-  /* & select {
-    display: none;
-  } */
 }
 .tickets-form__select-ticket-type {
   background-image: url("../assets/svg/tickets-form/ticket-type.svg"), url("../assets/svg/tickets-form/arrow.svg");
@@ -2414,7 +2445,7 @@ body {
   position: absolute;
   left: 0;
   top: 45px;
-  width: 400px;
+  width: 100%;
   border: 1px solid var(--bg-dark);
   border-top: none;
   background-color: var(--bg-light);

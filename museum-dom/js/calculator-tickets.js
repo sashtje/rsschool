@@ -4,7 +4,6 @@ let basicNumber = document.getElementById("basicNumber");
 let seniorNumber = document.getElementById("seniorNumber");
 let numberDown = document.querySelectorAll(".number-choice__btn-down");
 let numberUp = document.querySelectorAll(".number-choice__btn-up");
-let prices = { permanent: 20, temporary: 25, combined: 40 };
 
 function getTicketTypeInputChecked() {
   let inputChecked;
