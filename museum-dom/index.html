@@ -873,9 +873,11 @@
                     class="tickets-form__input tickets-form__date"
                     type="text"
                     name="date"
+                    id="date"
                     onmouseover="(this.type='date')"
                     onmouseout="(this.type='text')"
                     onblur="(this.type='text')"
+                    min="2021-10-09"
                     placeholder="Date"
                   />
 
@@ -883,6 +885,7 @@
                     class="tickets-form__input tickets-form__time"
                     type="text"
                     name="time"
+                    id="time"
                     onmouseover="(this.type='time')"
                     onmouseout="(this.type='text')"
                     onblur="(this.type='text')"
@@ -922,7 +925,8 @@
                     class="tickets-form__input tickets-form__tel"
                     type="tel"
                     name="tel"
-                    pattern="[0-9]{1,10}|([0-9]{2}[-]){1,4}[0-9]{2}|([0-9]{2}[ ]){1,4}[0-9]{2}|([0-9]{3}[-]){1,2}[0-9]{3}|([0-9]{3}[ ]){1,2}[0-9]{3}"
+                    pattern="[0-9]{0,10}|([0-9]{2,3}[- ]){1,4}[0-9]{2,3}"
+                    maxlength="14"
                     placeholder="Phone"
                     autocomplete="off"
                   />

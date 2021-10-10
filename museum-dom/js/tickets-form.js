@@ -35,8 +35,22 @@ const dropdownListItems = document.querySelectorAll(
   ".tickets-form__dropdown-item"
 );
 
+//for form logic
+const dropdownListItemsText = {
+  permanent: "Permanent exhibition",
+  temporary: "Temporary exhibition",
+  combined: "Combined Admission",
+};
+let dateInput = document.getElementById("date");
+let timeInput = document.getElementById("time");
+let overviewDateText = document.querySelector(".tickets-form__overview-date");
+let overviewTimeText = document.querySelector(".tickets-form__overview-time");
+
 buyNowBtn.addEventListener("click", function () {
   formWrapper.classList.add("form-is-shown");
+
+  //fill the data in the form
+  select.value = dropdownListItemsText[getTicketTypeInputChecked().value];
 });
 
 closeTicketsFormBtn.addEventListener("click", function () {
@@ -76,3 +90,5 @@ dropdownListItems.forEach(function (listItem) {
     dropdownList.classList.toggle("tickets-form__dropdown-list_visible");
   });
 });
+
+//logic for form
