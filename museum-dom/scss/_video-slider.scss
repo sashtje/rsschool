@@ -1,0 +1,117 @@
+.video-slider {
+  .slick-list {
+    overflow: hidden;
+  }
+
+  .slick-track {
+    display: flex;
+    align-items: center;
+  }
+
+  // .video-slider__container
+  &__container {
+    /* display: flex;
+    align-items: center;
+    gap: 42px; */
+
+    /* @media screen and (max-width: 769px) {
+      gap: 20px;
+    } */
+  }
+  // .video-slider__item
+  &__item {
+    margin-right: 42px;
+    width: 452px;
+    height: 254px;
+
+    & iframe {
+      /* width: 452px;
+      height: 254px; */
+      display: block;
+    }
+  }
+
+  // .video-slider__controls
+  &__controls {
+    width: 200px;
+    height: 12px;
+    margin: 0 auto;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width: 769px) {
+      margin-top: 20px;
+      width: 190px;
+    }
+
+    @media screen and (max-width: 421px) {
+      margin-top: 40px;
+      width: 174px;
+      height: 8px;
+    }
+
+    .slick-arrow {
+      width: 10px;
+      height: 12px;
+      @include transition-hover();
+      font-size: 0;
+
+      &:hover {
+        filter: invert(7%) sepia(85%) saturate(4606%) hue-rotate(7deg)
+          brightness(50%) contrast(107%);
+      }
+    }
+
+    .slick-prev {
+      background-image: url("../assets/svg/video-controls/slider/arrow-left.svg");
+      margin-right: 20px;
+    }
+
+    .slick-next {
+      background-image: url("../assets/svg/video-controls/slider/arrow-right.svg");
+      margin-left: 20px;
+    }
+  }
+
+  // .video-slider__controls-dot
+  &__controls-dots {
+    .slick-dots {
+      width: 140px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    li {
+      font-size: 0;
+    }
+
+    .slick-active {
+      button {
+        background-color: var(--color-checked-dot);
+
+        &:hover {
+          background-color: var(--color-btn);
+        }
+      }
+    }
+
+    button {
+      font-size: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: var(--color-dots);
+      @include transition-hover();
+
+      @media screen and (max-width: 421px) {
+        width: 8px;
+        height: 8px;
+      }
+
+      &:hover {
+        background-color: var(--color-btn);
+      }
+    }
+  }
+}

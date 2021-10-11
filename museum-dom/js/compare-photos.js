@@ -1,45 +1,37 @@
-const progresses = document.querySelectorAll(".video-player__range");
-
-progresses.forEach(function (progress) {
-  progress.addEventListener("input", function () {
-    const value = this.value;
-    this.style.background =
-      "linear-gradient(to right, #710707 0%, #710707 " +
-      value +
-      "%, #c4c4c4 " +
-      value +
-      "%, #c4c4c4 100%)";
-  });
-});
+let sliderAlreadyAdded = false;
+let slider;
 
 function initComparisons() {
   var x, i;
   /*find all elements with an "overlay" class:*/
   x = document.getElementsByClassName("compare-photos__photo_overlay");
-  for (i = 0; i < x.length; i++) {
-    /*once for each "overlay" element:
-    pass the "overlay" element as a parameter when executing the compareImages function:*/
-    compareImages(x[i]);
-  }
-  function compareImages(img) {
-    var slider,
-      img,
+  y = document.getElementsByClassName("compare-photos__photo-down");
+  compareImages(x[0], y[0]);
+
+  function compareImages(img, imgDown) {
+    var img,
+      imgDown,
       clicked = 0,
       w,
       h;
+
     /*get the width and height of the img element*/
-    w = img.offsetWidth;
+    w = imgDown.offsetWidth;
     h = img.offsetHeight;
     /*set the width of the img element to 440px:*/
     img.style.width = w / 1.6363 + "px";
-    /*create slider:*/
-    slider = document.createElement("div");
-    slider.setAttribute("class", "compare-photos__slider");
-    /*insert slider*/
-    img.parentElement.insertBefore(slider, img);
+    if (!sliderAlreadyAdded) {
+      /*create slider:*/
+      slider = document.createElement("div");
+      slider.setAttribute("class", "compare-photos__slider");
+      /*insert slider*/
+      img.parentElement.insertBefore(slider, img);
+      sliderAlreadyAdded = true;
+    }
+
     /*position the slider in the middle:*/
     slider.style.top = 0 + "px";
-    slider.style.left = w / 1.6363 - 19 + "px";
+    slider.style.left = w / 1.6363 - slider.offsetWidth / 2 + "px";
     /*execute a function when the mouse button is pressed:*/
     slider.addEventListener("mousedown", slideReady);
     /*and another function when the mouse button is released:*/
@@ -94,4 +86,6 @@ function initComparisons() {
   }
 }
 
-// initComparisons();
+window.addEventListener("resize", initComparisons);
+
+initComparisons();

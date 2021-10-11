@@ -1,16 +1,26 @@
 .video-player {
-  // .video-player__poster
+  // .video-player__player
   &__player {
     position: relative;
 
-    & picture {
-      display: block;
+    .slick-list {
+      overflow: hidden;
+    }
 
-      & img {
-        max-width: 100%;
-      }
+    .slick-track {
+      display: flex;
     }
   }
+
+  &__slider-item {
+    position: relative;
+
+    video {
+      display: block;
+      width: 100%;
+    }
+  }
+
   // .video-player__big-play
   &__big-play {
     position: absolute;
@@ -232,8 +242,8 @@
     background: linear-gradient(
       to right,
       var(--color-btn) 0%,
-      var(--color-btn) 54%,
-      var(--color-range) 54%,
+      var(--color-btn) 0%,
+      var(--color-range) 0%,
       var(--color-range) 100%
     );
   }
@@ -244,8 +254,8 @@
     background: linear-gradient(
       to right,
       var(--color-btn) 0%,
-      var(--color-btn) 43%,
-      var(--color-range) 43%,
+      var(--color-btn) 45%,
+      var(--color-range) 45%,
       var(--color-range) 100%
     );
 

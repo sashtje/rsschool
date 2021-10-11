@@ -15,6 +15,12 @@
 
     <link rel="icon" href="assets/favicon.ico" />
 
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
@@ -183,36 +189,9 @@
                   ><span class="carousel__current-slide-delimiter">|</span>05
                 </div>
 
-                <div class="carousel__squares">
-                  <div
-                    class="
-                      carousel__squares-item carousel__squares-item_checked
-                    "
-                  ></div>
-                  <div class="carousel__squares-item"></div>
-                  <div class="carousel__squares-item"></div>
-                  <div class="carousel__squares-item"></div>
-                  <div class="carousel__squares-item"></div>
-                </div>
+                <div class="carousel__squares"></div>
 
-                <div class="carousel__btns">
-                  <button class="carousel__arrow-btn" id="prev-slide">
-                    <img
-                      src="assets/svg/carousel/arrow-left.svg"
-                      alt="prev slide"
-                      width="30"
-                      height="8"
-                    />
-                  </button>
-                  <button class="carousel__arrow-btn" id="next-slide">
-                    <img
-                      src="assets/svg/carousel/arrow-right.svg"
-                      alt="next slide"
-                      width="30"
-                      height="8"
-                    />
-                  </button>
-                </div>
+                <div class="carousel__btns"></div>
               </div>
             </div>
           </div>
@@ -554,72 +533,47 @@
             </div>
 
             <div class="section__compare-photos compare-photos">
-              <picture>
-                <source
-                  media="(min-width: 769px)"
-                  srcset="assets/img/explore-slider-temp/explore.jpg"
-                />
-                <source
-                  media="(min-width: 421px)"
-                  srcset="assets/img/explore-slider-temp/768/explore.jpg"
-                />
-                <source
-                  media="(min-width: 0px)"
-                  srcset="assets/img/explore-slider-temp/420/explore.jpg"
-                />
-                <img
-                  src="assets/img/explore-slider-temp/explore.jpg"
-                  alt="Las Meninas"
-                />
-              </picture>
-              <!-- <div class="compare-photos__container">
-                <div class="compare-photos__photo">
+              <div class="compare-photos__photo compare-photos__photo-down">
+                <picture>
+                  <source
+                    media="(min-width: 769px)"
+                    srcset="assets/img/explore-slider/after.jpg"
+                  />
+                  <source
+                    media="(min-width: 421px)"
+                    srcset="assets/img/explore-slider/768/after.jpg"
+                  />
+                  <source
+                    media="(min-width: 0px)"
+                    srcset="assets/img/explore-slider/420/after.jpg"
+                  />
                   <img
                     src="assets/img/explore-slider/after.jpg"
                     alt="Las Meninas"
-                    width="720"
-                    height="700"
                   />
-                  <picture>
-                    <source
-                      media="(min-width: 769px)"
-                      srcset="assets/img/explore-slider/after.jpg"
-                    />
-                    <source
-                      media="(min-width: 421px)"
-                      srcset="assets/img/explore-slider/768/after.jpg"
-                    />
-                    <source
-                      media="(min-width: 0px)"
-                      srcset="assets/img/explore-slider/420/after.jpg"
-                    />
-                  </picture>
-                </div>
-                <div
-                  class="compare-photos__photo compare-photos__photo_overlay"
-                >
+                </picture>
+              </div>
+
+              <div class="compare-photos__photo compare-photos__photo_overlay">
+                <picture>
+                  <source
+                    media="(min-width: 769px)"
+                    srcset="assets/img/explore-slider/before.jpg"
+                  />
+                  <source
+                    media="(min-width: 421px)"
+                    srcset="assets/img/explore-slider/768/before.jpg"
+                  />
+                  <source
+                    media="(min-width: 0px)"
+                    srcset="assets/img/explore-slider/420/before.jpg"
+                  />
                   <img
                     src="assets/img/explore-slider/before.jpg"
                     alt="Las Meninas"
-                    width="720"
-                    height="700"
                   />
-                  <picture>
-                    <source
-                      media="(min-width: 769px)"
-                      srcset="assets/img/explore-slider/before.jpg"
-                    />
-                    <source
-                      media="(min-width: 421px)"
-                      srcset="assets/img/explore-slider/768/before.jpg"
-                    />
-                    <source
-                      media="(min-width: 0px)"
-                      srcset="assets/img/explore-slider/420/before.jpg"
-                    />
-                  </picture>
-                </div>
-              </div> -->
+                </picture>
+              </div>
             </div>
           </div>
         </div>
@@ -637,28 +591,37 @@
 
           <div class="section__video-player video-player">
             <div class="video-player__player">
-              <picture>
-                <source
-                  media="(min-width: 1025px)"
-                  srcset="assets/img/video/vj-louvre.jpg"
-                />
-                <source
-                  media="(min-width: 769px)"
-                  srcset="assets/img/video/1024/vj-louvre.jpg"
-                />
-                <source
-                  media="(min-width: 421px)"
-                  srcset="assets/img/video/768/vj-louvre.jpg"
-                />
-                <source
-                  media="(min-width: 0px)"
-                  srcset="assets/img/video/420/vj-louvre.jpg"
-                />
-                <img
-                  src="assets/img/video/vj-louvre.jpg"
-                  alt="video tour louvre"
-                />
-              </picture>
+              <div class="video-player__container">
+                <div class="video-player__slider-item">
+                  <video poster="assets/video/poster0.jpg">
+                    <source src="assets/video/video0.mp4" />
+                  </video>
+                </div>
+
+                <div class="video-player__slider-item">
+                  <video poster="assets/video/poster1.jpg">
+                    <source src="assets/video/video1.mp4" />
+                  </video>
+                </div>
+
+                <div class="video-player__slider-item">
+                  <video poster="assets/video/poster2.jpg">
+                    <source src="assets/video/video2.mp4" />
+                  </video>
+                </div>
+
+                <div class="video-player__slider-item">
+                  <video poster="assets/video/poster3.jpg">
+                    <source src="assets/video/video3.mp4" />
+                  </video>
+                </div>
+
+                <div class="video-player__slider-item">
+                  <video poster="assets/video/poster4.jpg">
+                    <source src="assets/video/video4.mp4" />
+                  </video>
+                </div>
+              </div>
               <button class="video-player__big-play">
                 <img
                   src="assets/svg/video-controls/big-play.svg"
@@ -673,10 +636,10 @@
               <input
                 class="video-player__range video-player__range-time"
                 type="range"
-                value="54"
+                value="0"
                 min="0"
                 max="100"
-                step="1"
+                step="0.05"
               />
               <button class="video-player__btn video-player__volume">
                 <img src="assets/svg/video-controls/volume.svg" alt="volume" />
@@ -684,10 +647,11 @@
               <input
                 class="video-player__range video-player__range-volume"
                 type="range"
-                value="43"
+                name="volume"
+                value="0.45"
                 min="0"
-                max="100"
-                step="1"
+                max="1"
+                step="0.05"
               />
               <button class="video-player__btn video-player__full-screen">
                 <img
@@ -702,7 +666,10 @@
             <div class="video-slider__container">
               <div class="video-slider__item">
                 <iframe
-                  src="https://www.youtube.com/embed/aWmJ5DgyWPI"
+                  id="player1"
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/zp1BXPX8jcU?enablejsapi=1"
                   title="YouTube video player"
                   loading="lazy"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -711,7 +678,10 @@
               </div>
               <div class="video-slider__item">
                 <iframe
-                  src="https://www.youtube.com/embed/Vi5D6FKhRmo"
+                  id="player2"
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/Vi5D6FKhRmo?enablejsapi=1"
                   title="YouTube video player"
                   loading="lazy"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -720,7 +690,32 @@
               </div>
               <div class="video-slider__item">
                 <iframe
-                  src="https://www.youtube.com/embed/NOhDysLnTvY"
+                  id="player3"
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/NOhDysLnTvY?enablejsapi=1"
+                  title="YouTube video player"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div class="video-slider__item">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/aWmJ5DgyWPI?enablejsapi=1"
+                  title="YouTube video player"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div class="video-slider__item">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/2OR0OCr6uRE?enablejsapi=1"
                   title="YouTube video player"
                   loading="lazy"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -730,31 +725,7 @@
             </div>
 
             <div class="video-slider__controls">
-              <button class="video-slider__controls-btn">
-                <img
-                  src="assets/svg/video-controls/slider/arrow-left.svg"
-                  alt="arrow left"
-                  width="10"
-                  height="12"
-                />
-              </button>
-              <div
-                class="
-                  video-slider__controls-dot video-slider__controls-dot_checked
-                "
-              ></div>
-              <div class="video-slider__controls-dot"></div>
-              <div class="video-slider__controls-dot"></div>
-              <div class="video-slider__controls-dot"></div>
-              <div class="video-slider__controls-dot"></div>
-              <button class="video-slider__controls-btn">
-                <img
-                  src="assets/svg/video-controls/slider/arrow-right.svg"
-                  alt="arrow right"
-                  width="10"
-                  height="12"
-                />
-              </button>
+              <div class="video-slider__controls-dots"></div>
             </div>
           </div>
         </div>
@@ -806,12 +777,23 @@
                     type="radio"
                     name="ticket-type"
                     id="permanent"
+                    value="permanent"
                     checked
                   />
                   <label for="permanent">Permanent exhibition</label>
-                  <input type="radio" name="ticket-type" id="temporary" />
+                  <input
+                    type="radio"
+                    name="ticket-type"
+                    id="temporary"
+                    value="temporary"
+                  />
                   <label for="temporary">Temporary exhibition</label>
-                  <input type="radio" name="ticket-type" id="combined" />
+                  <input
+                    type="radio"
+                    name="ticket-type"
+                    id="combined"
+                    value="combined"
+                  />
                   <label for="combined">Combined Admission</label>
                 </div>
                 <div class="tickets__amount">
@@ -819,24 +801,19 @@
                   <p class="tickets__label">Basic 18+</p>
 
                   <div class="number-choice">
-                    <button
-                      class="number-choice__btn"
-                      onclick="this.nextElementSibling.stepDown()"
-                    >
+                    <button class="number-choice__btn number-choice__btn-down">
                       –
                     </button>
                     <input
                       class="number-choice__number"
+                      id="basicNumber"
                       type="number"
                       min="0"
                       max="20"
                       value="1"
                       readonly
                     />
-                    <button
-                      class="number-choice__btn"
-                      onclick="this.previousElementSibling.stepUp()"
-                    >
+                    <button class="number-choice__btn number-choice__btn-up">
                       +
                     </button>
                   </div>
@@ -844,29 +821,26 @@
                   <p class="tickets__label tickets__label_margin">Senior 65+</p>
 
                   <div class="number-choice">
-                    <button
-                      class="number-choice__btn"
-                      onclick="this.nextElementSibling.stepDown()"
-                    >
+                    <button class="number-choice__btn number-choice__btn-down">
                       –
                     </button>
                     <input
                       class="number-choice__number"
+                      id="seniorNumber"
                       type="number"
                       min="0"
                       max="20"
                       value="1"
                       readonly
                     />
-                    <button
-                      class="number-choice__btn"
-                      onclick="this.previousElementSibling.stepUp()"
-                    >
+                    <button class="number-choice__btn number-choice__btn-up">
                       +
                     </button>
                   </div>
 
-                  <p class="tickets__price">Total €<span>220</span></p>
+                  <p class="tickets__price">
+                    Total €<span id="tickets-price">30</span>
+                  </p>
                 </div>
               </div>
 
@@ -895,38 +869,118 @@
                     placeholder="Date"
                   />
 
-                  <input
-                    class="tickets-form__input tickets-form__time"
-                    type="text"
-                    name="time"
-                    onmouseover="(this.type='time')"
-                    onmouseout="(this.type='text')"
-                    onblur="(this.type='text')"
-                    placeholder="Time"
-                  />
+                  <div class="tickets-form__time-wrapper">
+                    <input
+                      class="tickets-form__input tickets-form__time"
+                      type="text"
+                      name="time"
+                      readonly
+                      placeholder="Time"
+                    />
+                    <ul class="tickets-form__dropdown-list-time">
+                      <li class="tickets-form__dropdown-list-time-item">
+                        09:00
+                      </li>
+                      <li class="tickets-form__dropdown-list-time-item">
+                        09:30
+                      </li>
+                      <li class="tickets-form__dropdown-list-time-item">
+                        10:00
+                      </li>
+                      <li class="tickets-form__dropdown-list-time-item">
+                        10:30
+                      </li>
+                      <li class="tickets-form__dropdown-list-time-item">
+                        11:00
+                      </li>
+                      <li class="tickets-form__dropdown-list-time-item">
+                        11:30
+                      </li>
+                      <li class="tickets-form__dropdown-list-time-item">
+                        12:00
+                      </li>
+                      <li class="tickets-form__dropdown-list-time-item">
+                        12:30
+                      </li>
+                      <li class="tickets-form__dropdown-list-time-item">
+                        13:00
+                      </li>
+                      <li class="tickets-form__dropdown-list-time-item">
+                        13:30
+                      </li>
+                      <li class="tickets-form__dropdown-list-time-item">
+                        14:00
+                      </li>
+                      <li class="tickets-form__dropdown-list-time-item">
+                        14:30
+                      </li>
+                      <li class="tickets-form__dropdown-list-time-item">
+                        15:00
+                      </li>
+                      <li class="tickets-form__dropdown-list-time-item">
+                        15:30
+                      </li>
+                      <li class="tickets-form__dropdown-list-time-item">
+                        16:00
+                      </li>
+                      <li class="tickets-form__dropdown-list-time-item">
+                        16:30
+                      </li>
+                      <li class="tickets-form__dropdown-list-time-item">
+                        17:00
+                      </li>
+                      <li class="tickets-form__dropdown-list-time-item">
+                        17:30
+                      </li>
+                      <li class="tickets-form__dropdown-list-time-item">
+                        18:00
+                      </li>
+                    </ul>
+                  </div>
                 </div>
 
-                <input
-                  class="tickets-form__input tickets-form__name"
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                  autocomplete="off"
-                />
-                <input
-                  class="tickets-form__input tickets-form__email"
-                  type="email"
-                  name="email"
-                  placeholder="E-mail"
-                  autocomplete="off"
-                />
-                <input
-                  class="tickets-form__input tickets-form__tel"
-                  type="tel"
-                  name="tel"
-                  placeholder="Phone"
-                  autocomplete="off"
-                />
+                <div class="tickets-form__input-wrapper">
+                  <input
+                    class="tickets-form__input tickets-form__name"
+                    type="text"
+                    name="name"
+                    placeholder="Name"
+                    pattern="[a-zA-Zа-яА-Я ]{3,15}"
+                    autocomplete="off"
+                  />
+                  <p class="tickets-form__input-error">
+                    Enter 3-15 letters of English or Russian letters or spaces
+                  </p>
+                </div>
+                <div class="tickets-form__input-wrapper">
+                  <input
+                    class="tickets-form__input tickets-form__email"
+                    type="email"
+                    name="email"
+                    pattern="[a-zA-Z0-9_-]{3,15}@[a-zA-Z]{4,}\.[a-zA-Z]{2,}"
+                    placeholder="E-mail"
+                    autocomplete="off"
+                  />
+                  <p class="tickets-form__input-error">
+                    Email username should consists only from English letters,
+                    digit, "_" and "-"
+                  </p>
+                </div>
+                <div class="tickets-form__input-wrapper">
+                  <input
+                    class="tickets-form__input tickets-form__tel"
+                    type="tel"
+                    name="tel"
+                    pattern="[0-9]{0,10}|([0-9]{2,3}[- ]){1,4}[0-9]{2,3}"
+                    maxlength="14"
+                    placeholder="Phone"
+                    autocomplete="off"
+                  />
+                  <p class="tickets-form__input-error">
+                    Number of digits from 1 to 10. With delimiters (- or space)
+                    or without.
+                  </p>
+                </div>
 
                 <div class="tickets-form__select">
                   <input
@@ -961,16 +1015,21 @@
                     Entry ticket
                   </h4>
                   <div class="tickets-form__entry-tickets-row">
-                    Basic 18+ (20 €)
+                    <span>
+                      Basic 18+ (<span class="tickets-form__tickets-basic-price"
+                        >20</span
+                      >
+                      €)</span
+                    >
                     <div class="number-choice number-choice_form">
                       <button
                         class="number-choice__btn number-choice__btn-minus"
                         type="button"
-                        onclick="this.nextElementSibling.stepDown()"
                       ></button>
                       <input
                         class="number-choice__number"
                         type="number"
+                        name="basicNumberForm"
                         min="0"
                         max="20"
                         value="2"
@@ -979,21 +1038,26 @@
                       <button
                         class="number-choice__btn number-choice__btn-plus"
                         type="button"
-                        onclick="this.previousElementSibling.stepUp()"
                       ></button>
                     </div>
                   </div>
                   <div class="tickets-form__entry-tickets-row">
-                    Senior 65+ (10 €)
+                    <span>
+                      Senior 65+ (<span
+                        class="tickets-form__tickets-senior-price"
+                        >10</span
+                      >
+                      €)</span
+                    >
                     <div class="number-choice number-choice_form">
                       <button
                         class="number-choice__btn number-choice__btn-minus"
                         type="button"
-                        onclick="this.nextElementSibling.stepDown()"
                       ></button>
                       <input
                         class="number-choice__number"
                         type="number"
+                        name="seniorNumberForm"
                         min="0"
                         max="20"
                         value="2"
@@ -1002,7 +1066,6 @@
                       <button
                         class="number-choice__btn number-choice__btn-plus"
                         type="button"
-                        onclick="this.previousElementSibling.stepUp()"
                       ></button>
                     </div>
                   </div>
@@ -1042,23 +1105,53 @@
                   <tbody>
                     <tr>
                       <td>
-                        <span class="overview-table__number">2</span>Basic (20
+                        <span
+                          class="
+                            overview-table__number overview-table__number-basic
+                          "
+                          >2</span
+                        >Basic (<span class="tickets-form__tickets-basic-price"
+                          >20</span
+                        >
                         €)
                       </td>
-                      <td>40 €</td>
+                      <td>
+                        <span class="tickets-form__tickets-basic-total-price"
+                          >40</span
+                        >
+                        €
+                      </td>
                     </tr>
                     <tr>
                       <td>
-                        <span class="overview-table__number">2</span>Senior (10
+                        <span
+                          class="
+                            overview-table__number overview-table__number-senior
+                          "
+                          >2</span
+                        >Senior (<span
+                          class="tickets-form__tickets-senior-price"
+                          >10</span
+                        >
                         €)
                       </td>
-                      <td>20 €</td>
+                      <td>
+                        <span class="tickets-form__tickets-senior-total-price"
+                          >20</span
+                        >
+                        €
+                      </td>
                     </tr>
                   </tbody>
                   <tfoot>
                     <tr>
                       <td>Total:</td>
-                      <td>60 €</td>
+                      <td>
+                        <span class="tickets-form__tickets-total-price"
+                          >60</span
+                        >
+                        €
+                      </td>
                     </tr>
                   </tfoot>
                 </table>
@@ -1194,26 +1287,10 @@
                 </p>
               </address>
             </div>
-            <div class="contacts__photo">
-              <picture>
-                <source
-                  media="(min-width: 1025px)"
-                  srcset="assets/img/map/contacts-map.png"
-                />
-                <source
-                  media="(min-width: 769px)"
-                  srcset="assets/img/map/1024/contacts-map.png"
-                />
-                <source
-                  media="(min-width: 421px)"
-                  srcset="assets/img/map/768/contacts-map.png"
-                />
-                <source
-                  media="(min-width: 0px)"
-                  srcset="assets/img/map/420/contacts-map.png"
-                />
-                <img src="assets/img/map/contacts-map.png" alt="contacts map" />
-              </picture>
+            <div class="contacts__map mapbox">
+              <div class="mapbox__container">
+                <div class="mapbox__map" id="mapbox"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1340,9 +1417,37 @@
       </div>
     </footer>
 
-    <script src="js/index.js"></script>
+    <svg id="scrollBtn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <title>arrow-circle-up</title>
+      <g id="Layer_2" data-name="Layer 2">
+        <g id="arrow-circle-up">
+          <g id="arrow-circle-up-2" data-name="arrow-circle-up">
+            <rect
+              class="cls-1"
+              width="24"
+              height="24"
+              transform="translate(24 24) rotate(180)"
+            />
+            <path
+              class="cls-2"
+              d="M12,22A10,10,0,1,0,2,12,10,10,0,0,0,12,22ZM8.31,10.14l3-2.86a.49.49,0,0,1,.15-.1.54.54,0,0,1,.16-.1.94.94,0,0,1,.76,0,1,1,0,0,1,.33.21l3,3a1,1,0,0,1-1.42,1.42L13,10.41V16a1,1,0,0,1-2,0V10.34L9.69,11.59a1,1,0,0,1-1.38-1.45Z"
+            />
+          </g>
+        </g>
+      </g>
+    </svg>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/compare-photos.js"></script>
     <script src="js/gallery.js"></script>
     <script src="js/tickets-form.js"></script>
+    <script src="js/calculator-tickets.js"></script>
     <script src="js/menu.js"></script>
+    <script src="js/mapbox.js"></script>
+    <script src="js/self-assessment.js"></script>
+    <script src="js/slider-welcome.js"></script>
+    <script src="js/slider-video.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>

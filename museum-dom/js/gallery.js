@@ -47,4 +47,53 @@ function fillGallery() {
   }
 }
 
+function checkSlide() {
+  galleryImages.forEach((galleryImage) => {
+    const imageTop = galleryImage.getBoundingClientRect().top + window.scrollY;
+
+    //half way through the image
+    const slideInAt = window.scrollY + window.innerHeight;
+    //bottom of the image
+    const imageBottom = imageTop + galleryImage.height;
+    const isHalfShown = slideInAt > imageTop;
+    const isNotScrolledPast = window.scrollY < imageBottom;
+    if (isHalfShown && isNotScrolledPast) {
+      galleryImage.classList.add("gallery__item_is-active");
+    } else {
+      galleryImage.classList.remove("gallery__item_is-active");
+    }
+  }); // end forEach
+}
+
+function showOrRemoveScrollBtn() {
+  if (
+    document.body.scrollTop > 100 ||
+    document.documentElement.scrollTop > 100
+  ) {
+    scrollBtn.classList.add("is-active");
+  } else {
+    scrollBtn.classList.remove("is-active");
+  }
+}
+
+function scrollHandler() {
+  //make animation for gallery images
+  checkSlide();
+
+  //check for scrollBtn appearance
+  showOrRemoveScrollBtn();
+}
+
 fillGallery();
+
+let galleryImages = document.querySelectorAll(".gallery__item img");
+let scrollBtn = document.getElementById("scrollBtn");
+
+window.addEventListener("scroll", scrollHandler);
+
+scrollBtn.addEventListener("click", function () {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}); //end addEventListener
+
+showOrRemoveScrollBtn();
