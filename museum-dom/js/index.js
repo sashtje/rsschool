@@ -157,3 +157,15 @@ $(".video-player__container").on(
     activeVideo.addEventListener("timeupdate", handleProgress);
   }
 );
+
+document.addEventListener("keydown", function (e) {
+  let keyName = e.key;
+
+  if (keyName === " ") {
+    e.preventDefault();
+    togglePlay();
+  } else if (keyName === "m") {
+    e.preventDefault();
+    toggleVolume();
+  }
+});
