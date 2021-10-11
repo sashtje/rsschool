@@ -11,6 +11,7 @@ let messagePlaybackRate = videoPlayer.querySelector(
   ".video-player__playbackRate"
 );
 let playbackRate = 1;
+let btnFullScreen = videoPlayer.querySelector(".video-player__full-screen");
 
 volumeBar.addEventListener("input", function () {
   const value = this.value;
@@ -193,5 +194,21 @@ document.addEventListener("keydown", function (e) {
     setTimeout(function () {
       messagePlaybackRate.style.opacity = 0;
     }, 1000);
+  } else if (keyName === "f") {
+    //turn on full screen or turn off
+    toggleFullScreen();
   }
 });
+
+function toggleFullScreen() {
+  let img = videoPlayer.querySelector(".video-player__full-screen img");
+
+  if (img.src.indexOf("exit") != -1) {
+    img.src = "assets/svg/video-controls/fullscreen.svg";
+  } else {
+    img.src = "assets/svg/video-controls/fullscreen_exit.svg";
+  }
+  videoPlayer.classList.toggle("video-player_full-screen");
+}
+
+btnFullScreen.addEventListener("click", toggleFullScreen);

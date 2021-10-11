@@ -940,6 +940,9 @@ body {
     margin-top: 20px;
   }
 }
+.section__video-player.video-player_full-screen {
+  margin-top: 0;
+}
 .section__video-slider {
   margin-top: 40px;
 }
@@ -1679,6 +1682,26 @@ body {
   .video-player__range-volume {
     width: 58.82%;
   }
+}
+.video-player_full-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 5;
+}
+.video-player_full-screen .video-player__player {
+  height: calc(100vh - 85px);
+}
+.video-player_full-screen__slider-item {
+  position: relative;
+  width: 100vw;
+  height: calc(100vh - 85px);
+}
+.video-player_full-screen__slider-item video {
+  display: block;
+  width: 100vw;
 }
 
 .video-slider .slick-list {

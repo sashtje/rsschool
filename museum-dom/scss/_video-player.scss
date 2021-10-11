@@ -289,4 +289,28 @@
       width: 58.82%;
     }
   }
+
+  &_full-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 5;
+
+    .video-player__player {
+      height: calc(100vh - 85px);
+    }
+
+    &__slider-item {
+      position: relative;
+      width: 100vw;
+      height: calc(100vh - 85px);
+
+      video {
+        display: block;
+        width: 100vw;
+      }
+    }
+  }
 }

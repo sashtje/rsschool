@@ -335,6 +335,10 @@
     @media screen and (max-width: 769px) {
       margin-top: 20px;
     }
+
+    &.video-player_full-screen {
+      margin-top: 0;
+    }
   }
   // .section__video-slider
   &__video-slider {
