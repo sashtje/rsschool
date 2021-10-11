@@ -21,10 +21,12 @@
   // .video-slider__item
   &__item {
     margin-right: 42px;
+    width: 452px;
+    height: 254px;
 
     & iframe {
-      width: 452px;
-      height: 254px;
+      /* width: 452px;
+      height: 254px; */
       display: block;
     }
   }

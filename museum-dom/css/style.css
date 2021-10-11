@@ -1682,10 +1682,12 @@ body {
 }
 .video-slider__item {
   margin-right: 42px;
-}
-.video-slider__item iframe {
   width: 452px;
   height: 254px;
+}
+.video-slider__item iframe {
+  /* width: 452px;
+  height: 254px; */
   display: block;
 }
 .video-slider__controls {
