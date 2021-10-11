@@ -52,6 +52,24 @@
         brightness(93%) contrast(92%);
     }
   }
+
+  &__playbackRate {
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+    left: 50%;
+    top: 40px;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 40px;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    text-align: center;
+    line-height: 40px;
+    transition: 0.5s;
+  }
+
   // .video-player__panel
   &__panel {
     position: relative;

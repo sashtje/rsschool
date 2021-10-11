@@ -7,6 +7,10 @@ let btnPlayOrPause = videoPlayer.querySelector(".video-player__play");
 let imgBtnPlayOrPause = videoPlayer.querySelector(".video-player__play img");
 let bigPlayBtn = videoPlayer.querySelector(".video-player__big-play");
 let volumeBtn = videoPlayer.querySelector(".video-player__volume");
+let messagePlaybackRate = videoPlayer.querySelector(
+  ".video-player__playbackRate"
+);
+let playbackRate = 1;
 
 volumeBar.addEventListener("input", function () {
   const value = this.value;
@@ -155,6 +159,7 @@ $(".video-player__container").on(
     activeVideo = videoPlayer.querySelector(".slick-active video");
     activeVideo.addEventListener("click", togglePlay);
     activeVideo.addEventListener("timeupdate", handleProgress);
+    playbackRate = 1;
   }
 );
 
@@ -167,5 +172,26 @@ document.addEventListener("keydown", function (e) {
   } else if (keyName === "m") {
     e.preventDefault();
     toggleVolume();
+  } else if (e.shiftKey && e.key === ">") {
+    if (playbackRate > 0.25) {
+      playbackRate -= 0.25;
+    }
+    activeVideo.playbackRate = playbackRate;
+    messagePlaybackRate.innerText = playbackRate + "x";
+    messagePlaybackRate.style.opacity = 1;
+
+    setTimeout(function () {
+      messagePlaybackRate.style.opacity = 0;
+    }, 1000);
+  } else if (e.shiftKey && e.key === "<") {
+    if (playbackRate < 2) {
+      playbackRate += 0.25;
+    }
+    activeVideo.playbackRate = playbackRate;
+    messagePlaybackRate.innerText = playbackRate + "x";
+    messagePlaybackRate.style.opacity = 1;
+    setTimeout(function () {
+      messagePlaybackRate.style.opacity = 0;
+    }, 1000);
   }
 });
