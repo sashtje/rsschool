@@ -1625,7 +1625,7 @@ body {
 }
 .video-player__range-time {
   width: 67.32%;
-  background: linear-gradient(to right, var(--color-btn) 0%, var(--color-btn) 54%, var(--color-range) 54%, var(--color-range) 100%);
+  background: linear-gradient(to right, var(--color-btn) 0%, var(--color-btn) 0%, var(--color-range) 0%, var(--color-range) 100%);
 }
 @media screen and (max-width: 1399px) {
   .video-player__range-time {
