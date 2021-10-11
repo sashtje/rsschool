@@ -168,10 +168,10 @@ document.addEventListener("keydown", function (e) {
   let keyName = e.key;
 
   if (keyName === " ") {
-    e.preventDefault();
+    // e.preventDefault();
     togglePlay();
   } else if (keyName === "m") {
-    e.preventDefault();
+    // e.preventDefault();
     toggleVolume();
   } else if (e.shiftKey && e.key === ">") {
     if (playbackRate > 0.25) {
