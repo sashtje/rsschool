@@ -1,16 +1,26 @@
 .video-player {
-  // .video-player__poster
+  // .video-player__player
   &__player {
     position: relative;
 
-    & picture {
-      display: block;
+    .slick-list {
+      overflow: hidden;
+    }
 
-      & img {
-        max-width: 100%;
-      }
+    .slick-track {
+      display: flex;
     }
   }
+
+  &__slider-item {
+    position: relative;
+
+    video {
+      display: block;
+      width: 100%;
+    }
+  }
+
   // .video-player__big-play
   &__big-play {
     position: absolute;

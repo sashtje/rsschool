@@ -591,28 +591,37 @@
 
           <div class="section__video-player video-player">
             <div class="video-player__player">
-              <picture>
-                <source
-                  media="(min-width: 1025px)"
-                  srcset="assets/img/video/vj-louvre.jpg"
-                />
-                <source
-                  media="(min-width: 769px)"
-                  srcset="assets/img/video/1024/vj-louvre.jpg"
-                />
-                <source
-                  media="(min-width: 421px)"
-                  srcset="assets/img/video/768/vj-louvre.jpg"
-                />
-                <source
-                  media="(min-width: 0px)"
-                  srcset="assets/img/video/420/vj-louvre.jpg"
-                />
-                <img
-                  src="assets/img/video/vj-louvre.jpg"
-                  alt="video tour louvre"
-                />
-              </picture>
+              <div class="video-player__container">
+                <div class="video-player__slider-item">
+                  <video poster="assets/video/poster0.jpg">
+                    <source src="assets/video/video0.mp4" />
+                  </video>
+                </div>
+
+                <div class="video-player__slider-item">
+                  <video poster="assets/video/poster1.jpg">
+                    <source src="assets/video/video1.mp4" />
+                  </video>
+                </div>
+
+                <div class="video-player__slider-item">
+                  <video poster="assets/video/poster2.jpg">
+                    <source src="assets/video/video2.mp4" />
+                  </video>
+                </div>
+
+                <div class="video-player__slider-item">
+                  <video poster="assets/video/poster3.jpg">
+                    <source src="assets/video/video3.mp4" />
+                  </video>
+                </div>
+
+                <div class="video-player__slider-item">
+                  <video poster="assets/video/poster4.jpg">
+                    <source src="assets/video/video4.mp4" />
+                  </video>
+                </div>
+              </div>
               <button class="video-player__big-play">
                 <img
                   src="assets/svg/video-controls/big-play.svg"
@@ -656,7 +665,7 @@
             <div class="video-slider__container">
               <div class="video-slider__item">
                 <iframe
-                  src="https://www.youtube.com/embed/aWmJ5DgyWPI"
+                  src="https://www.youtube.com/embed/zp1BXPX8jcU"
                   title="YouTube video player"
                   loading="lazy"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -681,34 +690,28 @@
                   allowfullscreen
                 ></iframe>
               </div>
+              <div class="video-slider__item">
+                <iframe
+                  src="https://www.youtube.com/embed/aWmJ5DgyWPI"
+                  title="YouTube video player"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div class="video-slider__item">
+                <iframe
+                  src="https://www.youtube.com/embed/2OR0OCr6uRE"
+                  title="YouTube video player"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
             </div>
 
             <div class="video-slider__controls">
-              <button class="video-slider__controls-btn">
-                <img
-                  src="assets/svg/video-controls/slider/arrow-left.svg"
-                  alt="arrow left"
-                  width="10"
-                  height="12"
-                />
-              </button>
-              <div
-                class="
-                  video-slider__controls-dot video-slider__controls-dot_checked
-                "
-              ></div>
-              <div class="video-slider__controls-dot"></div>
-              <div class="video-slider__controls-dot"></div>
-              <div class="video-slider__controls-dot"></div>
-              <div class="video-slider__controls-dot"></div>
-              <button class="video-slider__controls-btn">
-                <img
-                  src="assets/svg/video-controls/slider/arrow-right.svg"
-                  alt="arrow right"
-                  width="10"
-                  height="12"
-                />
-              </button>
+              <div class="video-slider__controls-dots"></div>
             </div>
           </div>
         </div>
@@ -1431,5 +1434,6 @@
     <script src="js/mapbox.js"></script>
     <script src="js/self-assessment.js"></script>
     <script src="js/slider-welcome.js"></script>
+    <script src="js/slider-video.js"></script>
   </body>
 </html>
