@@ -52,6 +52,24 @@
         brightness(93%) contrast(92%);
     }
   }
+
+  &__playbackRate {
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+    left: 50%;
+    top: 40px;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 40px;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    text-align: center;
+    line-height: 40px;
+    transition: 0.5s;
+  }
+
   // .video-player__panel
   &__panel {
     position: relative;
@@ -269,6 +287,30 @@
 
     @media screen and (max-width: 699px) {
       width: 58.82%;
+    }
+  }
+
+  &_full-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 5;
+
+    .video-player__player {
+      height: calc(100vh - 85px);
+    }
+
+    &__slider-item {
+      position: relative;
+      width: 100vw;
+      height: calc(100vh - 85px);
+
+      video {
+        display: block;
+        width: 100vw;
+      }
     }
   }
 }
