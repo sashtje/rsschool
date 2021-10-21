@@ -14,7 +14,7 @@ function getTimeOfDay(date) {
 
 function showGreeting(date, locales) {
   const timeOfDay = getTimeOfDay(date);
-  const greetingText = `Good ${timeOfDay}`;
+  const greetingText = `Good ${timeOfDay},`;
   greetingField.textContent = greetingText;
 }
 
@@ -27,7 +27,7 @@ function showTime() {
   const date = new Date();
   const options = { hour12: false };
   const locales = "en-US";
-  const currentTime = date.toLocaleTimeString(locales, options);
+  const currentTime = date.toLocaleTimeString("ru-RU", options);
   timeTag.textContent = currentTime;
   showDate(date, locales);
   showGreeting(date, locales);
