@@ -1,53 +1,32 @@
 const timeTag = document.querySelector(".time");
 const dateTag = document.querySelector(".date");
 const greetingField = document.querySelector(".greeting");
+const personName = document.querySelector(".name");
 
-function getIndexTimeOfDay(date) {
+function getTimeOfDay(date) {
   let hours = date.getHours();
 
-  //night
-  if (hours >= 0 && hours < 6) return 0;
-  //morning
-  if (hours >= 6 && hours < 12) return 1;
-  //afternoon
-  if (hours >= 12 && hours < 18) return 2;
-  //evening
-  return 3;
+  if (hours >= 0 && hours < 6) return "night";
+  if (hours >= 6 && hours < 12) return "morning";
+  if (hours >= 12 && hours < 18) return "afternoon";
+  return "evening";
 }
 
 function showGreeting(date, locales) {
-  let ruGreetings = [
-    "Доброй ночи",
-    "Доброе утро",
-    "Добрый день",
-    "Добрый вечер",
-  ];
-  let enGreetings = [
-    "Good night",
-    "Good morning",
-    "Good afternoon",
-    "Good evening",
-  ];
-  let index = getIndexTimeOfDay(date);
-
-  if (locales === "ru-RU") {
-    greetingField.textContent = ruGreetings[index];
-  } else {
-    greetingField.textContent = enGreetings[index];
-  }
+  const timeOfDay = getTimeOfDay(date);
+  const greetingText = `Good ${timeOfDay}`;
+  greetingField.textContent = greetingText;
 }
 
 function showDate(date, locales) {
   const options = { weekday: "long", day: "numeric", month: "long" };
-  let dateText = date.toLocaleDateString(locales, options);
-  dateTag.textContent = dateText[0].toUpperCase() + dateText.slice(1);
+  dateTag.textContent = date.toLocaleDateString(locales, options);
 }
 
 function showTime() {
   const date = new Date();
   const options = { hour12: false };
-  const locales = "ru-RU";
-  /* 'en-US' */
+  const locales = "en-US";
   const currentTime = date.toLocaleTimeString(locales, options);
   timeTag.textContent = currentTime;
   showDate(date, locales);
@@ -56,4 +35,16 @@ function showTime() {
   setTimeout(showTime, 1000);
 }
 
+function setLocalStorage() {
+  localStorage.setItem("name", personName.value);
+}
+
+function getLocalStorage() {
+  if (localStorage.getItem("name")) {
+    personName.value = localStorage.getItem("name");
+  }
+}
+
 showTime();
+window.addEventListener("beforeunload", setLocalStorage);
+window.addEventListener("load", getLocalStorage);
