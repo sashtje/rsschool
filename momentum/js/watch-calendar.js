@@ -37,11 +37,15 @@ function showTime() {
 
 function setLocalStorage() {
   localStorage.setItem("name", personName.value);
+  localStorage.setItem("city", cityWeather.value);
 }
 
 function getLocalStorage() {
   if (localStorage.getItem("name")) {
     personName.value = localStorage.getItem("name");
+  }
+  if (localStorage.getItem("city")) {
+    cityWeather.value = localStorage.getItem("city");
   }
 }
 
