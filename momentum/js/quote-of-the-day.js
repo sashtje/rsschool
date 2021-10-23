@@ -8,8 +8,6 @@ async function showQuote() {
   const data = await res.json();
   let randomQuote = getRandomNum(0, data.length - 1);
 
-  console.log(data);
-  console.log(randomQuote);
   quoteArea.textContent = `"${data[randomQuote].text}"`;
   authorArea.textContent = data[randomQuote].author;
 }
