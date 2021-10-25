@@ -40,7 +40,17 @@ async function setBgUnsplashOrFlickr() {
         ","
       )}&extras=url_l&format=json&nojsoncallback=1`;
     } else {
-      url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=bceeac9976554c08482018ef2c3896cb&tags=${timeOfDay}&extras=url_l&format=json&nojsoncallback=1`;
+      let galleryId;
+      if (timeOfDay === "night") {
+        galleryId = "185118123-72157720062587146";
+      } else if (timeOfDay === "morning") {
+        galleryId = "185118123-72157720069530982";
+      } else if (timeOfDay === "afternoon") {
+        galleryId = "185118123-72157720111881805";
+      } else {
+        galleryId = "185118123-72157720111880160";
+      }
+      url = `https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=bceeac9976554c08482018ef2c3896cb&gallery_id=${galleryId}&extras=url_l&format=json&nojsoncallback=1`;
     }
     const res = await fetch(url);
     const data = await res.json();
