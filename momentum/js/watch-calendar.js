@@ -78,12 +78,14 @@ function getLocalStorage() {
     settingsState = JSON.parse(localStorage.getItem("settings"));
   }
 
+  setBg();
   showTime();
   showPlaceholderForPersonName(settingsState.language);
   showCityAndPlaceholderForWeather();
   getWeather();
   showQuote();
   translateSettings();
+  restoreSettings();
 }
 
 window.addEventListener("beforeunload", setLocalStorage);

@@ -52,6 +52,17 @@ let labelQuoteBlock = document.querySelector('label[for="quote-block"]');
 let labelWeatherBlock = document.querySelector('label[for="weather-block"]');
 let labelPlayerBlock = document.querySelector('label[for="player-block"]');
 
+let body = document.body;
+let randomNum = getRandomNum(1, 20);
+let slidePrevBtn = document.querySelector(".slide-prev");
+let slideNextBtn = document.querySelector(".slide-next");
+
+function getRandomNum(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 settingsBtn.addEventListener("click", function () {
   if (settingsBlock.classList.contains("is-open")) {
     settingsBlock.classList.remove("is-open");

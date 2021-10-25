@@ -11,27 +11,62 @@ radioRu.addEventListener("change", function () {
 radioGithub.addEventListener("change", function () {
   if (unsplashTags.classList.contains("is-active")) {
     unsplashTags.classList.remove("is-active");
+    unsplashTags.value = "";
   }
   if (flickrTags.classList.contains("is-active")) {
     flickrTags.classList.remove("is-active");
+    flickrTags.value = "";
   }
+
+  settingsState.photoSource = "github";
+  settingsState.tags = [];
+
+  setBg();
 });
 
 radioUnsplash.addEventListener("change", function () {
   if (flickrTags.classList.contains("is-active")) {
     flickrTags.classList.remove("is-active");
+    flickrTags.value = "";
   }
   unsplashTags.classList.add("is-active");
   unsplashTags.focus();
+
+  settingsState.photoSource = "unsplash";
+  settingsState.tags = [];
+
+  setBgUnsplashOrFlickr();
 });
 
 radioFlickr.addEventListener("change", function () {
   if (unsplashTags.classList.contains("is-active")) {
     unsplashTags.classList.remove("is-active");
+    unsplashTags.value = "";
   }
   flickrTags.classList.add("is-active");
   flickrTags.focus();
+
+  settingsState.photoSource = "flickr";
+  settingsState.tags = [];
+
+  setBgUnsplashOrFlickr();
 });
+
+function getTags() {
+  let tags = this.value;
+  if (tags === "") settingsState.tags = [];
+  else {
+    tags = tags.trim();
+    tags = tags.replace(/\s+/g, " ");
+    settingsState.tags = tags.split(" ");
+  }
+
+  setBgUnsplashOrFlickr();
+}
+
+unsplashTags.addEventListener("change", getTags);
+
+flickrTags.addEventListener("change", getTags);
 
 function translateSettings() {
   if (settingsState.language === "en-US") {
@@ -82,4 +117,22 @@ function translateAll() {
   getWeather();
   showQuote();
   translateSettings();
+}
+
+function restoreSettings() {
+  if (settingsState.photoSource === "unsplash") {
+    radioUnsplash.checked = true;
+    unsplashTags.classList.add("is-active");
+    unsplashTags.focus();
+    if (settingsState.tags.length != 0) {
+      unsplashTags.value = settingsState.tags.join(" ");
+    }
+  } else if (settingsState.photoSource === "flickr") {
+    radioFlickr.checked = true;
+    flickrTags.classList.add("is-active");
+    flickrTags.focus();
+    if (settingsState.tags.length != 0) {
+      flickrTags.value = settingsState.tags.join(" ");
+    }
+  }
 }
