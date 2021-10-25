@@ -1,5 +1,5 @@
 async function showQuote() {
-  const url = "../assets/json/quotes.json";
+  const url = "./assets/json/quotes.json";
   const res = await fetch(url);
   const data = await res.json();
   let randomQuote = getRandomNum(0, data.length - 1);
