@@ -16,11 +16,33 @@ body {
   font-size: 16px;
   color: #fff;
   text-align: center;
+  background-image: url("../assets/img/bg.jpg");
   background-position: center;
   background-color: rgba(0, 0, 0, 0.4);
   background-size: cover;
   background-blend-mode: multiply;
   transition: background-image 1s ease-in-out;
+}
+
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 1rem;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: linear-gradient(90deg, #f3d6d1 0, #ccc8c7, #f3d6d1);
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #918f8f;
+  border-radius: 1rem;
+  box-shadow: inset 0.125rem 0.125rem 0.125rem rgba(255, 255, 255, 0.5),
+    inset -0.125rem -0.125rem 0.125rem rgba(0, 0, 0, 0.5);
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #6d6c6c;
 }
 
 .header {
@@ -243,6 +265,7 @@ body {
 }
 
 .footer {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -264,6 +287,188 @@ body {
 
 .author {
   min-height: 20px;
+}
+
+.author-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.author-info__github svg {
+  width: 30px;
+  height: 30px;
+  opacity: 0.8;
+}
+
+.author-info__github .cat {
+  fill: #ffffff;
+  transition: 0.5s;
+}
+
+.author-info__github:hover .cat {
+  fill: #ffc801;
+}
+
+.author-info__github:active .cat {
+  fill: #a006ff;
+}
+
+.author-info time {
+  margin-left: 40px;
+}
+
+.author-info__rsschool svg {
+  width: 70px;
+  height: auto;
+  opacity: 0.8;
+}
+
+.author-info__rsschool .st5,
+.author-info__rsschool .st10 {
+  fill: #ffffff;
+  transition: 0.5s;
+}
+
+.author-info__rsschool:hover .st5,
+.author-info__rsschool:hover .st10 {
+  fill: #ffc801;
+}
+
+.author-info__rsschool:active .st5,
+.author-info__rsschool:active .st10 {
+  fill: #a006ff;
+}
+
+.row-block {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.quote-info {
+  margin-left: 10px;
+}
+
+.settings-block {
+  position: relative;
+}
+
+.settings-btn,
+.to-do-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: 0.7s;
+  outline: none;
+  opacity: 0.8;
+}
+
+.to-do-btn {
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.to-do-btn:hover {
+  opacity: 1;
+}
+
+.to-do-btn:active {
+  transform: scale(1.5);
+}
+
+.settings-btn img {
+  width: 30px;
+  height: 30px;
+}
+
+.settings-btn:hover {
+  opacity: 1;
+}
+
+.is-open .settings-btn {
+  transform: scale(1.2) rotate(360deg);
+}
+
+.settings {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 5px);
+  width: 0;
+  height: 0;
+  border-radius: 10px;
+  background-color: #ffffff;
+  overflow-y: auto;
+  overflow-x: hidden;
+  color: #000000;
+  text-align-last: left;
+
+  transition: 0.5s;
+}
+
+.is-open .settings {
+  width: 250px;
+  height: 300px;
+  padding: 15px 15px 10px 15px;
+}
+
+.settings::-webkit-scrollbar {
+  width: 12px;
+}
+
+.settings::-webkit-scrollbar-track {
+  border-radius: 0 10px 10px 0;
+  background: transparent;
+}
+
+.settings::-webkit-scrollbar-thumb {
+  background-clip: padding-box;
+  border: 3px solid transparent;
+}
+
+.settings__row {
+  margin: 5px 0;
+}
+
+.settings__row label {
+  cursor: pointer;
+}
+
+.settings__lang {
+}
+
+.settings__title {
+  margin-bottom: 10px;
+}
+
+.settings__photo {
+  margin: 30px 0;
+}
+
+.settings__photo .settings__row {
+  margin-bottom: 0;
+}
+
+.settings__blocks {
+}
+
+.unsplash-tags,
+.flickr-tags {
+  display: block;
+  font-size: 14px;
+  width: 200px;
+  border: none;
+  outline: none;
+  height: 0;
+  transition: 0.5s;
+}
+
+.is-active.unsplash-tags,
+.is-active.flickr-tags {
+  height: 20px;
 }
 
 @media (max-width: 768px) {

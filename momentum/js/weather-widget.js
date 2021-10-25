@@ -1,18 +1,32 @@
-let cityWeather = document.querySelector(".city");
-const weatherIcon = document.querySelector(".weather-icon");
-const temperature = document.querySelector(".temperature");
-const weatherDescription = document.querySelector(".weather-description");
-const wind = document.querySelector(".wind");
-const humidity = document.querySelector(".humidity");
-const weatherError = document.querySelector(".weather-error");
+function showCityAndPlaceholderForWeather() {
+  if (settingsState.language === "en-US") {
+    cityWeather.placeholder = "[Enter city]";
+    if (cityWeather.value === "Минск") cityWeather.value = "Minsk";
+  } else {
+    cityWeather.placeholder = "[Введите город]";
+    if (cityWeather.value === "Minsk") cityWeather.value = "Минск";
+  }
+}
 
 async function getWeather() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityWeather.value}&lang=en&appid=bfe22651f723c15dc83c2951d6345744&units=metric`;
+  let lang;
+
+  if (settingsState.language === "en-US") {
+    lang = "en";
+  } else {
+    lang = "ru";
+  }
+
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityWeather.value}&lang=${lang}&appid=bfe22651f723c15dc83c2951d6345744&units=metric`;
   const res = await fetch(url);
   const data = await res.json();
 
   if (data.cod === "404" || data.cod === "400") {
-    weatherError.textContent = `Error! City '${cityWeather.value}' not found`;
+    if (settingsState.language === "en-US") {
+      weatherError.textContent = `Error! City '${cityWeather.value}' not found`;
+    } else {
+      weatherError.textContent = `Ошибка! Город '${cityWeather.value}' не найден`;
+    }
     weatherIcon.className = "weather-icon owf";
     temperature.textContent = "";
     weatherDescription.textContent = "";
@@ -27,9 +41,14 @@ async function getWeather() {
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
   temperature.textContent = `${Math.floor(data.main.temp)}°C`;
   weatherDescription.textContent = data.weather[0].description;
-  wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
-  humidity.textContent = `Humidity: ${Math.round(data.main.humidity)}%`;
+
+  if (settingsState.language === "en-US") {
+    wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
+    humidity.textContent = `Humidity: ${Math.round(data.main.humidity)}%`;
+  } else {
+    wind.textContent = `Скорость ветра: ${Math.round(data.wind.speed)} м/с`;
+    humidity.textContent = `Влажность: ${Math.round(data.main.humidity)}%`;
+  }
 }
 
-getWeather();
 cityWeather.addEventListener("change", getWeather);

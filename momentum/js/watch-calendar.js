@@ -1,7 +1,10 @@
-const timeTag = document.querySelector(".time");
-const dateTag = document.querySelector(".date");
-const greetingField = document.querySelector(".greeting");
-const personName = document.querySelector(".name");
+function showPlaceholderForPersonName(locales) {
+  if (locales === "en-US") {
+    personName.placeholder = "[Enter name]";
+  } else {
+    personName.placeholder = "[Введите имя]";
+  }
+}
 
 function getTimeOfDay(date) {
   let hours = date.getHours();
@@ -14,19 +17,41 @@ function getTimeOfDay(date) {
 
 function showGreeting(date, locales) {
   const timeOfDay = getTimeOfDay(date);
-  const greetingText = `Good ${timeOfDay},`;
+  let greetingText;
+
+  if (locales === "en-US") {
+    greetingText = `Good ${timeOfDay},`;
+  } else {
+    switch (timeOfDay) {
+      case "night":
+        greetingText = "Спокойной ночи,";
+        break;
+      case "morning":
+        greetingText = "Доброе утро,";
+        break;
+      case "afternoon":
+        greetingText = "Добрый день,";
+        break;
+      case "evening":
+        greetingText = "Добрый вечер,";
+        break;
+    }
+  }
+
   greetingField.textContent = greetingText;
 }
 
 function showDate(date, locales) {
   const options = { weekday: "long", day: "numeric", month: "long" };
-  dateTag.textContent = date.toLocaleDateString(locales, options);
+  let textDate = date.toLocaleDateString(locales, options);
+
+  dateTag.textContent = textDate[0].toUpperCase() + textDate.slice(1);
 }
 
 function showTime() {
   const date = new Date();
   const options = { hour12: false };
-  const locales = "en-US";
+  const locales = settingsState.language;
   const currentTime = date.toLocaleTimeString("ru-RU", options);
   timeTag.textContent = currentTime;
   showDate(date, locales);
@@ -38,6 +63,7 @@ function showTime() {
 function setLocalStorage() {
   localStorage.setItem("name", personName.value);
   localStorage.setItem("city", cityWeather.value);
+  localStorage.setItem("settings", JSON.stringify(settingsState));
 }
 
 function getLocalStorage() {
@@ -47,8 +73,20 @@ function getLocalStorage() {
   if (localStorage.getItem("city")) {
     cityWeather.value = localStorage.getItem("city");
   }
+
+  if (localStorage.getItem("settings")) {
+    settingsState = JSON.parse(localStorage.getItem("settings"));
+  }
+
+  setBg();
+  showTime();
+  showPlaceholderForPersonName(settingsState.language);
+  showCityAndPlaceholderForWeather();
+  getWeather();
+  showQuote();
+  translateSettings();
+  restoreSettings();
 }
 
-showTime();
 window.addEventListener("beforeunload", setLocalStorage);
 window.addEventListener("load", getLocalStorage);
