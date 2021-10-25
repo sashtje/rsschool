@@ -51,9 +51,111 @@
     </main>
     <footer class="footer">
       <button class="change-quote"></button>
-      <div>
-        <div class="quote"></div>
-        <div class="author"></div>
+      <div class="row-block">
+        <div class="settings-block">
+          <button class="settings-btn">
+            <img src="assets/svg/settings.svg" alt="settings" />
+          </button>
+
+          <div class="settings">
+            <div class="settings__lang">
+              <p class="settings__title">Language:</p>
+              <p class="settings__row">
+                <input type="radio" name="lang" value="en" id="en" checked />
+                <label for="en">en</label>
+              </p>
+              <p class="settings__row">
+                <input type="radio" name="lang" value="ru" id="ru" />
+                <label for="ru">ru</label>
+              </p>
+            </div>
+
+            <div class="settings__photo">
+              <p class="settings__title">Photo source:</p>
+              <p class="settings__row">
+                <input
+                  type="radio"
+                  name="photo-source"
+                  value="github"
+                  id="github"
+                  checked
+                />
+                <label for="github">Github</label>
+              </p>
+              <p class="settings__row">
+                <input
+                  type="radio"
+                  name="photo-source"
+                  value="unsplash"
+                  id="unsplash"
+                />
+                <label for="unsplash">Unsplash</label>
+              </p>
+              <input
+                class="unsplash-tags"
+                type="text"
+                name="unsplash-tags"
+                placeholder="Enter tags separated by space"
+              />
+              <p class="settings__row">
+                <input
+                  type="radio"
+                  name="photo-source"
+                  value="flickr"
+                  id="flickr"
+                />
+                <label for="flickr">Flickr</label>
+              </p>
+              <input
+                class="flickr-tags"
+                type="text"
+                name="flickr-tags"
+                placeholder="Enter tags separated by space"
+              />
+            </div>
+
+            <div class="settings__blocks">
+              <p class="settings__title">Show blocks:</p>
+              <p class="settings__row">
+                <input id="time-block" type="checkbox" checked />
+                <label for="time-block">Time</label>
+              </p>
+              <p class="settings__row">
+                <input id="date-block" type="checkbox" checked />
+                <label for="date-block">Date</label>
+              </p>
+              <p class="settings__row">
+                <input id="greet-block" type="checkbox" checked />
+                <label for="greet-block">Greeting</label>
+              </p>
+              <p class="settings__row">
+                <input id="quote-block" type="checkbox" checked />
+                <label for="quote-block">Quote</label>
+              </p>
+              <p class="settings__row">
+                <input id="weather-block" type="checkbox" checked />
+                <label for="weather-block">Weather</label>
+              </p>
+              <p class="settings__row">
+                <input id="player-block" type="checkbox" checked />
+                <label for="player-block">Player</label>
+              </p>
+              <p class="settings__row">
+                <input id="to-do-block" type="checkbox" checked />
+                <label for="to-do-block">To-do</label>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-info">
+          <div class="quote"></div>
+          <div class="author"></div>
+        </div>
+
+        <div class="to-do-block">
+          <button class="to-do-btn">To-do</button>
+        </div>
       </div>
       <div class="author-info">
         <a
@@ -353,11 +455,13 @@
       </div>
     </footer>
 
+    <script src="js/settings.js"></script>
     <script src="js/watch-calendar.js"></script>
     <script src="js/slider-images.js"></script>
     <script src="js/weather-widget.js"></script>
     <script src="js/quote-of-the-day.js"></script>
     <script src="js/play-list.js"></script>
     <script src="js/audio-player.js"></script>
+    <script src="js/settings-change.js"></script>
   </body>
 </html>
