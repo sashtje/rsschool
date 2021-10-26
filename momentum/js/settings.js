@@ -65,8 +65,12 @@ let body = document.body;
 let randomNum = getRandomNum(1, 20);
 let slidePrevBtn = document.querySelector(".slide-prev");
 let slideNextBtn = document.querySelector(".slide-next");
-
 let toDoBtn = document.querySelector(".to-do-btn");
+
+let trackTitle = document.querySelector(".track-title");
+let trackCurrTime = document.querySelector(".track-current-time");
+let duration = document.querySelector(".duration");
+let player = document.querySelector(".player");
 
 function getRandomNum(min, max) {
   min = Math.ceil(min);

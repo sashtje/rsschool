@@ -66,6 +66,7 @@ function playNext() {
   }
 
   changeItemActive(playNum + 1);
+  fillTrackNameAndDuration();
   playAudioNextPrev();
 }
 
@@ -77,6 +78,7 @@ function playPrev() {
   }
 
   changeItemActive(playNum + 1);
+  fillTrackNameAndDuration();
   playAudioNextPrev();
 }
 
@@ -99,6 +101,7 @@ function handleClickTrack() {
       isPlay = false;
       changeItemActive(currClickNum + 1);
       playNum = currClickNum;
+      fillTrackNameAndDuration();
       playBtn.classList.toggle("pause");
       playAudio();
     }
@@ -108,6 +111,7 @@ function handleClickTrack() {
     } else {
       changeItemActive(currClickNum + 1);
       playNum = currClickNum;
+      fillTrackNameAndDuration();
       playAudio();
     }
   }
@@ -129,7 +133,14 @@ function showPlayList() {
   });
 }
 
+function fillTrackNameAndDuration() {
+  trackTitle.textContent = playList[playNum].title;
+  trackCurrTime.textContent = "00:00";
+  duration.textContent = playList[playNum].duration;
+}
+
 showPlayList();
+fillTrackNameAndDuration();
 playBtn.addEventListener("click", playAudio);
 playNextBtn.addEventListener("click", playNext);
 playPrevBtn.addEventListener("click", playPrev);
