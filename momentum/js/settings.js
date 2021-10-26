@@ -14,7 +14,15 @@ let settingsState = {
   language: "en-US",
   photoSource: "github",
   tags: [],
-  blocks: ["time", "date", "greeting", "quote", "weather", "audio", "todolist"],
+  blocks: {
+    time: true,
+    date: true,
+    greeting: true,
+    quote: true,
+    weather: true,
+    audio: true,
+    todo: true,
+  },
 };
 
 const timeTag = document.querySelector(".time");
@@ -51,11 +59,14 @@ let labelGreetingBlock = document.querySelector('label[for="greet-block"]');
 let labelQuoteBlock = document.querySelector('label[for="quote-block"]');
 let labelWeatherBlock = document.querySelector('label[for="weather-block"]');
 let labelPlayerBlock = document.querySelector('label[for="player-block"]');
+let labelToDoBlock = document.querySelector('label[for="to-do-block"]');
 
 let body = document.body;
 let randomNum = getRandomNum(1, 20);
 let slidePrevBtn = document.querySelector(".slide-prev");
 let slideNextBtn = document.querySelector(".slide-next");
+
+let toDoBtn = document.querySelector(".to-do-btn");
 
 function getRandomNum(min, max) {
   min = Math.ceil(min);

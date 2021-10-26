@@ -55,6 +55,15 @@ body {
   padding: 20px;
 }
 
+.player {
+  visibility: hidden;
+  transition: 1s;
+}
+
+.is-visible.player {
+  visibility: visible;
+}
+
 .player-controls {
   display: flex;
   align-items: center;
@@ -106,7 +115,16 @@ body {
   outline: 0;
   opacity: 0.8;
   cursor: pointer;
-  transition: 0.3s;
+  transition: opacity 0.3s;
+}
+
+.change-quote {
+  visibility: hidden;
+  transition: visibility 0.5s;
+}
+
+.is-visible.change-quote {
+  visibility: visible;
 }
 
 .player-icon:hover,
@@ -151,6 +169,12 @@ body {
   width: 180px;
   min-height: 180px;
   text-align: left;
+  visibility: hidden;
+  transition: 1s;
+}
+
+.is-visible.weather {
+  visibility: visible;
 }
 
 .weather-error {
@@ -223,12 +247,24 @@ body {
   font-family: "Arial-MT";
   font-size: 100px;
   letter-spacing: -4px;
+  opacity: 0;
+  transition: 1s;
+}
+
+.is-visible.time {
+  opacity: 1;
 }
 
 .date {
   min-height: 28px;
   font-size: 24px;
   margin-bottom: 20px;
+  opacity: 0;
+  transition: 1s;
+}
+
+.is-visible.date {
+  opacity: 1;
 }
 
 .greeting-container {
@@ -239,6 +275,12 @@ body {
   min-height: 48px;
   width: 100vw;
   font-size: 40px;
+  opacity: 0;
+  transition: 1s;
+}
+
+.is-visible.greeting-container {
+  opacity: 1;
 }
 
 .greeting {
@@ -351,10 +393,25 @@ body {
 
 .quote-info {
   margin-left: 10px;
+  opacity: 0;
+  transition: 1s;
+}
+
+.is-visible.quote-info {
+  opacity: 1;
 }
 
 .settings-block {
   position: relative;
+}
+
+.to-do-block {
+  visibility: hidden;
+  transition: 0.5s;
+}
+
+.is-visible.to-do-block {
+  visibility: visible;
 }
 
 .settings-btn,
