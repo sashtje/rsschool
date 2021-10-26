@@ -556,6 +556,56 @@ body {
   height: 20px;
 }
 
+.track {
+  display: flex;
+  justify-content: space-between;
+}
+
+.track-timeline {
+  margin: 10px 0;
+  height: 5px;
+  background-color: #ffffff;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.track-progress {
+  height: 100%;
+  width: 30%;
+  background-color: coral;
+}
+
+.track-volume {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.volume {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.volume img {
+  width: 20px;
+  height: auto;
+}
+
+.volume-range {
+  background-color: #ffffff;
+  width: 150px;
+  height: 5px;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.volume-progress {
+  width: 30%;
+  height: 100%;
+  background-color: rgb(5, 216, 100);
+}
+
 @media (max-width: 768px) {
   .time {
     min-height: 80px;
