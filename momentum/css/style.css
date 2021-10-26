@@ -81,7 +81,7 @@ body {
 .play-item {
   position: relative;
   padding: 5px;
-  padding-left: 20px;
+  padding-left: 55px;
   list-style: none;
   opacity: 0.8;
   cursor: pointer;
@@ -100,8 +100,26 @@ body {
   font-weight: 900;
 }
 
+.play-item::after {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 25px;
+  height: 25px;
+  background-image: url("../assets/svg/play.svg");
+  background-size: 25px 25px;
+  left: 20px;
+  top: 2px;
+  transition: 0.5s;
+}
+
 .item-active::before {
   color: #c5b358;
+}
+
+.is-play::after {
+  background-image: url("../assets/svg/pause.svg");
+  background-size: 25px 25px;
 }
 
 .player-icon,

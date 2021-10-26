@@ -5,19 +5,30 @@ let playNextBtn = document.querySelector(".play-next");
 let playPrevBtn = document.querySelector(".play-prev");
 let playNum = 0;
 let visualPlayList = document.querySelector(".play-list");
+let arrTracks = [];
 
 function playAudio() {
+  let itemActive = document.querySelector(".item-active");
+
   audio.src = playList[playNum].src;
 
   if (!isPlay) {
     audio.currentTime = 0;
     audio.play();
-    this.classList.toggle("pause");
+    playBtn.classList.toggle("pause");
     isPlay = true;
+
+    if (!itemActive.classList.contains("is-play")) {
+      itemActive.classList.add("is-play");
+    }
   } else {
     audio.pause();
-    this.classList.toggle("pause");
+    playBtn.classList.toggle("pause");
     isPlay = false;
+
+    if (itemActive.classList.contains("is-play")) {
+      itemActive.classList.remove("is-play");
+    }
   }
 }
 
@@ -33,14 +44,18 @@ function playAudioNextPrev() {
   audio.play();
 }
 
-function changeItemActive() {
+function changeItemActive(newActiveNum) {
   let activeTrack = document.querySelector(".play-list .item-active");
   activeTrack.classList.remove("item-active");
+  if (activeTrack.classList.contains("is-play")) {
+    activeTrack.classList.remove("is-play");
+  }
 
   let newActiveTrack = document.querySelector(
-    `.play-list .play-item:nth-child(${playNum + 1})`
+    `.play-list .play-item:nth-child(${newActiveNum})`
   );
   newActiveTrack.classList.add("item-active");
+  newActiveTrack.classList.add("is-play");
 }
 
 function playNext() {
@@ -50,7 +65,7 @@ function playNext() {
     playNum++;
   }
 
-  changeItemActive();
+  changeItemActive(playNum + 1);
   playAudioNextPrev();
 }
 
@@ -61,8 +76,41 @@ function playPrev() {
     playNum--;
   }
 
-  changeItemActive();
+  changeItemActive(playNum + 1);
   playAudioNextPrev();
+}
+
+function getCurrentNumberClickTrack(obj) {
+  let resNum;
+  arrTracks.forEach((item, index) => {
+    if (item === obj) resNum = index;
+  });
+
+  return resNum;
+}
+
+function handleClickTrack() {
+  let currClickNum = getCurrentNumberClickTrack(this);
+
+  if (isPlay) {
+    if (playNum === currClickNum) {
+      playAudio();
+    } else {
+      isPlay = false;
+      changeItemActive(currClickNum + 1);
+      playNum = currClickNum;
+      playBtn.classList.toggle("pause");
+      playAudio();
+    }
+  } else {
+    if (playNum === currClickNum) {
+      playAudio();
+    } else {
+      changeItemActive(currClickNum + 1);
+      playNum = currClickNum;
+      playAudio();
+    }
+  }
 }
 
 function showPlayList() {
@@ -72,8 +120,12 @@ function showPlayList() {
     if (index === playNum) {
       li.classList.add("item-active");
     }
-    li.textContent = item.title;
+    li.textContent = item.title + " | " + item.duration;
     visualPlayList.append(li);
+
+    arrTracks.push(li);
+
+    li.addEventListener("click", handleClickTrack);
   });
 }
 
