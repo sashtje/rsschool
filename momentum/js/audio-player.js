@@ -8,6 +8,7 @@ let visualPlayList = document.querySelector(".play-list");
 let arrTracks = [];
 
 let volumeRange = document.querySelector(".volume-range");
+let timeline = document.querySelector(".track-timeline");
 
 function playAudio() {
   let itemActive = document.querySelector(".item-active");
@@ -162,24 +163,42 @@ volumeBtn.addEventListener("click", function () {
   }
 });
 
-volumeRange.addEventListener(
-  "click",
-  (e) => {
-    const rangeWidth = window.getComputedStyle(volumeRange).width;
-    const newVolume = e.offsetX / parseInt(rangeWidth);
-    audio.volume = newVolume;
-    document.querySelector(".volume-progress").style.width =
-      newVolume * 100 + "%";
+volumeRange.addEventListener("click", function (event) {
+  const rangeWidth = window.getComputedStyle(volumeRange).width;
+  const newVolume = event.offsetX / parseInt(rangeWidth);
+  audio.volume = newVolume;
+  document.querySelector(".volume-progress").style.width =
+    newVolume * 100 + "%";
 
-    if (newVolume == 0) {
-      audio.muted = true;
-      volumeBtn.firstElementChild.src = "assets/svg/mute-sound.svg";
-    } else {
-      if (audio.muted) {
-        audio.muted = false;
-        volumeBtn.firstElementChild.src = "assets/svg/high-sound.svg";
-      }
+  if (newVolume == 0) {
+    audio.muted = true;
+    volumeBtn.firstElementChild.src = "assets/svg/mute-sound.svg";
+  } else {
+    if (audio.muted) {
+      audio.muted = false;
+      volumeBtn.firstElementChild.src = "assets/svg/high-sound.svg";
     }
-  },
-  false
-);
+  }
+});
+
+function getTimeCodeFromNum(currTime) {
+  let minutes = Math.floor(currTime / 60);
+  minutes = String(minutes).padStart(2, "0");
+  let seconds = Math.floor(currTime % 60);
+  seconds = String(seconds).padStart(2, "0");
+
+  return minutes + ":" + seconds;
+}
+
+setInterval(() => {
+  const progressBar = document.querySelector(".track-progress");
+  progressBar.style.width = (audio.currentTime / audio.duration) * 100 + "%";
+  document.querySelector(".track-current-time").textContent =
+    getTimeCodeFromNum(audio.currentTime);
+}, 500);
+
+timeline.addEventListener("click", function (event) {
+  const timelineWidth = window.getComputedStyle(timeline).width;
+  const currTime = (event.offsetX / parseInt(timelineWidth)) * audio.duration;
+  audio.currentTime = currTime;
+});
