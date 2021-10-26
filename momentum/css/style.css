@@ -57,11 +57,13 @@ body {
 
 .player {
   visibility: hidden;
+  opacity: 0;
   transition: 1s;
 }
 
 .is-visible.player {
   visibility: visible;
+  opacity: 1;
 }
 
 .player-controls {
@@ -120,11 +122,13 @@ body {
 
 .change-quote {
   visibility: hidden;
-  transition: visibility 0.5s;
+  opacity: 0;
+  transition: 1s;
 }
 
 .is-visible.change-quote {
   visibility: visible;
+  opacity: 1;
 }
 
 .player-icon:hover,
@@ -170,11 +174,13 @@ body {
   min-height: 180px;
   text-align: left;
   visibility: hidden;
+  opacity: 0;
   transition: 1s;
 }
 
 .is-visible.weather {
   visibility: visible;
+  opacity: 1;
 }
 
 .weather-error {
@@ -276,10 +282,12 @@ body {
   width: 100vw;
   font-size: 40px;
   opacity: 0;
+  visibility: hidden;
   transition: 1s;
 }
 
 .is-visible.greeting-container {
+  visibility: visible;
   opacity: 1;
 }
 
@@ -407,11 +415,13 @@ body {
 
 .to-do-block {
   visibility: hidden;
-  transition: 0.5s;
+  opacity: 0;
+  transition: 1s;
 }
 
 .is-visible.to-do-block {
   visibility: visible;
+  opacity: 1;
 }
 
 .settings-btn,
