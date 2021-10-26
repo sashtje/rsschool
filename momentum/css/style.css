@@ -556,6 +556,75 @@ body {
   height: 20px;
 }
 
+.custom-player {
+  width: 245px;
+  margin-left: 30px;
+}
+
+.track {
+  display: flex;
+  justify-content: space-between;
+}
+
+.track-timeline {
+  margin: 10px 0;
+  height: 5px;
+  background-color: #ffffff;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.track-timeline:hover {
+  opacity: 1;
+}
+
+.track-progress {
+  height: 100%;
+  width: 0%;
+  background-color: coral;
+}
+
+.track-volume {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.volume-btn {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.volume-btn img {
+  width: 20px;
+  height: auto;
+}
+
+.volume-range {
+  background-color: #ffffff;
+  width: 150px;
+  height: 5px;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.volume-range:hover {
+  opacity: 1;
+}
+
+.volume-progress {
+  width: 30%;
+  height: 100%;
+  background-color: rgb(5, 216, 100);
+}
+
+.player-row {
+  display: flex;
+}
+
 @media (max-width: 768px) {
   .time {
     min-height: 80px;

@@ -13,12 +13,37 @@
   <body>
     <header class="header">
       <div class="player">
-        <div class="player-controls">
-          <button class="play-prev player-icon"></button>
-          <button class="play player-icon"></button>
-          <button class="play-next player-icon"></button>
+        <div class="player-row">
+          <div class="player-wrapper">
+            <div class="player-controls">
+              <button class="play-prev player-icon"></button>
+              <button class="play player-icon"></button>
+              <button class="play-next player-icon"></button>
+            </div>
+            <ul class="play-list"></ul>
+          </div>
+
+          <div class="custom-player">
+            <div class="track">
+              <span class="track-title"></span>
+              <span class="track-time">
+                <span class="track-current-time"></span> /
+                <span class="duration"></span>
+              </span>
+            </div>
+            <div class="track-timeline">
+              <div class="track-progress"></div>
+            </div>
+            <div class="track-volume">
+              <button class="volume-btn">
+                <img src="assets/svg/high-sound.svg" alt="" />
+              </button>
+              <div class="volume-range">
+                <div class="volume-progress"></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <ul class="play-list"></ul>
       </div>
       <div class="weather">
         <input

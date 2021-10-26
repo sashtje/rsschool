@@ -174,7 +174,7 @@ function restoreSettings() {
 
   if (settingsState.blocks.audio) {
     labelPlayerBlock.previousElementSibling.checked = true;
-    visualPlayList.parentElement.classList.add("is-visible");
+    player.classList.add("is-visible");
   } else {
     labelPlayerBlock.previousElementSibling.checked = false;
   }
@@ -268,13 +268,13 @@ labelWeatherBlock.previousElementSibling.addEventListener(
 labelPlayerBlock.previousElementSibling.addEventListener("change", function () {
   if (this.checked == true) {
     settingsState.blocks.audio = true;
-    if (!visualPlayList.parentElement.classList.contains("is-visible")) {
-      visualPlayList.parentElement.classList.add("is-visible");
+    if (!player.classList.contains("is-visible")) {
+      player.classList.add("is-visible");
     }
   } else {
     settingsState.blocks.audio = false;
-    if (visualPlayList.parentElement.classList.contains("is-visible")) {
-      visualPlayList.parentElement.classList.remove("is-visible");
+    if (player.classList.contains("is-visible")) {
+      player.classList.remove("is-visible");
     }
   }
 });
