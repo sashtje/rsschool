@@ -7,6 +7,8 @@ let playNum = 0;
 let visualPlayList = document.querySelector(".play-list");
 let arrTracks = [];
 
+let volumeRange = document.querySelector(".volume-range");
+
 function playAudio() {
   let itemActive = document.querySelector(".item-active");
 
@@ -139,9 +141,45 @@ function fillTrackNameAndDuration() {
   duration.textContent = playList[playNum].duration;
 }
 
+function setAudioVolume() {
+  audio.volume = 0.3;
+}
+
 showPlayList();
 fillTrackNameAndDuration();
+setAudioVolume();
 playBtn.addEventListener("click", playAudio);
 playNextBtn.addEventListener("click", playNext);
 playPrevBtn.addEventListener("click", playPrev);
 audio.addEventListener("ended", playNext);
+
+volumeBtn.addEventListener("click", function () {
+  audio.muted = !audio.muted;
+  if (audio.muted) {
+    volumeBtn.firstElementChild.src = "assets/svg/mute-sound.svg";
+  } else {
+    volumeBtn.firstElementChild.src = "assets/svg/high-sound.svg";
+  }
+});
+
+volumeRange.addEventListener(
+  "click",
+  (e) => {
+    const rangeWidth = window.getComputedStyle(volumeRange).width;
+    const newVolume = e.offsetX / parseInt(rangeWidth);
+    audio.volume = newVolume;
+    document.querySelector(".volume-progress").style.width =
+      newVolume * 100 + "%";
+
+    if (newVolume == 0) {
+      audio.muted = true;
+      volumeBtn.firstElementChild.src = "assets/svg/mute-sound.svg";
+    } else {
+      if (audio.muted) {
+        audio.muted = false;
+        volumeBtn.firstElementChild.src = "assets/svg/high-sound.svg";
+      }
+    }
+  },
+  false
+);

@@ -592,12 +592,12 @@ body {
   margin-bottom: 10px;
 }
 
-.volume {
+.volume-btn {
   cursor: pointer;
   padding: 5px;
 }
 
-.volume img {
+.volume-btn img {
   width: 20px;
   height: auto;
 }

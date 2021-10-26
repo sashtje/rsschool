@@ -71,6 +71,7 @@ let trackTitle = document.querySelector(".track-title");
 let trackCurrTime = document.querySelector(".track-current-time");
 let duration = document.querySelector(".duration");
 let player = document.querySelector(".player");
+let volumeBtn = document.querySelector(".volume-btn");
 
 function getRandomNum(min, max) {
   min = Math.ceil(min);
