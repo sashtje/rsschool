@@ -135,4 +135,160 @@ function restoreSettings() {
       flickrTags.value = settingsState.tags.join(" ");
     }
   }
+
+  if (settingsState.blocks.time) {
+    labelTimeBlock.previousElementSibling.checked = true;
+    timeTag.classList.add("is-visible");
+  } else {
+    labelTimeBlock.previousElementSibling.checked = false;
+  }
+
+  if (settingsState.blocks.date) {
+    labelDateBlock.previousElementSibling.checked = true;
+    dateTag.classList.add("is-visible");
+  } else {
+    labelDateBlock.previousElementSibling.checked = false;
+  }
+
+  if (settingsState.blocks.greeting) {
+    labelGreetingBlock.previousElementSibling.checked = true;
+    greetingField.parentElement.classList.add("is-visible");
+  } else {
+    labelGreetingBlock.previousElementSibling.checked = false;
+  }
+
+  if (settingsState.blocks.quote) {
+    labelQuoteBlock.previousElementSibling.checked = true;
+    changeQuoteBtn.classList.add("is-visible");
+    quoteArea.parentElement.classList.add("is-visible");
+  } else {
+    labelQuoteBlock.previousElementSibling.checked = false;
+  }
+
+  if (settingsState.blocks.weather) {
+    labelWeatherBlock.previousElementSibling.checked = true;
+    cityWeather.parentElement.classList.add("is-visible");
+  } else {
+    labelWeatherBlock.previousElementSibling.checked = false;
+  }
+
+  if (settingsState.blocks.audio) {
+    labelPlayerBlock.previousElementSibling.checked = true;
+    visualPlayList.parentElement.classList.add("is-visible");
+  } else {
+    labelPlayerBlock.previousElementSibling.checked = false;
+  }
+
+  if (settingsState.blocks.todo) {
+    labelToDoBlock.previousElementSibling.checked = true;
+    toDoBtn.parentElement.classList.add("is-visible");
+  } else {
+    labelToDoBlock.previousElementSibling.checked = false;
+  }
 }
+
+labelTimeBlock.previousElementSibling.addEventListener("change", function () {
+  if (this.checked == true) {
+    settingsState.blocks.time = true;
+    if (!timeTag.classList.contains("is-visible")) {
+      timeTag.classList.add("is-visible");
+    }
+  } else {
+    settingsState.blocks.time = false;
+    if (timeTag.classList.contains("is-visible")) {
+      timeTag.classList.remove("is-visible");
+    }
+  }
+});
+
+labelDateBlock.previousElementSibling.addEventListener("change", function () {
+  if (this.checked == true) {
+    settingsState.blocks.date = true;
+    if (!dateTag.classList.contains("is-visible")) {
+      dateTag.classList.add("is-visible");
+    }
+  } else {
+    settingsState.blocks.date = false;
+    if (dateTag.classList.contains("is-visible")) {
+      dateTag.classList.remove("is-visible");
+    }
+  }
+});
+
+labelGreetingBlock.previousElementSibling.addEventListener(
+  "change",
+  function () {
+    if (this.checked == true) {
+      settingsState.blocks.greeting = true;
+      if (!greetingField.parentElement.classList.contains("is-visible")) {
+        greetingField.parentElement.classList.add("is-visible");
+      }
+    } else {
+      settingsState.blocks.greeting = false;
+      if (greetingField.parentElement.classList.contains("is-visible")) {
+        greetingField.parentElement.classList.remove("is-visible");
+      }
+    }
+  }
+);
+
+labelQuoteBlock.previousElementSibling.addEventListener("change", function () {
+  if (this.checked == true) {
+    settingsState.blocks.quote = true;
+    if (!quoteArea.parentElement.classList.contains("is-visible")) {
+      quoteArea.parentElement.classList.add("is-visible");
+      changeQuoteBtn.classList.add("is-visible");
+    }
+  } else {
+    settingsState.blocks.quote = false;
+    if (quoteArea.parentElement.classList.contains("is-visible")) {
+      quoteArea.parentElement.classList.remove("is-visible");
+      changeQuoteBtn.classList.remove("is-visible");
+    }
+  }
+});
+
+labelWeatherBlock.previousElementSibling.addEventListener(
+  "change",
+  function () {
+    if (this.checked == true) {
+      settingsState.blocks.weather = true;
+      if (!cityWeather.parentElement.classList.contains("is-visible")) {
+        cityWeather.parentElement.classList.add("is-visible");
+      }
+    } else {
+      settingsState.blocks.weather = false;
+      if (cityWeather.parentElement.classList.contains("is-visible")) {
+        cityWeather.parentElement.classList.remove("is-visible");
+      }
+    }
+  }
+);
+
+labelPlayerBlock.previousElementSibling.addEventListener("change", function () {
+  if (this.checked == true) {
+    settingsState.blocks.audio = true;
+    if (!visualPlayList.parentElement.classList.contains("is-visible")) {
+      visualPlayList.parentElement.classList.add("is-visible");
+    }
+  } else {
+    settingsState.blocks.audio = false;
+    if (visualPlayList.parentElement.classList.contains("is-visible")) {
+      visualPlayList.parentElement.classList.remove("is-visible");
+    }
+  }
+});
+
+labelToDoBlock.previousElementSibling.addEventListener("change", function () {
+  if (this.checked == true) {
+    settingsState.blocks.todo = true;
+    if (!toDoBtn.parentElement.classList.contains("is-visible")) {
+      toDoBtn.parentElement.classList.add("is-visible");
+    }
+  } else {
+    settingsState.blocks.todo = false;
+    if (toDoBtn.parentElement.classList.contains("is-visible")) {
+      toDoBtn.parentElement.classList.remove("is-visible");
+    }
+  }
+});
