@@ -29,9 +29,9 @@ const config = {
       template: "index.html",
       inject: "body",
     }),
-    /* new CopyPlugin({
+    new CopyPlugin({
       patterns: [{ from: "./src/copy", to: "public" }],
-    }), */
+    }),
     new CleanWebpackPlugin(),
     new ProgressPlugin(),
 
