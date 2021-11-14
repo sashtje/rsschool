@@ -22,9 +22,9 @@
   </head>
   <body>
     <div class="app">
-      <div class="app__container">
-        <section class="app__main-page main-page" id="main-page">
-          <header class="main-page__header">
+      <section class="app__main-page main-page" id="main-page">
+        <header class="main-page__header">
+          <div class="container">
             <div class="main-page__header-top">
               <button class="main-page__btn-settings">
                 <img
@@ -41,9 +41,11 @@
               </div>
               <h1 class="main-page__title">Art Quiz</h1>
             </div>
-          </header>
+          </div>
+        </header>
 
-          <div class="main-page__body">
+        <div class="main-page__body">
+          <div class="container main-page__body-container">
             <button class="main-page__artist-quiz-btn">
               <div class="main-page__artist-quiz-cover"></div>
               <p class="main-page__artist-quiz-subtitle"></p>
@@ -54,9 +56,11 @@
               <p class="main-page__picture-quiz-subtitle"></p>
             </button>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <footer class="footer">
+      <footer class="footer" id="footer">
+        <div class="container footer__container">
           <a
             class="footer__rsschool-link"
             href="https://rs.school/js/"
@@ -288,8 +292,8 @@
             target="_blank"
             >Sashtje</a
           >
-        </footer>
-      </div>
+        </div>
+      </footer>
     </div>
   </body>
 </html>
