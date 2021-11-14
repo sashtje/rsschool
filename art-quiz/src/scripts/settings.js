@@ -8,7 +8,7 @@ export class Settings {
   durationTime = 5;
 
   constructor() {
-    downloadSettings();
+    this.downloadSettings();
   }
 
   downloadSettings() {
