@@ -17,6 +17,8 @@ export class App {
     /* translate and load text on page */
     this.translateAndLoadText();
 
+    this.addListeners();
+
     this.downloadDataImages();
   }
 
@@ -53,6 +55,20 @@ export class App {
       artSubtitle.textContent = "Художники";
       picSubtitle.textContent = "Картины";
     }
+  }
+
+  addListeners() {
+    let mainPageBody = document.querySelector(".main-page__body");
+
+    mainPageBody.addEventListener("click", function (event) {
+      let target = event.target;
+
+      if (target.closest(".main-page__artist-quiz-btn")) {
+        console.log("open artist");
+      } else if (target.closest(".main-page__picture-quiz-btn")) {
+        console.log("open picture");
+      }
+    });
   }
 
   async downloadDataImages() {
