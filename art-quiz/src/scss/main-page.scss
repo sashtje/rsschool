@@ -1,0 +1,120 @@
+.main-page {
+  // .main-page__header
+  &__header {
+    padding: 10px 0;
+  }
+  // .main-page__header-top
+  &__header-top {
+    text-align: right;
+  }
+  // .main-page__btn-settings
+  &__btn-settings {
+    line-height: 35px;
+
+    // .main-page__btn-settings-img
+    &-img {
+      width: 35px;
+      height: 35px;
+      transition: 0.5s;
+    }
+
+    &:hover {
+      & img {
+        transform: scale(1.1);
+      }
+    }
+
+    &:active {
+      & img {
+        transform: scale(1.1) rotate(180deg);
+      }
+    }
+  }
+
+  // .main-page__header-bottom
+  &__header-bottom {
+    text-align: center;
+  }
+  // .main-page__app-icon
+  &__app-icon {
+    img {
+      width: 80px;
+      height: auto;
+    }
+  }
+  // .main-page__title
+  &__title {
+    font-family: $logo-font;
+    font-size: $logo-fz;
+    margin-top: 10px;
+  }
+  // .main-page__body
+  &__body {
+    margin: 20px 0;
+
+    @media screen and (min-width: 880px) {
+      & {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+  // .main-page__artist-quiz-btn
+  &__artist-quiz-btn {
+    display: block;
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+    border-radius: 10px;
+
+    &:hover {
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5),
+        -3px -3px 10px rgba(0, 0, 0, 0.5);
+    }
+  }
+  // .main-page__picture-quiz-cover
+  &__picture-quiz-cover {
+    padding-bottom: 100%;
+    background-image: url("../assets/img/picture-quiz.jfif");
+    background-size: cover;
+    background-position: bottom center;
+    border-radius: 10px;
+  }
+  // .main-page__picture-quiz-subtitle
+  &__picture-quiz-subtitle {
+    padding: 10px 0;
+    font-size: 1.1rem;
+  }
+  // .main-page__picture-quiz-btn
+  &__picture-quiz-btn {
+    display: block;
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 10px;
+
+    &:hover {
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5),
+        -3px -3px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    @media screen and (min-width: 880px) {
+      margin-top: 0px;
+    }
+  }
+  // .main-page__artist-quiz-cover
+  &__artist-quiz-cover {
+    padding-bottom: 100%;
+    background-image: url("../assets/img/flemish.jpg");
+    background-size: cover;
+    background-position: top center;
+    border-radius: 10px;
+  }
+  // .main-page__artist-quiz-subtitle
+  &__artist-quiz-subtitle {
+    padding: 10px 0;
+    font-size: 1.1rem;
+  }
+}

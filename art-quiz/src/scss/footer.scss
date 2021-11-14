@@ -1,0 +1,54 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+
+  // .footer__rsschool-link
+  &__rsschool-link {
+    & .st5,
+    & .st10 {
+      transition: 0.5s;
+    }
+
+    & svg {
+      width: 60px;
+      height: 23px;
+    }
+
+    &:hover {
+      & .st5,
+      & .st10 {
+        fill: $hover-link;
+      }
+    }
+
+    &:active {
+      & .st5,
+      & .st10 {
+        fill: $active-link;
+      }
+    }
+  }
+
+  // .footer__year
+  &__year {
+  }
+  // .footer__dev-link
+  &__dev-link {
+    font-family: $logo-font;
+    transition: 0.5s;
+
+    &:visited {
+      color: $visited-link;
+    }
+
+    &:hover {
+      color: $hover-link;
+    }
+
+    &:active {
+      color: $active-link;
+    }
+  }
+}

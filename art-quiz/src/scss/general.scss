@@ -1,0 +1,42 @@
+$bg-color: #fcf8dd;
+$visited-link: #800bf5;
+$hover-link: #d4a600;
+$active-link: #ff0b03;
+$main-fz: 1rem;
+$logo-fz: 1.5rem;
+$main-font: "Vollkorn SC", serif;
+$logo-font: "Gluten", cursive;
+
+:root {
+  font-size: 1em;
+}
+
+body {
+  background-color: $bg-color;
+  font-size: $main-fz;
+  font-family: $main-font;
+}
+
+.app {
+  padding: 0 20px;
+
+  // .app__container
+  &__container {
+    max-width: 840px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: 940px) {
+      & {
+        max-width: 900px;
+      }
+    }
+  }
+
+  // .app__main-page
+  &__main-page {
+    flex: 1 0 auto;
+  }
+}
