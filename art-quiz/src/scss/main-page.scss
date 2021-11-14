@@ -1,4 +1,8 @@
 .main-page {
+  &_is-not-visible {
+    display: none;
+  }
+
   // .main-page__header
   &__header {
     padding: 10px 0;

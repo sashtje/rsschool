@@ -1,5 +1,6 @@
 import sayHi from "./say-hi.js";
 import { Settings } from "./settings.js";
+import { Switcher } from "./switcher.js";
 import { HOME, EN } from "./const-vars.js";
 
 /* the main class of the quiz */

@@ -22,7 +22,10 @@
   </head>
   <body>
     <div class="app">
-      <section class="app__main-page main-page" id="main-page">
+      <section
+        class="app__main-page main-page main-page_is-not-visible"
+        id="main-page"
+      >
         <header class="main-page__header">
           <div class="container">
             <div class="main-page__header-top">
@@ -55,6 +58,85 @@
               <div class="main-page__picture-quiz-cover"></div>
               <p class="main-page__picture-quiz-subtitle"></p>
             </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="app__settings settings settings_is-not-visible">
+        <header class="settings__header">
+          <div class="container settings__header-container">
+            <h2 class="settings__title">Settings</h2>
+          </div>
+        </header>
+
+        <div class="settings__body">
+          <div class="container">
+            <div class="settings__lang settings-lang">
+              <h3 class="settings-lang__title">Language</h3>
+              <div class="settings-lang__body">
+                <div class="settings-lang__en-icon">
+                  <img src="public/assets/svg/uk.svg" alt="en" />
+                </div>
+                <input type="checkbox" id="lang" name="lang" />
+                <div class="settings-lang__ru-icon">
+                  <img src="public/assets/svg/ru.svg" alt="ru" />
+                </div>
+              </div>
+            </div>
+
+            <div class="settings__settings-block">
+              <div class="settings__settings-block-sound settings-sound">
+                <h3 class="settings-sound__title">Sound</h3>
+                <div class="settings-sound__body-top">
+                  <span class="settings-sound__off">off</span>
+                  <input type="checkbox" id="sound" name="sound" />
+                  <span class="settings-sound__on">on</span>
+                </div>
+
+                <div class="settings-sound__body-bottom">
+                  <div class="settings-sound__volume-icon">
+                    <img
+                      src="public/assets/svg/volume-up.svg"
+                      alt="volume up"
+                    />
+                  </div>
+                  <input
+                    type="range"
+                    id="volume"
+                    name="volume"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value="0"
+                  />
+                </div>
+              </div>
+
+              <div class="settings__settings-block-time settings-time">
+                <h3 class="settings-time__title">Time</h3>
+                <div class="settings-time__body-top">
+                  <span class="settings-time__off">off</span>
+                  <input type="checkbox" id="time" name="time" />
+                  <span class="settings-time__on">on</span>
+                </div>
+
+                <div class="settings-time__body-bottom">
+                  <div class="settings-time__watch-icon">
+                    <img src="public/assets/svg/watch.svg" alt="watch" />
+                  </div>
+                  <input
+                    type="range"
+                    id="game-time"
+                    name="game-time"
+                    min="5"
+                    max="30"
+                    step="5"
+                    value="5"
+                  />
+                  <span class="settings-time__time-value">5</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

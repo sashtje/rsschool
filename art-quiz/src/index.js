@@ -1,10 +1,9 @@
 import { App } from "./scripts/app.js";
 /*
-import Represent from "./scripts/represent.js";
-import Game from "./scripts/game.js";
-import CategoryArtist from "./scripts/category-artist.js";
-import CategoryPicture from "./scripts/category-picture.js";
-import Results from "./scripts/results.js"; */
+import Game from "./game.js";
+import CategoryArtist from "./category-artist.js";
+import CategoryPicture from "./category-picture.js";
+import Results from "./results.js"; */
 import "./scss/main.scss";
 
 /* create full App */
