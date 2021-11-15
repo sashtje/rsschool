@@ -77,7 +77,13 @@
                 <div class="settings-lang__en-icon">
                   <img src="public/assets/svg/uk.svg" alt="en" />
                 </div>
-                <input type="checkbox" id="lang" name="lang" />
+                <input
+                  class="settings-lang__checkbox"
+                  type="checkbox"
+                  id="lang"
+                  name="lang"
+                />
+                <label class="settings-lang__label" for="lang"></label>
                 <div class="settings-lang__ru-icon">
                   <img src="public/assets/svg/ru.svg" alt="ru" />
                 </div>
@@ -89,7 +95,13 @@
                 <h3 class="settings-sound__title">Sound</h3>
                 <div class="settings-sound__body-top">
                   <span class="settings-sound__off">off</span>
-                  <input type="checkbox" id="sound" name="sound" />
+                  <input
+                    class="settings-sound__checkbox"
+                    type="checkbox"
+                    id="sound"
+                    name="sound"
+                  />
+                  <label class="settings-sound__label" for="sound"></label>
                   <span class="settings-sound__on">on</span>
                 </div>
 
@@ -100,15 +112,18 @@
                       alt="volume up"
                     />
                   </div>
-                  <input
-                    type="range"
-                    id="volume"
-                    name="volume"
-                    min="0"
-                    max="1"
-                    step="0.01"
-                    value="0"
-                  />
+                  <div class="settings-sound__range-container">
+                    <input
+                      class="settings-sound__range"
+                      type="range"
+                      id="volume"
+                      name="volume"
+                      min="0"
+                      max="1"
+                      step="0.01"
+                      value="0"
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -116,7 +131,13 @@
                 <h3 class="settings-time__title">Time</h3>
                 <div class="settings-time__body-top">
                   <span class="settings-time__off">off</span>
-                  <input type="checkbox" id="time" name="time" />
+                  <input
+                    class="settings-time__checkbox"
+                    type="checkbox"
+                    id="time"
+                    name="time"
+                  />
+                  <label class="settings-time__label" for="time"></label>
                   <span class="settings-time__on">on</span>
                 </div>
 
@@ -124,15 +145,18 @@
                   <div class="settings-time__watch-icon">
                     <img src="public/assets/svg/watch.svg" alt="watch" />
                   </div>
-                  <input
-                    type="range"
-                    id="game-time"
-                    name="game-time"
-                    min="5"
-                    max="30"
-                    step="5"
-                    value="5"
-                  />
+                  <div class="settings-time__range-container">
+                    <input
+                      class="settings-time__range"
+                      type="range"
+                      id="game-time"
+                      name="game-time"
+                      min="5"
+                      max="30"
+                      step="5"
+                      value="5"
+                    />
+                  </div>
                   <span class="settings-time__time-value">5</span>
                 </div>
               </div>
