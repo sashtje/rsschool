@@ -1,1 +1,5 @@
-export class Switcher {}
+export class Switcher {
+  constructor() {}
+
+  switchPage(from, to) {}
+}

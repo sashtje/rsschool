@@ -1,15 +1,18 @@
 import sayHi from "./say-hi.js";
 import { Settings } from "./settings.js";
 import { Switcher } from "./switcher.js";
-import { HOME, EN } from "./const-vars.js";
+import { HOME, SETTINGS, EN } from "./const-vars.js";
 
 /* the main class of the quiz */
 export class App {
   dataImages = [];
   currPageType = HOME;
   appSettings = {};
+  appSwitcher = {};
 
   constructor() {
+    this.appSwitcher = new Switcher();
+
     /* write self-assessment to the console */
     sayHi();
 
@@ -39,6 +42,7 @@ export class App {
 
   openSettingsPage() {
     console.log("open settings");
+    this.appSwitcher.switchPage(HOME, SETTINGS);
   }
 
   translateAndLoadText() {
