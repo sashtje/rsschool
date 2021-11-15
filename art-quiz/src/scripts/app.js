@@ -1,12 +1,12 @@
 import sayHi from "./say-hi.js";
 import { Settings } from "./settings.js";
 import { Switcher } from "./switcher.js";
-import { HOME, SETTINGS, EN } from "./const-vars.js";
+import * as consts from "./const-vars.js";
 
 /* the main class of the quiz */
 export class App {
   dataImages = [];
-  currPageType = HOME;
+  currPageType = consts.HOME;
   appSettings = {};
   appSwitcher = {};
 
@@ -41,8 +41,12 @@ export class App {
   }
 
   openSettingsPage() {
-    console.log("open settings");
-    this.appSwitcher.switchPage(HOME, SETTINGS);
+    this.appSwitcher.switchPage(
+      this.currPageType,
+      consts.SETTINGS,
+      this.appSettings
+    );
+    this.currPageType = consts.SETTINGS;
   }
 
   translateAndLoadText() {
@@ -53,7 +57,7 @@ export class App {
       ".main-page__picture-quiz-subtitle"
     );
 
-    if (this.appSettings.lang === EN) {
+    if (this.appSettings.lang === consts.EN) {
       artSubtitle.textContent = "Artist Quiz";
       picSubtitle.textContent = "Picture Quiz";
     } else {

@@ -1,10 +1,10 @@
-import { EN, RU, ON, OFF } from "./const-vars.js";
+import * as consts from "./const-vars.js";
 
 export class Settings {
-  lang = EN;
-  sound = OFF;
+  lang = consts.EN;
+  sound = consts.OFF;
   volumeSound = 0;
-  time = OFF;
+  time = consts.OFF;
   durationTime = 5;
 
   constructor() {

@@ -50,11 +50,13 @@ body {
   flex-direction: column;
 
   // .app__main-page
-  &__main-page {
-    flex: 1 0 auto;
-  }
-
-  &__settings {
+  &__main-page,
+  &__settings,
+  &__art-cat,
+  &__pic-cat,
+  &__art-game,
+  &__pic-game,
+  &__res-game {
     flex: 1 0 auto;
   }
 }
