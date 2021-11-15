@@ -240,7 +240,9 @@
   // .settings-sound__volume-icon
   &__volume-icon {
     img {
-      width: 20px;
+      width: 30px;
+      filter: invert(100%) sepia(96%) saturate(0%) hue-rotate(102deg)
+        brightness(104%) contrast(104%);
     }
   }
 
