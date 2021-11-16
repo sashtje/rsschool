@@ -62,7 +62,7 @@ export class App {
       circle.remove();
       this.appSwitcher.switchPage(this.currPageType, consts.HOME);
       this.currPageType = consts.HOME;
-    }, 300);
+    }, 200);
   };
 
   addListeners() {

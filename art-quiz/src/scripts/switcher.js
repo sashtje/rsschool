@@ -45,10 +45,10 @@ export class Switcher {
 
       //hide from page
       from.classList.add(this.fromPageID + "_is-not-visible");
-      //make translate to page
-      this.translateToPage();
       //show to page
       to.classList.remove(this.toPageID + "_is-not-visible");
+      //make translate "to" page
+      this.translateToPage();
       this.app.classList.toggle("app_is-hide");
     } else {
     }
@@ -61,6 +61,7 @@ export class Switcher {
         this.translateHomePage();
         break;
       case consts.SETTINGS:
+        this.downloadSettings();
         this.translateSettingsPage();
         break;
       case consts.ARTIST_CATEGORY:
@@ -84,14 +85,62 @@ export class Switcher {
       ".main-page__picture-quiz-subtitle"
     );
 
-    if (objSettings.lang === consts.EN) {
-      artSubtitle.textContent = "Artist Quiz";
-      picSubtitle.textContent = "Picture Quiz";
-    } else {
-      artSubtitle.textContent = "Художники";
-      picSubtitle.textContent = "Картины";
+    switch (objSettings.lang) {
+      case consts.EN:
+        artSubtitle.textContent = "Artist Quiz";
+        picSubtitle.textContent = "Picture Quiz";
+        break;
+
+      case consts.RU:
+        artSubtitle.textContent = "Художники";
+        picSubtitle.textContent = "Картины";
+        break;
     }
   }
 
-  translateSettingsPage() {}
+  downloadSettings() {}
+
+  translateSettingsPage() {
+    let chbxLang = document.querySelector(".settings-lang__checkbox");
+
+    //for translate:
+    let setTitle = document.querySelector(".settings__title");
+    let setLangTitle = document.querySelector(".settings-lang__title");
+    let setSoundTitle = document.querySelector(".settings-sound__title");
+    let setSoundOFF = document.querySelector(".settings-sound__off");
+    let setSoundON = document.querySelector(".settings-sound__on");
+    let setTimeTitle = document.querySelector(".settings-time__title");
+    let setTimeOFF = document.querySelector(".settings-time__off");
+    let setTimeON = document.querySelector(".settings-time__on");
+    let saveBtn = document.querySelector(".settings__btn-save");
+
+    let currLang = consts.EN;
+
+    if (chbx.checked) currLang = consts.RU;
+
+    switch (currLang) {
+      case consts.EN:
+        setTitle.textContent = "Settings";
+        setLangTitle.textContent = "Language";
+        setSoundTitle.textContent = "Sound";
+        setSoundOFF.textContent = "off";
+        setSoundON.textContent = "on";
+        setTimeTitle.textContent = "Time";
+        setTimeOFF.textContent = "off";
+        setTimeON.textContent = "on";
+        saveBtn.textContent = "Save";
+        break;
+      case consts.RU:
+        setTitle.textContent = "Настройки";
+        setLangTitle.textContent = "Язык";
+        setSoundTitle.textContent = "Звук";
+        setSoundOFF.textContent = "выкл";
+        setSoundON.textContent = "вкл";
+        setTimeTitle.textContent = "Время";
+        setTimeOFF.textContent = "выкл";
+        setTimeON.textContent = "вкл";
+        saveBtn.textContent = "Сохранить";
+        break;
+    }
+  }
 }
