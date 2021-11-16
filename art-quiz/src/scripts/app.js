@@ -27,10 +27,7 @@ export class App {
     this.appSwitcher.switchPage(this.currPageType, consts.SETTINGS);
     this.currPageType = consts.SETTINGS;
 
-    //handle for save button
-    let saveBtn = document.querySelector(".settings__btn-save");
-
-    saveBtn.addEventListener("click", this.returnToHomePage);
+    this.addListenersForSettingsPage();
   };
 
   returnToHomePage = (e) => {
@@ -79,6 +76,13 @@ export class App {
         console.log("open picture");
       }
     });
+  }
+
+  addListenersForSettingsPage() {
+    //handle for save button
+    let saveBtn = document.querySelector(".settings__btn-save");
+
+    saveBtn.addEventListener("click", this.returnToHomePage);
   }
 
   async downloadDataImages() {

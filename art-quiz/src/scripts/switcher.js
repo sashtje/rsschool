@@ -8,7 +8,7 @@ export class Switcher {
     this.app.addEventListener("transitionend", this.handleTransitionEndForPage);
   }
 
-  switchPage(from, to, appSettings) {
+  switchPage(from, to) {
     this.from = from;
     this.to = to;
     this.fromPageID = this.getPageID(from);

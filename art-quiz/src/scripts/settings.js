@@ -38,7 +38,28 @@ class Settings {
   };
 
   saveSettings() {
-    
+    let chkbxLang = document.querySelector(".settings-lang__checkbox");
+    let chkbxSound = document.querySelector(".settings-sound__checkbox");
+    let chkbxTime = document.querySelector(".settings-time__checkbox");
+    let volumeRange = document.querySelector(".settings-sound__range");
+    let timeRange = document.querySelector(".settings-time__range");
+
+    if (chkbxLang.checked) this.lang = consts.RU;
+    else this.lang = consts.EN;
+
+    if (chkbxSound.checked) {
+      this.sound = consts.ON;
+    } else {
+      this.sound = consts.OFF;
+    }
+    this.volumeSound = volumeRange.value;
+
+    if (chkbxTime.checked) {
+      this.time = consts.ON;
+    } else {
+      this.time = consts.OFF;
+    }
+    this.durationTime = timeRange.value;
   }
 }
 

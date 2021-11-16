@@ -49,7 +49,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  transition: 1s;
+  transition: 0.5s;
 
   &_is-hide {
     transform: translateX(-100%);
