@@ -2,6 +2,7 @@ import sayHi from "./say-hi.js";
 import { Switcher } from "./switcher.js";
 import * as consts from "./const-vars.js";
 import objSettings from "./settings.js";
+import * as func from "./func.js";
 
 /* the main class of the quiz */
 export class App {
@@ -124,31 +125,13 @@ export class App {
     volumeRange.addEventListener("input", function () {
       let value = this.value;
 
-      this.style.background =
-        "linear-gradient(to right, #b14c00 0%, #b14c00 " +
-        value * 100 +
-        "%, #6d6d6d " +
-        value * 100 +
-        "%, #6d6d6d 100%)";
+      func.setVolumeRange(this, value);
     });
 
     timeRange.addEventListener("input", function () {
       let value = this.value - 5;
-      if (value !== 0 && value !== 25) {
-        let coef = value / 5;
-        value = (46 + 36 * (coef - 1)) / 2;
-      } else {
-        value = value * 4;
-      }
 
-      this.style.background =
-        "linear-gradient(to right, #b14c00 0%, #b14c00 " +
-        value +
-        "%, #6d6d6d " +
-        value +
-        "%, #6d6d6d 100%)";
-
-      timeRangeVal.textContent = this.value;
+      func.setTimeRange(this, value, timeRangeVal, this.value);
     });
   }
 

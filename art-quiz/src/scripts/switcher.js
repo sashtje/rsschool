@@ -1,5 +1,6 @@
 import * as consts from "./const-vars.js";
 import objSettings from "./settings.js";
+import * as func from "./func.js";
 
 export class Switcher {
   constructor() {
@@ -104,6 +105,7 @@ export class Switcher {
     let chkbxTime = document.querySelector(".settings-time__checkbox");
     let volumeRange = document.querySelector(".settings-sound__range");
     let timeRange = document.querySelector(".settings-time__range");
+    let timeRangeVal = document.querySelector(".settings-time__time-value");
 
     switch (objSettings.lang) {
       case consts.EN:
@@ -118,25 +120,34 @@ export class Switcher {
       case consts.ON:
         chkbxSound.checked = true;
         volumeRange.disabled = false;
+        volumeRange.value = objSettings.volumeSound;
+        func.setVolumeRange(volumeRange, volumeRange.value);
         break;
       case consts.OFF:
         chkbxSound.checked = false;
         volumeRange.disabled = true;
+        volumeRange.value = objSettings.volumeSound;
         break;
     }
-    volumeRange.value = objSettings.volumeSound;
 
     switch (objSettings.time) {
       case consts.ON:
         chkbxTime.checked = true;
         timeRange.disabled = false;
+        timeRange.value = objSettings.durationTime;
+        func.setTimeRange(
+          timeRange,
+          timeRange.value - 5,
+          timeRangeVal,
+          timeRange.value
+        );
         break;
       case consts.OFF:
         chkbxTime.checked = false;
         timeRange.disabled = true;
+        timeRange.value = objSettings.durationTime;
         break;
     }
-    timeRange.value = objSettings.durationTime;
   }
 
   translateSettingsPage() {
