@@ -1,5 +1,4 @@
 import sayHi from "./say-hi.js";
-import { Settings } from "./settings.js";
 import { Switcher } from "./switcher.js";
 import * as consts from "./const-vars.js";
 
@@ -7,59 +6,35 @@ import * as consts from "./const-vars.js";
 export class App {
   dataImages = [];
   currPageType = consts.HOME;
-  appSettings = {};
   appSwitcher = {};
 
   constructor() {
     this.appSwitcher = new Switcher();
 
-    /* write self-assessment to the console */
-    sayHi();
-
     this.initSettings();
 
     /* translate and load text on page */
-    this.translateAndLoadText();
+    this.appSwitcher.translateHomePage();
 
     this.addListeners();
 
-    this.downloadDataImages();
+    /* this.downloadDataImages(); */
+
+    /* write self-assessment to the console */
+    sayHi();
   }
 
   initSettings() {
-    /* download preset settings or settings from localStorage */
-    this.appSettings = new Settings();
-
     let btnSettings = document.querySelector(".main-page__btn-settings");
 
     btnSettings.addEventListener("click", this.openSettingsPage);
   }
 
   openSettingsPage = () => {
-    this.appSwitcher.switchPage(
-      this.currPageType,
-      consts.SETTINGS,
-      this.appSettings
-    );
+    this.appSwitcher.switchPage(this.currPageType, consts.SETTINGS);
     this.currPageType = consts.SETTINGS;
+    //handle for save button
   };
-
-  translateAndLoadText() {
-    let artSubtitle = document.querySelector(
-      ".main-page__artist-quiz-subtitle"
-    );
-    let picSubtitle = document.querySelector(
-      ".main-page__picture-quiz-subtitle"
-    );
-
-    if (this.appSettings.lang === consts.EN) {
-      artSubtitle.textContent = "Artist Quiz";
-      picSubtitle.textContent = "Picture Quiz";
-    } else {
-      artSubtitle.textContent = "Художники";
-      picSubtitle.textContent = "Картины";
-    }
-  }
 
   addListeners() {
     let mainPageBody = document.querySelector(".main-page__body");

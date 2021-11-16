@@ -6,6 +6,7 @@ $checkbox-on: #b14c00;
 $range-on: #b14c00;
 $checkbox-off: #6d6d6d;
 $range-off: #6d6d6d;
+$save-btn: #f00101;
 $main-fz: 1rem;
 $logo-fz: 1.5rem;
 $main-font: "Vollkorn SC", serif;
@@ -48,6 +49,11 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  transition: 1s;
+
+  &_is-hide {
+    transform: translateX(-100%);
+  }
 
   // .app__main-page
   &__main-page,

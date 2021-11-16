@@ -84,6 +84,18 @@
       }
     }
   }
+
+  &__btn-save {
+    color: #ffffff;
+    width: 200px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: $save-btn;
+    font-size: 1.2rem;
+  }
 }
 
 .settings-lang {

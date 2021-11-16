@@ -1,6 +1,6 @@
 import * as consts from "./const-vars.js";
 
-export class Settings {
+class Settings {
   lang = consts.EN;
   sound = consts.OFF;
   volumeSound = 0;
@@ -37,3 +37,7 @@ export class Settings {
     );
   };
 }
+
+const objSettings = new Settings();
+
+export default objSettings;
