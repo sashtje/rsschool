@@ -116,7 +116,7 @@ export class Switcher {
 
     let currLang = consts.EN;
 
-    if (chbx.checked) currLang = consts.RU;
+    if (chbxLang.checked) currLang = consts.RU;
 
     switch (currLang) {
       case consts.EN:
