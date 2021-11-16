@@ -33,21 +33,16 @@ export class App {
     let btnSettings = document.querySelector(".main-page__btn-settings");
 
     btnSettings.addEventListener("click", this.openSettingsPage);
-
-    window.addEventListener(
-      "beforeunload",
-      this.appSettings.writeSettingsToLocalStorage
-    );
   }
 
-  openSettingsPage() {
+  openSettingsPage = () => {
     this.appSwitcher.switchPage(
       this.currPageType,
       consts.SETTINGS,
       this.appSettings
     );
     this.currPageType = consts.SETTINGS;
-  }
+  };
 
   translateAndLoadText() {
     let artSubtitle = document.querySelector(

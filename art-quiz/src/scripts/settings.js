@@ -9,6 +9,8 @@ export class Settings {
 
   constructor() {
     this.downloadSettings();
+
+    window.addEventListener("beforeunload", this.writeSettingsToLocalStorage);
   }
 
   downloadSettings() {
@@ -22,7 +24,7 @@ export class Settings {
     }
   }
 
-  writeSettingsToLocalStorage() {
+  writeSettingsToLocalStorage = () => {
     localStorage.setItem(
       "settings",
       JSON.stringify({
@@ -33,5 +35,5 @@ export class Settings {
         durationTime: this.durationTime,
       })
     );
-  }
+  };
 }
