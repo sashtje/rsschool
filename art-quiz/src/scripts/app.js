@@ -1,6 +1,7 @@
 import sayHi from "./say-hi.js";
 import { Switcher } from "./switcher.js";
 import * as consts from "./const-vars.js";
+import objSettings from "./settings.js";
 
 /* the main class of the quiz */
 export class App {
@@ -11,23 +12,15 @@ export class App {
   constructor() {
     this.appSwitcher = new Switcher();
 
-    this.initSettings();
-
     /* translate and load text on page */
     this.appSwitcher.translateHomePage();
 
-    this.addListeners();
+    this.addListenersForMainPage();
 
     /* this.downloadDataImages(); */
 
     /* write self-assessment to the console */
     sayHi();
-  }
-
-  initSettings() {
-    let btnSettings = document.querySelector(".main-page__btn-settings");
-
-    btnSettings.addEventListener("click", this.openSettingsPage);
   }
 
   openSettingsPage = () => {
@@ -42,6 +35,8 @@ export class App {
 
   returnToHomePage = (e) => {
     let saveBtn = document.querySelector(".settings__btn-save");
+
+    //ripple effect for the button
     const x = e.clientX;
     const y = e.clientY;
 
@@ -57,6 +52,9 @@ export class App {
     circle.style.left = xInside + "px";
 
     saveBtn.appendChild(circle);
+    //end ripple effect for the button
+
+    objSettings.saveSettings();
 
     setTimeout(() => {
       circle.remove();
@@ -65,7 +63,11 @@ export class App {
     }, 200);
   };
 
-  addListeners() {
+  addListenersForMainPage() {
+    let btnSettings = document.querySelector(".main-page__btn-settings");
+
+    btnSettings.addEventListener("click", this.openSettingsPage);
+
     let mainPageBody = document.querySelector(".main-page__body");
 
     mainPageBody.addEventListener("click", function (event) {

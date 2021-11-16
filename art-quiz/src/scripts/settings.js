@@ -36,6 +36,10 @@ class Settings {
       })
     );
   };
+
+  saveSettings() {
+    
+  }
 }
 
 const objSettings = new Settings();
