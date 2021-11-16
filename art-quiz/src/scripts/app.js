@@ -33,7 +33,36 @@ export class App {
   openSettingsPage = () => {
     this.appSwitcher.switchPage(this.currPageType, consts.SETTINGS);
     this.currPageType = consts.SETTINGS;
+
     //handle for save button
+    let saveBtn = document.querySelector(".settings__btn-save");
+
+    saveBtn.addEventListener("click", this.returnToHomePage);
+  };
+
+  returnToHomePage = (e) => {
+    let saveBtn = document.querySelector(".settings__btn-save");
+    const x = e.clientX;
+    const y = e.clientY;
+
+    const buttonTop = e.target.offsetTop;
+    const buttonLeft = e.target.offsetLeft;
+
+    const xInside = x - buttonLeft;
+    const yInside = y - buttonTop;
+
+    const circle = document.createElement("span");
+    circle.classList.add("settings__btn-save-circle");
+    circle.style.top = yInside + "px";
+    circle.style.left = xInside + "px";
+
+    saveBtn.appendChild(circle);
+
+    setTimeout(() => {
+      circle.remove();
+      this.appSwitcher.switchPage(this.currPageType, consts.HOME);
+      this.currPageType = consts.HOME;
+    }, 300);
   };
 
   addListeners() {
