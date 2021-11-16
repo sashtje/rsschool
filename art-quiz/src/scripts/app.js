@@ -19,13 +19,30 @@ export class App {
 
     this.addListenersForMainPage();
 
+    this.addSounds();
+
     /* this.downloadDataImages(); */
 
     /* write self-assessment to the console */
     sayHi();
   }
 
+  addSounds() {
+    this.audioSwitch = new Audio();
+    this.audioSwitch.src =
+      "./public/assets/sound/sound-for-switching-pages.mp3";
+  }
+
+  checkForSwitchingSoundEffect() {
+    if (objSettings.sound === consts.ON) {
+      this.audioSwitch.volume = objSettings.volumeSound;
+      this.audioSwitch.play();
+    }
+  }
+
   openSettingsPage = () => {
+    this.checkForSwitchingSoundEffect();
+
     this.appSwitcher.switchPage(this.currPageType, consts.SETTINGS);
     this.currPageType = consts.SETTINGS;
 
@@ -60,6 +77,7 @@ export class App {
     setTimeout(() => {
       circle.remove();
       this.appSwitcher.switchPage(this.currPageType, consts.HOME);
+      this.checkForSwitchingSoundEffect();
       this.currPageType = consts.HOME;
     }, 100);
   };
