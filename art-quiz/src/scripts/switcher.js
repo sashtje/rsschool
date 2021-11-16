@@ -98,7 +98,46 @@ export class Switcher {
     }
   }
 
-  downloadSettings() {}
+  downloadSettings() {
+    let chkbxLang = document.querySelector(".settings-lang__checkbox");
+    let chkbxSound = document.querySelector(".settings-sound__checkbox");
+    let chkbxTime = document.querySelector(".settings-time__checkbox");
+    let volumeRange = document.querySelector(".settings-sound__range");
+    let timeRange = document.querySelector(".settings-time__range");
+
+    switch (objSettings.lang) {
+      case consts.EN:
+        chkbxLang.checked = false;
+        break;
+      case consts.RU:
+        chkbxLang.checked = true;
+        break;
+    }
+
+    switch (objSettings.sound) {
+      case consts.ON:
+        chkbxSound.checked = true;
+        volumeRange.disabled = false;
+        break;
+      case consts.OFF:
+        chkbxSound.checked = false;
+        volumeRange.disabled = true;
+        break;
+    }
+    volumeRange.value = objSettings.volumeSound;
+
+    switch (objSettings.time) {
+      case consts.ON:
+        chkbxTime.checked = true;
+        timeRange.disabled = false;
+        break;
+      case consts.OFF:
+        chkbxTime.checked = false;
+        timeRange.disabled = true;
+        break;
+    }
+    timeRange.value = objSettings.durationTime;
+  }
 
   translateSettingsPage() {
     let chbxLang = document.querySelector(".settings-lang__checkbox");
