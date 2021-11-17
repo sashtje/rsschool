@@ -3,4 +3,175 @@
   &_is-not-visible {
     display: none;
   }
+
+  // .art-cat__container
+  &__container {
+    max-width: 300px;
+    margin: 0 auto;
+
+    @media screen and (min-width: 590px) {
+      & {
+        max-width: 530px;
+        display: grid;
+        grid-template-columns: repeat(2, 250px);
+        justify-content: space-between;
+        column-gap: 30px;
+        row-gap: 30px;
+      }
+    }
+
+    @media screen and (min-width: 870px) {
+      & {
+        max-width: 810px;
+        grid-template-columns: repeat(3, 250px);
+      }
+    }
+
+    @media screen and (min-width: 1150px) {
+      & {
+        max-width: 1090px;
+        grid-template-columns: repeat(4, 250px);
+      }
+    }
+  }
+
+  // .art-cat__header
+  &__header {
+    padding: 10px 0;
+  }
+
+  // .art-cat__header-top
+  &__header-top {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: end;
+  }
+
+  // .art-cat__btn-home
+  &__btn-home {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+    img {
+      width: 35px;
+      height: 35px;
+      transition: 0.5s;
+    }
+
+    &:hover {
+      & img {
+        transform: rotate(-135deg);
+      }
+    }
+
+    &:active {
+      @media (hover: none) {
+        & {
+          box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+      }
+
+      & img {
+        transform: scale(1.1) rotate(180deg);
+      }
+    }
+  }
+
+  // .art-cat__title
+  &__title {
+    font-size: 1.7rem;
+    text-align: center;
+  }
+
+  // .art-cat__body
+  &__body {
+    margin: 40px 0;
+  }
+
+  // .art-cat__category
+  &__category {
+    & + & {
+      margin-top: 30px;
+
+      @media screen and (min-width: 590px) {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.category {
+  max-width: 250px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: url("../assets/img/artist-covers/cover-1.jpg");
+  background-size: cover;
+  background-position: top center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.5s;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  &:hover {
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5),
+      -3px -3px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  // .category__container
+  &__container {
+    position: relative;
+    padding-bottom: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+
+  // .category__body
+  &__body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  // .category__res-block
+  &__res-btn {
+    align-self: end;
+    background-color: $bg-color;
+    padding: 0 5px 0 0;
+    width: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    transition: 0.5s;
+
+    &:hover,
+    &:active {
+      background-color: #c4ff9a;
+    }
+
+    &_is-not-visible {
+      visibility: hidden;
+    }
+  }
+
+  // .category__res-icon
+  &__res-icon {
+  }
+
+  // .category__res-number
+  &__res-number {
+  }
+
+  // .category__number
+  &__number {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #a0440b;
+    color: #ffffff;
+  }
 }
