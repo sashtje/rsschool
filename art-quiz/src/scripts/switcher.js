@@ -66,8 +66,12 @@ export class Switcher {
         this.translateSettingsPage();
         break;
       case consts.ARTIST_CATEGORY:
+        this.prepareCategoriesToShow();
+        this.translateCategoryPage();
         break;
       case consts.PICTURE_CATEGORY:
+        this.prepareCategoriesToShow();
+        this.translateCategoryPage();
         break;
       case consts.ARTIST_QUIZ:
         break;
@@ -193,4 +197,8 @@ export class Switcher {
         break;
     }
   }
+
+  prepareCategoriesToShow() {}
+
+  translateCategoryPage() {}
 }

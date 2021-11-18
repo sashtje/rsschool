@@ -64,3 +64,5 @@ for (let i = 1; i <= consts.CATEGORIES; i++) {
     new Category(i, firstPicPicture, srcCatCoverPicture, consts.PICTURE)
   );
 }
+
+export { arrArtistCategories, arrPictureCategories };

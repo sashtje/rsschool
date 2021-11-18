@@ -50,7 +50,7 @@ export class App {
       this.addListenersForSettingsPage();
   };
 
-  returnToHomePage = (e) => {
+  returnToHomePageFromSettings = (e) => {
     let saveBtn = document.querySelector(".settings__btn-save");
 
     //ripple effect for the button
@@ -76,9 +76,7 @@ export class App {
 
     setTimeout(() => {
       circle.remove();
-      this.appSwitcher.switchPage(this.currPageType, consts.HOME);
-      this.checkForSwitchingSoundEffect();
-      this.currPageType = consts.HOME;
+      this.returnToHomePage();
     }, 100);
   };
 
@@ -90,13 +88,13 @@ export class App {
 
     let mainPageBody = document.querySelector(".main-page__body");
 
-    mainPageBody.addEventListener("click", function (event) {
+    mainPageBody.addEventListener("click", (event) => {
       let target = event.target;
 
       if (target.closest(".main-page__artist-quiz-btn")) {
-        console.log("open artist");
+        this.openArtistCategoriesPage();
       } else if (target.closest(".main-page__picture-quiz-btn")) {
-        console.log("open picture");
+        this.openPictureCategoriesPage();
       }
     });
   }
@@ -106,7 +104,7 @@ export class App {
     //handle for save button
     let saveBtn = document.querySelector(".settings__btn-save");
 
-    saveBtn.addEventListener("click", this.returnToHomePage);
+    saveBtn.addEventListener("click", this.returnToHomePageFromSettings);
 
     let chkbxLang = document.querySelector(".settings-lang__checkbox");
     let chkbxSound = document.querySelector(".settings-sound__checkbox");
@@ -166,4 +164,46 @@ export class App {
       console.log(err);
     }
   }
+
+  openArtistCategoriesPage = () => {
+    this.checkForSwitchingSoundEffect();
+
+    this.appSwitcher.switchPage(this.currPageType, consts.ARTIST_CATEGORY);
+    this.currPageType = consts.ARTIST_CATEGORY;
+
+    if (!this.wereAlreadyOpened.includes("artist-category"))
+      this.addListenersForArtistCategoryPage();
+  };
+
+  openPictureCategoriesPage = () => {
+    this.checkForSwitchingSoundEffect();
+
+    this.appSwitcher.switchPage(this.currPageType, consts.PICTURE_CATEGORY);
+    this.currPageType = consts.PICTURE_CATEGORY;
+
+    if (!this.wereAlreadyOpened.includes("picture-category"))
+      this.addListenersForPictureCategoryPage();
+  };
+
+  addListenersForArtistCategoryPage() {
+    this.wereAlreadyOpened.push("artist-category");
+
+    let btnHome = document.querySelector(".art-cat .cat__btn-home");
+
+    btnHome.addEventListener("click", this.returnToHomePage);
+  }
+
+  addListenersForPictureCategoryPage() {
+    this.wereAlreadyOpened.push("picture-category");
+
+    let btnHome = document.querySelector(".pic-cat .cat__btn-home");
+
+    btnHome.addEventListener("click", this.returnToHomePage);
+  }
+
+  returnToHomePage = () => {
+    this.appSwitcher.switchPage(this.currPageType, consts.HOME);
+    this.checkForSwitchingSoundEffect();
+    this.currPageType = consts.HOME;
+  };
 }
