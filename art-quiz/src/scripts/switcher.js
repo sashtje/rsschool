@@ -67,11 +67,11 @@ export class Switcher {
         break;
       case consts.ARTIST_CATEGORY:
         this.prepareCategoriesToShow();
-        this.translateCategoryPage();
+        this.translateArtistCategoriesPage();
         break;
       case consts.PICTURE_CATEGORY:
         this.prepareCategoriesToShow();
-        this.translateCategoryPage();
+        this.translatePictureCategoriesPage();
         break;
       case consts.ARTIST_QUIZ:
         break;
@@ -200,5 +200,29 @@ export class Switcher {
 
   prepareCategoriesToShow() {}
 
-  translateCategoryPage() {}
+  translateArtistCategoriesPage() {
+    let titleCategory = document.querySelector(".art-cat .cat__title");
+
+    switch (objSettings.lang) {
+      case consts.EN:
+        titleCategory.textContent = "Artist categories";
+        break;
+      case consts.RU:
+        titleCategory.textContent = "Категории художников";
+        break;
+    }
+  }
+
+  translatePictureCategoriesPage() {
+    let titleCategory = document.querySelector(".pic-cat .cat__title");
+
+    switch (objSettings.lang) {
+      case consts.EN:
+        titleCategory.textContent = "Picture categories";
+        break;
+      case consts.RU:
+        titleCategory.textContent = "Категории картин";
+        break;
+    }
+  }
 }
