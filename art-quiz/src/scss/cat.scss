@@ -113,7 +113,6 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  background-image: url("../assets/img/artist-covers/cover-1.jpg");
   background-size: cover;
   background-position: top center;
   font-size: 1.1rem;
@@ -130,7 +129,17 @@
   &__container {
     position: relative;
     padding-bottom: 100%;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: transparent;
+  }
+
+  &_was-not-played {
+    .category__container {
+      background-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .category__res-btn {
+      visibility: hidden;
+    }
   }
 
   // .category__body
@@ -143,7 +152,7 @@
     justify-content: space-between;
   }
 
-  // .category__res-block
+  // .category__res-btn
   &__res-btn {
     align-self: end;
     background-color: $bg-color;
@@ -158,10 +167,6 @@
     &:hover,
     &:active {
       background-color: #c4ff9a;
-    }
-
-    &_is-not-visible {
-      visibility: hidden;
     }
   }
 

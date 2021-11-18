@@ -1,6 +1,7 @@
 import * as consts from "./const-vars.js";
 import objSettings from "./settings.js";
 import * as func from "./func.js";
+import { arrArtistCategories, arrPictureCategories } from "./category.js";
 
 export class Switcher {
   constructor() {
@@ -66,11 +67,19 @@ export class Switcher {
         this.translateSettingsPage();
         break;
       case consts.ARTIST_CATEGORY:
-        this.prepareCategoriesToShow();
+        this.prepareCategoriesToShow(
+          this.getPageID(consts.ARTIST_CATEGORY),
+          arrArtistCategories,
+          consts.ARTIST_SRC_ICON_BTN
+        );
         this.translateArtistCategoriesPage();
         break;
       case consts.PICTURE_CATEGORY:
-        this.prepareCategoriesToShow();
+        this.prepareCategoriesToShow(
+          this.getPageID(consts.PICTURE_CATEGORY),
+          arrPictureCategories,
+          consts.PICTURE_SRC_ICON_BTN
+        );
         this.translatePictureCategoriesPage();
         break;
       case consts.ARTIST_QUIZ:
@@ -198,7 +207,56 @@ export class Switcher {
     }
   }
 
-  prepareCategoriesToShow() {}
+  prepareCategoriesToShow(pageID, arrCategories, srcIconBtn) {
+    let categories = document.querySelectorAll(`.${pageID} .category`);
+
+    if (categories.length === consts.CATEGORIES) {
+      // categories html is already existed
+      for (let i = 0; i < consts.CATEGORIES; i++) {
+        if (!arrCategories[i].wasPlayed) continue;
+
+        if (categories[i].classList.contains("category_was-not-played")) {
+          categories[i].classList.remove("category_was-not-played");
+        }
+
+        categories[i].querySelector(".category__res-number").textContent =
+          arrCategories[i].numberRightAnswers;
+      }
+    } else {
+      // need to create some html for categories
+      let containerForCategories = document.querySelector(
+        `.${pageID} .cat__container`
+      );
+
+      for (let i = 0; i < consts.CATEGORIES; i++) {
+        //create one category
+        let div = document.createElement("div");
+
+        div.className = "cat__category category category_was-not-played";
+        let chunkPath = "artist";
+        if (pageID === "pic-cat") chunkPath = "picture";
+        div.style.backgroundImage = `url("public/assets/img/${chunkPath}-covers/cover-${
+          i + 1
+        }.jpg")`;
+        div.innerHTML = `<div class="category__container">
+                <div class="category__body">
+                  <button class="category__res-btn">
+                    <img
+                      src="${srcIconBtn}"
+                      alt="icon"
+                      class="category__res-icon"
+                    />
+                    <span class="category__res-number">${arrCategories[i].numberRightAnswers}</span>
+                  </button>
+
+                  <div class="category__number">${arrCategories[i].number}</div>
+                </div>
+              </div>`;
+
+        containerForCategories.append(div);
+      }
+    }
+  }
 
   translateArtistCategoriesPage() {
     let titleCategory = document.querySelector(".art-cat .cat__title");

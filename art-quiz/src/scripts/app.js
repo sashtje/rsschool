@@ -191,6 +191,8 @@ export class App {
     let btnHome = document.querySelector(".art-cat .cat__btn-home");
 
     btnHome.addEventListener("click", this.returnToHomePage);
+
+    //повесить обработчик на .art-cat .cat__container
   }
 
   addListenersForPictureCategoryPage() {
@@ -199,6 +201,8 @@ export class App {
     let btnHome = document.querySelector(".pic-cat .cat__btn-home");
 
     btnHome.addEventListener("click", this.returnToHomePage);
+
+    //повесить обработчик на .pic-cat .cat__container
   }
 
   returnToHomePage = () => {

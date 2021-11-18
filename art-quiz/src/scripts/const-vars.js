@@ -14,8 +14,8 @@ export const OFF = false;
 
 export const CATEGORIES = 12;
 
-export const ARTIST_SRC_ICON_BTN = "../assets/icons/artist.png";
-export const PICTURE_SRC_ICON_BTN = "../assets/icons/picture.png";
+export const ARTIST_SRC_ICON_BTN = "public/assets/icons/artist.png";
+export const PICTURE_SRC_ICON_BTN = "public/assets/icons/picture.png";
 
 export const ARTIST = "artist";
 export const PICTURE = "picture";

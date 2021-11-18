@@ -13,7 +13,7 @@ class Category {
     this.typeCategory = typeCategory;
     for (let i = 0; i < this.pictures; i++) {
       /* 0 - wrong answer, 1 - right answer */
-      this.results = 0;
+      this.results.push(0);
     }
 
     this.downloadResults();
