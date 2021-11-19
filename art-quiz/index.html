@@ -23,7 +23,10 @@
   <body>
     <div class="app" id="app">
       <!-- home page -->
-      <section class="app__main-page main-page" id="main-page">
+      <section
+        class="app__main-page main-page main-page_is-not-visible"
+        id="main-page"
+      >
         <header class="main-page__header">
           <div class="container">
             <div class="main-page__header-top">
@@ -225,11 +228,46 @@
         id="pic-game"
       ></section>
 
+      <!-- res-game_is-not-visible -->
       <!-- game results page -->
-      <section
-        class="app__res-game res-game res-game_is-not-visible"
-        id="res-game"
-      ></section>
+      <section class="app__res-game res-game" id="res-game">
+        <header class="res-game__header">
+          <div class="container">
+            <div class="res-game__header-top">
+              <button class="res-game__btn-categories">
+                <img
+                  src="./public/assets/svg/categories.svg"
+                  alt="categories"
+                />
+              </button>
+              <button class="res-game__btn-home">
+                <img src="./public/assets/svg/home.svg" alt="home" />
+              </button>
+            </div>
+            <h2 class="res-game__title">Results</h2>
+            <p class="res-game__subtitle">
+              <span class="res-game__category">Category</span> №
+              <span class="res-game__category-number">5:</span>
+              <span class="res-game__subtitle-result">
+                <img
+                  class="res-game__right-answers-icon"
+                  src="./public/assets/icons/artist.png"
+                  alt="artist"
+                />
+                <span class="res-game__right-answers-number">8</span> / 10</span
+              >
+            </p>
+          </div>
+        </header>
+
+        <div class="res-game__body">
+          <div class="res-game__container">
+            <div class="rs-pic rs-pic_was-wrong-answer">
+              <div class="rs-pic__container"></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <footer class="footer" id="footer">
         <div class="container footer__container">

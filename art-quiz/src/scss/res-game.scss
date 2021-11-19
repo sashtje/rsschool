@@ -3,4 +3,153 @@
   &_is-not-visible {
     display: none;
   }
+
+  // .res-game__header
+  &__header {
+    padding: 10px 0;
+  }
+
+  // .res-game__header-top
+  &__header-top {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  // .res-game__btn-categories
+  // .res-game__btn-home
+  &__btn-categories,
+  &__btn-home {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+    img {
+      width: 35px;
+      height: 35px;
+      transition: 0.5s;
+    }
+  }
+
+  &__btn-home {
+    &:hover {
+      & img {
+        transform: rotate(-135deg);
+      }
+    }
+
+    &:active {
+      @media (hover: none) {
+        & {
+          box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+      }
+
+      & img {
+        transform: scale(1.1) rotate(-180deg);
+      }
+    }
+  }
+
+  &__btn-categories {
+    &:hover {
+      & img {
+        transform: rotate(135deg);
+      }
+    }
+
+    &:active {
+      @media (hover: none) {
+        & {
+          box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+      }
+
+      & img {
+        transform: scale(1.1) rotate(180deg);
+      }
+    }
+  }
+
+  // .res-game__title
+  &__title {
+    font-size: 1.7rem;
+    text-align: center;
+  }
+
+  // .res-game__subtitle
+  &__subtitle {
+    margin-top: 20px;
+    vertical-align: bottom;
+    font-size: 1.5rem;
+    color: #b14c00;
+  }
+
+  // .res-game__category
+  &__category {
+    margin-right: 10px;
+  }
+
+  // .res-game__category-number
+  &__category-number {
+    margin-right: 10px;
+  }
+
+  // .res-game__right-answers-icon
+  &__right-answers-icon {
+    vertical-align: bottom;
+  }
+
+  &__subtitle-result {
+    display: inline-block;
+  }
+
+  // .res-game__right-answers-number
+  &__right-answers-number {
+    margin-right: 5px;
+  }
+
+  // .res-game__body
+  &__body {
+    margin: 40px 0;
+  }
+
+  // .res-game__container
+  &__container {
+  }
+}
+
+.rs-pic {
+  // .rs-pic_was-wrong-answer
+  &_was-wrong-answer {
+  }
+
+  // .rs-pic__container
+  &__container {
+    max-width: 300px;
+    margin: 0 auto;
+
+    @media screen and (min-width: 590px) {
+      & {
+        max-width: 530px;
+        display: grid;
+        grid-template-columns: repeat(2, 250px);
+        justify-content: space-between;
+        column-gap: 30px;
+        row-gap: 30px;
+      }
+    }
+
+    @media screen and (min-width: 870px) {
+      & {
+        max-width: 810px;
+        grid-template-columns: repeat(3, 250px);
+      }
+    }
+
+    @media screen and (min-width: 1150px) {
+      & {
+        max-width: 1090px;
+        grid-template-columns: repeat(4, 250px);
+      }
+    }
+  }
 }
