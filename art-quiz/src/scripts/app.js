@@ -256,7 +256,7 @@ export class App {
     );
 
     if (!this.wereAlreadyOpened.includes("results")) {
-      this.addListenersForResultsPage(categoryType);
+      this.addListenersForResultsPage();
     }
 
     switch (categoryType) {
@@ -288,12 +288,19 @@ export class App {
     }
   };
 
-  addListenersForResultsPage(categoryType) {
+  addListenersForResultsPage() {
     this.wereAlreadyOpened.push("results");
 
     let btnHome = document.querySelector(`.res-game__btn-home`);
 
     btnHome.addEventListener("click", this.returnToHomePage);
+
+    let btnClose = document.querySelector(".res-game__btn-close-modal-window");
+    btnClose.addEventListener("click", function () {
+      let modalWindow = document.querySelector(".res-game__modal-window");
+
+      modalWindow.classList.remove("res-game__modal-window_is-shown");
+    });
 
     let container = document.querySelector(".res-game__container");
 
@@ -307,12 +314,10 @@ export class App {
 
       if (btnFullScreen) {
         //show original picture
-        /* this.showPictureOnFullScreen(); */
-        console.log("full-screen");
+        this.showPictureOnFullScreen(picture);
       } else if (btnDownload) {
         //download original picture
-        /* this.downloadPicture(); */
-        console.log("download");
+        this.downloadPicture(picture);
       } else {
         //show info about picture
         picture.classList.toggle("rs-pic_is-turned-around");
@@ -333,5 +338,51 @@ export class App {
 
     this.appSwitcher.switchPage(this.currPageType, categoryType);
     this.currPageType = categoryType;
+  };
+
+  getOriginalPictureURL = (picture) => {
+    let picFront = picture.querySelector(".rs-pic__front");
+    let urlSquarePicture =
+      getComputedStyle(picFront).getPropertyValue("--back-image");
+
+    let arrPaths = urlSquarePicture.split(".");
+    let urlOriginalPicture =
+      arrPaths.slice(0, -1).join(".") + "full." + arrPaths[arrPaths.length - 1];
+    arrPaths = urlOriginalPicture.split("/");
+    urlOriginalPicture =
+      arrPaths.slice(0, -2).join("/") +
+      "/full/" +
+      arrPaths[arrPaths.length - 1];
+
+    return urlOriginalPicture;
+  };
+
+  showPictureOnFullScreen = (picture) => {
+    let urlOriginalPicture = this.getOriginalPictureURL(picture);
+
+    let modalWindow = document.querySelector(".res-game__modal-window");
+    modalWindow.style.backgroundImage = urlOriginalPicture;
+    modalWindow.classList.add("res-game__modal-window_is-shown");
+  };
+
+  downloadPicture = (picture) => {
+    let srcOriginalPicture = this.getOriginalPictureURL(picture).slice(5, -2);
+
+    let img = new Image();
+    img.onload = () => {
+      let canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      let context = canvas.getContext("2d");
+      context.drawImage(img, 0, 0);
+
+      let link = document.createElement("a");
+      link.download = "picture.jpg";
+      link.href = canvas.toDataURL();
+      link.click();
+      link.delete;
+    };
+    img.src = srcOriginalPicture;
+    img.crossOrigin = "anonymous";
   };
 }

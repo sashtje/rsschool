@@ -360,8 +360,8 @@ export class Switcher {
       let pictureName = jsonObj.nameEn;
       let artistName = jsonObj.authorEn;
       if (objSettings.lang === consts.RU) {
-        let pictureName = jsonObj.name;
-        let artistName = jsonObj.author;
+        pictureName = jsonObj.name;
+        artistName = jsonObj.author;
       }
       let pictureYear = jsonObj.year;
 

@@ -175,12 +175,17 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.9);
-    background-image: url("../assets/test/19full.webp");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    display: none;
-    overflow: hidden;
+    opacity: 0;
+    transition: 0.3s;
+    transform: translateX(-100%);
+
+    &_is-shown {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   &__btn-close-modal-window {
@@ -269,7 +274,6 @@
     --back-image: url("");
 
     &::after {
-      /* background-image: url("../assets/test/14.webp"); */
       background-image: var(--back-image);
       background-size: cover;
       background-position: top center;
