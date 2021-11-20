@@ -92,9 +92,17 @@ export class App {
       let target = event.target;
 
       if (target.closest(".main-page__artist-quiz-btn")) {
-        this.openArtistCategoriesPage();
+        this.openCategoriesPage(
+          consts.ARTIST_CATEGORY,
+          "artist-category",
+          ".art-cat"
+        );
       } else if (target.closest(".main-page__picture-quiz-btn")) {
-        this.openPictureCategoriesPage();
+        this.openCategoriesPage(
+          consts.PICTURE_CATEGORY,
+          "picture-category",
+          ".pic-cat"
+        );
       }
     });
   }
@@ -153,12 +161,12 @@ export class App {
 
   async downloadDataImages() {
     try {
-      let response = await fetch(
+      /* let response = await fetch(
         "https://raw.githubusercontent.com/sashtje/image-data/master/images.json"
       );
       this.dataImages = await response.json();
 
-      console.log(this.dataImages);
+      console.log(this.dataImages); */
 
       this.turnOffPreloader();
     } catch (err) {
@@ -183,44 +191,47 @@ export class App {
     }
   }
 
-  openArtistCategoriesPage = () => {
+  openCategoriesPage = (categoryType, categoryName, categoryClass) => {
     this.checkForSwitchingSoundEffect();
 
-    this.appSwitcher.switchPage(this.currPageType, consts.ARTIST_CATEGORY);
-    this.currPageType = consts.ARTIST_CATEGORY;
+    this.appSwitcher.switchPage(this.currPageType, categoryType);
+    this.currPageType = categoryType;
 
-    if (!this.wereAlreadyOpened.includes("artist-category"))
-      this.addListenersForArtistCategoryPage();
+    if (!this.wereAlreadyOpened.includes(categoryName))
+      this.addListenersForCategoryPage(
+        categoryType,
+        categoryName,
+        categoryClass
+      );
   };
 
-  openPictureCategoriesPage = () => {
-    this.checkForSwitchingSoundEffect();
+  addListenersForCategoryPage(categoryType, categoryName, categoryClass) {
+    this.wereAlreadyOpened.push(categoryName);
 
-    this.appSwitcher.switchPage(this.currPageType, consts.PICTURE_CATEGORY);
-    this.currPageType = consts.PICTURE_CATEGORY;
-
-    if (!this.wereAlreadyOpened.includes("picture-category"))
-      this.addListenersForPictureCategoryPage();
-  };
-
-  addListenersForArtistCategoryPage() {
-    this.wereAlreadyOpened.push("artist-category");
-
-    let btnHome = document.querySelector(".art-cat .cat__btn-home");
+    let btnHome = document.querySelector(`${categoryClass} .cat__btn-home`);
 
     btnHome.addEventListener("click", this.returnToHomePage);
 
-    //повесить обработчик на .art-cat .cat__container
-  }
+    let container = document.querySelector(`${categoryClass} .cat__container`);
 
-  addListenersForPictureCategoryPage() {
-    this.wereAlreadyOpened.push("picture-category");
+    container.addEventListener("click", (e) => {
+      let target = e.target;
+      let btn = target.closest(".category__res-btn");
+      let category = target.closest(".category");
 
-    let btnHome = document.querySelector(".pic-cat .cat__btn-home");
+      if (!btn && !category) return;
 
-    btnHome.addEventListener("click", this.returnToHomePage);
+      let categoryNumber =
+        category.querySelector(".category__number").textContent;
 
-    //повесить обработчик на .pic-cat .cat__container
+      if (btn) {
+        //show results
+        console.log("btn");
+      } else {
+        //start game
+        console.log("category");
+      }
+    });
   }
 
   returnToHomePage = () => {
