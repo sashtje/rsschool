@@ -21,12 +21,23 @@
     />
   </head>
   <body>
+    <div class="preloader">
+      <svg
+        class="preloader__image"
+        role="img"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 512 512"
+      >
+        <path
+          fill="currentColor"
+          d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+        ></path>
+      </svg>
+    </div>
+
     <div class="app" id="app">
       <!-- home page -->
-      <section
-        class="app__main-page main-page main-page_is-not-visible"
-        id="main-page"
-      >
+      <section class="app__main-page main-page" id="main-page">
         <header class="main-page__header">
           <div class="container">
             <div class="main-page__header-top">
@@ -41,7 +52,12 @@
 
             <div class="main-page__header-bottom">
               <div class="main-page__app-icon">
-                <img src="public/assets/svg/icon.svg" alt="app icon" />
+                <img
+                  src="public/assets/svg/icon.svg"
+                  alt="app icon"
+                  width="80"
+                  height="80"
+                />
               </div>
               <h1 class="main-page__title">Art Quiz</h1>
             </div>
@@ -230,7 +246,10 @@
 
       <!-- res-game_is-not-visible -->
       <!-- game results page -->
-      <section class="app__res-game res-game" id="res-game">
+      <section
+        class="app__res-game res-game res-game_is-not-visible"
+        id="res-game"
+      >
         <header class="res-game__header">
           <div class="container">
             <div class="res-game__header-top">
@@ -444,9 +463,9 @@
           </div>
         </div>
 
-        <!-- <div class="res-game__modal-window">
+        <div class="res-game__modal-window">
           <button class="res-game__btn-close-modal-window"></button>
-        </div> -->
+        </div>
       </section>
 
       <footer class="footer" id="footer">

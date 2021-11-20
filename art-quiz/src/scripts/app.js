@@ -21,7 +21,7 @@ export class App {
 
     this.addSounds();
 
-    /* this.downloadDataImages(); */
+    this.downloadDataImages();
 
     /* write self-assessment to the console */
     sayHi();
@@ -158,10 +158,28 @@ export class App {
       );
       this.dataImages = await response.json();
 
-      /* console.log(this.dataImages); */
+      console.log(this.dataImages);
+
+      this.turnOffPreloader();
     } catch (err) {
       console.log("Failed to download images.json: ");
       console.log(err);
+    }
+  }
+
+  turnOffPreloader() {
+    let preloader = document.querySelector(".preloader");
+
+    preloader.addEventListener("transitionend", handlePreloaderTransitionEnd);
+    preloader.classList.add("preloader_is-hiding");
+
+    function handlePreloaderTransitionEnd() {
+      preloader.style.display = "none";
+      preloader.classList.remove("preloader_is-hiding");
+      preloader.removeEventListener(
+        "transitionend",
+        handlePreloaderTransitionEnd
+      );
     }
   }
 
