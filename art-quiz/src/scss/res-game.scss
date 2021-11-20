@@ -95,7 +95,21 @@
 
   // .res-game__right-answers-icon
   &__right-answers-icon {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 48px auto;
     vertical-align: bottom;
+
+    &_artist {
+      background-image: url("../assets/icons/artist.png");
+    }
+
+    &_picture {
+      background-image: url("../assets/icons/picture.png");
+    }
   }
 
   &__subtitle-result {
@@ -201,10 +215,13 @@
   transition: outline 0.5s;
 
   &:hover {
-    /* .rs-pic__container {
-      transform: rotateY(0.5turn);
-    } */
     outline-color: rgb(255, 0, 0, 0.5);
+  }
+
+  &_is-turned-around {
+    .rs-pic__container {
+      transform: rotateY(0.5turn);
+    }
   }
 
   // .rs-pic_was-wrong-answer
@@ -239,7 +256,7 @@
     position: relative;
     padding-bottom: 100%;
     transform-style: preserve-3d;
-    transition: transform 3s;
+    transition: transform 1.5s;
   }
 
   // .rs-pic__front
@@ -249,9 +266,11 @@
     height: 100%;
     transform-style: preserve-3d;
     cursor: pointer;
+    --back-image: url("");
 
     &::after {
-      background-image: url("../assets/test/14.webp");
+      /* background-image: url("../assets/test/14.webp"); */
+      background-image: var(--back-image);
       background-size: cover;
       background-position: top center;
       position: absolute;

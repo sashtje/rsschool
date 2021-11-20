@@ -161,12 +161,12 @@ export class App {
 
   async downloadDataImages() {
     try {
-      /* let response = await fetch(
+      let response = await fetch(
         "https://raw.githubusercontent.com/sashtje/image-data/master/images.json"
       );
       this.dataImages = await response.json();
 
-      console.log(this.dataImages); */
+      console.log(this.dataImages);
 
       this.turnOffPreloader();
     } catch (err) {
@@ -243,7 +243,12 @@ export class App {
   openResultsPage = (categoryType, categoryNumber) => {
     this.checkForSwitchingSoundEffect();
 
-    this.appSwitcher.switchPage(this.currPageType, consts.RESULTS);
+    this.appSwitcher.switchPage(
+      this.currPageType,
+      consts.RESULTS,
+      categoryNumber,
+      this.dataImages
+    );
     this.currPageType = consts.RESULTS;
 
     let btnBackToCategories = document.querySelector(
@@ -289,6 +294,30 @@ export class App {
     let btnHome = document.querySelector(`.res-game__btn-home`);
 
     btnHome.addEventListener("click", this.returnToHomePage);
+
+    let container = document.querySelector(".res-game__container");
+
+    container.addEventListener("click", (e) => {
+      let target = e.target;
+      let btnFullScreen = target.closest(".rs-pic__full-screen-btn");
+      let btnDownload = target.closest(".rs-pic__download-btn");
+      let picture = target.closest(".rs-pic");
+
+      if (!btnFullScreen && !btnDownload && !picture) return;
+
+      if (btnFullScreen) {
+        //show original picture
+        /* this.showPictureOnFullScreen(); */
+        console.log("full-screen");
+      } else if (btnDownload) {
+        //download original picture
+        /* this.downloadPicture(); */
+        console.log("download");
+      } else {
+        //show info about picture
+        picture.classList.toggle("rs-pic_is-turned-around");
+      }
+    });
   }
 
   handleBackToArtistCategories = () => {

@@ -10,11 +10,14 @@ export class Switcher {
     this.app.addEventListener("transitionend", this.handleTransitionEndForPage);
   }
 
-  switchPage(from, to) {
+  switchPage(from, to, categoryNumber, fileJSON) {
     this.from = from;
     this.to = to;
     this.fromPageID = this.getPageID(from);
     this.toPageID = this.getPageID(to);
+    //for results and games
+    this.categoryNumber = categoryNumber;
+    this.fileJSON = fileJSON;
 
     this.app.classList.toggle("app_is-hide");
   }
@@ -87,6 +90,7 @@ export class Switcher {
       case consts.PICTURE_QUIZ:
         break;
       case consts.RESULTS:
+        this.generateResultsPage();
         break;
     }
   }
@@ -281,6 +285,109 @@ export class Switcher {
       case consts.RU:
         titleCategory.textContent = "Категории картин";
         break;
+    }
+  }
+
+  generateResultsPage() {
+    let resTitle = document.querySelector(".res-game__title");
+    let category = document.querySelector(".res-game__category");
+
+    switch (objSettings.lang) {
+      case consts.EN:
+        resTitle.textContent = "Results";
+        category.textContent = "Category";
+        break;
+
+      case consts.RU:
+        resTitle.textContent = "Результаты";
+        category.textContent = "Категория";
+        break;
+    }
+
+    let categoryNumber = document.querySelector(".res-game__category-number");
+    categoryNumber.textContent = this.categoryNumber;
+
+    let generalGameRes = document.querySelector(
+      ".res-game__right-answers-number"
+    );
+    let categoryObj;
+    let resIcon = document.querySelector(".res-game__right-answers-icon");
+
+    switch (this.from) {
+      case consts.ARTIST_CATEGORY:
+        categoryObj = arrArtistCategories[this.categoryNumber - 1];
+        if (
+          resIcon.classList.contains("res-game__right-answers-icon_picture")
+        ) {
+          resIcon.classList.remove("res-game__right-answers-icon_picture");
+        }
+        if (!resIcon.classList.contains("res-game__right-answers-icon_artist"))
+          resIcon.classList.add("res-game__right-answers-icon_artist");
+        break;
+
+      case consts.PICTURE_CATEGORY:
+        categoryObj = arrPictureCategories[this.categoryNumber - 1];
+        if (resIcon.classList.contains("res-game__right-answers-icon_artist")) {
+          resIcon.classList.remove("res-game__right-answers-icon_artist");
+        }
+        if (!resIcon.classList.contains("res-game__right-answers-icon_picture"))
+          resIcon.classList.add("res-game__right-answers-icon_picture");
+        break;
+    }
+
+    generalGameRes.textContent = categoryObj.numberRightAnswers;
+
+    this.fillContainerWithResultsGallery(categoryObj);
+  }
+
+  fillContainerWithResultsGallery(categoryObj) {
+    let container = document.querySelector(".res-game__container");
+
+    container.innerHTML = "";
+
+    for (let i = 1; i <= categoryObj.pictures; i++) {
+      //create one picture
+      let div = document.createElement("div");
+
+      div.className = "res-game__rs-pic rs-pic";
+
+      if (categoryObj.results[i - 1] === 0) {
+        div.className += " rs-pic_was-wrong-answer";
+      }
+
+      let jsonIndex = categoryObj.firstPic + i - 1;
+      let jsonObj = this.fileJSON[jsonIndex - 1];
+      let pictureName = jsonObj.nameEn;
+      let artistName = jsonObj.authorEn;
+      if (objSettings.lang === consts.RU) {
+        let pictureName = jsonObj.name;
+        let artistName = jsonObj.author;
+      }
+      let pictureYear = jsonObj.year;
+
+      div.innerHTML = `<div class="rs-pic__container">
+                <div class="rs-pic__back">
+                  <div class="rs-pic__icon-answer"></div>
+                  <div class="rs-pic__picture-title">
+                    "${pictureName}"
+                  </div>
+                  <div class="rs-pic__author">${artistName}</div>
+                  <div class="rs-pic__year">${pictureYear}</div>
+                </div>
+
+                <div class="rs-pic__front">
+                  <button class="rs-pic__full-screen-btn"></button>
+                  <button class="rs-pic__download-btn"></button>
+                </div>
+              </div>`;
+
+      let picFront = div.querySelector(".rs-pic__front");
+      picFront.style.setProperty(
+        "--back-image",
+        `url("https://raw.githubusercontent.com/sashtje/image-data/master/img/${jsonIndex}.webp")`
+      );
+
+      container.append(div);
     }
   }
 }
