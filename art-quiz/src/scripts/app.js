@@ -226,7 +226,7 @@ export class App {
 
       if (btn) {
         //show results
-        console.log("btn");
+        this.openResultsPage(categoryType, categoryNumber);
       } else {
         //start game
         console.log("category");
@@ -238,5 +238,71 @@ export class App {
     this.appSwitcher.switchPage(this.currPageType, consts.HOME);
     this.checkForSwitchingSoundEffect();
     this.currPageType = consts.HOME;
+  };
+
+  openResultsPage = (categoryType, categoryNumber) => {
+    this.checkForSwitchingSoundEffect();
+
+    this.appSwitcher.switchPage(this.currPageType, consts.RESULTS);
+    this.currPageType = consts.RESULTS;
+
+    let btnBackToCategories = document.querySelector(
+      ".res-game__btn-categories"
+    );
+
+    if (!this.wereAlreadyOpened.includes("results")) {
+      this.addListenersForResultsPage(categoryType);
+    }
+
+    switch (categoryType) {
+      case consts.ARTIST_CATEGORY:
+        try {
+          btnBackToCategories.removeEventListener(
+            "click",
+            this.handleBackToPictureCategories
+          );
+        } catch (e) {}
+        btnBackToCategories.addEventListener(
+          "click",
+          this.handleBackToArtistCategories
+        );
+        break;
+
+      case consts.PICTURE_CATEGORY:
+        try {
+          btnBackToCategories.removeEventListener(
+            "click",
+            this.handleBackToArtistCategories
+          );
+        } catch (e) {}
+        btnBackToCategories.addEventListener(
+          "click",
+          this.handleBackToPictureCategories
+        );
+        break;
+    }
+  };
+
+  addListenersForResultsPage(categoryType) {
+    this.wereAlreadyOpened.push("results");
+
+    let btnHome = document.querySelector(`.res-game__btn-home`);
+
+    btnHome.addEventListener("click", this.returnToHomePage);
+  }
+
+  handleBackToArtistCategories = () => {
+    this.returnToCategoriesPage(consts.ARTIST_CATEGORY);
+  };
+
+  handleBackToPictureCategories = () => {
+    this.returnToCategoriesPage(consts.PICTURE_CATEGORY);
+  };
+
+  returnToCategoriesPage = (categoryType) => {
+    this.checkForSwitchingSoundEffect();
+
+    this.appSwitcher.switchPage(this.currPageType, categoryType);
+    this.currPageType = categoryType;
   };
 }
