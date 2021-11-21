@@ -39,7 +39,10 @@
 
     <div class="app" id="app">
       <!-- home page -->
-      <section class="app__main-page main-page" id="main-page">
+      <section
+        class="app__main-page main-page main-page_is-not-visible"
+        id="main-page"
+      >
         <header class="main-page__header">
           <div class="container">
             <div class="main-page__header-top">
@@ -235,18 +238,142 @@
       </section>
 
       <!-- artists quiz game page -->
-      <section
-        class="app__art-game art-game art-game_is-not-visible"
-        id="art-game"
-      ></section>
+      <section class="app__art-game art-game" id="art-game">
+        <header class="header-game">
+          <div class="container">
+            <div class="header-game__top">
+              <button class="header-game__btn-categories">
+                <img
+                  src="./public/assets/svg/categories.svg"
+                  alt="categories"
+                />
+              </button>
+
+              <div class="header-game__timer">
+                <div class="header-game__timer-icon">
+                  <img src="./public/assets/svg/watch.svg" alt="watch" />
+                </div>
+                <div class="header-game__time-block">
+                  00 : <span class="header-game__time">05</span>
+                </div>
+              </div>
+
+              <button class="header-game__btn-home">
+                <img src="./public/assets/svg/home.svg" alt="home" />
+              </button>
+            </div>
+
+            <div class="header-game__bottom">
+              <p class="header-game__question">
+                Who is the author of this picture?
+              </p>
+            </div>
+          </div>
+        </header>
+
+        <div class="art-game__body">
+          <div class="container">
+            <div class="art-game__picture">
+              <div class="art-game__picture-container"></div>
+            </div>
+
+            <div class="art-game__dots game-dots">
+              <div class="game-dots__item"></div>
+              <div class="game-dots__item"></div>
+              <div class="game-dots__item"></div>
+              <div class="game-dots__item"></div>
+              <div class="game-dots__item"></div>
+              <div class="game-dots__item"></div>
+              <div class="game-dots__item"></div>
+              <div class="game-dots__item"></div>
+              <div class="game-dots__item"></div>
+              <div class="game-dots__item"></div>
+            </div>
+
+            <div class="art-game__answers">
+              <button class="art-game__answer-item">Edgar Degas</button>
+              <button class="art-game__answer-item">Veronese</button>
+              <button class="art-game__answer-item">Konstantin Makovsky</button>
+              <button class="art-game__answer-item">Michelangelo</button>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- pictures quiz game page -->
       <section
         class="app__pic-game pic-game pic-game_is-not-visible"
         id="pic-game"
-      ></section>
+      >
+        <header class="header-game">
+          <div class="container">
+            <div class="header-game__top">
+              <button class="header-game__btn-categories">
+                <img
+                  src="./public/assets/svg/categories.svg"
+                  alt="categories"
+                />
+              </button>
 
-      <!-- res-game__right-answers-icon_picture -->
+              <div class="header-game__timer">
+                <div class="header-game__timer-icon">
+                  <img src="./public/assets/svg/watch.svg" alt="watch" />
+                </div>
+                <div class="header-game__time-block">
+                  00 : <span class="header-game__time">05</span>
+                </div>
+              </div>
+
+              <button class="header-game__btn-home">
+                <img src="./public/assets/svg/home.svg" alt="home" />
+              </button>
+            </div>
+
+            <div class="header-game__bottom">
+              <p class="header-game__question">Which is Picasso picture?</p>
+            </div>
+          </div>
+        </header>
+
+        <div class="pic-game__body">
+          <div class="container">
+            <div class="pic-game__answers">
+              <div class="pic-game__answer"></div>
+              <div class="pic-game__answer"></div>
+              <div class="pic-game__answer"></div>
+              <div class="pic-game__answer"></div>
+            </div>
+
+            <div class="pic-game__dots game-dots">
+              <div class="game-dots__item"></div>
+              <div class="game-dots__item"></div>
+              <div class="game-dots__item"></div>
+              <div class="game-dots__item"></div>
+              <div class="game-dots__item"></div>
+              <div class="game-dots__item"></div>
+              <div class="game-dots__item"></div>
+              <div class="game-dots__item"></div>
+              <div class="game-dots__item"></div>
+              <div class="game-dots__item"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- modal window to show right answers -->
+      <div class="answer-modal-window modal-window">
+        <div class="modal-window__background">
+          <div class="answer-modal-window__window"></div>
+        </div>
+      </div>
+
+      <!-- modal window to show statistics -->
+      <div class="end-game-modal-window modal-window">
+        <div class="modal-window__background">
+          <div class="end-game-modal-window__window"></div>
+        </div>
+      </div>
+
       <!-- game results page -->
       <section
         class="app__res-game res-game res-game_is-not-visible"
