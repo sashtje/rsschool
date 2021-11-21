@@ -3,4 +3,48 @@
   &_is-not-visible {
     display: none;
   }
+
+  // .pic-game__body
+  &__body {
+  }
+
+  // .pic-game__answers
+  &__answers {
+    margin: 20px 0;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: minmax(100px, 250px) minmax(100px, 250px);
+    justify-content: center;
+  }
+
+  // .pic-game__answer-item
+  &__answer-item {
+    display: block;
+    padding-bottom: 100%;
+    background-image: url("../assets/test/1.webp");
+    background-size: contain;
+    background-repeat: no-repeat;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    transition: 0.5s;
+
+    &:hover {
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5),
+        -3px -3px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    &:active {
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5),
+        -3px -3px 10px rgba(0, 0, 0, 0.5),
+        inset 3px 3px 10px rgba(255, 255, 255, 0.5),
+        inset -3px -3px 10px rgba(255, 255, 255, 0.5);
+    }
+
+    &_is-right-answer {
+      outline: 3px solid rgb(10, 175, 51);
+    }
+
+    &_is-wrong-answer {
+      outline: 3px solid #ff0b03;
+    }
+  }
 }
