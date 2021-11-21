@@ -100,6 +100,85 @@
     padding: 10px 0;
     border-radius: 10px;
     transition: 0.5s;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+    &:hover {
+      box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    &:active {
+      background-color: $save-btn;
+    }
+  }
+}
+
+.end-game-modal-window {
+  // .end-game-modal-window__icon-result
+  &__icon-result {
+    width: 100px;
+    margin: 0 auto;
+    height: 100px;
+    /* background-image: url("../assets/icons/skull-and-bones.png"); */
+    /* background-image: url("../assets/icons/good-job.png"); */
+    background-image: url("../assets/icons/cup.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  // .end-game-modal-window__result-score
+  &__result-score {
+    margin: 30px 0;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  // .end-game-modal-window__number-right-answers
+  &__number-right-answers {
+  }
+
+  // .end-game-modal-window__message
+  &__message {
+    text-align: center;
+    font-size: 1.3rem;
+  }
+
+  // .end-game-modal-window__btn-container
+  &__btn-container {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+  }
+
+  // .end-game-modal-window__btn-categories
+  &__btn-categories {
+    flex: 1 0 auto;
+    text-align: center;
+    background-color: #b14c00;
+    color: #ffffff;
+    padding: 10px 0;
+    border-radius: 10px;
+    transition: 0.5s;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+    &:hover {
+      box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    &:active {
+      background-color: $save-btn;
+    }
+  }
+
+  // .end-game-modal-window__btn-home
+  &__btn-home {
+    flex: 1 0 auto;
+    text-align: center;
+    background-color: #b14c00;
+    color: #ffffff;
+    padding: 10px 0;
+    border-radius: 10px;
+    transition: 0.5s;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
     &:hover {
       box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);

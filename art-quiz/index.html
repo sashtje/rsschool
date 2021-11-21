@@ -363,15 +363,7 @@
       </section>
 
       <!-- modal window to show answers -->
-      <div
-        class="
-          answer-modal-window
-          modal-window
-          modal-window_is-shown
-          modal-window_is-shown-background
-          modal-window_is-shown-window
-        "
-      >
+      <div class="answer-modal-window modal-window">
         <div class="modal-window__background">
           <div class="modal-window__window">
             <div class="answer-modal-window__icon-answer"></div>
@@ -392,7 +384,24 @@
       <!-- modal window to show statistics -->
       <div class="end-game-modal-window modal-window">
         <div class="modal-window__background">
-          <div class="modal-window__window"></div>
+          <div class="modal-window__window">
+            <div class="end-game-modal-window__icon-result"></div>
+
+            <p class="end-game-modal-window__result-score">
+              <span class="end-game-modal-window__number-right-answers">5</span>
+              / 10
+            </p>
+
+            <div class="end-game-modal-window__message">Game Over</div>
+
+            <div class="end-game-modal-window__btn-container">
+              <button class="end-game-modal-window__btn-categories">
+                Categories
+              </button>
+
+              <button class="end-game-modal-window__btn-home">Home</button>
+            </div>
+          </div>
         </div>
       </div>
 
