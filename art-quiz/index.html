@@ -238,10 +238,7 @@
       </section>
 
       <!-- artists quiz game page -->
-      <section
-        class="app__art-game art-game art-cat_is-not-visible"
-        id="art-game"
-      >
+      <section class="app__art-game art-game" id="art-game">
         <header class="header-game">
           <div class="container">
             <div class="header-game__top">
@@ -304,7 +301,10 @@
       </section>
 
       <!-- pictures quiz game page -->
-      <section class="app__pic-game pic-game" id="pic-game">
+      <section
+        class="app__pic-game pic-game pic-game_is-not-visible"
+        id="pic-game"
+      >
         <header class="header-game">
           <div class="container">
             <div class="header-game__top">
@@ -362,17 +362,37 @@
         </div>
       </section>
 
-      <!-- modal window to show right answers -->
-      <div class="answer-modal-window modal-window">
+      <!-- modal window to show answers -->
+      <div
+        class="
+          answer-modal-window
+          modal-window
+          modal-window_is-shown
+          modal-window_is-shown-background
+          modal-window_is-shown-window
+        "
+      >
         <div class="modal-window__background">
-          <div class="answer-modal-window__window"></div>
+          <div class="modal-window__window">
+            <div class="answer-modal-window__icon-answer"></div>
+
+            <div class="answer-modal-window__picture">
+              <div class="answer-modal-window__picture-container"></div>
+            </div>
+
+            <h3 class="answer-modal-window__picture-name">"Title"</h3>
+            <p class="answer-modal-window__picture-author">Artist</p>
+            <p class="answer-modal-window__picture-year">year</p>
+
+            <button class="answer-modal-window__btn-next">Next</button>
+          </div>
         </div>
       </div>
 
       <!-- modal window to show statistics -->
       <div class="end-game-modal-window modal-window">
         <div class="modal-window__background">
-          <div class="end-game-modal-window__window"></div>
+          <div class="modal-window__window"></div>
         </div>
       </div>
 

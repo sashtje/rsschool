@@ -1,0 +1,112 @@
+.modal-window {
+  &_is-shown {
+    .modal-window__background {
+      display: block;
+    }
+  }
+
+  &_is-shown-background {
+    .modal-window__background {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  &_is-shown-window {
+    .modal-window__window {
+      left: 50%;
+    }
+  }
+
+  // .modal-window__background
+  &__background {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    transition: 0.3s;
+  }
+
+  // .modal-window__window
+  &__window {
+    position: absolute;
+    top: 50%;
+    left: -100%;
+    padding: 20px;
+    width: 270px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: $bg-color;
+    transform: translateX(-50%) translateY(-50%);
+    transition: 0.3s;
+    border-radius: 10px;
+  }
+}
+
+.answer-modal-window {
+  // .answer-modal-window__icon-answer
+  &__icon-answer {
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    margin: 0 auto;
+    /* background-image: url("../assets/svg/wrong-answer.svg"); */
+    background-image: url("../assets/svg/right-answer.svg");
+    background-size: 40px 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  // .answer-modal-window__picture
+  &__picture {
+    margin: 30px auto;
+    width: 100%;
+  }
+
+  // .answer-modal-window__picture-container
+  &__picture-container {
+    padding-bottom: 100%;
+    background-image: url("../assets/test/1.webp");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+  }
+
+  // .answer-modal-window__picture-name
+  &__picture-name {
+  }
+
+  // .answer-modal-window__picture-author
+  &__picture-author {
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  // .answer-modal-window__picture-year
+  &__picture-year {
+    text-align: right;
+  }
+
+  // .answer-modal-window__btn-next
+  &__btn-next {
+    margin-top: 30px;
+    width: 100%;
+    background-color: #b14c00;
+    color: #ffffff;
+    padding: 10px 0;
+    border-radius: 10px;
+    transition: 0.5s;
+
+    &:hover {
+      box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    &:active {
+      background-color: $save-btn;
+    }
+  }
+}
