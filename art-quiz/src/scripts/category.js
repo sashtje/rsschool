@@ -4,7 +4,7 @@ class Category {
   wasPlayed = false;
   results = [];
   numberRightAnswers = 0;
-  pictures = 10;
+  pictures = consts.PICTURES_IN_CATEGORY;
 
   constructor(numberCategory, firstPic, srcCategoryCover, typeCategory) {
     this.number = numberCategory;
@@ -51,9 +51,9 @@ let arrArtistCategories = [];
 let arrPictureCategories = [];
 
 for (let i = 1; i <= consts.CATEGORIES; i++) {
-  let firstPicArtist = 1 + (i - 1) * 10;
+  let firstPicArtist = 1 + (i - 1) * consts.PICTURES_IN_CATEGORY;
   let srcCatCoverArtist = `../assets/img/artist-covers/cover-${i}.jpg`;
-  let firstPicPicture = 121 + (i - 1) * 10;
+  let firstPicPicture = 121 + (i - 1) * consts.PICTURES_IN_CATEGORY;
   let srcCatCoverPicture = `../assets/img/picture-covers/cover-${i}.jpg`;
 
   arrArtistCategories.push(

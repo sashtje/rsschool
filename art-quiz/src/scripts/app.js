@@ -31,17 +31,61 @@ export class App {
     this.audioSwitch = new Audio();
     this.audioSwitch.src =
       "./public/assets/sound/sound-for-switching-pages.mp3";
+
+    this.rightAnswerAudio = new Audio();
+    this.rightAnswerAudio.src = "./public/assets/sound/right-answer.mp3";
+
+    this.wrongAnswerAudio = new Audio();
+    this.wrongAnswerAudio.src = "./public/assets/sound/wrong-answer.mp3";
+
+    this.gameOverAudio = new Audio();
+    this.gameOverAudio.src = "./public/assets/sound/game-over.mp3";
+
+    this.goodJobAudio = new Audio();
+    this.goodJobAudio.src = "./public/assets/sound/good-job.mp3";
+
+    this.victoryAudio = new Audio();
+    this.victoryAudio.src = "./public/assets/sound/victory.mp3";
   }
 
-  checkForSwitchingSoundEffect() {
+  checkForSwitchingSoundEffect(sound) {
     if (objSettings.sound === consts.ON) {
-      this.audioSwitch.volume = objSettings.volumeSound;
-      this.audioSwitch.play();
+      switch (sound) {
+        case "switch-page":
+          this.audioSwitch.volume = objSettings.volumeSound;
+          this.audioSwitch.play();
+          break;
+
+        case "right-answer":
+          this.rightAnswerAudio.volume = objSettings.volumeSound;
+          this.rightAnswerAudio.play();
+          break;
+
+        case "wrong-answer":
+          this.wrongAnswerAudio.volume = objSettings.volumeSound;
+          this.wrongAnswerAudio.play();
+          break;
+
+        case "game-over":
+          this.gameOverAudio.volume = objSettings.volumeSound;
+          this.gameOverAudio.play();
+          break;
+
+        case "good-job":
+          this.goodJobAudio.volume = objSettings.volumeSound;
+          this.goodJobAudio.play();
+          break;
+
+        case "victory":
+          this.victoryAudio.volume = objSettings.volumeSound;
+          this.victoryAudio.play();
+          break;
+      }
     }
   }
 
   openSettingsPage = () => {
-    this.checkForSwitchingSoundEffect();
+    this.checkForSwitchingSoundEffect("switch-page");
 
     this.appSwitcher.switchPage(this.currPageType, consts.SETTINGS);
     this.currPageType = consts.SETTINGS;
@@ -192,7 +236,7 @@ export class App {
   }
 
   openCategoriesPage = (categoryType, categoryName, categoryClass) => {
-    this.checkForSwitchingSoundEffect();
+    this.checkForSwitchingSoundEffect("switch-page");
 
     this.appSwitcher.switchPage(this.currPageType, categoryType);
     this.currPageType = categoryType;
@@ -236,12 +280,12 @@ export class App {
 
   returnToHomePage = () => {
     this.appSwitcher.switchPage(this.currPageType, consts.HOME);
-    this.checkForSwitchingSoundEffect();
+    this.checkForSwitchingSoundEffect("switch-page");
     this.currPageType = consts.HOME;
   };
 
   openResultsPage = (categoryType, categoryNumber) => {
-    this.checkForSwitchingSoundEffect();
+    this.checkForSwitchingSoundEffect("switch-page");
 
     this.appSwitcher.switchPage(
       this.currPageType,
@@ -334,7 +378,7 @@ export class App {
   };
 
   returnToCategoriesPage = (categoryType) => {
-    this.checkForSwitchingSoundEffect();
+    this.checkForSwitchingSoundEffect("switch-page");
 
     this.appSwitcher.switchPage(this.currPageType, categoryType);
     this.currPageType = categoryType;

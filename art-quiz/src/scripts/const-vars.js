@@ -13,6 +13,7 @@ export const ON = true;
 export const OFF = false;
 
 export const CATEGORIES = 12;
+export const PICTURES_IN_CATEGORY = 10;
 
 export const ARTIST_SRC_ICON_BTN = "public/assets/icons/artist.png";
 export const PICTURE_SRC_ICON_BTN = "public/assets/icons/picture.png";
