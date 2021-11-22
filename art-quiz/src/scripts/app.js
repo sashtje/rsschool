@@ -3,6 +3,8 @@ import { Switcher } from "./switcher.js";
 import * as consts from "./const-vars.js";
 import objSettings from "./settings.js";
 import * as func from "./func.js";
+import { Game } from "./game.js";
+import { arrArtistCategories, arrPictureCategories } from "./category.js";
 
 /* the main class of the quiz */
 export class App {
@@ -210,8 +212,6 @@ export class App {
       );
       this.dataImages = await response.json();
 
-      console.log(this.dataImages);
-
       this.turnOffPreloader();
     } catch (err) {
       console.log("Failed to download images.json: ");
@@ -273,7 +273,7 @@ export class App {
         this.openResultsPage(categoryType, categoryNumber);
       } else {
         //start game
-        console.log("category");
+        this.startGame(categoryType, categoryNumber);
       }
     });
   }
@@ -429,4 +429,446 @@ export class App {
     img.src = srcOriginalPicture;
     img.crossOrigin = "anonymous";
   };
+
+  startGame = (categoryType, categoryNumber) => {
+    //detect category Object
+    let categoryObj;
+
+    switch (categoryType) {
+      case consts.ARTIST_CATEGORY:
+        categoryObj = arrArtistCategories[categoryNumber - 1];
+        break;
+
+      case consts.PICTURE_CATEGORY:
+        categoryObj = arrPictureCategories[categoryNumber - 1];
+        break;
+    }
+
+    this.gameObj = new Game(categoryObj, this.dataImages);
+
+    switch (categoryType) {
+      case consts.ARTIST_CATEGORY:
+        this.openArtGamePage();
+        break;
+
+      case consts.PICTURE_CATEGORY:
+        this.openPicGamePage();
+        break;
+    }
+  };
+
+  openArtGamePage() {
+    this.checkForSwitchingSoundEffect("switch-page");
+
+    this.appSwitcher.switchPage(
+      this.currPageType,
+      consts.ARTIST_QUIZ,
+      undefined,
+      this.dataImages,
+      this.gameObj
+    );
+    this.currPageType = consts.ARTIST_QUIZ;
+
+    if (!this.wereAlreadyOpened.includes("art-game")) {
+      this.addListenersForArtGamePage();
+    }
+  }
+
+  openPicGamePage() {
+    this.checkForSwitchingSoundEffect("switch-page");
+
+    this.appSwitcher.switchPage(
+      this.currPageType,
+      consts.PICTURE_QUIZ,
+      undefined,
+      this.dataImages,
+      this.gameObj
+    );
+    this.currPageType = consts.PICTURE_QUIZ;
+
+    if (!this.wereAlreadyOpened.includes("pic-game")) {
+      this.addListenersForPicGamePage();
+    }
+  }
+
+  addListenersForArtGamePage() {
+    this.wereAlreadyOpened.push("art-game");
+
+    let btnCategories = document.querySelector(
+      ".art-game .header-game__btn-categories"
+    );
+
+    btnCategories.addEventListener("click", () => {
+      this.openCategoriesPage(
+        consts.ARTIST_CATEGORY,
+        "artist-category",
+        ".art-cat"
+      );
+    });
+
+    let btnHome = document.querySelector(".art-game .header-game__btn-home");
+
+    btnHome.addEventListener("click", this.returnToHomePage);
+
+    let artGameAnswers = document.querySelector(".art-game__answers");
+
+    artGameAnswers.addEventListener("click", (e) => {
+      let target = e.target;
+      let btn = target.closest(".art-game__answer-item");
+      if (!btn) return;
+
+      let itWasRightAnswer;
+      let indexUserAnswer;
+      let answerOptions = document.querySelectorAll(".art-game__answer-item");
+
+      for (let i = 0; i < answerOptions.length; i++) {
+        if (answerOptions[i] === btn) {
+          indexUserAnswer = i;
+          break;
+        }
+      }
+
+      itWasRightAnswer = indexUserAnswer === this.gameObj.indexRightAnswer;
+      let gameDots = document.querySelectorAll(
+        ".art-game__dots .game-dots__item"
+      );
+      let soundType;
+      let srcAnswer;
+
+      if (itWasRightAnswer) {
+        //
+        btn.classList.add("art-game__answer-item_is-right-answer");
+        gameDots[this.gameObj.curPicture].classList.add(
+          "game-dots__item_is-right-answer"
+        );
+        this.gameObj.results[this.gameObj.curPicture] = 1;
+        this.gameObj.numberRightAnswers++;
+        soundType = "right-answer";
+        srcAnswer = 'url("./public/assets/svg/right-answer.svg")';
+      } else {
+        //
+        btn.classList.add("art-game__answer-item_is-wrong-answer");
+        gameDots[this.gameObj.curPicture].classList.add(
+          "game-dots__item_is-wrong-answer"
+        );
+        this.gameObj.results[this.gameObj.curPicture] = 0;
+        soundType = "wrong-answer";
+        srcAnswer = 'url("./public/assets/svg/wrong-answer.svg")';
+      }
+
+      this.checkForSwitchingSoundEffect(soundType);
+
+      //prepare modal window
+      let answerModalWindow = document.querySelector(".answer-modal-window");
+
+      answerModalWindow.classList.add("modal-window_is-shown");
+      let iconAnswerModalWindow = document.querySelector(
+        ".answer-modal-window__icon-answer"
+      );
+      let pictureContainer = document.querySelector(
+        ".answer-modal-window__picture-container"
+      );
+      let pictureName = document.querySelector(
+        ".answer-modal-window__picture-name"
+      );
+      let pictureAuthor = document.querySelector(
+        ".answer-modal-window__picture-author"
+      );
+      let pictureYear = document.querySelector(
+        ".answer-modal-window__picture-year"
+      );
+
+      iconAnswerModalWindow.style.backgroundImage = srcAnswer;
+
+      let jsonIndex =
+        this.gameObj.categoryObj.firstPic + this.gameObj.curPicture;
+
+      let pictureURL = `https://raw.githubusercontent.com/sashtje/image-data/master/img/${jsonIndex}.webp`;
+      pictureContainer.style.backgroundImage = `url("${pictureURL}")`;
+
+      pictureYear.textContent = this.dataImages[jsonIndex - 1].year;
+
+      switch (objSettings.lang) {
+        case consts.EN:
+          pictureName.textContent = this.dataImages[jsonIndex - 1].nameEn;
+          pictureAuthor.textContent = this.dataImages[jsonIndex - 1].authorEn;
+          break;
+
+        case consts.RU:
+          pictureName.textContent = this.dataImages[jsonIndex - 1].name;
+          pictureAuthor.textContent = this.dataImages[jsonIndex - 1].author;
+          break;
+      }
+
+      let btnNext = document.querySelector(".answer-modal-window__btn-next");
+
+      if (!this.wereAlreadyOpened.includes("nextBtn")) {
+        btnNext.addEventListener("click", this.handleBtnNext);
+      }
+
+      //show modal window
+      setTimeout(() => {
+        answerModalWindow.classList.add("modal-window_is-shown-background");
+        answerModalWindow.classList.add("modal-window_is-shown-window");
+      }, 1);
+    });
+  }
+
+  handleBtnNext = () => {
+    this.wereAlreadyOpened.push("nextBtn");
+
+    //remove highlight for user answer
+    let answerOptions;
+    let className;
+    switch (this.currPageType) {
+      case consts.ARTIST_QUIZ:
+        className = "art-game__answer-item";
+        break;
+
+      case consts.PICTURE_QUIZ:
+        className = "pic-game__answer-item";
+        break;
+    }
+
+    answerOptions = document.querySelectorAll(`.${className}`);
+    for (let i = 0; i < answerOptions.length; i++) {
+      answerOptions[i].className = className;
+    }
+
+    this.gameObj.curPicture++;
+
+    let answerModalWindow = document.querySelector(".answer-modal-window");
+    answerModalWindow.classList.remove("modal-window_is-shown-background");
+    answerModalWindow.classList.remove("modal-window_is-shown-window");
+
+    setTimeout(() => {
+      answerModalWindow.classList.remove("modal-window_is-shown");
+
+      if (this.gameObj.curPicture === consts.PICTURES_IN_CATEGORY) {
+        //show end modal window
+        this.showEndModalWindow();
+      } else {
+        //continue the game
+        switch (this.currPageType) {
+          case consts.ARTIST_QUIZ:
+            this.openArtGamePage();
+            break;
+
+          case consts.PICTURE_QUIZ:
+            this.openPicGamePage();
+            break;
+        }
+      }
+    }, 800);
+  };
+
+  showEndModalWindow() {
+    //write results of the game to the object category
+    this.gameObj.categoryObj.wasPlayed = true;
+    this.gameObj.categoryObj.results = this.gameObj.results.slice(0);
+    this.gameObj.categoryObj.numberRightAnswers =
+      this.gameObj.numberRightAnswers;
+
+    //prepare modal window
+    let endGameModalWindow = document.querySelector(".end-game-modal-window");
+
+    endGameModalWindow.classList.add("modal-window_is-shown");
+
+    let iconModalWindow = document.querySelector(
+      ".end-game-modal-window__icon-result"
+    );
+    let score = document.querySelector(
+      ".end-game-modal-window__number-right-answers"
+    );
+    let message = document.querySelector(".end-game-modal-window__message");
+
+    if (this.gameObj.numberRightAnswers <= 5) {
+      this.checkForSwitchingSoundEffect("game-over");
+      iconModalWindow.style.backgroundImage =
+        'url("./public/assets/icons/skull-and-bones.png")';
+      message.textContent = "Game Over";
+    } else if (this.gameObj.numberRightAnswers <= 9) {
+      this.checkForSwitchingSoundEffect("good-job");
+      iconModalWindow.style.backgroundImage =
+        'url("./public/assets/icons/good-job.png")';
+      message.textContent = "Good job!";
+    } else {
+      this.checkForSwitchingSoundEffect("victory");
+      iconModalWindow.style.backgroundImage =
+        'url("./public/assets/icons/cup.png")';
+      message.textContent = "Victory!";
+    }
+    score.textContent = this.gameObj.numberRightAnswers;
+
+    //show modal window
+    setTimeout(() => {
+      endGameModalWindow.classList.add("modal-window_is-shown-background");
+      endGameModalWindow.classList.add("modal-window_is-shown-window");
+    }, 1);
+
+    if (!this.wereAlreadyOpened.includes("end-game-modal-window")) {
+      this.addEventListenersForEndGameModalWindow();
+    }
+  }
+
+  addEventListenersForEndGameModalWindow() {
+    this.wereAlreadyOpened.push("end-game-modal-window");
+
+    let btnCategories = document.querySelector(
+      ".end-game-modal-window__btn-categories"
+    );
+    let btnHome = document.querySelector(".end-game-modal-window__btn-home");
+    let endGameModalWindow = document.querySelector(".end-game-modal-window");
+
+    btnCategories.addEventListener("click", () => {
+      endGameModalWindow.classList.remove("modal-window_is-shown-background");
+      endGameModalWindow.classList.remove("modal-window_is-shown-window");
+
+      setTimeout(() => {
+        endGameModalWindow.classList.remove("modal-window_is-shown");
+        switch (this.currPageType) {
+          case consts.ARTIST_QUIZ:
+            this.returnToCategoriesPage(consts.ARTIST_CATEGORY);
+            break;
+
+          case consts.PICTURE_QUIZ:
+            this.returnToCategoriesPage(consts.PICTURE_CATEGORY);
+            break;
+        }
+      }, 800);
+    });
+
+    btnHome.addEventListener("click", () => {
+      endGameModalWindow.classList.remove("modal-window_is-shown-background");
+      endGameModalWindow.classList.remove("modal-window_is-shown-window");
+
+      setTimeout(() => {
+        endGameModalWindow.classList.remove("modal-window_is-shown");
+        this.returnToHomePage();
+      }, 800);
+    });
+  }
+
+  addListenersForPicGamePage() {
+    this.wereAlreadyOpened.push("pic-game");
+
+    let btnCategories = document.querySelector(
+      ".pic-game .header-game__btn-categories"
+    );
+
+    btnCategories.addEventListener("click", () => {
+      this.openCategoriesPage(
+        consts.PICTURE_CATEGORY,
+        "picture-category",
+        ".pic-cat"
+      );
+    });
+
+    let btnHome = document.querySelector(".pic-game .header-game__btn-home");
+
+    btnHome.addEventListener("click", this.returnToHomePage);
+
+    let picGameAnswers = document.querySelector(".pic-game__answers");
+
+    picGameAnswers.addEventListener("click", (e) => {
+      let target = e.target;
+      let btn = target.closest(".pic-game__answer-item");
+      if (!btn) return;
+
+      let itWasRightAnswer;
+      let indexUserAnswer;
+      let answerOptions = document.querySelectorAll(".pic-game__answer-item");
+
+      for (let i = 0; i < answerOptions.length; i++) {
+        if (answerOptions[i] === btn) {
+          indexUserAnswer = i;
+          break;
+        }
+      }
+
+      itWasRightAnswer = indexUserAnswer === this.gameObj.indexRightAnswer;
+      let gameDots = document.querySelectorAll(
+        ".pic-game__dots .game-dots__item"
+      );
+      let soundType;
+      let srcAnswer;
+
+      if (itWasRightAnswer) {
+        //
+        btn.classList.add("pic-game__answer-item_is-right-answer");
+        gameDots[this.gameObj.curPicture].classList.add(
+          "game-dots__item_is-right-answer"
+        );
+        this.gameObj.results[this.gameObj.curPicture] = 1;
+        this.gameObj.numberRightAnswers++;
+        soundType = "right-answer";
+        srcAnswer = 'url("./public/assets/svg/right-answer.svg")';
+      } else {
+        //
+        btn.classList.add("pic-game__answer-item_is-wrong-answer");
+        gameDots[this.gameObj.curPicture].classList.add(
+          "game-dots__item_is-wrong-answer"
+        );
+        this.gameObj.results[this.gameObj.curPicture] = 0;
+        soundType = "wrong-answer";
+        srcAnswer = 'url("./public/assets/svg/wrong-answer.svg")';
+      }
+
+      this.checkForSwitchingSoundEffect(soundType);
+
+      //prepare modal window
+      let answerModalWindow = document.querySelector(".answer-modal-window");
+
+      answerModalWindow.classList.add("modal-window_is-shown");
+      let iconAnswerModalWindow = document.querySelector(
+        ".answer-modal-window__icon-answer"
+      );
+      let pictureContainer = document.querySelector(
+        ".answer-modal-window__picture-container"
+      );
+      let pictureName = document.querySelector(
+        ".answer-modal-window__picture-name"
+      );
+      let pictureAuthor = document.querySelector(
+        ".answer-modal-window__picture-author"
+      );
+      let pictureYear = document.querySelector(
+        ".answer-modal-window__picture-year"
+      );
+
+      iconAnswerModalWindow.style.backgroundImage = srcAnswer;
+
+      let jsonIndex =
+        this.gameObj.categoryObj.firstPic + this.gameObj.curPicture;
+
+      let pictureURL = `https://raw.githubusercontent.com/sashtje/image-data/master/img/${jsonIndex}.webp`;
+      pictureContainer.style.backgroundImage = `url("${pictureURL}")`;
+
+      pictureYear.textContent = this.dataImages[jsonIndex - 1].year;
+
+      switch (objSettings.lang) {
+        case consts.EN:
+          pictureName.textContent = this.dataImages[jsonIndex - 1].nameEn;
+          pictureAuthor.textContent = this.dataImages[jsonIndex - 1].authorEn;
+          break;
+
+        case consts.RU:
+          pictureName.textContent = this.dataImages[jsonIndex - 1].name;
+          pictureAuthor.textContent = this.dataImages[jsonIndex - 1].author;
+          break;
+      }
+
+      let btnNext = document.querySelector(".answer-modal-window__btn-next");
+
+      if (!this.wereAlreadyOpened.includes("nextBtn")) {
+        btnNext.addEventListener("click", this.handleBtnNext);
+      }
+
+      //show modal window
+      setTimeout(() => {
+        answerModalWindow.classList.add("modal-window_is-shown-background");
+        answerModalWindow.classList.add("modal-window_is-shown-window");
+      }, 1);
+    });
+  }
 }

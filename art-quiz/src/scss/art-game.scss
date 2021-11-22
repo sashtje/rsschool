@@ -52,6 +52,24 @@
     &:active {
       background-color: #eeeeee;
     }
+
+    &_is-right-answer {
+      border-color: rgb(10, 175, 51);
+      background-color: rgba(10, 175, 51, 0.3);
+
+      &:hover {
+        background-color: rgba(10, 175, 51, 0.3);
+      }
+    }
+
+    &_is-wrong-answer {
+      border-color: #ff0b03;
+      background-color: rgba(255, 11, 3, 0.3);
+
+      &:hover {
+        background-color: rgba(255, 11, 3, 0.3);
+      }
+    }
   }
 }
 

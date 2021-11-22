@@ -10,7 +10,7 @@ export class Switcher {
     this.app.addEventListener("transitionend", this.handleTransitionEndForPage);
   }
 
-  switchPage(from, to, categoryNumber, fileJSON) {
+  switchPage(from, to, categoryNumber, fileJSON, gameObj) {
     this.from = from;
     this.to = to;
     this.fromPageID = this.getPageID(from);
@@ -18,6 +18,7 @@ export class Switcher {
     //for results and games
     this.categoryNumber = categoryNumber;
     this.fileJSON = fileJSON;
+    this.gameObj = gameObj;
 
     this.app.classList.toggle("app_is-hide");
   }
@@ -86,8 +87,10 @@ export class Switcher {
         this.translatePictureCategoriesPage();
         break;
       case consts.ARTIST_QUIZ:
+        this.generateArtistQuizPage();
         break;
       case consts.PICTURE_QUIZ:
+        this.generatePictureQuizPage();
         break;
       case consts.RESULTS:
         this.generateResultsPage();
@@ -236,7 +239,11 @@ export class Switcher {
         //create one category
         let div = document.createElement("div");
 
-        div.className = "cat__category category category_was-not-played";
+        if (arrCategories[i].wasPlayed) {
+          div.className = "cat__category category";
+        } else {
+          div.className = "cat__category category category_was-not-played";
+        }
         let chunkPath = "artist";
         if (pageID === "pic-cat") chunkPath = "picture";
         div.style.backgroundImage = `url("public/assets/img/${chunkPath}-covers/cover-${
@@ -388,6 +395,90 @@ export class Switcher {
       );
 
       container.append(div);
+    }
+  }
+
+  generateArtistQuizPage() {
+    if (this.gameObj.curPicture === 0) {
+      let question = document.querySelector(".art-game .header-game__question");
+
+      switch (objSettings.lang) {
+        case consts.EN:
+          question.textContent = "Who is the author of this picture?";
+          break;
+
+        case consts.RU:
+          question.textContent = "Кто автор этой картины?";
+          break;
+      }
+      //generate uniq artist names
+      this.gameObj.generateSetsArtists();
+
+      //make timer visible
+
+      let dots = document.querySelectorAll(".art-game__dots .game-dots__item");
+
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].className = "game-dots__item";
+      }
+    }
+
+    //add photo
+    let picture = document.querySelector(".art-game__picture-container");
+    let jsonIndex = this.gameObj.categoryObj.firstPic + this.gameObj.curPicture;
+
+    let pictureURL = `https://raw.githubusercontent.com/sashtje/image-data/master/img/${jsonIndex}.webp`;
+
+    picture.style.backgroundImage = `url("${pictureURL}")`;
+
+    //add answer options
+    let arrAnswers = this.gameObj.generateAnswerOptionsForArtistQuiz();
+    let answerBtns = document.querySelectorAll(".art-game__answer-item");
+
+    for (let i = 0; i < 4; i++) {
+      answerBtns[i].textContent = arrAnswers[i];
+    }
+  }
+
+  generatePictureQuizPage() {
+    if (this.gameObj.curPicture === 0) {
+      //make timer visible
+
+      let dots = document.querySelectorAll(".pic-game__dots .game-dots__item");
+
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].className = "game-dots__item";
+      }
+    }
+
+    let question = document.querySelector(".pic-game .header-game__question");
+    let pictureAuthor;
+    let numberPictureRightAnswer =
+      this.gameObj.categoryObj.firstPic + this.gameObj.curPicture;
+    let indexJSON = numberPictureRightAnswer - 1;
+
+    switch (objSettings.lang) {
+      case consts.EN:
+        pictureAuthor = this.fileJSON[indexJSON].authorEn;
+        question.textContent = `Which is a picture by ${pictureAuthor}?`;
+        break;
+
+      case consts.RU:
+        pictureAuthor = this.fileJSON[indexJSON].author;
+        question.textContent = `Какую из этих картин написал ${pictureAuthor}?`;
+        break;
+    }
+
+    //add answer options
+    let arrAnswers = this.gameObj.generateAnswerOptionsForPictureQuiz(
+      numberPictureRightAnswer
+    );
+    let answerBtns = document.querySelectorAll(".pic-game__answer-item");
+
+    for (let i = 0; i < 4; i++) {
+      let pictureURL = `https://raw.githubusercontent.com/sashtje/image-data/master/img/${arrAnswers[i]}.webp`;
+
+      answerBtns[i].style.backgroundImage = `url("${pictureURL}")`;
     }
   }
 }
