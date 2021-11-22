@@ -446,6 +446,11 @@ export class App {
 
     this.gameObj = new Game(categoryObj, this.dataImages);
 
+    if (!this.wereAlreadyOpened.includes("start-timer")) {
+      let app = document.getElementById("app");
+      app.addEventListener("start-timer", this.handleStartTimer);
+    }
+
     switch (categoryType) {
       case consts.ARTIST_CATEGORY:
         this.openArtGamePage();
@@ -456,6 +461,108 @@ export class App {
         break;
     }
   };
+
+  handleStartTimer = () => {
+    this.wereAlreadyOpened.push("start-timer");
+
+    let query;
+    switch (this.currPageType) {
+      case consts.ARTIST_QUIZ:
+        query = ".art-game .header-game__time";
+        break;
+
+      case consts.PICTURE_QUIZ:
+        query = ".pic-game .header-game__time";
+        break;
+    }
+    let time = document.querySelector(query);
+
+    this.timer = setInterval(() => {
+      let newTime = +time.textContent - 1;
+      time.textContent = newTime.toString().padStart(2, "0");
+      if (newTime === 0) {
+        clearInterval(this.timer);
+        this.handleTimeIsOver();
+      }
+    }, 1000);
+  };
+
+  handleTimeIsOver() {
+    let query;
+
+    switch (this.currPageType) {
+      case consts.ARTIST_QUIZ:
+        query = ".art-game";
+        break;
+
+      case consts.PICTURE_QUIZ:
+        query = ".pic-game";
+        break;
+    }
+    let gameDots = document.querySelectorAll(`${query} .game-dots__item`);
+
+    gameDots[this.gameObj.curPicture].classList.add(
+      "game-dots__item_is-wrong-answer"
+    );
+    this.gameObj.results[this.gameObj.curPicture] = 0;
+    let soundType = "wrong-answer";
+    let srcAnswer = 'url("./public/assets/svg/wrong-answer.svg")';
+
+    this.checkForSwitchingSoundEffect(soundType);
+
+    //prepare modal window
+    let answerModalWindow = document.querySelector(".answer-modal-window");
+
+    answerModalWindow.classList.add("modal-window_is-shown");
+    let iconAnswerModalWindow = document.querySelector(
+      ".answer-modal-window__icon-answer"
+    );
+    let pictureContainer = document.querySelector(
+      ".answer-modal-window__picture-container"
+    );
+    let pictureName = document.querySelector(
+      ".answer-modal-window__picture-name"
+    );
+    let pictureAuthor = document.querySelector(
+      ".answer-modal-window__picture-author"
+    );
+    let pictureYear = document.querySelector(
+      ".answer-modal-window__picture-year"
+    );
+
+    iconAnswerModalWindow.style.backgroundImage = srcAnswer;
+
+    let jsonIndex = this.gameObj.categoryObj.firstPic + this.gameObj.curPicture;
+
+    let pictureURL = `https://raw.githubusercontent.com/sashtje/image-data/master/img/${jsonIndex}.webp`;
+    pictureContainer.style.backgroundImage = `url("${pictureURL}")`;
+
+    pictureYear.textContent = this.dataImages[jsonIndex - 1].year;
+
+    switch (objSettings.lang) {
+      case consts.EN:
+        pictureName.textContent = this.dataImages[jsonIndex - 1].nameEn;
+        pictureAuthor.textContent = this.dataImages[jsonIndex - 1].authorEn;
+        break;
+
+      case consts.RU:
+        pictureName.textContent = this.dataImages[jsonIndex - 1].name;
+        pictureAuthor.textContent = this.dataImages[jsonIndex - 1].author;
+        break;
+    }
+
+    let btnNext = document.querySelector(".answer-modal-window__btn-next");
+
+    if (!this.wereAlreadyOpened.includes("nextBtn")) {
+      btnNext.addEventListener("click", this.handleBtnNext);
+    }
+
+    //show modal window
+    setTimeout(() => {
+      answerModalWindow.classList.add("modal-window_is-shown-background");
+      answerModalWindow.classList.add("modal-window_is-shown-window");
+    }, 1);
+  }
 
   openArtGamePage() {
     this.checkForSwitchingSoundEffect("switch-page");
@@ -499,6 +606,9 @@ export class App {
     );
 
     btnCategories.addEventListener("click", () => {
+      if (this.timer !== undefined) {
+        clearInterval(this.timer);
+      }
       this.openCategoriesPage(
         consts.ARTIST_CATEGORY,
         "artist-category",
@@ -508,7 +618,12 @@ export class App {
 
     let btnHome = document.querySelector(".art-game .header-game__btn-home");
 
-    btnHome.addEventListener("click", this.returnToHomePage);
+    btnHome.addEventListener("click", () => {
+      if (this.timer !== undefined) {
+        clearInterval(this.timer);
+      }
+      this.returnToHomePage();
+    });
 
     let artGameAnswers = document.querySelector(".art-game__answers");
 
@@ -516,6 +631,10 @@ export class App {
       let target = e.target;
       let btn = target.closest(".art-game__answer-item");
       if (!btn) return;
+
+      if (this.timer !== undefined) {
+        clearInterval(this.timer);
+      }
 
       let itWasRightAnswer;
       let indexUserAnswer;
@@ -757,6 +876,9 @@ export class App {
     );
 
     btnCategories.addEventListener("click", () => {
+      if (this.timer !== undefined) {
+        clearInterval(this.timer);
+      }
       this.openCategoriesPage(
         consts.PICTURE_CATEGORY,
         "picture-category",
@@ -766,7 +888,12 @@ export class App {
 
     let btnHome = document.querySelector(".pic-game .header-game__btn-home");
 
-    btnHome.addEventListener("click", this.returnToHomePage);
+    btnHome.addEventListener("click", () => {
+      if (this.timer !== undefined) {
+        clearInterval(this.timer);
+      }
+      this.returnToHomePage();
+    });
 
     let picGameAnswers = document.querySelector(".pic-game__answers");
 
@@ -774,6 +901,10 @@ export class App {
       let target = e.target;
       let btn = target.closest(".pic-game__answer-item");
       if (!btn) return;
+
+      if (this.timer !== undefined) {
+        clearInterval(this.timer);
+      }
 
       let itWasRightAnswer;
       let indexUserAnswer;

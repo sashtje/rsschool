@@ -56,7 +56,15 @@ export class Switcher {
       //make translate "to" page
       this.translateToPage();
       this.app.classList.toggle("app_is-hide");
-    } else {
+    } else if (objSettings.time === consts.ON) {
+      //page just was shown
+      switch (this.to) {
+        case consts.ARTIST_QUIZ:
+        case consts.PICTURE_QUIZ:
+          let eventStartTimer = new Event("start-timer");
+          e.target.dispatchEvent(eventStartTimer);
+          break;
+      }
     }
   };
 
@@ -423,6 +431,19 @@ export class Switcher {
       }
     }
 
+    let timer = document.querySelector(".art-game .header-game__timer");
+
+    if (objSettings.time === consts.ON) {
+      timer.classList.add("header-game__timer_is-shown");
+
+      let time = timer.querySelector(".header-game__time");
+      time.textContent = objSettings.durationTime.toString().padStart(2, "0");
+    } else {
+      if (timer.classList.contains("header-game__timer_is-shown")) {
+        timer.classList.remove("header-game__timer_is-shown");
+      }
+    }
+
     //add photo
     let picture = document.querySelector(".art-game__picture-container");
     let jsonIndex = this.gameObj.categoryObj.firstPic + this.gameObj.curPicture;
@@ -448,6 +469,18 @@ export class Switcher {
 
       for (let i = 0; i < dots.length; i++) {
         dots[i].className = "game-dots__item";
+      }
+    }
+
+    let timer = document.querySelector(".pic-game .header-game__timer");
+    if (objSettings.time === consts.ON) {
+      timer.classList.add("header-game__timer_is-shown");
+
+      let time = timer.querySelector(".header-game__time");
+      time.textContent = objSettings.durationTime.toString().padStart(2, "0");
+    } else {
+      if (timer.classList.contains("header-game__timer_is-shown")) {
+        timer.classList.remove("header-game__timer_is-shown");
       }
     }
 
