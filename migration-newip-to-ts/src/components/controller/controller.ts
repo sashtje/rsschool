@@ -1,4 +1,4 @@
-import AppLoader from './appLoader';
+import AppLoader from './appLoader.ts';
 
 class AppController extends AppLoader {
   getSources(callback) {
@@ -6,7 +6,7 @@ class AppController extends AppLoader {
       {
         endpoint: 'sources',
       },
-      callback
+      callback,
     );
   }
 
@@ -26,7 +26,7 @@ class AppController extends AppLoader {
                 sources: sourceId,
               },
             },
-            callback
+            callback,
           );
         }
         return;
