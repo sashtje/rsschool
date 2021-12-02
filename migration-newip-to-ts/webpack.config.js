@@ -5,13 +5,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { ProgressPlugin } = require('webpack');
 
 const baseConfig = {
-    entry: path.resolve(__dirname, './src/index.ts'),
+    entry: './src/index.ts',
     devtool: 'source-map',
     mode: 'development',
     module: {
         rules: [
             {
-                test: /\.(ts|tsx)$/i,
+                test: /\.(ts|tsx|js)$/i,
                 loader: 'ts-loader',
                 exclude: ['/node_modules/'],
             },

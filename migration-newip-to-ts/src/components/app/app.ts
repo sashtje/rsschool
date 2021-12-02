@@ -1,5 +1,5 @@
-import AppController from '../controller/controller.ts';
-import { AppView } from '../view/appView.ts';
+import AppController from '../controller/controller';
+import { AppView } from '../view/appView';
 
 class App {
   constructor() {

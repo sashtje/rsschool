@@ -1,5 +1,5 @@
-import News from './news/news.ts';
-import Sources from './sources/sources.ts';
+import News from './news/news';
+import Sources from './sources/sources';
 
 export class AppView {
   constructor() {
