@@ -1,13 +1,19 @@
+interface IOptions {
+  "apiKey"?: string;
+  "sources"?: string;
+}
+
 class Loader {
-  constructor(baseLink, options) {
-    console.log('baseLink ' + baseLink);
-    console.log('options ' + options);
+  baseLink: string;
+  options: Partial<IOptions>;
+
+  constructor(baseLink: string, options: Partial<IOptions>) {
     this.baseLink = baseLink;
     this.options = options;
   }
 
   getResp(
-    { endpoint, options = {} },
+    { endpoint, options = {} }: {endpoint: string, options: Partial<IOptions>},
     callback = () => {
       console.error('No callback for GET response');
     },
@@ -26,18 +32,18 @@ class Loader {
     return res;
   }
 
-  makeUrl(options, endpoint) {
-    const urlOptions = { ...this.options, ...options };
+  makeUrl(options: Partial<IOptions>, endpoint: string) {
+    const urlOptions: {[index: string]: string} = { ...this.options, ...options };
     let url = `${this.baseLink}${endpoint}?`;
 
-    Object.keys(urlOptions).forEach((key) => {
+    Object.keys(urlOptions).forEach((key: string) => {
       url += `${key}=${urlOptions[key]}&`;
     });
 
     return url.slice(0, -1);
   }
 
-  load(method, endpoint, callback, options = {}) {
+  load(method, endpoint: string, callback, options: Partial<IOptions> = {}) {
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
       .then((res) => res.json())
