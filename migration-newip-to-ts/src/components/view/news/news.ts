@@ -6,11 +6,10 @@ class News {
     const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
     const fragment = document.createDocumentFragment();
-    const newsItemTemp = document.querySelector('#newsItemTemp');
+    const newsItemTemp = document.querySelector('#newsItemTemp') as HTMLTemplateElement;
 
     news.forEach((item, idx) => {
-      // eslint-disable-next-line max-len
-      const newsClone = (newsItemTemp as HTMLTemplateElement).content.cloneNode(true) as HTMLTemplateElement;
+      const newsClone = newsItemTemp.content.cloneNode(true) as HTMLTemplateElement;
 
       if (idx % 2) (newsClone.querySelector('.news__item') as Element).classList.add('alt');
 

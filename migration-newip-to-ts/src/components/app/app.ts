@@ -2,9 +2,9 @@ import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
 
 class App {
-  readonly controller: AppController;
+  private readonly controller: AppController;
 
-  readonly view: AppView;
+  private readonly view: AppView;
 
   constructor() {
     this.controller = new AppController();

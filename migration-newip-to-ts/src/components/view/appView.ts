@@ -1,23 +1,23 @@
 import News from './news/news';
 import Sources from './sources/sources';
-import { IDataSource, IDataNews } from '../controller/controller';
+import { sourceType, articlesType } from '../controller/controller';
 
 export class AppView {
-  private news: News;
+  private readonly news: News;
 
-  private sources: Sources;
+  private readonly sources: Sources;
 
   constructor() {
     this.news = new News();
     this.sources = new Sources();
   }
 
-  drawNews(data: IDataNews) {
+  drawNews(data: articlesType): void {
     const values = data?.articles ? data?.articles : [];
     this.news.draw(values);
   }
 
-  drawSources(data: IDataSource) {
+  drawSources(data: sourceType): void {
     const values = data?.sources ? data?.sources : [];
     this.sources.draw(values);
   }

@@ -6,9 +6,9 @@ interface IOptions {
 }
 
 class Loader {
-  baseLink: string;
+  private readonly baseLink: string;
 
-  options: Partial<IOptions>;
+  private readonly options: Partial<IOptions>;
 
   constructor(baseLink: string, options: Partial<IOptions>) {
     this.baseLink = baseLink;
