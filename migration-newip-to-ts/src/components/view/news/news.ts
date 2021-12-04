@@ -3,21 +3,18 @@ import { IArticles } from '../../controller/controller';
 
 class News {
   draw(data: IArticles[]): void {
-    console.log('news ');
-    console.log(data);
     const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
     const fragment = document.createDocumentFragment();
-    const newsItemTemp = document.querySelector('#newsItemTemp') as HTMLTemplateElement;
+    const newsItemTemp = document.querySelector('#newsItemTemp');
 
     news.forEach((item, idx) => {
-      const newsClone = newsItemTemp.content.cloneNode(true) as HTMLTemplateElement;
+      const newsClone = (newsItemTemp as HTMLTemplateElement).content.cloneNode(true) as HTMLTemplateElement;
 
       if (idx % 2) newsClone.querySelector('.news__item').classList.add('alt');
 
-      (newsClone.querySelector('.news__meta-photo') as HTMLElement).style.backgroundImage = `url(${
-        item.urlToImage || 'img/news_placeholder.jpg'
-      })`;
+      const newsMetaPhoto: HTMLTemplateElement = newsClone.querySelector('.news__meta-photo');
+      newsMetaPhoto.style.backgroundImage = `url(${item.urlToImage || 'img/news_placeholder.jpg'})`;
       newsClone.querySelector('.news__meta-author').textContent = item.author || item.source.name;
       newsClone.querySelector('.news__meta-date').textContent = item.publishedAt
         .slice(0, 10)

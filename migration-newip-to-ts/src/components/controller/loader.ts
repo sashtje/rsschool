@@ -1,12 +1,13 @@
-import {CallbackType, dataType } from 'controller';
+import { CallbackType, dataType } from 'controller';
 
 interface IOptions {
-  "apiKey"?: string;
-  "sources"?: string;
+  apiKey?: string;
+  sources?: string;
 }
 
 class Loader {
   baseLink: string;
+
   options: Partial<IOptions>;
 
   constructor(baseLink: string, options: Partial<IOptions>) {
@@ -15,8 +16,8 @@ class Loader {
   }
 
   getResp(
-    { endpoint, options = {} }: {endpoint: string, options?: Partial<IOptions>},
-    callback = () => {
+    { endpoint, options = {} }: { endpoint: string; options?: Partial<IOptions> },
+    callback: CallbackType<dataType> = () => {
       console.error('No callback for GET response');
     },
   ): void {
@@ -35,7 +36,7 @@ class Loader {
   }
 
   makeUrl(options: Partial<IOptions>, endpoint: string): string {
-    const urlOptions: {[index: string]: string} = { ...this.options, ...options };
+    const urlOptions: { [index: string]: string } = { ...this.options, ...options };
     let url = `${this.baseLink}${endpoint}?`;
 
     Object.keys(urlOptions).forEach((key: string) => {
@@ -48,11 +49,11 @@ class Loader {
   load(method: string, endpoint: string, callback: CallbackType<dataType>, options: Partial<IOptions> = {}): void {
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
-      .then((res) => res.json())
-      .then((data) => {
+      .then((res: Response) => res.json())
+      .then((data: dataType) => {
         callback(data);
       })
-      .catch((err) => console.error(err));
+      .catch((err: Error) => console.error(err));
   }
 }
 
