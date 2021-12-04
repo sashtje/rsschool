@@ -1,3 +1,5 @@
+import {CallbackType, dataType } from 'controller';
+
 interface IOptions {
   "apiKey"?: string;
   "sources"?: string;
@@ -43,7 +45,7 @@ class Loader {
     return url.slice(0, -1);
   }
 
-  load(method: string, endpoint: string, callback, options: Partial<IOptions> = {}): void {
+  load(method: string, endpoint: string, callback: CallbackType<dataType>, options: Partial<IOptions> = {}): void {
     console.log('load callback ');
     console.log(callback);
     fetch(this.makeUrl(options, endpoint), { method })

@@ -1,6 +1,6 @@
 import AppLoader from './appLoader';
 
-type CallbackType<T> = (data?: T) => void;
+export type CallbackType<T> = (data?: T) => void;
 
 interface ISource {
   category: string;
@@ -32,7 +32,7 @@ interface IDataNews {
   articles: IArticles[];
 }
 
-type dataType = IDataSource | IArticles;
+export type dataType = IDataSource | IArticles;
 
 class AppController extends AppLoader {
   getSources(callback: CallbackType<dataType>): void {
