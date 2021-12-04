@@ -46,6 +46,7 @@ class Loader {
     return url.slice(0, -1);
   }
 
+  // eslint-disable-next-line max-len
   load(method: string, endpoint: string, callback: CallbackType<dataType>, options: Partial<IOptions> = {}): void {
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)

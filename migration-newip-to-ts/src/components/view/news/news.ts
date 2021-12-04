@@ -9,6 +9,7 @@ class News {
     const newsItemTemp = document.querySelector('#newsItemTemp');
 
     news.forEach((item, idx) => {
+      // eslint-disable-next-line max-len
       const newsClone = (newsItemTemp as HTMLTemplateElement).content.cloneNode(true) as HTMLTemplateElement;
 
       if (idx % 2) newsClone.querySelector('.news__item').classList.add('alt');
