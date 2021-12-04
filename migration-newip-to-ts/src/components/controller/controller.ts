@@ -1,7 +1,7 @@
 import AppLoader from './appLoader';
 
 /* eslint no-unused-vars: ["error", { "argsIgnorePattern": "^_" }] */
-export type CallbackType<T> = (_data?: T) => void;
+export type CallbackType<T> = (_data: T) => void;
 
 export interface ISource {
   category: string;
@@ -12,6 +12,7 @@ export interface ISource {
   name: string;
   url: string;
 }
+
 export interface IDataSource {
   status: string;
   sources: ISource[];
@@ -41,7 +42,7 @@ class AppController extends AppLoader {
       {
         endpoint: 'sources',
       },
-      callback,
+      callback as CallbackType<dataType>,
     );
   }
 
@@ -51,7 +52,7 @@ class AppController extends AppLoader {
 
     while (target !== newsContainer) {
       if (target.classList.contains('source__item')) {
-        const sourceId: string = target.getAttribute('data-source-id');
+        const sourceId: string = target.getAttribute('data-source-id') as string;
         if (newsContainer.getAttribute('data-source') !== sourceId) {
           newsContainer.setAttribute('data-source', sourceId);
           super.getResp(
@@ -61,7 +62,7 @@ class AppController extends AppLoader {
                 sources: sourceId,
               },
             },
-            callback,
+            callback as CallbackType<dataType>,
           );
         }
         return;
