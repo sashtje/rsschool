@@ -18,6 +18,8 @@
         "class-methods-use-this": "off",
         "@typescript-eslint/no-explicit-any": 2,
         "import/extensions": "off",
-        "import/no-unresolved": "off"
+        "import/no-unresolved": "off",
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": ["error"]
     }
 }
