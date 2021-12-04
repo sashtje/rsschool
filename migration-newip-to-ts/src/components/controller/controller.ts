@@ -16,7 +16,7 @@ interface IDataSource {
   sources: ISource[];
 }
 
-interface IArticles {
+export interface IArticles {
   author: string;
   content: string;
   description: string;

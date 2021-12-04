@@ -46,15 +46,12 @@ class Loader {
   }
 
   load(method: string, endpoint: string, callback: CallbackType<dataType>, options: Partial<IOptions> = {}): void {
-    console.log('load callback ');
-    console.log(callback);
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
       .then((res) => res.json())
       .then((data) => {
-        console.log('load data: ');
-        console.log(data);
-        callback(data);})
+        callback(data);
+      })
       .catch((err) => console.error(err));
   }
 }
