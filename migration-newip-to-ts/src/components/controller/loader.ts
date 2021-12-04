@@ -1,8 +1,8 @@
 import { CallbackType, dataType } from 'controller';
 
 interface IOptions {
-  apiKey?: string;
-  sources?: string;
+  apiKey: string;
+  sources: string;
 }
 
 class Loader {
