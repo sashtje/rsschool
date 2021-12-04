@@ -1,7 +1,41 @@
 import AppLoader from './appLoader';
 
+type CallbackType<T> = (data?: T) => void;
+
+interface ISource {
+  category: string;
+  country: string;
+  description: string;
+  id: string;
+  language: string;
+  name: string;
+  url: string;
+}
+interface IDataSource {
+  status: string;
+  sources: ISource[];
+}
+
+interface IArticles {
+  author: string;
+  content: string;
+  description: string;
+  publishedAt: string;
+  source: {id: string, name: string};
+  title: string;
+  url: string;
+  urlToImage: string;
+}
+interface IDataNews {
+  status: string;
+  totalResults: number;
+  articles: IArticles[];
+}
+
+type dataType = IDataSource | IArticles;
+
 class AppController extends AppLoader {
-  getSources(callback): void {
+  getSources(callback: CallbackType<dataType>): void {
     super.getResp(
       {
         endpoint: 'sources',
@@ -10,7 +44,7 @@ class AppController extends AppLoader {
     );
   }
 
-  getNews(e: Event, callback) {
+  getNews(e: Event, callback: CallbackType<dataType>) {
     let target = e.target as HTMLElement;
     const newsContainer = e.currentTarget as HTMLElement;
 

@@ -13,7 +13,7 @@ class Loader {
   }
 
   getResp(
-    { endpoint, options = {} }: {endpoint: string, options: Partial<IOptions>},
+    { endpoint, options = {} }: {endpoint: string, options?: Partial<IOptions>},
     callback = () => {
       console.error('No callback for GET response');
     },
@@ -43,11 +43,16 @@ class Loader {
     return url.slice(0, -1);
   }
 
-  load(method, endpoint: string, callback, options: Partial<IOptions> = {}): void {
+  load(method: string, endpoint: string, callback, options: Partial<IOptions> = {}): void {
+    console.log('load callback ');
+    console.log(callback);
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
       .then((res) => res.json())
-      .then((data) => callback(data))
+      .then((data) => {
+        console.log('load data: ');
+        console.log(data);
+        callback(data);})
       .catch((err) => console.error(err));
   }
 }
