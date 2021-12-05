@@ -1,3 +1,24 @@
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 1rem;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: linear-gradient(90deg, #f3d6d1 0, #ccc8c7, #f3d6d1);
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #918f8f;
+  border-radius: 1rem;
+  box-shadow: inset 0.125rem 0.125rem 0.125rem rgba(255, 255, 255, 0.5),
+    inset -0.125rem -0.125rem 0.125rem rgba(0, 0, 0, 0.5);
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #6d6c6c;
+}
+
 body {
     color: #fff;
     background: #17181c;
@@ -48,4 +69,44 @@ footer .dev-github-link:hover {
 }
 footer .copyright:before {
     content: '©';
+}
+
+.alphabet {
+  font-size: 0;
+  margin: 0 -5px;
+}
+.letter-btn {
+  font-size: 14px;
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  border: none;
+  transition: 0.5s;
+}
+.letter-btn:hover {
+  box-shadow: 3px 3px 5px #51ceff;
+  color: #18aae4;
+}
+.letter-btn_active {
+  background-color: #18aae4;
+  color: #ffffff;
+}
+.letter-btn_active:hover {
+  box-shadow: 3px 3px 5px #ffffff;
+  color: #000000;
+}
+@media screen and (max-width: 850px) {
+  header {
+    padding: 10px;
+  }
+  header h1 {
+    font-size: 35px;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  .alphabet {
+    text-align: center;
+  }
 }
