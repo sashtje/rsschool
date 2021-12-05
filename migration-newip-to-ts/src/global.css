@@ -17,18 +17,34 @@ footer {
     height: 100px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    font-size: 14px;
+}
+footer .rsschool-link svg {
+    width: 60px;
+    height: 23px;
+}
+footer .rsschool-link .st5,
+footer .rsschool-link .st10 {
+    transition: 0.5s;
+    fill: #aaa;
+}
+footer .rsschool-link:hover .st5,
+footer .rsschool-link:hover .st10 {
+    fill: #fff;
 }
 footer .copyright {
-    font-size: 14px;
-    color: #333;
+    color: #777;
     text-align: center;
 }
-footer .copyright a {
-    color: #444;
+footer .copyright a,
+footer .dev-github-link {
+    color: #aaa;
+    transition: 0.5s;
 }
-footer .copyright a:hover {
-    color: #555;
+footer .copyright a:hover,
+footer .dev-github-link:hover {
+    color: #fff;
 }
 footer .copyright:before {
     content: '©';
