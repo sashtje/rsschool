@@ -1,6 +1,5 @@
 import AppLoader from './appLoader';
 
-/* eslint no-unused-vars: ["error", { "argsIgnorePattern": "^_" }] */
 export type CallbackType<T> = (_data: T) => void;
 
 export interface ISource {
