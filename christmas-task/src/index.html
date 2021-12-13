@@ -9,6 +9,55 @@
   <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
 </head>
 <body>
-  <h1>Hello!</h1>
+  <header class="header">
+    <div class="container">
+      <nav class="header__menu menu">
+        <ul class="menu__list">
+          <li class="menu__item">
+            <a class="menu__link" href="">
+              <img src="./public/svg/tree.svg" alt="logo">
+            </a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="#toys">Игрушки</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="#tree">Ёлка</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="header__controls">
+        <div class="header__search search">
+          <input class="search__input" type="search" name="search" autocomplete="off">
+          <button class="search__btn"><img src="./public/svg/search.svg" alt="clear"></button>
+        </div>
+        <div class="header__favorite-toys">0</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    <div class="container">
+      <div class="main-page">
+        <h1 class="main-page__title">Помогите бабушке нарядить ёлку</h1>
+        <button class="main-page__btn">Начать</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__about">
+        <a class="footer__github-author" href="https://github.com/sashtje" target="_blank">
+          <img src="./public/svg/github.svg" alt="author's github">
+        </a>
+        <time class="footer__year" datetime="2021">2021</time>
+        <a class="footer__rsschool" href="https://rs.school/js/" target="_blank">
+          <img src="./public/svg/rss.svg" alt="rsschool">
+        </a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
