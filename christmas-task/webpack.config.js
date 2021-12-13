@@ -27,6 +27,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+      inject: "body",
     }),
     new CopyPlugin({
       patterns: [{ from: "./src/copy", to: "public" }],
