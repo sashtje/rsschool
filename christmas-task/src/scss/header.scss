@@ -1,5 +1,5 @@
 .header {
-  background-color: rgb(32, 126, 234);
+  background-color: #121C1E;
   color: #ffffff;
 
   // .header__row
@@ -24,18 +24,15 @@
 
   // .header__favorite-toys
   &__favorite-toys {
-    width: 60px;
-    height: 60px;
+    width: 71px;
+    height: 71px;
     display: flex;
     justify-content: center;
     padding-top: 25px;
     font-size: 18px;
-    color:#111cea;
-    background-image: url('./../assets/svg/ball.svg');
-    background-size: 60px;
-    background-repeat: no-repeat;
-    background-position: center;
-    transform: translateY(-8px);
+    color:#ffffff;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.7);
+    background-image: url('./../assets/ball/ball.png');
   }
 }
 
@@ -90,8 +87,8 @@
     outline: none;
     padding: 7px 40px 7px 15px;
     border-radius: 20px;
-    border: 1px solid #ffffff;
-    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid $border-color;
+    background-color: $bg-color;
     color: #ffffff;
     font-family: $main-font;
     font-size: 18px;
@@ -99,6 +96,14 @@
 
     &:focus {
       width: 300px;
+    }
+
+    &::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      background: url('./../assets/svg/clean.svg');
+      cursor: pointer;
     }
 
     &::-webkit-input-placeholder {

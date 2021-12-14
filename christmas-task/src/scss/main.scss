@@ -1,6 +1,9 @@
 $main-font: 'Source Sans 3', sans-serif;
 $decor-font: 'Neucha', cursive;
 
+$border-color: #278d9f;
+$bg-color: rgba(31, 112, 127, 0.3);
+
 /* Scrollbar */
 /* width */
 ::-webkit-scrollbar {
@@ -48,5 +51,10 @@ body {
 }
 
 .content {
-  
+  min-height: calc(100vh - 163px);
+  background-image: url('./../assets/ball/balls.png'), url("./../assets/img/bg.webp");
+  background-size: 900px auto, cover;
+  background-repeat: no-repeat;
+  background-position: center top, center bottom;
+  background-attachment: fixed;
 }
