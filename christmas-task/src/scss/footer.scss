@@ -1,0 +1,19 @@
+.footer {
+  background-color: rgb(32, 126, 234);
+  color: #ffffff;
+
+  // .footer__about
+  &__about {
+  }
+  // .footer__github-author
+  &__github-author {
+    text-decoration: none;
+  }
+  // .footer__year
+  &__year {
+  }
+  // .footer__rsschool
+  &__rsschool {
+    text-decoration: none;
+  }
+}
