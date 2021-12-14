@@ -13,9 +13,7 @@
 
   // .header__controls
   &__controls {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+    display: none;
   }
 
   // .header__search
@@ -53,6 +51,8 @@
 
   // .menu__link
   &__link {
+    position: relative;
+    display: block;
     text-decoration: none;
     font-family: $decor-font;
     font-size: 22px;
@@ -135,5 +135,35 @@
     display: block;
     width: 25px;
     height: 25px;
+  }
+}
+
+.toys-page {
+  .header__controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .menu__link-toys::after {
+    position: absolute;
+    content: '';
+    background-color: #ffff00;
+    display: block;
+    width: 100%;
+    height: 2px;
+    bottom: -5px;
+  }
+}
+
+.tree-page {
+  .menu__link-tree::after {
+    position: absolute;
+    content: '';
+    background-color: #ffff00;
+    display: block;
+    width: 100%;
+    height: 2px;
+    bottom: -5px;
   }
 }
