@@ -4,16 +4,38 @@
 
   // .footer__about
   &__about {
+    @extend %flex-center;
   }
   // .footer__github-author
   &__github-author {
     text-decoration: none;
+
+    img {
+      width: 40px;
+      transition: 0.5s;
+
+      &:hover {
+        filter: invert(8%) sepia(98%) saturate(7493%) brightness(102%) contrast(103%);
+        transform: rotate(15deg);
+      }
+    }
   }
   // .footer__year
   &__year {
+    font-size: 18px;
   }
   // .footer__rsschool
   &__rsschool {
     text-decoration: none;
+    
+    img {
+      height: 40px;
+      transition: 0.5s;
+
+      &:hover {
+        filter: invert(8%) sepia(98%) saturate(7493%) brightness(102%) contrast(103%);
+        transform: rotate(-15deg);
+      }
+    }
   }
 }
