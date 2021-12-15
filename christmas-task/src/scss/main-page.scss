@@ -26,6 +26,10 @@
   }
   // .main-page__btn
   &__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
     margin-top: 50px;
     width: 220px;
     height: 60px;
