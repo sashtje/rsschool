@@ -75,14 +75,152 @@
     <section class="ranges">
       <h2 class="title">Фильтры по диапазону</h2>
 
-      
+      <div class="ranges__title">Количество экземпляров:</div>
+      <div class="ranges__count-slider-container">
+        <output class="output-slider">1</output>
+        <div class="count-slider"></div>
+        <output class="output-slider">12</output>
+      </div>
+
+      <div class="ranges__title">Год приобретения:</div>
+      <div class="ranges__year-slider-container">
+        <output class="output-slider">1</output>
+        <div class="count-slider"></div>
+        <output class="output-slider">12</output>
+      </div>
     </section>
 
     <section class="sort">
       <h2 class="title">Сортировка</h2>
+
+      <div class="sort__type-select">
+        <input class="sort__type-input" type="text" name="sort-type" readonly="" placeholder="Сортировать по ...">
+
+        <ul class="sort__list">
+          <li class="sort__list-item">
+            По названию от "А" до "Я"
+          </li>
+          <li class="sort__list-item">
+            По названию от "Я" до "А"
+          </li>
+          <li class="sort__list-item">
+            По году по возрастанию
+          </li>
+          <li class="sort__list-item">
+            По году по убыванию
+          </li>
+        </ul>
+      </div>
+
+      <button class="sort__btn ">Сбросить фильтры</button>
+      <button class="sort__btn">Сбросить настройки</button>
     </section>
   </div>
 
-  <div class="toys__container"></div>
+  <div class="toys__container">
+    <div class="toy" data-num="1">
+      <h3 class="toy__title">Большой шар с рисунком</h3>
+      <img class="toy__photo" src="./public/1.webp" alt="toy">
+      <div class="toy__description">
+        <p class="toy__count">Количество: <span class="toy__data">3</span></p>
+        <p class="toy__year">Год покупки: <span class="toy__data">1990</span></p>
+        <p class="toy__shape">Форма: <span class="toy__data">шар</span></p>
+        <p class="toy__size">Размер: <span class="toy__data">большой</span></p>
+        <p class="toy__favorite">Любимая: <span class="toy__data">нет</span></p>
+      </div>
+      <div class="toy__ribbon"></div>
+    </div>
+
+    <div class="toy" data-num="1">
+      <h3 class="toy__title">Большой шар с рисунком</h3>
+      <img class="toy__photo" src="./public/1.webp" alt="toy">
+      <div class="toy__description">
+        <p class="toy__count">Количество: <span class="toy__data">3</span></p>
+        <p class="toy__year">Год покупки: <span class="toy__data">1990</span></p>
+        <p class="toy__shape">Форма: <span class="toy__data">шар</span></p>
+        <p class="toy__size">Размер: <span class="toy__data">большой</span></p>
+        <p class="toy__favorite">Любимая: <span class="toy__data">нет</span></p>
+      </div>
+      <div class="toy__ribbon"></div>
+    </div>
+
+    <div class="toy" data-num="1">
+      <h3 class="toy__title">Большой шар с рисунком</h3>
+      <img class="toy__photo" src="./public/1.webp" alt="toy">
+      <div class="toy__description">
+        <p class="toy__count">Количество: <span class="toy__data">3</span></p>
+        <p class="toy__year">Год покупки: <span class="toy__data">1990</span></p>
+        <p class="toy__shape">Форма: <span class="toy__data">шар</span></p>
+        <p class="toy__size">Размер: <span class="toy__data">большой</span></p>
+        <p class="toy__favorite">Любимая: <span class="toy__data">нет</span></p>
+      </div>
+      <div class="toy__ribbon"></div>
+    </div>
+
+    <div class="toy" data-num="1">
+      <h3 class="toy__title">Большой шар с рисунком</h3>
+      <img class="toy__photo" src="./public/1.webp" alt="toy">
+      <div class="toy__description">
+        <p class="toy__count">Количество: <span class="toy__data">3</span></p>
+        <p class="toy__year">Год покупки: <span class="toy__data">1990</span></p>
+        <p class="toy__shape">Форма: <span class="toy__data">шар</span></p>
+        <p class="toy__size">Размер: <span class="toy__data">большой</span></p>
+        <p class="toy__favorite">Любимая: <span class="toy__data">нет</span></p>
+      </div>
+      <div class="toy__ribbon"></div>
+    </div>
+
+    <div class="toy" data-num="1">
+      <h3 class="toy__title">Большой шар с рисунком</h3>
+      <img class="toy__photo" src="./public/1.webp" alt="toy">
+      <div class="toy__description">
+        <p class="toy__count">Количество: <span class="toy__data">3</span></p>
+        <p class="toy__year">Год покупки: <span class="toy__data">1990</span></p>
+        <p class="toy__shape">Форма: <span class="toy__data">шар</span></p>
+        <p class="toy__size">Размер: <span class="toy__data">большой</span></p>
+        <p class="toy__favorite">Любимая: <span class="toy__data">нет</span></p>
+      </div>
+      <div class="toy__ribbon"></div>
+    </div>
+
+    <div class="toy" data-num="1">
+      <h3 class="toy__title">Большой шар с рисунком</h3>
+      <img class="toy__photo" src="./public/1.webp" alt="toy">
+      <div class="toy__description">
+        <p class="toy__count">Количество: <span class="toy__data">3</span></p>
+        <p class="toy__year">Год покупки: <span class="toy__data">1990</span></p>
+        <p class="toy__shape">Форма: <span class="toy__data">шар</span></p>
+        <p class="toy__size">Размер: <span class="toy__data">большой</span></p>
+        <p class="toy__favorite">Любимая: <span class="toy__data">нет</span></p>
+      </div>
+      <div class="toy__ribbon"></div>
+    </div>
+
+    <div class="toy" data-num="1">
+      <h3 class="toy__title">Большой шар с рисунком</h3>
+      <img class="toy__photo" src="./public/1.webp" alt="toy">
+      <div class="toy__description">
+        <p class="toy__count">Количество: <span class="toy__data">3</span></p>
+        <p class="toy__year">Год покупки: <span class="toy__data">1990</span></p>
+        <p class="toy__shape">Форма: <span class="toy__data">шар</span></p>
+        <p class="toy__size">Размер: <span class="toy__data">большой</span></p>
+        <p class="toy__favorite">Любимая: <span class="toy__data">нет</span></p>
+      </div>
+      <div class="toy__ribbon"></div>
+    </div>
+
+    <div class="toy" data-num="1">
+      <h3 class="toy__title">Большой шар с рисунком</h3>
+      <img class="toy__photo" src="./public/1.webp" alt="toy">
+      <div class="toy__description">
+        <p class="toy__count">Количество: <span class="toy__data">3</span></p>
+        <p class="toy__year">Год покупки: <span class="toy__data">1990</span></p>
+        <p class="toy__shape">Форма: <span class="toy__data">шар</span></p>
+        <p class="toy__size">Размер: <span class="toy__data">большой</span></p>
+        <p class="toy__favorite">Любимая: <span class="toy__data">нет</span></p>
+      </div>
+      <div class="toy__ribbon"></div>
+    </div>
+  </div>
 
 </section>
