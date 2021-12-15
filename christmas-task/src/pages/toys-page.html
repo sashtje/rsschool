@@ -1,3 +1,88 @@
 <section class="toys">
-  <h1>Игрушки</h1>
+  <div class="settings-container">
+    <section class="filters">
+      <h2 class="title">Фильтры по значению</h2>
+
+      <ul class="filters__list">
+        <li class="filters__item">Форма:
+          <input class="filters__input" type="checkbox" name="round" value="round" id="round" data-filter="шар">
+          <label class="filters__form-label" for="round">
+            <img src="./public/svg/ball.svg" alt="ball">
+          </label>
+
+          <input class="filters__input" type="checkbox" name="bell" value="bell" id="bell" data-filter="колокольчик">
+          <label class="filters__form-label" for="bell">
+            <img src="./public/svg/bell.svg" alt="bell">
+          </label>
+
+          <input class="filters__input" type="checkbox" name="cone" value="cone" id="cone" data-filter="шишка">
+          <label class="filters__form-label" for="cone">
+            <img src="./public/svg/cone.svg" alt="cone">
+          </label>
+
+          <input class="filters__input" type="checkbox" name="snowflake" value="snowflake" id="snowflake" data-filter="снежинка">
+          <label class="filters__form-label" for="snowflake">
+            <img src="./public/svg/snowflake.svg" alt="snowflake">
+          </label>
+
+          <input class="filters__input" type="checkbox" name="toy" value="toy" id="toy" data-filter="фигурка">
+          <label class="filters__form-label" for="toy">
+            <img src="./public/svg/toy.svg" alt="toy">
+          </label>
+        </li>
+
+        <li class="filters__item">Цвет:
+          <input class="filters__input" type="checkbox" name="white" value="white" id="white" data-filter="белый">
+          <label class="filters__color-label filters__color-label_color_white" for="white"></label>
+
+          <input class="filters__input" type="checkbox" name="yellow" value="yellow" id="yellow" data-filter="желтый">
+          <label class="filters__color-label filters__color-label_color_yellow" for="yellow"></label>
+
+          <input class="filters__input" type="checkbox" name="red" value="red" id="red" data-filter="красный">
+          <label class="filters__color-label filters__color-label_color_red" for="red"></label>
+
+          <input class="filters__input" type="checkbox" name="blue" value="blue" id="blue" data-filter="синий">
+          <label class="filters__color-label filters__color-label_color_blue" for="blue"></label>
+
+          <input class="filters__input" type="checkbox" name="green" value="green" id="green" data-filter="зелёный">
+          <label class="filters__color-label filters__color-label_color_green" for="green"></label>
+        </li>
+
+        <li class="filters__item">Размер:
+          <input class="filters__input" type="checkbox" name="big" value="big" id="big" data-filter="большой">
+          <label class="filters__size-label filters__size-label_size_big" for="big">
+            <img src="./public/svg/ball.svg" alt="big">
+          </label>
+
+          <input class="filters__input" type="checkbox" name="medium" value="medium" id="medium" data-filter="средний">
+          <label class="filters__size-label filters__size-label_size_medium" for="medium">
+            <img src="./public/svg/ball.svg" alt="medium">
+          </label>
+
+          <input class="filters__input" type="checkbox" name="small" value="small" id="small" data-filter="малый">
+          <label class="filters__size-label filters__size-label_size_small" for="small">
+            <img src="./public/svg/ball.svg" alt="small">
+          </label>
+        </li>
+
+        <li class="filters__item">Только любимые:
+          <input class="filters__input" type="checkbox" name="favorite" value="favorite" id="favorite">
+          <label class="filters__favorite-label" for="favorite"></label>
+        </li>
+      </ul>
+    </section>
+
+    <section class="ranges">
+      <h2 class="title">Фильтры по диапазону</h2>
+
+      
+    </section>
+
+    <section class="sort">
+      <h2 class="title">Сортировка</h2>
+    </section>
+  </div>
+
+  <div class="toys__container"></div>
+
 </section>
