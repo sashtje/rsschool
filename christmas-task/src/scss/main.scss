@@ -44,6 +44,9 @@ body {
   @extend %reset-indentions;
 
   font-family: $main-font;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
@@ -51,10 +54,35 @@ body {
 }
 
 .content {
-  min-height: calc(100vh - 163px);
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
   background-image: url('./../assets/ball/balls.png'), url("./../assets/img/bg.webp");
   background-size: 900px auto, cover;
   background-repeat: no-repeat;
   background-position: center top, center bottom;
   background-attachment: fixed;
+}
+
+.content__container {
+  padding: 10px 40px;
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.toys-page {
+  .content {
+    background-image: url("./../assets/img/bg.webp");
+    background-size: cover;
+    background-position: center bottom;
+  }
+}
+
+.tree-page {
+  .content {
+    background-image: url("./../assets/img/bg.webp");
+    background-size: cover;
+    background-position: center bottom;
+  }
 }

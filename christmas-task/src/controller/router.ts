@@ -6,7 +6,7 @@ export class Router {
 
   constructor(routes: Route[]) {
     this.routes = routes;
-    this.rootElem = document.querySelector('.content .container') as HTMLElement;
+    this.rootElem = document.querySelector('.content__container') as HTMLElement;
 
     this.init();
   }
@@ -43,5 +43,12 @@ export class Router {
     let htmlText = await response.text();
 
     this.rootElem.innerHTML = htmlText;
+
+    //remove this when I start to write logic
+    if (htmlName === 'toys-page.html') {
+      let body = document.querySelector('body') as HTMLElement;
+
+      body.className = 'toys-page';
+    }
   }
 }
