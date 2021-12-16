@@ -14,7 +14,7 @@
 }
 
 .filters {
-  width: 480px;
+  flex: 0 1 480px;
   padding: 10px 20px;
   border: 1px solid $border-color;
   border-radius: 10px;
@@ -215,24 +215,45 @@
   border-radius: 10px;
   background-color: $bg-color;
   backdrop-filter: blur(6px);
+  flex: 0 1 540px;
+  padding: 10px 20px;
 
   // .ranges__title
   &__title {
+    margin-bottom: 20px;
   }
 
   // .ranges__count-slider-container
   &__count-slider-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
   }
 
   // .ranges__year-slider-container
   &__year-slider-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 
 .output-slider {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 80px;
+  height: 40px;
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  border: 1px solid $border-color;
 }
 
 .count-slider {
+}
+
+.year-slider {
 }
 
 .sort {
@@ -240,6 +261,8 @@
   border-radius: 10px;
   background-color: $bg-color;
   backdrop-filter: blur(6px);
+  flex: 0 1 480px;
+  padding: 10px 20px;
 
   // .sort__type-select
   &__type-select {
