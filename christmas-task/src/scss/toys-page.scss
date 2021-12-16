@@ -4,6 +4,7 @@
 
   // .toys__container
   &__container {
+    margin-top: 40px;
   }
 }
 
@@ -11,6 +12,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 20px;
+
+  @media screen and (max-width: 1560px) {
+    & {
+      justify-content: center;
+    }
+  }
 }
 
 .filters {
