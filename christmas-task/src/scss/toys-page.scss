@@ -39,16 +39,20 @@
   &__input {
     display: none;
 
-    &:checked + .filters__form-label {
+    &:checked + .filters__form-label,
+    &:checked + .filters__size-label {
       filter: invert(9%) sepia(63%) saturate(461%) hue-rotate(322deg) brightness(83%) contrast(88%);
     }
+
   }
 
   // .filters__form-label
   &__form-label {
+    display: block;
     cursor: pointer;
 
     img {
+      display: block;
       height: 40px;
       transition: 0.5s;
 
@@ -83,16 +87,37 @@
 
   // .filters__size-label
   &__size-label {
+    display: block;
+    cursor: pointer;
+
+    img {
+      display: block;
+      transition: 0.5s;
+
+      &:hover {
+        filter: invert(20%);
+      }
+    }
+
     // .filters__size-label_size_big
     &_size_big {
+      img {
+        height: 50px;
+      }
     }
 
     // .filters__size-label_size_medium
     &_size_medium {
+      img {
+        height: 40px;
+      }
     }
 
     // .filters__size-label_size_small
     &_size_small {
+      img {
+        height: 30px;
+      }
     }
   }
 
