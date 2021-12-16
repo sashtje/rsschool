@@ -1,4 +1,6 @@
 import { Route } from './route';
+import * as noUiSlider from '../../node_modules/nouislider/dist/nouislider';
+import 'nouislider/dist/nouislider.css';
 
 export class Router {
   routes: Route[];
@@ -46,9 +48,39 @@ export class Router {
 
     //remove this when I start to write logic
     if (htmlName === 'toys-page.html') {
-      let body = document.querySelector('body') as HTMLElement;
-
-      body.className = 'toys-page';
+      this.goToToysPage();
     }
+  }
+
+  goToToysPage(): void {
+    let body = document.querySelector('body') as HTMLElement;
+
+    body.className = 'toys-page';
+
+    const countSlider = document.querySelector('.count-slider') as HTMLElement;
+
+    noUiSlider.create(countSlider, {
+      range: {
+        'min': 1,
+        'max': 12
+      },
+      step: 1,
+      start: [1, 12],
+      connect: true,
+      behaviour: 'tap-drag',
+    });
+    
+    const yearSlider = document.querySelector('.year-slider') as HTMLElement;
+
+    noUiSlider.create(yearSlider, {
+      range: {
+        'min': 1940,
+        'max': 2020
+      },
+      step: 1,
+      start: [1940, 2020],
+      connect: true,
+      behaviour: 'tap-drag',
+    });
   }
 }

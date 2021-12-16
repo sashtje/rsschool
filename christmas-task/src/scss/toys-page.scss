@@ -229,6 +229,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 50px;
+    gap: 25px;
   }
 
   // .ranges__year-slider-container
@@ -236,6 +237,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 25px;
   }
 }
 
@@ -251,9 +253,11 @@
 }
 
 .count-slider {
+  flex: 1 0 auto;
 }
 
 .year-slider {
+  flex: 1 0 auto;
 }
 
 .sort {
