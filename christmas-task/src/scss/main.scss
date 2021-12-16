@@ -50,10 +50,12 @@ body {
 }
 
 .container {
-  padding: 10px 40px;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 .content {
+  padding: 10px;
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
@@ -65,7 +67,9 @@ body {
 }
 
 .content__container {
-  padding: 10px 40px;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
