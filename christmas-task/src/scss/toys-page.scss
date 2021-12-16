@@ -1,0 +1,205 @@
+.toys {
+  color: #ffffff;
+  font-size: 1.3rem;
+
+  // .toys__container
+  &__container {
+  }
+}
+
+.settings-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.filters {
+  width: 480px;
+  padding: 10px 20px;
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  background-color: $bg-color;
+
+  // .filters__list
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  // .filters__item
+  &__item {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  // .filters__input
+  &__input {
+    display: none;
+
+    &:checked + .filters__form-label {
+      filter: invert(9%) sepia(63%) saturate(461%) hue-rotate(322deg) brightness(83%) contrast(88%);
+    }
+  }
+
+  // .filters__form-label
+  &__form-label {
+    cursor: pointer;
+
+    img {
+      height: 40px;
+      transition: 0.5s;
+
+      &:hover {
+        filter: invert(20%);
+      }
+    }
+  }
+
+  // .filters__color-label
+  &__color-label {
+    // .filters__color-label_color_white
+    &_color_white {
+    }
+
+    // .filters__color-label_color_yellow
+    &_color_yellow {
+    }
+
+    // .filters__color-label_color_red
+    &_color_red {
+    }
+
+    // .filters__color-label_color_blue
+    &_color_blue {
+    }
+
+    // .filters__color-label_color_green
+    &_color_green {
+    }
+  }
+
+  // .filters__size-label
+  &__size-label {
+    // .filters__size-label_size_big
+    &_size_big {
+    }
+
+    // .filters__size-label_size_medium
+    &_size_medium {
+    }
+
+    // .filters__size-label_size_small
+    &_size_small {
+    }
+  }
+
+  // .filters__favorite-label
+  &__favorite-label {
+  }
+}
+
+.title-section {
+  font-weight: normal;
+  margin: 16px 0;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+}
+
+.ranges {
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  background-color: $bg-color;
+
+  // .ranges__title
+  &__title {
+  }
+
+  // .ranges__count-slider-container
+  &__count-slider-container {
+  }
+
+  // .ranges__year-slider-container
+  &__year-slider-container {
+  }
+}
+
+.output-slider {
+}
+
+.count-slider {
+}
+
+.sort {
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  background-color: $bg-color;
+
+  // .sort__type-select
+  &__type-select {
+  }
+
+  // .sort__type-input
+  &__type-input {
+  }
+
+  // .sort__list
+  &__list {
+  }
+
+  // .sort__list-item
+  &__list-item {
+  }
+
+  // .sort__btn
+  &__btn {
+  }
+}
+
+.toy {
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  background-color: $bg-color;
+
+  // .toy__title
+  &__title {
+  }
+
+  // .toy__photo
+  &__photo {
+  }
+
+  // .toy__description
+  &__description {
+  }
+
+  // .toy__count
+  &__count {
+  }
+
+  // .toy__data
+  &__data {
+  }
+
+  // .toy__year
+  &__year {
+  }
+
+  // .toy__shape
+  &__shape {
+  }
+
+  // .toy__size
+  &__size {
+  }
+
+  // .toy__favorite
+  &__favorite {
+  }
+
+  // .toy__ribbon
+  &__ribbon {
+  }
+}
