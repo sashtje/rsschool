@@ -19,6 +19,7 @@
   border: 1px solid $border-color;
   border-radius: 10px;
   background-color: $bg-color;
+  backdrop-filter: blur(6px);
 
   // .filters__list
   &__list {
@@ -53,6 +54,14 @@
     &:checked + .filters__color-label_color_red::after,
     &:checked + .filters__color-label_color_blue::after {
       border-color: #ffffff;
+    }
+
+    &:checked + .filters__favorite-label {
+      background-color: $border-color;
+
+      &::after {
+        border-color: #ffffff;
+      }
     }
   }
 
@@ -165,6 +174,32 @@
 
   // .filters__favorite-label
   &__favorite-label {
+    display: block;
+    width: 30px;
+    height: 30px;
+    backdrop-filter: blur(6px);
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: $border-color;
+    }
+
+    &::after {
+      position: absolute;
+      display: block;
+      content: '';
+      top: 3px;
+      left: 10px;
+      width: 8px;
+      height: 15px;
+      border-style: solid;
+      border-color: transparent;
+      border-width: 0 4px 4px 0;
+      transform: rotate(45deg);
+    }
   }
 }
 
@@ -179,6 +214,7 @@
   border: 1px solid $border-color;
   border-radius: 10px;
   background-color: $bg-color;
+  backdrop-filter: blur(6px);
 
   // .ranges__title
   &__title {
@@ -203,6 +239,7 @@
   border: 1px solid $border-color;
   border-radius: 10px;
   background-color: $bg-color;
+  backdrop-filter: blur(6px);
 
   // .sort__type-select
   &__type-select {
@@ -229,6 +266,7 @@
   border: 1px solid $border-color;
   border-radius: 10px;
   background-color: $bg-color;
+  backdrop-filter: blur(6px);
 
   // .toy__title
   &__title {
