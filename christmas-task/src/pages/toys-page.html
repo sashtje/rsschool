@@ -93,24 +93,13 @@
     <section class="sort">
       <h2 class="title-section">Сортировка</h2>
 
-      <div class="sort__type-select">
-        <input class="sort__type-input" type="text" name="sort-type" readonly="" placeholder="Сортировать по ...">
-
-        <ul class="sort__list">
-          <li class="sort__list-item">
-            По названию от "А" до "Я"
-          </li>
-          <li class="sort__list-item">
-            По названию от "Я" до "А"
-          </li>
-          <li class="sort__list-item">
-            По году по возрастанию
-          </li>
-          <li class="sort__list-item">
-            По году по убыванию
-          </li>
-        </ul>
-      </div>
+      <select class="sort__type-select">
+        <option class="sort__option" value="nosort" selected>Неотсортированы</option>
+        <option class="sort__option" value="sort-name-inc">По названию от "А" до "Я"</option>
+        <option class="sort__option" value="sort-name-dec">По названию от "Я" до "А"</option>
+        <option class="sort__option" value="sort-year-inc">По году по возрастанию</option>
+        <option class="sort__option" value="sort-year-dec">По году по убыванию</option>
+      </select>
 
       <button class="sort__btn ">Сбросить фильтры</button>
       <button class="sort__btn">Сбросить настройки</button>

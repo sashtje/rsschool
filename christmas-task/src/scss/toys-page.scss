@@ -270,22 +270,51 @@
 
   // .sort__type-select
   &__type-select {
+    appearance: none;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    width: 300px;
+    height: 40px;
+    padding: 5px 25px;
+    margin: 10px 0;
+    background-color: rgba(31, 112, 127, .3);
+    background-image: url(../assets/svg/arrow-down.svg);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px) center;
+    backdrop-filter: blur(6px);
+    border-radius: 20px;
+    border: 1px solid #278D9F;
+    font-size: 20px;
+    line-height: 28px;
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 60px;
   }
 
-  // .sort__type-input
-  &__type-input {
-  }
-
-  // .sort__list
-  &__list {
-  }
-
-  // .sort__list-item
-  &__list-item {
+  &__option {
+    color: inherit;
+    background-color: #183E42;
   }
 
   // .sort__btn
   &__btn {
+    width: 250px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid $border-color;
+    background-color: $bg-color;
+    backdrop-filter: blur(6px);
+    cursor: pointer;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 20px;
+    
+    & + .sort__btn {
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
   }
 }
 
