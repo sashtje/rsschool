@@ -44,6 +44,16 @@
       filter: invert(9%) sepia(63%) saturate(461%) hue-rotate(322deg) brightness(83%) contrast(88%);
     }
 
+    &:checked + .filters__color-label_color_white::after,
+    &:checked + .filters__color-label_color_yellow::after,
+    &:checked + .filters__color-label_color_green::after {
+      border-color: #666666;
+    }
+
+    &:checked + .filters__color-label_color_red::after,
+    &:checked + .filters__color-label_color_blue::after {
+      border-color: #ffffff;
+    }
   }
 
   // .filters__form-label
@@ -64,24 +74,56 @@
 
   // .filters__color-label
   &__color-label {
+    position: relative;
+    display: block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      border-color: #035617;
+    }
+
+    &::after {
+      position: absolute;
+      display: block;
+      content: '';
+      top: 3px;
+      left: 10px;
+      width: 8px;
+      height: 15px;
+      border-style: solid;
+      border-color: transparent;
+      border-width: 0 4px 4px 0;
+      transform: rotate(45deg);
+    }
+
     // .filters__color-label_color_white
     &_color_white {
+      background-color: #ffffff;
     }
 
     // .filters__color-label_color_yellow
     &_color_yellow {
+      background-color: #ffff00;
     }
 
     // .filters__color-label_color_red
     &_color_red {
+      background-color: #d80404;
     }
 
     // .filters__color-label_color_blue
     &_color_blue {
+      background-color: #0077ff;
     }
 
     // .filters__color-label_color_green
     &_color_green {
+      background-color: #76fc76;
     }
   }
 
