@@ -1,7 +1,7 @@
-import { data } from './data';
+import { IData, data } from './data';
 
 export class Model {
-  data;
+  data: IData[];
   settingsToys: SettingsToys;
   settingsTree: SettingsTree;
   chosenToys: any[];
