@@ -21,10 +21,11 @@ export class ViewToys {
     const body = document.querySelector('body') as HTMLElement;
     body.className = 'toys-page';
 
-    this.goToToysPage();
+    this.initSliders();
+    this.initSearchInput();
   }
 
-  goToToysPage(): void {
+  initSliders(): void {
     const countSlider = document.querySelector('.count-slider') as HTMLElement;
 
     noUiSlider.create(countSlider, {
@@ -50,5 +51,11 @@ export class ViewToys {
       connect: true,
       behaviour: 'tap-drag',
     });
+  }
+
+  initSearchInput(): void {
+    const searchInput = document.querySelector('.search__input') as HTMLElement;
+
+    searchInput.focus();
   }
 }
