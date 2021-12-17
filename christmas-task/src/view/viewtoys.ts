@@ -81,6 +81,7 @@ export class ViewToys {
             <p class="toy__count">Количество: <span class="toy__data">${toy.count}</span></p>
             <p class="toy__year">Год покупки: <span class="toy__data">${toy.year}</span></p>
             <p class="toy__shape">Форма: <span class="toy__data">${toy.shape}</span></p>
+            <p class="toy__color">Цвет: <span class="toy__data">${toy.color}</span></p>
             <p class="toy__size">Размер: <span class="toy__data">${toy.size}</span></p>
             <p class="toy__favorite">Любимая: <span class="toy__data">${(toy.favorite) ? 'да' : 'нет'}</span></p>
           </div>
