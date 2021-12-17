@@ -1,18 +1,24 @@
-import { Route } from '../controller/route';
-import { Router } from '../controller/router';
+import { Model } from '../models/model';
+import { View } from '../view/view';
+import { Controller } from '../controller/controller';
 
 export class App {
-  router: Router;
+  model: Model;
+  view: View;
+  controller: Controller;
 
   constructor() {
-    //move to View
+    this.model = new Model();
+    this.view = new View();
+    this.controller = new Controller(this.model, this.view);
+    
+    this.view.init(this.controller, this.controller.controllerToys, this.controller.controllerTree);
+  }
+
+  start(): void {
     turnOffPreloader();
 
-    this.router = new Router([
-      new Route('', 'main-page.html', true),
-      new Route('toys', 'toys-page.html', false),
-      new Route('tree', 'tree-page.html', false)
-    ]);
+    this.controller.initRouter();
   }
 }
 

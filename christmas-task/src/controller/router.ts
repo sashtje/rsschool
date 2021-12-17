@@ -1,16 +1,16 @@
+import { Model } from '../models/model';
+import { View } from '../view/view';
 import { Route } from './route';
-import * as noUiSlider from '../../node_modules/nouislider/dist/nouislider';
-import 'nouislider/dist/nouislider.css';
 
 export class Router {
+  model: Model;
+  view: View;
   routes: Route[];
-  rootElem: HTMLElement;
 
-  constructor(routes: Route[]) {
+  constructor(model: Model, view: View, routes: Route[]) {
+    this.model = model;
+    this.view = view;
     this.routes = routes;
-    this.rootElem = document.querySelector('.content__container') as HTMLElement;
-
-    this.init();
   }
 
   init(): void {
@@ -39,48 +39,22 @@ export class Router {
     }
   }
 
-  async goToRoute(htmlName: string): Promise<void> {
-    let url = `./src/pages/${htmlName}`;
-    let response = await fetch(url);
-    let htmlText = await response.text();
+  goToRoute(htmlName: string): void {
+    switch (htmlName) {
+      case 'main-page.html':
+        this.view.goToMainPage();
+        break;
+      
+      case 'toys-page.html':
+        this.view.goToToysPage();
+        break;
 
-    this.rootElem.innerHTML = htmlText;
+      case 'tree-page.html':
+        this.view.goToTreePage();
+        break;
 
-    //remove this when I start to write logic
-    if (htmlName === 'toys-page.html') {
-      this.goToToysPage();
+      default:
+        //
     }
-  }
-
-  goToToysPage(): void {
-    let body = document.querySelector('body') as HTMLElement;
-
-    body.className = 'toys-page';
-
-    const countSlider = document.querySelector('.count-slider') as HTMLElement;
-
-    noUiSlider.create(countSlider, {
-      range: {
-        'min': 1,
-        'max': 12
-      },
-      step: 1,
-      start: [1, 12],
-      connect: true,
-      behaviour: 'tap-drag',
-    });
-    
-    const yearSlider = document.querySelector('.year-slider') as HTMLElement;
-
-    noUiSlider.create(yearSlider, {
-      range: {
-        'min': 1940,
-        'max': 2020
-      },
-      step: 1,
-      start: [1940, 2020],
-      connect: true,
-      behaviour: 'tap-drag',
-    });
   }
 }
