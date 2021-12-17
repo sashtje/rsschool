@@ -22,7 +22,7 @@ export class Controller {
       new Route('tree', 'tree-page.html', false)
     ]);
 
-    this.controllerToys = new ControllerToys();
+    this.controllerToys = new ControllerToys(model, view);
     this.controllerTree = new ControllerTree();
   }
 

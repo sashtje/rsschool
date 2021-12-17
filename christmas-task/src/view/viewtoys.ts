@@ -1,15 +1,21 @@
 import { ControllerToys } from "../controller/controllertoys";
 import { IData } from './../models/data';
+import { ChosenToy } from './../models/types';
 import * as noUiSlider from '../../node_modules/nouislider/dist/nouislider';
 import 'nouislider/dist/nouislider.css';
 
 export class ViewToys {
   controllerToys: ControllerToys;
   rootElem: HTMLElement;
+  numChosenToys: HTMLElement;
+  toysContainer?: HTMLElement;
+  isClickForPopup?: boolean;
 
   constructor(controllerToys: ControllerToys, rootElem: HTMLElement) {
     this.controllerToys = controllerToys;
     this.rootElem = rootElem;
+
+    this.numChosenToys = document.querySelector('.header__favorite-toys') as HTMLElement;
   }
 
   async showPage(data: IData[], chosenToys: string[]): Promise<void> {
@@ -24,7 +30,10 @@ export class ViewToys {
 
     this.initSliders();
     this.initSearchInput();
+    this.showNumChosenToys(chosenToys.length);
+    this.toysContainer = document.querySelector('.toys__container') as HTMLElement;
     this.showToys(data, chosenToys);
+    this.addEventsForChosingToys();
   }
 
   initSliders(): void {
@@ -61,10 +70,17 @@ export class ViewToys {
     searchInput.focus();
   }
 
-  showToys(data: IData[], chosenToys: string[]): void {
-    const toysContainer = document.querySelector('.toys__container') as HTMLElement;
+  showNumChosenToys(numChosenToys: number): void {
+    this.numChosenToys.textContent = numChosenToys.toString();
+  }
 
-    toysContainer.innerHTML = '';
+  showToys(data: IData[], chosenToys: string[]): void {
+    if (data.length === 0) {
+      (this.toysContainer as HTMLElement).innerHTML = '<div class="notification">Извините, совпадений не обнаружено...</div>';
+      return;
+    }
+
+    (this.toysContainer as HTMLElement).innerHTML = '<div class="popup popup_is_hidden">Извините, все слоты заполнены</div>';
 
     data.forEach((toy: IData, i: number) => {
       let toyClass = 'toy';
@@ -73,7 +89,7 @@ export class ViewToys {
         toyClass += ' toy_is_chosen';
       }
 
-      toysContainer.innerHTML += `
+      (this.toysContainer as HTMLElement).innerHTML += `
         <div class="${toyClass}" data-num="${toy.num}">
           <h3 class="toy__title">${toy.name}</h3>
           <img class="toy__photo" src="./public/toys/${toy.num}.webp" alt="toy">
@@ -89,5 +105,56 @@ export class ViewToys {
         </div>
       `;
     });
+  }
+
+  addEventsForChosingToys(): void {
+    (this.toysContainer as HTMLElement).addEventListener('click', this.handleClickOnToys);
+  }
+
+  handleClickOnToys = (e: Event): void => {
+    let toy = (e.target as HTMLElement).closest('.toy');
+
+    console.log(e);
+
+    if (!toy) return;
+
+    const num = (toy as HTMLElement).dataset.num;
+    let res = this.controllerToys.handleClickOnToy(num as string);
+
+    switch(res) {
+      case ChosenToy.Add:
+        toy.className = 'toy toy_is_chosen';
+        break;
+      
+      case ChosenToy.Remove:
+        toy.className = 'toy';
+        break;
+
+      case ChosenToy.Error:
+        const popup = document.querySelector('.popup') as HTMLElement;
+        if (popup.className !== 'popup popup_is_hidden') {
+          popup.className = 'popup popup_is_hidden';
+        }
+        popup.classList.remove('popup_is_hidden');
+        popup.style.top = ((e as PointerEvent).pageY - 120).toString() + 'px';
+        popup.style.left = ((e as PointerEvent).pageX - 150).toString() + 'px';
+        popup.classList.add('popup_is_shown');
+        window.addEventListener('click', this.handleClickOnWindow);
+        this.isClickForPopup = true;
+        break;
+    }
+  }
+
+  handleClickOnWindow = (e: Event) => {
+    const popup = document.querySelector('.popup');
+
+    if (popup !== null && popup.classList.contains('popup_is_shown') && !this.isClickForPopup) {
+      popup.classList.remove('popup_is_shown');
+      setTimeout(() => {
+        popup.classList.add('popup_is_hidden');
+      }, 300);
+    }
+
+    this.isClickForPopup = false;
   }
 }

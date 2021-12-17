@@ -26,6 +26,40 @@
       grid-template-columns: 304px;
     }
   }
+
+  .notification {
+    grid-column: 1 / -1;
+    padding: 10px 0 50px 0;
+    text-align: center;
+    font-size: 24px;
+  }
+
+  .popup {
+    position: absolute;
+    z-index: 1;
+    width: 304px;
+    background-color: rgba(0, 146, 20, 0.75);
+    border: 1px solid $border-color;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 10px;
+    padding: 40px 10px 20px 10px;
+    cursor: pointer;
+    background-image: url('./../assets/svg/clean.svg');
+    background-size: 30px auto;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px) 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+
+    &_is_hidden {
+      visibility: hidden;
+    }
+
+    &_is_shown {
+      opacity: 1;
+    }
+  }
 }
 
 .settings-container {
@@ -446,6 +480,7 @@
     height: 40px;
     background: $ribbon-color;
     left: -8px;
+    transition: 0.3s;
 
     &::before,
     &::after {
@@ -453,6 +488,7 @@
       content: '';
       width: 0;
       height: 0;
+      transition: 0.3s;
     }
 
     &::before {
