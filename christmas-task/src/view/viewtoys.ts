@@ -1,4 +1,5 @@
 import { ControllerToys } from "../controller/controllertoys";
+import { IData } from './../models/data';
 import * as noUiSlider from '../../node_modules/nouislider/dist/nouislider';
 import 'nouislider/dist/nouislider.css';
 
@@ -11,7 +12,7 @@ export class ViewToys {
     this.rootElem = rootElem;
   }
 
-  async showPage(): Promise<void> {
+  async showPage(data: IData[], chosenToys: string[]): Promise<void> {
     let url = `./src/pages/toys-page.html`;
     let response = await fetch(url);
     let htmlText = await response.text();
@@ -23,6 +24,7 @@ export class ViewToys {
 
     this.initSliders();
     this.initSearchInput();
+    this.showToys(data, chosenToys);
   }
 
   initSliders(): void {
@@ -57,5 +59,34 @@ export class ViewToys {
     const searchInput = document.querySelector('.search__input') as HTMLElement;
 
     searchInput.focus();
+  }
+
+  showToys(data: IData[], chosenToys: string[]): void {
+    const toysContainer = document.querySelector('.toys__container') as HTMLElement;
+
+    toysContainer.innerHTML = '';
+
+    data.forEach((toy: IData, i: number) => {
+      let toyClass = 'toy';
+
+      if (chosenToys.includes(toy.num)) {
+        toyClass += ' toy_is_chosen';
+      }
+
+      toysContainer.innerHTML += `
+        <div class="${toyClass}" data-num="${toy.num}">
+          <h3 class="toy__title">${toy.name}</h3>
+          <img class="toy__photo" src="./public/toys/${toy.num}.webp" alt="toy">
+          <div class="toy__description">
+            <p class="toy__count">Количество: <span class="toy__data">${toy.count}</span></p>
+            <p class="toy__year">Год покупки: <span class="toy__data">${toy.year}</span></p>
+            <p class="toy__shape">Форма: <span class="toy__data">${toy.shape}</span></p>
+            <p class="toy__size">Размер: <span class="toy__data">${toy.size}</span></p>
+            <p class="toy__favorite">Любимая: <span class="toy__data">${(toy.favorite) ? 'да' : 'нет'}</span></p>
+          </div>
+          <div class="toy__ribbon"></div>
+        </div>
+      `;
+    });
   }
 }

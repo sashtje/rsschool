@@ -389,6 +389,7 @@
     margin: 10px 0;
     align-self: flex-start;
     padding-left: 10px;
+    flex: 1 0 100%;
   }
 
   // .toy__photo
@@ -409,7 +410,7 @@
 
   // .toy__data
   &__data {
-    padding-left: 7px;
+    padding-left: 3px;
   }
 
   // .toy__year

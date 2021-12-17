@@ -1,6 +1,7 @@
 import { Controller } from "../controller/controller";
 import { ControllerToys } from "../controller/controllertoys";
 import { ControllerTree } from "../controller/controllertree";
+import { IData } from './../models/data';
 import { ViewToys } from './viewtoys';
 import { ViewTree } from './viewtree';
 
@@ -42,8 +43,8 @@ export class View {
     body.className = '';
   }
 
-  goToToysPage(): void {
-    (this.viewToys as ViewToys).showPage();
+  goToToysPage(data: IData[], chosenToys: string[]): void {
+    (this.viewToys as ViewToys).showPage(data, chosenToys);
   }
 
   goToTreePage(): void {
