@@ -162,7 +162,7 @@ export class ViewToys {
     }
   }
 
-  handleClickOnWindow = (e: Event) => {
+  handleClickOnWindow = () => {
     const popup = document.querySelector('.popup');
 
     if (popup !== null && popup.classList.contains('popup_is_shown') && !this.isClickForPopup) {
@@ -176,8 +176,8 @@ export class ViewToys {
   }
 
   handleChangeCountSlider = (values: (number | string)[]): void => {
-    this.updateCountSliderOutput(values as string[]);
-    this.controllerToys.updateValuesCountSlider(values as string[]);
+    this.updateCountSliderOutput(<string[]>values);
+    this.controllerToys.updateValuesCountSlider(<string[]>values);
   }
 
   handleChangeYearSlider = (values: (number | string)[]): void => {
