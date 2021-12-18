@@ -1,6 +1,7 @@
 import { Model } from '../models/model';
 import { View } from '../view/view';
 import { Controller } from '../controller/controller';
+import sayHi from "./say-hi";
 
 export class App {
   model: Model;
@@ -17,6 +18,7 @@ export class App {
 
   start(): void {
     turnOffPreloader();
+    sayHi();
 
     this.controller.initRouter();
   }
