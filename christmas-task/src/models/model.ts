@@ -65,8 +65,6 @@ export class Model {
     const i = this.chosenToys.indexOf(num);
 
     this.chosenToys = this.removeElemFromArr<string>(i, this.chosenToys);
-    
-    /* this.chosenToys.slice(0, i).concat(this.chosenToys.slice(i + 1)); */
   }
 
   addToyToChosen(num: string): void {
@@ -111,8 +109,6 @@ export class Model {
     if (this.filterObject.form.includes(filter)) {
       const i = this.filterObject.form.indexOf(filter);
       this.filterObject.form = this.removeElemFromArr<string>(i, this.filterObject.form);
-      
-      /* this.filterObject.form.slice(0, i).concat(this.filterObject.form.slice(i + 1)); */
     } else {
       this.filterObject.form.push(filter);
     }
@@ -122,8 +118,6 @@ export class Model {
     if (this.filterObject.color.includes(filter)) {
       const i = this.filterObject.color.indexOf(filter);
       this.filterObject.color = this.removeElemFromArr<string>(i, this.filterObject.color);
-      
-      /* this.filterObject.color.slice(0, i).concat(this.filterObject.color.slice(i + 1)); */
     } else {
       this.filterObject.color.push(filter);
     }
@@ -133,8 +127,6 @@ export class Model {
     if (this.filterObject.size.includes(filter)) {
       const i = this.filterObject.size.indexOf(filter);
       this.filterObject.size = this.removeElemFromArr<string>(i, this.filterObject.size);
-      
-      /* this.filterObject.size.slice(0, i).concat(this.filterObject.size.slice(i + 1)); */
     } else {
       this.filterObject.size.push(filter);
     }
