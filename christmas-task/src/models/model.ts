@@ -8,9 +8,7 @@ export class Model {
 
   constructor() {
     this.data = data;
-    //need to search in local storage
     this.chosenToys = [];
-    //need to search in local storage
     this.filterObject = {
       form: [],
       color: [],
@@ -23,7 +21,29 @@ export class Model {
       sort: 'nosort',
       search: '',
     };
+
+    this.downloadSettings();
+
+    window.addEventListener("beforeunload", this.writeSettingsToLocalStorage);
   }
+
+  downloadSettings(): void {
+    if (localStorage.getItem("filterObject")) {
+      this.filterObject = JSON.parse(localStorage.getItem("filterObject") as string);
+    }
+
+    if (localStorage.getItem("chosenToys")) {
+      this.chosenToys = JSON.parse(localStorage.getItem("chosenToys") as string);
+    }
+  }
+
+  writeSettingsToLocalStorage = (): void => {
+    localStorage.setItem(
+      "filterObject",
+      JSON.stringify(this.filterObject)
+    );
+    localStorage.setItem("chosenToys", JSON.stringify(this.chosenToys));
+  };
 
   getFilterData(): IData[] {
     return this.filterAndSortData();
