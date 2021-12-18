@@ -137,7 +137,7 @@ export class Model {
   }
 
   clearSettings(): void {
-    //clear local storage
+    localStorage.clear();
     this.clearFilters();
     this.filterObject.sort = 'nosort';
     this.chosenToys = [];
