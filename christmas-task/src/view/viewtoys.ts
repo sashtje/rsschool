@@ -1,6 +1,6 @@
 import { ControllerToys } from "../controller/controllertoys";
 import { IData } from './../models/data';
-import { ChosenToy } from './../models/types';
+import { ChosenToy, MIN_COUNT, MAX_COUNT, MIN_YEAR, MAX_YEAR } from './../models/types';
 import * as noUiSlider from '../../node_modules/nouislider/dist/nouislider';
 import 'nouislider/dist/nouislider.css';
 
@@ -10,6 +10,8 @@ export class ViewToys {
   numChosenToys: HTMLElement;
   toysContainer?: HTMLElement;
   isClickForPopup?: boolean;
+  countSlider?: noUiSlider.target;
+  yearSlider?: noUiSlider.target;
 
   constructor(controllerToys: ControllerToys, rootElem: HTMLElement) {
     this.controllerToys = controllerToys;
@@ -28,45 +30,62 @@ export class ViewToys {
     const body = document.querySelector('body') as HTMLElement;
     body.className = 'toys-page';
 
-    this.initSliders();
+    this.createSliders();
     this.initSearchInput();
+    this.initFilterCheckboxes();
+    this.initOnlyFavoritesCheckbox();
+    this.initSortSelect();
     this.showNumChosenToys(chosenToys.length);
     this.toysContainer = document.querySelector('.toys__container') as HTMLElement;
     this.showToys(data, chosenToys);
     this.addEventsForChosingToys();
+    this.addEventsListenersForSettings();
   }
 
-  initSliders(): void {
-    const countSlider = document.querySelector('.count-slider') as HTMLElement;
+  createSliders(): void {
+    const rangeCountSlider = this.controllerToys.getRangeCountSlider();
+    const rangeYearSlider = this.controllerToys.getRangeYearSlider();
 
-    noUiSlider.create(countSlider, {
+    this.countSlider = document.querySelector('.count-slider') as noUiSlider.target;
+
+    noUiSlider.create(this.countSlider, {
       range: {
-        'min': 1,
-        'max': 12
+        'min': MIN_COUNT,
+        'max': MAX_COUNT
       },
       step: 1,
-      start: [1, 12],
+      start: [rangeCountSlider[0], rangeCountSlider[1]],
       connect: true,
       behaviour: 'tap-drag',
     });
+
+    this.updateCountSliderOutput([rangeCountSlider[0].toString(), rangeCountSlider[1].toString()]);
+
+    (this.countSlider.noUiSlider as noUiSlider.API).on('change', this.handleChangeCountSlider);
     
-    const yearSlider = document.querySelector('.year-slider') as HTMLElement;
+    this.yearSlider = document.querySelector('.year-slider') as noUiSlider.target;
 
-    noUiSlider.create(yearSlider, {
+    noUiSlider.create(this.yearSlider, {
       range: {
-        'min': 1940,
-        'max': 2020
+        'min': MIN_YEAR,
+        'max': MAX_YEAR
       },
       step: 1,
-      start: [1940, 2020],
+      start: [rangeYearSlider[0], rangeYearSlider[1]],
       connect: true,
       behaviour: 'tap-drag',
     });
+
+    this.updateYearSliderOutput([rangeYearSlider[0].toString(), rangeYearSlider[1].toString()]);
+
+    (this.yearSlider.noUiSlider as noUiSlider.API).on('change', this.handleChangeYearSlider);
   }
 
   initSearchInput(): void {
-    const searchInput = document.querySelector('.search__input') as HTMLElement;
+    const searchInput = document.querySelector('.search__input') as HTMLInputElement;
+    const value = this.controllerToys.getSearchValue();
 
+    searchInput.value = value;
     searchInput.focus();
   }
 
@@ -114,8 +133,6 @@ export class ViewToys {
   handleClickOnToys = (e: Event): void => {
     let toy = (e.target as HTMLElement).closest('.toy');
 
-    console.log(e);
-
     if (!toy) return;
 
     const num = (toy as HTMLElement).dataset.num;
@@ -156,5 +173,63 @@ export class ViewToys {
     }
 
     this.isClickForPopup = false;
+  }
+
+  handleChangeCountSlider = (values: (number | string)[]): void => {
+    this.updateCountSliderOutput(values as string[]);
+    this.controllerToys.updateValuesCountSlider(values as string[]);
+  }
+
+  handleChangeYearSlider = (values: (number | string)[]): void => {
+    this.updateYearSliderOutput(values as string[]);
+    this.controllerToys.updateValuesYearSlider(values as string[]);
+  }
+
+  updateCountSliderOutput(values: string[]): void {
+    const output = document.querySelectorAll('.ranges__count-slider-container .output-slider');
+
+    output[0].textContent = values[0].split('.')[0];
+    output[1].textContent = values[1].split('.')[0];
+  }
+
+  updateYearSliderOutput(values: string[]): void {
+    const output = document.querySelectorAll('.ranges__year-slider-container .output-slider');
+
+    output[0].textContent = values[0].split('.')[0];
+    output[1].textContent = values[1].split('.')[0];
+  }
+
+  initFilterCheckboxes(): void {
+    const settings = this.controllerToys.getFilterCheckboxSettings();
+    const filterCheckboxes = Array.from(document.querySelectorAll('.filters__input'));
+
+    for (let i = 0; i < filterCheckboxes.length; i++) {
+      if ((filterCheckboxes[i] as HTMLElement).dataset.filter !== undefined && settings.includes((filterCheckboxes[i] as HTMLElement).dataset.filter as string)) {
+        (filterCheckboxes[i] as HTMLInputElement).checked = true;
+      }
+      (filterCheckboxes[i] as HTMLInputElement).checked = false;
+    }
+  }
+
+  initOnlyFavoritesCheckbox(): void {
+    const settings = this.controllerToys.getOnlyFavoritesCheckboxSettings();
+    const onlyFavoritesCheckbox = document.getElementById('favorite') as HTMLInputElement;
+
+    if (settings) {
+      onlyFavoritesCheckbox.checked = true;
+    } else {
+      onlyFavoritesCheckbox.checked = false;
+    }
+  }
+
+  initSortSelect(): void {
+    const value = this.controllerToys.getSortValue();
+    const sortSelect = document.querySelector('.sort__type-select') as HTMLInputElement;
+
+    sortSelect.value = value;
+  }
+
+  addEventsListenersForSettings(): void {
+
   }
 }

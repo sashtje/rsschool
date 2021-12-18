@@ -26,4 +26,40 @@ export class ControllerToys {
       return ChosenToy.Add;
     }
   }
+
+  getRangeCountSlider(): number[] {
+    return this.model.getRangeCountSlider();
+  }
+
+  getRangeYearSlider(): number[] {
+    return this.model.getRangeYearSlider();
+  }
+
+  updateValuesCountSlider(values: string[]): void {
+    this.model.updateValuesCountSlider(values);
+    //filter
+    //showToys
+  }
+
+  updateValuesYearSlider(values: string[]): void {
+    this.model.updateValuesYearSlider(values);
+    //filter
+    //showToys
+  }
+
+  getFilterCheckboxSettings(): string[] {
+    return this.model.getFilterSettings();
+  }
+
+  getOnlyFavoritesCheckboxSettings(): boolean {
+    return this.model.getOnlyFavoritesSettings();
+  }
+
+  getSortValue(): string {
+    return this.model.getSortValue();
+  }
+
+  getSearchValue(): string {
+    return this.model.getSearchValue();
+  }
 }
