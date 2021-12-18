@@ -62,4 +62,56 @@ export class ControllerToys {
   getSearchValue(): string {
     return this.model.getSearchValue();
   }
+
+  updateValueFormCheckbox(filter: string): void {
+    this.model.updateValueFormFilter(filter);
+    //filter
+    //showToys
+  }
+
+  updateValueColorCheckbox(filter: string): void {
+    this.model.updateValueColorFilter(filter);
+    //filter
+    //showToys
+  }
+
+  updateValueSizeCheckbox(filter: string): void {
+    this.model.updateValueSizeFilter(filter);
+    //filter
+    //showToys
+  }
+
+  updateValueOnlyFavorites(value: boolean): void {
+    this.model.updateValueOnlyFavorites(value);
+    //filter
+    //showToys
+  }
+
+  handleInputSearch(value: string): void {
+    this.model.changeInputSearch(value);
+    //filter
+    //showToys
+  }
+
+  handleChangeSortSelectValue(value: string): void {
+    this.model.changeSortValue(value);
+    //filter
+    //showToys
+  }
+
+  handleClearFilters(): void {
+    this.model.clearFilters();
+    //filter
+    //showToys
+  }
+
+  handleClearSettings(): void {
+    this.model.clearSettings();
+    //filter
+    //showToys
+  }
+
+  getNumberChosenToys(): number {
+    return this.model.getNumberChosenToys();
+  }
 }

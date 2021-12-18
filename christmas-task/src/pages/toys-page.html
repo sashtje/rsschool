@@ -4,7 +4,7 @@
       <h2 class="title-section">Фильтры по значению</h2>
 
       <ul class="filters__list">
-        <li class="filters__item">Форма:
+        <li class="filters__item filters__item-form">Форма:
           <input class="filters__input" type="checkbox" name="round" value="round" id="round" data-filter="шар">
           <label class="filters__form-label" for="round">
             <img src="./public/svg/ball.svg" alt="ball">
@@ -31,7 +31,7 @@
           </label>
         </li>
 
-        <li class="filters__item">Цвет:
+        <li class="filters__item filters__item-color">Цвет:
           <input class="filters__input" type="checkbox" name="white" value="white" id="white" data-filter="белый">
           <label class="filters__color-label filters__color-label_color_white" for="white"></label>
 
@@ -48,7 +48,7 @@
           <label class="filters__color-label filters__color-label_color_green" for="green"></label>
         </li>
 
-        <li class="filters__item">Размер:
+        <li class="filters__item filters__item-size">Размер:
           <input class="filters__input" type="checkbox" name="big" value="big" id="big" data-filter="большой">
           <label class="filters__size-label filters__size-label_size_big" for="big">
             <img src="./public/svg/ball.svg" alt="big">
@@ -65,7 +65,7 @@
           </label>
         </li>
 
-        <li class="filters__item">Только любимые:
+        <li class="filters__item filters__item-favorites">Только любимые:
           <input class="filters__input" type="checkbox" name="favorite" value="favorite" id="favorite">
           <label class="filters__favorite-label" for="favorite"></label>
         </li>
@@ -101,8 +101,8 @@
         <option class="sort__option" value="sort-year-dec">По году по убыванию</option>
       </select>
 
-      <button class="sort__btn ">Сбросить фильтры</button>
-      <button class="sort__btn">Сбросить настройки</button>
+      <button class="sort__btn" id="clear-filters-btn">Сбросить фильтры</button>
+      <button class="sort__btn" id="clear-settings-btn">Сбросить настройки</button>
     </section>
   </div>
 

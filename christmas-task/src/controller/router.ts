@@ -46,7 +46,7 @@ export class Router {
         break;
       
       case 'toys-page.html':
-        const data = this.model.getData();
+        const data = this.model.getFilterData();
         const chosenToys = this.model.getChosenToys();
         this.view.goToToysPage(data, chosenToys);
         break;

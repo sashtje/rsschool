@@ -201,13 +201,15 @@ export class ViewToys {
 
   initFilterCheckboxes(): void {
     const settings = this.controllerToys.getFilterCheckboxSettings();
+
     const filterCheckboxes = Array.from(document.querySelectorAll('.filters__input'));
 
     for (let i = 0; i < filterCheckboxes.length; i++) {
       if ((filterCheckboxes[i] as HTMLElement).dataset.filter !== undefined && settings.includes((filterCheckboxes[i] as HTMLElement).dataset.filter as string)) {
         (filterCheckboxes[i] as HTMLInputElement).checked = true;
+      } else {
+        (filterCheckboxes[i] as HTMLInputElement).checked = false;
       }
-      (filterCheckboxes[i] as HTMLInputElement).checked = false;
     }
   }
 
@@ -230,6 +232,121 @@ export class ViewToys {
   }
 
   addEventsListenersForSettings(): void {
+    // add listeners for checkboxes
+    const checkboxesForm = document.querySelectorAll('.filters__item-form input');
 
+    checkboxesForm.forEach((checkbox) => {
+      checkbox.addEventListener('change', this.handleChangeFormCheckboxes);
+    });
+
+    const checkboxesColor = document.querySelectorAll('.filters__item-color input');
+
+    checkboxesColor.forEach((checkbox) => {
+      checkbox.addEventListener('change', this.handleChangeColorCheckboxes);
+    });
+
+    const checkboxesSize = document.querySelectorAll('.filters__item-size input');
+
+    checkboxesSize.forEach((checkbox) => {
+      checkbox.addEventListener('change', this.handleChangeSizeCheckboxes);
+    });
+
+    const checkboxFavorite = document.getElementById('favorite') as HTMLElement;
+
+    checkboxFavorite.addEventListener('change', this.handleChangeFavoriteCheckboxes);
+
+    // add listener for search input
+    const searchInput = document.querySelector('.search__input') as HTMLElement;
+
+    searchInput.addEventListener('input', this.handleInputSearch);
+
+    // add listener for sort select
+    const sortSelect = document.querySelector('.sort__type-select') as HTMLElement;
+
+    sortSelect.addEventListener('change', this.handleChangeSortSelectValue);
+
+    // add listener for clear filters btn
+    const clearFiltersBtn = document.getElementById('clear-filters-btn') as HTMLElement;
+
+    clearFiltersBtn.addEventListener('click', this.handleClearFilters);
+
+    // add listener for clear settings btn
+    const clearSettingBtn = document.getElementById('clear-settings-btn') as HTMLElement;
+
+    clearSettingBtn.addEventListener('click', this.handleClearSettings);
+  }
+
+  handleChangeFormCheckboxes = (e: Event): void => {
+    const checkbox = e.target as HTMLElement;
+
+    this.controllerToys.updateValueFormCheckbox(checkbox.dataset.filter as string);
+  }
+
+  handleChangeColorCheckboxes = (e: Event): void => {
+    const checkbox = e.target as HTMLElement;
+
+    this.controllerToys.updateValueColorCheckbox(checkbox.dataset.filter as string);
+  }
+
+  handleChangeSizeCheckboxes = (e: Event): void => {
+    const checkbox = e.target as HTMLElement;
+
+    this.controllerToys.updateValueSizeCheckbox(checkbox.dataset.filter as string);
+  }
+
+  handleChangeFavoriteCheckboxes = (e: Event): void => {
+    const checkbox = e.target as HTMLInputElement;
+
+    if (checkbox.checked) {
+      this.controllerToys.updateValueOnlyFavorites(true);
+    } else {
+      this.controllerToys.updateValueOnlyFavorites(false);
+    }
+  }
+
+  handleInputSearch = (e: Event): void => {
+    const value = (e.target as HTMLInputElement).value;
+
+    this.controllerToys.handleInputSearch(value);
+  }
+
+  handleChangeSortSelectValue = (e: Event): void => {
+    const value = (e.target as HTMLInputElement).value;
+    
+    this.controllerToys.handleChangeSortSelectValue(value);
+  }
+
+  handleClearFilters = (): void => {
+    this.controllerToys.handleClearFilters();
+    this.clearFilters();
+  }
+
+  clearFilters(): void {
+    this.initSearchInput();
+    this.initFilterCheckboxes();
+    this.initOnlyFavoritesCheckbox();
+    this.updateSliders();
+  }
+
+  handleClearSettings = (): void => {
+    this.controllerToys.handleClearSettings();
+    this.clearFilters();
+    this.initSortSelect();
+    const chosenToysNumber = this.controllerToys.getNumberChosenToys();
+    this.showNumChosenToys(chosenToysNumber);
+  }
+
+  updateSliders(): void {
+    const rangeCountSlider = this.controllerToys.getRangeCountSlider();
+    const rangeYearSlider = this.controllerToys.getRangeYearSlider();
+
+    this.countSlider?.noUiSlider?.set(rangeCountSlider);
+    this.yearSlider?.noUiSlider?.set(rangeYearSlider);
+
+    const countValuesString = [rangeCountSlider[0].toString(), rangeCountSlider[1].toString()];
+    const yearValuesString = [rangeYearSlider[0].toString(), rangeYearSlider[1].toString()];
+
+    this.updateCountSliderOutput(countValuesString);
+    this.updateYearSliderOutput(yearValuesString);
   }
 }
