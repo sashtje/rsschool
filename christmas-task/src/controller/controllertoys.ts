@@ -1,5 +1,6 @@
 import { Model } from "../models/model"
 import { View } from "../view/view";
+import { ViewToys } from "../view/viewtoys";
 import { ChosenToy, MAX_CHOSEN_TOYS } from './../models/types';
 
 export class ControllerToys {
@@ -37,14 +38,12 @@ export class ControllerToys {
 
   updateValuesCountSlider(values: string[]): void {
     this.model.updateValuesCountSlider(values);
-    //filter
-    //showToys
+    (this.view.viewToys as ViewToys).showToys(this.model.getFilterData(), this.model.getChosenToys());
   }
 
   updateValuesYearSlider(values: string[]): void {
     this.model.updateValuesYearSlider(values);
-    //filter
-    //showToys
+    (this.view.viewToys as ViewToys).showToys(this.model.getFilterData(), this.model.getChosenToys());
   }
 
   getFilterCheckboxSettings(): string[] {
@@ -65,50 +64,42 @@ export class ControllerToys {
 
   updateValueFormCheckbox(filter: string): void {
     this.model.updateValueFormFilter(filter);
-    //filter
-    //showToys
+    (this.view.viewToys as ViewToys).showToys(this.model.getFilterData(), this.model.getChosenToys());
   }
 
   updateValueColorCheckbox(filter: string): void {
     this.model.updateValueColorFilter(filter);
-    //filter
-    //showToys
+    (this.view.viewToys as ViewToys).showToys(this.model.getFilterData(), this.model.getChosenToys());
   }
 
   updateValueSizeCheckbox(filter: string): void {
     this.model.updateValueSizeFilter(filter);
-    //filter
-    //showToys
+    (this.view.viewToys as ViewToys).showToys(this.model.getFilterData(), this.model.getChosenToys());
   }
 
   updateValueOnlyFavorites(value: boolean): void {
     this.model.updateValueOnlyFavorites(value);
-    //filter
-    //showToys
+    (this.view.viewToys as ViewToys).showToys(this.model.getFilterData(), this.model.getChosenToys());
   }
 
   handleInputSearch(value: string): void {
     this.model.changeInputSearch(value);
-    //filter
-    //showToys
+    (this.view.viewToys as ViewToys).showToys(this.model.getFilterData(), this.model.getChosenToys());
   }
 
   handleChangeSortSelectValue(value: string): void {
     this.model.changeSortValue(value);
-    //filter
-    //showToys
+    (this.view.viewToys as ViewToys).showToys(this.model.getFilterData(), this.model.getChosenToys());
   }
 
   handleClearFilters(): void {
     this.model.clearFilters();
-    //filter
-    //showToys
+    (this.view.viewToys as ViewToys).showToys(this.model.getFilterData(), this.model.getChosenToys());
   }
 
   handleClearSettings(): void {
     this.model.clearSettings();
-    //filter
-    //showToys
+    (this.view.viewToys as ViewToys).showToys(this.model.getFilterData(), this.model.getChosenToys());
   }
 
   getNumberChosenToys(): number {
