@@ -342,7 +342,7 @@ export const data: IData[] = [
   },
   {
     num: '34',
-    name: 'Зелёный  шар с узором',
+    name: 'Зелёный шар с узором',
     count: '8',
     year: '2010',
     shape: 'шар',
@@ -372,7 +372,7 @@ export const data: IData[] = [
   },
   {
     num: '37',
-    name: 'Зелёный  шар Метель',
+    name: 'Зелёный шар Метель',
     count: '6',
     year: '2000',
     shape: 'шар',
@@ -382,7 +382,7 @@ export const data: IData[] = [
   },
   {
     num: '38',
-    name: 'Голубой  шар Метель',
+    name: 'Голубой шар Метель',
     count: '6',
     year: '2000',
     shape: 'шар',

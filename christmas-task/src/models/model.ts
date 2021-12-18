@@ -242,7 +242,7 @@ export class Model {
   }
 
   sortNameInc = (item1: IData, item2: IData): number => {
-    return item1.name < item2.name ? -1 : 1;
+    return item1.name <= item2.name ? -1 : 1;
   }
 
   sortNameDec = (item1: IData, item2: IData): number => {
