@@ -27,7 +27,11 @@ export default class View {
     });
   }
 
-  init(controller: Controller, controllerToys: ControllerToys, controllerTree: ControllerTree): void {
+  init(
+    controller: Controller,
+    controllerToys: ControllerToys,
+    controllerTree: ControllerTree,
+  ): void {
     this.controller = controller;
 
     this.viewToys = new ViewToys(controllerToys, this.rootElem);

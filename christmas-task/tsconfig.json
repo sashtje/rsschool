@@ -6,7 +6,10 @@
     "target": "es6",
     "allowJs": true,
     "sourceMap": true,
-    "strict": true
+    "strict": true,
+    "paths": {
+      "nouislider": ["./node_modules/nouislider/dist/nouislider"]
+    }
   },
   "files": ["./src/index.ts"]
 }

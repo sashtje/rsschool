@@ -1,8 +1,8 @@
+import * as noUiSlider from 'nouislider';
+import 'nouislider/dist/nouislider.css';
 import ControllerToys from '../controller/controllertoys';
 import { IData } from '../models/data';
 import { ChosenToy, MIN_COUNT, MAX_COUNT, MIN_YEAR, MAX_YEAR } from '../models/types';
-import * as noUiSlider from '../../node_modules/nouislider/dist/nouislider';
-import 'nouislider/dist/nouislider.css';
 
 export default class ViewToys {
   controllerToys: ControllerToys;
@@ -101,11 +101,13 @@ export default class ViewToys {
 
   showToys(data: IData[], chosenToys: string[]): void {
     if (data.length === 0) {
-      (this.toysContainer as HTMLElement).innerHTML =        '<div class="notification">Извините, совпадений не обнаружено...</div>';
+      (this.toysContainer as HTMLElement).innerHTML =
+        '<div class="notification">Извините, совпадений не обнаружено...</div>';
       return;
     }
 
-    (this.toysContainer as HTMLElement).innerHTML =      '<div class="popup popup_is_hidden">Извините, все слоты заполнены</div>';
+    (this.toysContainer as HTMLElement).innerHTML =
+      '<div class="popup popup_is_hidden">Извините, все слоты заполнены</div>';
 
     data.forEach((toy: IData) => {
       let toyClass = 'toy';
@@ -113,6 +115,8 @@ export default class ViewToys {
       if (chosenToys.includes(toy.num)) {
         toyClass += ' toy_is_chosen';
       }
+
+      const favToy = toy.favorite ? 'да' : 'нет';
 
       (this.toysContainer as HTMLElement).innerHTML += `
         <div class="${toyClass}" data-num="${toy.num}">
@@ -124,7 +128,7 @@ export default class ViewToys {
             <p class="toy__shape">Форма: <span class="toy__data">${toy.shape}</span></p>
             <p class="toy__color">Цвет: <span class="toy__data">${toy.color}</span></p>
             <p class="toy__size">Размер: <span class="toy__data">${toy.size}</span></p>
-            <p class="toy__favorite">Любимая: <span class="toy__data">${toy.favorite ? 'да' : 'нет'}</span></p>
+            <p class="toy__favorite">Любимая: <span class="toy__data">${favToy}</span></p>
           </div>
           <div class="toy__ribbon"></div>
         </div>
