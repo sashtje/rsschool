@@ -1,14 +1,17 @@
-import { Controller } from "../controller/controller";
-import { ControllerToys } from "../controller/controllertoys";
-import { ControllerTree } from "../controller/controllertree";
-import { IData } from './../models/data';
-import { ViewToys } from './viewtoys';
-import { ViewTree } from './viewtree';
+import Controller from '../controller/controller';
+import ControllerToys from '../controller/controllertoys';
+import ControllerTree from '../controller/controllertree';
+import { IData } from '../models/data';
+import ViewToys from './viewtoys';
+import ViewTree from './viewtree';
 
-export class View {
+export default class View {
   controller?: Controller;
+
   viewToys?: ViewToys;
+
   viewTree?: ViewTree;
+
   rootElem: HTMLElement;
 
   constructor() {
@@ -33,9 +36,9 @@ export class View {
   }
 
   async goToMainPage(): Promise<void> {
-    let url = `./src/pages/main-page.html`;
-    let response = await fetch(url);
-    let htmlText = await response.text();
+    const url = './src/pages/main-page.html';
+    const response = await fetch(url);
+    const htmlText = await response.text();
 
     this.rootElem.innerHTML = htmlText;
 
@@ -44,10 +47,14 @@ export class View {
   }
 
   goToToysPage(data: IData[], chosenToys: string[]): void {
-    (this.viewToys as ViewToys).showPage(data, chosenToys);
+    (this.viewToys as ViewToys).showPage(data, chosenToys).catch((e: Error) => {
+      console.log(e);
+    });
   }
 
   goToTreePage(): void {
-    (this.viewTree as ViewTree).showPage();
+    (this.viewTree as ViewTree).showPage().catch((e: Error) => {
+      console.log(e);
+    });
   }
 }

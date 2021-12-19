@@ -1,10 +1,11 @@
-import { Model } from "../models/model"
-import { View } from "../view/view";
-import { ViewToys } from "../view/viewtoys";
-import { ChosenToy, MAX_CHOSEN_TOYS } from './../models/types';
+import Model from '../models/model';
+import View from '../view/view';
+import ViewToys from '../view/viewtoys';
+import { ChosenToy, MAX_CHOSEN_TOYS } from '../models/types';
 
-export class ControllerToys {
+export default class ControllerToys {
   model: Model;
+
   view: View;
 
   constructor(model: Model, view: View) {
@@ -18,14 +19,14 @@ export class ControllerToys {
       const numChosenToys = this.model.getChosenToys().length;
       this.view.viewToys?.showNumChosenToys(numChosenToys);
       return ChosenToy.Remove;
-    } else if (this.model.getNumberChosenToys() >= MAX_CHOSEN_TOYS) {
-      return ChosenToy.Error;
-    } else {
-      this.model.addToyToChosen(num);
-      const numChosenToys = this.model.getChosenToys().length;
-      this.view.viewToys?.showNumChosenToys(numChosenToys);
-      return ChosenToy.Add;
     }
+    if (this.model.getNumberChosenToys() >= MAX_CHOSEN_TOYS) {
+      return ChosenToy.Error;
+    }
+    this.model.addToyToChosen(num);
+    const numChosenToys = this.model.getChosenToys().length;
+    this.view.viewToys?.showNumChosenToys(numChosenToys);
+    return ChosenToy.Add;
   }
 
   getRangeCountSlider(): number[] {

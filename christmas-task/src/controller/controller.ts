@@ -1,15 +1,19 @@
-import { Model } from '../models/model';
-import { View } from '../view/view';
-import { Route } from './route';
-import { Router } from './router';
-import { ControllerToys } from './controllertoys';
-import { ControllerTree } from './controllertree';
+import Model from '../models/model';
+import View from '../view/view';
+import Route from './route';
+import Router from './router';
+import ControllerToys from './controllertoys';
+import ControllerTree from './controllertree';
 
-export class Controller {
+export default class Controller {
   model: Model;
+
   view: View;
+
   router: Router;
+
   controllerToys: ControllerToys;
+
   controllerTree: ControllerTree;
 
   constructor(model: Model, view: View) {
@@ -19,7 +23,7 @@ export class Controller {
     this.router = new Router(model, view, [
       new Route('', 'main-page.html', true),
       new Route('toys', 'toys-page.html', false),
-      new Route('tree', 'tree-page.html', false)
+      new Route('tree', 'tree-page.html', false),
     ]);
 
     this.controllerToys = new ControllerToys(model, view);

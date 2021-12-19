@@ -1,10 +1,12 @@
-import { Model } from '../models/model';
-import { View } from '../view/view';
-import { Route } from './route';
+import Model from '../models/model';
+import View from '../view/view';
+import Route from './route';
 
-export class Router {
+export default class Router {
   model: Model;
+
   view: View;
+
   routes: Route[];
 
   constructor(model: Model, view: View, routes: Route[]) {
@@ -21,34 +23,34 @@ export class Router {
 
   handleHashChange = (): void => {
     if (window.location.hash.length > 0) {
-      for (let i = 0; i < this.routes.length; i++) {
-        let route = this.routes[i];
+      for (let i = 0; i < this.routes.length; i += 1) {
+        const route = this.routes[i];
 
         if (route.isActiveRoute(window.location.hash.slice(1))) {
           this.goToRoute(route.htmlName);
         }
       }
     } else {
-      for (let i = 0; i < this.routes.length; i++) {
-        let route = this.routes[i];
+      for (let i = 0; i < this.routes.length; i += 1) {
+        const route = this.routes[i];
 
         if (route.defaultRoute) {
           this.goToRoute(route.htmlName);
         }
       }
     }
-  }
+  };
 
   goToRoute(htmlName: string): void {
     switch (htmlName) {
       case 'main-page.html':
-        this.view.goToMainPage();
+        this.view.goToMainPage().catch((e: Error) => {
+          console.log(e);
+        });
         break;
-      
+
       case 'toys-page.html':
-        const data = this.model.getFilterData();
-        const chosenToys = this.model.getChosenToys();
-        this.view.goToToysPage(data, chosenToys);
+        this.view.goToToysPage(this.model.getFilterData(), this.model.getChosenToys());
         break;
 
       case 'tree-page.html':
@@ -56,7 +58,7 @@ export class Router {
         break;
 
       default:
-        //
+      //
     }
   }
 }

@@ -1,7 +1,8 @@
-import { ControllerTree } from "../controller/controllertree";
+import ControllerTree from '../controller/controllertree';
 
-export class ViewTree {
+export default class ViewTree {
   controllerTree: ControllerTree;
+
   rootElem: HTMLElement;
 
   constructor(controllerTree: ControllerTree, rootElem: HTMLElement) {
@@ -10,9 +11,9 @@ export class ViewTree {
   }
 
   async showPage(): Promise<void> {
-    let url = `./src/pages/tree-page.html`;
-    let response = await fetch(url);
-    let htmlText = await response.text();
+    const url = './src/pages/tree-page.html';
+    const response = await fetch(url);
+    const htmlText = await response.text();
 
     this.rootElem.innerHTML = htmlText;
 

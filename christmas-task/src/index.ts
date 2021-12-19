@@ -1,5 +1,5 @@
-import { App } from './app/app';
+import App from './app/app';
 import './scss/all-styles.scss';
 
-let app = new App();
+const app = new App();
 app.start();

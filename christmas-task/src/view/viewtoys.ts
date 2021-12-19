@@ -1,16 +1,22 @@
-import { ControllerToys } from "../controller/controllertoys";
-import { IData } from './../models/data';
-import { ChosenToy, MIN_COUNT, MAX_COUNT, MIN_YEAR, MAX_YEAR } from './../models/types';
+import ControllerToys from '../controller/controllertoys';
+import { IData } from '../models/data';
+import { ChosenToy, MIN_COUNT, MAX_COUNT, MIN_YEAR, MAX_YEAR } from '../models/types';
 import * as noUiSlider from '../../node_modules/nouislider/dist/nouislider';
 import 'nouislider/dist/nouislider.css';
 
-export class ViewToys {
+export default class ViewToys {
   controllerToys: ControllerToys;
+
   rootElem: HTMLElement;
+
   numChosenToys: HTMLElement;
+
   toysContainer?: HTMLElement;
+
   isClickForPopup?: boolean;
+
   countSlider?: noUiSlider.target;
+
   yearSlider?: noUiSlider.target;
 
   constructor(controllerToys: ControllerToys, rootElem: HTMLElement) {
@@ -21,9 +27,9 @@ export class ViewToys {
   }
 
   async showPage(data: IData[], chosenToys: string[]): Promise<void> {
-    let url = `./src/pages/toys-page.html`;
-    let response = await fetch(url);
-    let htmlText = await response.text();
+    const url = './src/pages/toys-page.html';
+    const response = await fetch(url);
+    const htmlText = await response.text();
 
     this.rootElem.innerHTML = htmlText;
 
@@ -50,8 +56,8 @@ export class ViewToys {
 
     noUiSlider.create(this.countSlider, {
       range: {
-        'min': MIN_COUNT,
-        'max': MAX_COUNT
+        min: MIN_COUNT,
+        max: MAX_COUNT,
       },
       step: 1,
       start: [rangeCountSlider[0], rangeCountSlider[1]],
@@ -62,13 +68,13 @@ export class ViewToys {
     this.updateCountSliderOutput([rangeCountSlider[0].toString(), rangeCountSlider[1].toString()]);
 
     (this.countSlider.noUiSlider as noUiSlider.API).on('change', this.handleChangeCountSlider);
-    
+
     this.yearSlider = document.querySelector('.year-slider') as noUiSlider.target;
 
     noUiSlider.create(this.yearSlider, {
       range: {
-        'min': MIN_YEAR,
-        'max': MAX_YEAR
+        min: MIN_YEAR,
+        max: MAX_YEAR,
       },
       step: 1,
       start: [rangeYearSlider[0], rangeYearSlider[1]],
@@ -95,13 +101,13 @@ export class ViewToys {
 
   showToys(data: IData[], chosenToys: string[]): void {
     if (data.length === 0) {
-      (this.toysContainer as HTMLElement).innerHTML = '<div class="notification">Извините, совпадений не обнаружено...</div>';
+      (this.toysContainer as HTMLElement).innerHTML =        '<div class="notification">Извините, совпадений не обнаружено...</div>';
       return;
     }
 
-    (this.toysContainer as HTMLElement).innerHTML = '<div class="popup popup_is_hidden">Извините, все слоты заполнены</div>';
+    (this.toysContainer as HTMLElement).innerHTML =      '<div class="popup popup_is_hidden">Извините, все слоты заполнены</div>';
 
-    data.forEach((toy: IData, i: number) => {
+    data.forEach((toy: IData) => {
       let toyClass = 'toy';
 
       if (chosenToys.includes(toy.num)) {
@@ -118,7 +124,7 @@ export class ViewToys {
             <p class="toy__shape">Форма: <span class="toy__data">${toy.shape}</span></p>
             <p class="toy__color">Цвет: <span class="toy__data">${toy.color}</span></p>
             <p class="toy__size">Размер: <span class="toy__data">${toy.size}</span></p>
-            <p class="toy__favorite">Любимая: <span class="toy__data">${(toy.favorite) ? 'да' : 'нет'}</span></p>
+            <p class="toy__favorite">Любимая: <span class="toy__data">${toy.favorite ? 'да' : 'нет'}</span></p>
           </div>
           <div class="toy__ribbon"></div>
         </div>
@@ -131,36 +137,40 @@ export class ViewToys {
   }
 
   handleClickOnToys = (e: Event): void => {
-    let toy = (e.target as HTMLElement).closest('.toy');
+    const toy = (e.target as HTMLElement).closest('.toy');
 
     if (!toy) return;
 
-    const num = (toy as HTMLElement).dataset.num;
-    let res = this.controllerToys.handleClickOnToy(num as string);
+    const { num } = (toy as HTMLElement).dataset;
+    const res = this.controllerToys.handleClickOnToy(num as string);
 
-    switch(res) {
+    const popup = document.querySelector('.popup') as HTMLElement;
+
+    switch (res) {
       case ChosenToy.Add:
         toy.className = 'toy toy_is_chosen';
         break;
-      
+
       case ChosenToy.Remove:
         toy.className = 'toy';
         break;
 
       case ChosenToy.Error:
-        const popup = document.querySelector('.popup') as HTMLElement;
         if (popup.className !== 'popup popup_is_hidden') {
           popup.className = 'popup popup_is_hidden';
         }
         popup.classList.remove('popup_is_hidden');
-        popup.style.top = ((e as PointerEvent).pageY - 120).toString() + 'px';
-        popup.style.left = ((e as PointerEvent).pageX - 150).toString() + 'px';
+        popup.style.top = `${((e as PointerEvent).pageY - 120).toString()}px`;
+        popup.style.left = `${((e as PointerEvent).pageX - 150).toString()}px`;
         popup.classList.add('popup_is_shown');
         window.addEventListener('click', this.handleClickOnWindow);
         this.isClickForPopup = true;
         break;
+
+      default:
+      //
     }
-  }
+  };
 
   handleClickOnWindow = () => {
     const popup = document.querySelector('.popup');
@@ -173,30 +183,32 @@ export class ViewToys {
     }
 
     this.isClickForPopup = false;
-  }
+  };
 
   handleChangeCountSlider = (values: (number | string)[]): void => {
     this.updateCountSliderOutput(<string[]>values);
     this.controllerToys.updateValuesCountSlider(<string[]>values);
-  }
+  };
 
   handleChangeYearSlider = (values: (number | string)[]): void => {
     this.updateYearSliderOutput(values as string[]);
     this.controllerToys.updateValuesYearSlider(values as string[]);
-  }
+  };
 
   updateCountSliderOutput(values: string[]): void {
     const output = document.querySelectorAll('.ranges__count-slider-container .output-slider');
 
-    output[0].textContent = values[0].split('.')[0];
-    output[1].textContent = values[1].split('.')[0];
+    const [value1, value2] = values;
+    [output[0].textContent] = value1.split('.');
+    [output[1].textContent] = value2.split('.');
   }
 
   updateYearSliderOutput(values: string[]): void {
     const output = document.querySelectorAll('.ranges__year-slider-container .output-slider');
 
-    output[0].textContent = values[0].split('.')[0];
-    output[1].textContent = values[1].split('.')[0];
+    const [value1, value2] = values;
+    [output[0].textContent] = value1.split('.');
+    [output[1].textContent] = value2.split('.');
   }
 
   initFilterCheckboxes(): void {
@@ -204,8 +216,11 @@ export class ViewToys {
 
     const filterCheckboxes = Array.from(document.querySelectorAll('.filters__input'));
 
-    for (let i = 0; i < filterCheckboxes.length; i++) {
-      if ((filterCheckboxes[i] as HTMLElement).dataset.filter !== undefined && settings.includes((filterCheckboxes[i] as HTMLElement).dataset.filter as string)) {
+    for (let i = 0; i < filterCheckboxes.length; i += 1) {
+      if (
+        (filterCheckboxes[i] as HTMLElement).dataset.filter !== undefined &&
+        settings.includes((filterCheckboxes[i] as HTMLElement).dataset.filter as string)
+      ) {
         (filterCheckboxes[i] as HTMLInputElement).checked = true;
       } else {
         (filterCheckboxes[i] as HTMLInputElement).checked = false;
@@ -280,19 +295,19 @@ export class ViewToys {
     const checkbox = e.target as HTMLElement;
 
     this.controllerToys.updateValueFormCheckbox(checkbox.dataset.filter as string);
-  }
+  };
 
   handleChangeColorCheckboxes = (e: Event): void => {
     const checkbox = e.target as HTMLElement;
 
     this.controllerToys.updateValueColorCheckbox(checkbox.dataset.filter as string);
-  }
+  };
 
   handleChangeSizeCheckboxes = (e: Event): void => {
     const checkbox = e.target as HTMLElement;
 
     this.controllerToys.updateValueSizeCheckbox(checkbox.dataset.filter as string);
-  }
+  };
 
   handleChangeFavoriteCheckboxes = (e: Event): void => {
     const checkbox = e.target as HTMLInputElement;
@@ -302,24 +317,24 @@ export class ViewToys {
     } else {
       this.controllerToys.updateValueOnlyFavorites(false);
     }
-  }
+  };
 
   handleInputSearch = (e: Event): void => {
-    const value = (e.target as HTMLInputElement).value;
+    const { value } = e.target as HTMLInputElement;
 
     this.controllerToys.handleInputSearch(value);
-  }
+  };
 
   handleChangeSortSelectValue = (e: Event): void => {
-    const value = (e.target as HTMLInputElement).value;
-    
+    const { value } = e.target as HTMLInputElement;
+
     this.controllerToys.handleChangeSortSelectValue(value);
-  }
+  };
 
   handleClearFilters = (): void => {
     this.controllerToys.handleClearFilters();
     this.clearFilters();
-  }
+  };
 
   clearFilters(): void {
     this.initSearchInput();
@@ -334,7 +349,7 @@ export class ViewToys {
     this.initSortSelect();
     const chosenToysNumber = this.controllerToys.getNumberChosenToys();
     this.showNumChosenToys(chosenToysNumber);
-  }
+  };
 
   updateSliders(): void {
     const rangeCountSlider = this.controllerToys.getRangeCountSlider();

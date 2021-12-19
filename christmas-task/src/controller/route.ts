@@ -1,6 +1,8 @@
-export class Route {
+export default class Route {
   name: string;
+
   htmlName: string;
+
   defaultRoute: boolean;
 
   constructor(name: string, htmlName: string, defaultRoute: boolean) {
