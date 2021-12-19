@@ -40,7 +40,7 @@ export default class View {
   }
 
   async goToMainPage(): Promise<void> {
-    const url = './src/pages/main-page.html';
+    const url = './public/pages/main-page.html';
     const response = await fetch(url);
     const htmlText = await response.text();
 

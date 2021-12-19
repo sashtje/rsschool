@@ -11,7 +11,7 @@ export default class ViewTree {
   }
 
   async showPage(): Promise<void> {
-    const url = './src/pages/tree-page.html';
+    const url = './public/pages/tree-page.html';
     const response = await fetch(url);
     const htmlText = await response.text();
 

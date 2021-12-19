@@ -27,7 +27,7 @@ export default class ViewToys {
   }
 
   async showPage(data: IData[], chosenToys: string[]): Promise<void> {
-    const url = './src/pages/toys-page.html';
+    const url = './public/pages/toys-page.html';
     const response = await fetch(url);
     const htmlText = await response.text();
 
