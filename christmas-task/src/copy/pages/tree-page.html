@@ -1,3 +1,130 @@
 <section class="tree">
-  
+  <div class="tree__settings">
+    <div class="tree__settings-controls tree-controls">
+      <button class="tree-controls__btn tree-controls__btn-sound" title="Включить/выключить музыку">
+        <img src="./public/svg/audio.svg" alt="sound">
+      </button>
+
+      <button class="tree-controls__btn tree-controls__btn-snow" title="Включить/выключить снег">
+        <img src="./public/svg/snow.svg" alt="snow">
+      </button>
+
+      <button class="tree-controls__btn tree-controls__btn-clear-settings" title="Очистить local storage">
+        <img src="./public/svg/trash.svg" alt="trash">
+      </button>
+    </div>
+
+    <section class="tree__settings-tree tree-settings">
+      <h2 class="title-section">Выберите ёлку</h2>
+      <div class="tree-settings__container">
+        <div class="tree-settings__item" data-tree="1"></div>
+        <div class="tree-settings__item" data-tree="2"></div>
+        <div class="tree-settings__item" data-tree="3"></div>
+        <div class="tree-settings__item" data-tree="4"></div>
+        <div class="tree-settings__item" data-tree="5"></div>
+        <div class="tree-settings__item" data-tree="6"></div>
+      </div>
+    </section>
+
+    <section class="tree__settings-bg bg-settings">
+      <h2 class="title-section">Выберите фон</h2>
+      <div class="bg-settings__container">
+        <div class="bg-settings__item" data-bg="1"></div>
+        <div class="bg-settings__item" data-bg="2"></div>
+        <div class="bg-settings__item" data-bg="3"></div>
+        <div class="bg-settings__item" data-bg="4"></div>
+        <div class="bg-settings__item" data-bg="5"></div>
+        <div class="bg-settings__item" data-bg="6"></div>
+        <div class="bg-settings__item" data-bg="7"></div>
+        <div class="bg-settings__item" data-bg="8"></div>
+        <div class="bg-settings__item" data-bg="9"></div>
+        <div class="bg-settings__item" data-bg="10"></div>
+      </div>
+    </section>
+
+    <section class="tree__settings-garland garland-settings">
+      <h2 class="title-section">Гирлянда</h2>
+      <div class="garland-settings__container">
+        <input class="garland-settings__radio" type="radio" name="garland" value="rainbow" id="rainbow" checked>
+        <label class="garland-settings__radio-label" for="rainbow"></label>
+
+        <input class="garland-settings__radio" type="radio" name="garland" value="red" id="red">
+        <label class="garland-settings__radio-label" for="red"></label>
+
+        <input class="garland-settings__radio" type="radio" name="garland" value="blue" id="blue">
+        <label class="garland-settings__radio-label" for="blue"></label>
+
+        <input class="garland-settings__radio" type="radio" name="garland" value="yellow" id="yellow">
+        <label class="garland-settings__radio-label" for="yellow"></label>
+
+        <input class="garland-settings__radio" type="radio" name="garland" value="green" id="green">
+        <label class="garland-settings__radio-label" for="green"></label>
+
+        <input class="garland-settings__checkbox" type="checkbox" name="garland-switch" id="garland-switch">
+        <label class="garland-settings__checkbox-label" for="garland-switch"></label>
+      </div>
+    </section>
+  </div>
+
+  <div class="tree__tree-container"></div>
+
+  <div class="tree__decor">
+    <section class="decor__toys decor-toys">
+      <h2 class="title-section">Игрушки</h2>
+      <div class="decor-toys__container">
+        <div class="decor-toys__toy">
+          <img class="decor-toys__toy-img" src="./public/toys/1.webp" alt="toy">
+          <img class="decor-toys__toy-img" src="./public/toys/1.webp" alt="toy">
+          <span class="decor-toys__number-toys">12</span>
+        </div>
+        <div class="decor-toys__toy">
+          <img class="decor-toys__toy-img" src="./public/toys/1.webp" alt="toy">
+          <img class="decor-toys__toy-img" src="./public/toys/1.webp" alt="toy">
+          <span class="decor-toys__number-toys">12</span>
+        </div>
+        <div class="decor-toys__toy">
+          <img class="decor-toys__toy-img" src="./public/toys/1.webp" alt="toy">
+          <img class="decor-toys__toy-img" src="./public/toys/1.webp" alt="toy">
+          <span class="decor-toys__number-toys">12</span>
+        </div>
+        <div class="decor-toys__toy">
+          <img class="decor-toys__toy-img" src="./public/toys/1.webp" alt="toy">
+          <img class="decor-toys__toy-img" src="./public/toys/1.webp" alt="toy">
+          <span class="decor-toys__number-toys">12</span>
+        </div>
+        <div class="decor-toys__toy">
+          <img class="decor-toys__toy-img" src="./public/toys/1.webp" alt="toy">
+          <img class="decor-toys__toy-img" src="./public/toys/1.webp" alt="toy">
+          <span class="decor-toys__number-toys">12</span>
+        </div>
+        <div class="decor-toys__toy">
+          <img class="decor-toys__toy-img" src="./public/toys/1.webp" alt="toy">
+          <img class="decor-toys__toy-img" src="./public/toys/1.webp" alt="toy">
+          <span class="decor-toys__number-toys">12</span>
+        </div>
+        <div class="decor-toys__toy">
+          <img class="decor-toys__toy-img" src="./public/toys/1.webp" alt="toy">
+          <img class="decor-toys__toy-img" src="./public/toys/1.webp" alt="toy">
+          <span class="decor-toys__number-toys">12</span>
+        </div>
+        <div class="decor-toys__toy">
+          <img class="decor-toys__toy-img" src="./public/toys/1.webp" alt="toy">
+          <img class="decor-toys__toy-img" src="./public/toys/1.webp" alt="toy">
+          <span class="decor-toys__number-toys">12</span>
+        </div>
+        
+      </div>
+    </section>
+
+    <section class="decor__trees decor-trees">
+      <div class="decor-trees__container">
+        <div class="decor-trees__tree" data-tree="1"></div>
+        <div class="decor-trees__tree" data-tree="2"></div>
+        <div class="decor-trees__tree" data-tree="3"></div>
+        <div class="decor-trees__tree" data-tree="4"></div>
+        <div class="decor-trees__tree" data-tree="5"></div>
+        <div class="decor-trees__tree" data-tree="6"></div>
+      </div>
+    </section>
+  </div>
 </section>
