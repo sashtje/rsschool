@@ -30,18 +30,18 @@ export default class Model {
   }
 
   downloadSettings(): void {
-    if (localStorage.getItem('filterObject')) {
-      this.filterObject = JSON.parse(localStorage.getItem('filterObject') as string) as IFilter;
+    if (localStorage.getItem('*filterObject')) {
+      this.filterObject = JSON.parse(localStorage.getItem('*filterObject') as string) as IFilter;
     }
 
-    if (localStorage.getItem('chosenToys')) {
-      this.chosenToys = JSON.parse(localStorage.getItem('chosenToys') as string) as string[];
+    if (localStorage.getItem('*chosenToys')) {
+      this.chosenToys = JSON.parse(localStorage.getItem('*chosenToys') as string) as string[];
     }
   }
 
   writeSettingsToLocalStorage = (): void => {
-    localStorage.setItem('filterObject', JSON.stringify(this.filterObject));
-    localStorage.setItem('chosenToys', JSON.stringify(this.chosenToys));
+    localStorage.setItem('*filterObject', JSON.stringify(this.filterObject));
+    localStorage.setItem('*chosenToys', JSON.stringify(this.chosenToys));
   };
 
   getFilterData(): IData[] {
@@ -159,7 +159,8 @@ export default class Model {
   }
 
   clearSettings(): void {
-    localStorage.clear();
+    localStorage.removeItem('*filterObject');
+    localStorage.removeItem('*chosenToys');
     this.clearFilters();
     this.filterObject.sort = 'nosort';
     this.chosenToys = [];
