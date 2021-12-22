@@ -158,6 +158,14 @@
 }
 
 .tree-page {
+  .header__controls {
+    display: block;
+  }
+
+  .header__search {
+    display: none;
+  }
+
   .menu__link-tree::after {
     position: absolute;
     content: '';
