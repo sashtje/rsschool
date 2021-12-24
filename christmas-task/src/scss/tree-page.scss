@@ -167,6 +167,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    overflow-x: auto;
   }
 
   // .garland-settings__radio
@@ -196,12 +197,19 @@
 
   // .garland-settings__radio-label
   &__radio-label {
+    flex: 0 0 30px;
     display: block;
     cursor: pointer;
-    width: 30px;
     height: 30px;
     border-radius: 50%;
     transition: 0.3s;
+
+    @media screen and (max-width: 1200px) {
+      & {
+        flex: 0 0 20px;
+        height: 20px;
+      }
+    }
 
     &_is_rainbow {
       background: radial-gradient(circle at center, white, transparent 40%), radial-gradient(circle at top, yellow, transparent 40%), radial-gradient(circle at bottom, blue, transparent 40%), radial-gradient(circle at left, #01fb01, transparent 40%), radial-gradient(circle at right, red, transparent 40%);
@@ -240,7 +248,6 @@
   // .garland-settings__checkbox-label
   &__checkbox-label {
     flex: 0 0 70px;
-    margin: 0 20px;
     position: relative;
     display: flex;
     align-items: center;
@@ -265,43 +272,69 @@
   }
 }
 
-.decor {
-  // .decor__toys
-  &__toys {
-  }
-
-  // .decor__trees
-  &__trees {
-  }
-}
-
 .decor-toys {
   // .decor-toys__container
   &__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+    @media screen and (max-width: 1200px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   // .decor-toys__toy
   &__toy {
+    cursor: pointer;
     position: relative;
+    padding-bottom: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
   }
 
   // .decor-toys__toy-img
   &__toy-img {
     position: absolute;
-
+    max-width: 80%;
+    max-height: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
   }
 
   // .decor-toys__number-toys
   &__number-toys {
+    position: absolute;
+    display: block;
+    padding: 5px;
+    border-radius: 50%;
+    left: 0;
+    bottom: 0;
+    background-color: #5c5c5c;
   }
 }
 
 .decor-trees {
   // .decor-trees__container
   &__container {
+    padding-bottom: 5px;
+    display: flex;
+    overflow-x: auto;
+    gap: 2%;
   }
 
   // .decor-trees__tree
   &__tree {
+    flex: 0 0 23%;
+    height: 70px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-image: url('./../assets/tree/1.webp');
+    background-repeat: no-repeat;
+    background-size: auto 85%;
+    background-position: center;
+    background-color: rgba(214, 255, 211, 0.73);
+    transition: 0.3s;
   }
 }
