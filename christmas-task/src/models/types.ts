@@ -32,6 +32,8 @@ export const MIN_YEAR = 1940;
 export const MAX_YEAR = 2020;
 export const DEFAULT_TREE = '1';
 export const DEFAULT_BG = '1';
+export const TREE_NUMBER = 6;
+export const BG_NUMBER = 10;
 
 export enum SortTypes {
   NoSort = 'nosort',

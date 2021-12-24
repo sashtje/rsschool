@@ -258,4 +258,29 @@ export default class Model {
   changeSoundSettings(value: boolean): void {
     this.treeSettings.sound = value;
   }
+
+  getSnowSettings(): boolean {
+    return this.treeSettings.snow;
+  }
+
+  changeSnowSettings(value: boolean): void {
+    this.treeSettings.snow = value;
+  }
+
+  clearTreeSettings(): void {
+    this.treeSettings = {
+      sound: false,
+      snow: false,
+      tree: DEFAULT_TREE,
+      bg: DEFAULT_BG,
+    };
+  }
+
+  getActiveTreeNumber(): string {
+    return this.treeSettings.tree;
+  }
+
+  changeActiveTree(value: string): void {
+    this.treeSettings.tree = value;
+  }
 }
