@@ -89,8 +89,19 @@ body {
 
 .tree-page {
   .content {
+    padding: 0;
     background-image: url("./../assets/img/bg.webp");
     background-size: cover;
     background-position: center bottom;
+  }
+
+  .content__container {
+    border: 1px solid $border-color;
+    border-radius: 10px;
+    background-color: $bg-color;
+    backdrop-filter: blur(6px);
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
   }
 }
