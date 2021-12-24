@@ -283,4 +283,12 @@ export default class Model {
   changeActiveTree(value: string): void {
     this.treeSettings.tree = value;
   }
+
+  getActiveBgNumber(): string {
+    return this.treeSettings.bg;
+  }
+
+  changeActiveBg(value: string): void {
+    this.treeSettings.bg = value;
+  }
 }

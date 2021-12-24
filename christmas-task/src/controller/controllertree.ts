@@ -37,4 +37,12 @@ export default class ControllerTree {
   changeActiveTree(value: string): void {
     this.model.changeActiveTree(value);
   }
+
+  getActiveBgNumber(): string {
+    return this.model.getActiveBgNumber();
+  }
+
+  changeActiveBg(value: string): void {
+    this.model.changeActiveBg(value);
+  }
 }
