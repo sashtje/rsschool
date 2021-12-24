@@ -44,12 +44,14 @@ export default class Router {
   goToRoute(htmlName: string): void {
     switch (htmlName) {
       case 'main-page.html':
+        this.view.viewTree?.audio.pause();
         this.view.goToMainPage().catch((e: Error) => {
           console.log(e);
         });
         break;
 
       case 'toys-page.html':
+        this.view.viewTree?.audio.pause();
         this.view.goToToysPage(this.model.getFilterData(), this.model.getChosenToys());
         break;
 

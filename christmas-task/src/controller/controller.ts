@@ -27,7 +27,7 @@ export default class Controller {
     ]);
 
     this.controllerToys = new ControllerToys(model, view);
-    this.controllerTree = new ControllerTree();
+    this.controllerTree = new ControllerTree(model, view);
   }
 
   initRouter(): void {

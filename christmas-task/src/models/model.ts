@@ -1,5 +1,5 @@
 import { IData, data } from './data';
-import { IFilter, MIN_COUNT, MAX_COUNT, MIN_YEAR, MAX_YEAR, SortTypes } from './types';
+import { IFilter, ISettings, MIN_COUNT, MAX_COUNT, MIN_YEAR, MAX_YEAR, SortTypes, DEFAULT_TREE, DEFAULT_BG } from './types';
 
 export default class Model {
   data: IData[];
@@ -7,6 +7,7 @@ export default class Model {
   chosenToys: string[];
 
   filterObject: IFilter;
+  treeSettings: ISettings;
 
   constructor() {
     this.data = data;
@@ -24,6 +25,13 @@ export default class Model {
       search: '',
     };
 
+    this.treeSettings = {
+      sound: false,
+      snow: false,
+      tree: DEFAULT_TREE,
+      bg: DEFAULT_BG,
+    };
+
     this.downloadSettings();
 
     window.addEventListener('beforeunload', this.writeSettingsToLocalStorage);
@@ -37,11 +45,16 @@ export default class Model {
     if (localStorage.getItem('*chosenToys')) {
       this.chosenToys = JSON.parse(localStorage.getItem('*chosenToys') as string) as string[];
     }
+
+    if (localStorage.getItem('*treeSettings')) {
+      this.treeSettings = JSON.parse(localStorage.getItem('*treeSettings') as string);
+    }
   }
 
   writeSettingsToLocalStorage = (): void => {
     localStorage.setItem('*filterObject', JSON.stringify(this.filterObject));
     localStorage.setItem('*chosenToys', JSON.stringify(this.chosenToys));
+    localStorage.setItem('*treeSettings', JSON.stringify(this.treeSettings));
   };
 
   getFilterData(): IData[] {
@@ -236,5 +249,13 @@ export default class Model {
 
   removeElemFromArr<T>(indexRemoveElem: number, arr: T[]): T[] {
     return arr.slice(0, indexRemoveElem).concat(arr.slice(indexRemoveElem + 1));
+  }
+
+  getSoundSettings(): boolean {
+    return this.treeSettings.sound;
+  }
+
+  changeSoundSettings(value: boolean): void {
+    this.treeSettings.sound = value;
   }
 }

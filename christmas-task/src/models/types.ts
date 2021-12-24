@@ -19,10 +19,19 @@ export interface IFilter {
   search: string;
 }
 
+export interface ISettings {
+  sound: boolean;
+  snow: boolean;
+  tree: string;
+  bg: string;
+}
+
 export const MIN_COUNT = 1;
 export const MAX_COUNT = 12;
 export const MIN_YEAR = 1940;
 export const MAX_YEAR = 2020;
+export const DEFAULT_TREE = '1';
+export const DEFAULT_BG = '1';
 
 export enum SortTypes {
   NoSort = 'nosort',
