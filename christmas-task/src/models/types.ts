@@ -26,6 +26,11 @@ export interface ISettings {
   bg: string;
 }
 
+export interface IDataPrint {
+  num: string;
+  count: string;
+}
+
 export const MIN_COUNT = 1;
 export const MAX_COUNT = 12;
 export const MIN_YEAR = 1940;

@@ -1,5 +1,5 @@
 import { IData, data } from './data';
-import { IFilter, ISettings, MIN_COUNT, MAX_COUNT, MIN_YEAR, MAX_YEAR, SortTypes, DEFAULT_TREE, DEFAULT_BG } from './types';
+import { IFilter, ISettings, MIN_COUNT, MAX_COUNT, MIN_YEAR, MAX_YEAR, SortTypes, DEFAULT_TREE, DEFAULT_BG, IDataPrint, MAX_CHOSEN_TOYS } from './types';
 
 export default class Model {
   data: IData[];
@@ -290,5 +290,43 @@ export default class Model {
 
   changeActiveBg(value: string): void {
     this.treeSettings.bg = value;
+  }
+
+  getToysToPrint(): IDataPrint[] {
+    if (this.chosenToys.length === 0) {
+      return this.getDefaultToysToPrint();
+    } else {
+      return this.getChosenToysToPrint();
+    }
+  }
+
+  getDefaultToysToPrint(): IDataPrint[] {
+    let dataToPrint = [];
+
+    for (let i = 0; i < MAX_CHOSEN_TOYS; i += 1) {
+      let num = this.data[i].num;
+      let count = this.data[i].count;
+
+      dataToPrint.push({num, count});
+    }
+
+    return dataToPrint;
+  }
+
+  getChosenToysToPrint(): IDataPrint[] {
+    let dataToPrint = [];
+
+    for (let i = 0; i < this.chosenToys.length; i += 1) {
+      let num = this.chosenToys[i];
+      let count = this.getToyCount(num);
+
+      dataToPrint.push({num, count});
+    }
+
+    return dataToPrint;
+  }
+
+  getToyCount(num: string): string {
+    return this.data[+num - 1].count;
   }
 }

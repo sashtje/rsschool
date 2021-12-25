@@ -1,4 +1,5 @@
 import Model from "../models/model";
+import { IDataPrint } from "../models/types";
 import View from "../view/view";
 
 export default class ControllerTree {
@@ -44,5 +45,9 @@ export default class ControllerTree {
 
   changeActiveBg(value: string): void {
     this.model.changeActiveBg(value);
+  }
+
+  getToysToPrint(): IDataPrint[] {
+    return this.model.getToysToPrint();
   }
 }

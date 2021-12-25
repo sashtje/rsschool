@@ -1,4 +1,5 @@
 import ControllerTree from '../controller/controllertree';
+import data from '../models/data';
 import { TREE_NUMBER, BG_NUMBER, DEFAULT_TREE, DEFAULT_BG } from '../models/types';
 
 export default class ViewTree {
@@ -240,7 +241,36 @@ export default class ViewTree {
   }
 
   initToys(): void {
+    const decorToysContainer = document.querySelector('.decor-toys__container') as HTMLElement;
+    let dataToPrint = this.controllerTree.getToysToPrint();
 
+    for (let i = 0; i < dataToPrint.length; i += 1) {
+      let num = dataToPrint[i].num;
+      let count = dataToPrint[i].count;
+      let div = document.createElement('div');
+
+      div.className = 'decor-toys__toy';
+      div.dataset.num = num;
+
+      for (let j = +count; j >= 1; j -= 1) {
+        let img = document.createElement('img');
+        img.className = 'decor-toys__toy-img';
+        img.src = `./public/toys/${num}.webp`;
+        img.alt = 'toy';
+        img.id = `${num}-${j}`;
+        img.draggable = true;
+        img.dataset.imgnum = num;
+
+        div.append(img);
+      }
+
+      let span = document.createElement('span');
+      span.className = 'decor-toys__number-toys';
+      span.textContent = count;
+      div.append(span);
+
+      decorToysContainer.append(div);
+    }
   }
 
   initReadyTrees(): void {
