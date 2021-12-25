@@ -1,5 +1,6 @@
 import Model from '../models/model';
 import View from '../view/view';
+import ViewTree from '../view/viewtree';
 import Route from './route';
 
 export default class Router {
@@ -45,6 +46,7 @@ export default class Router {
     switch (htmlName) {
       case 'main-page.html':
         this.view.viewTree?.audio.pause();
+        this.clearTimer();
         this.view.goToMainPage().catch((e: Error) => {
           console.log(e);
         });
@@ -52,6 +54,7 @@ export default class Router {
 
       case 'toys-page.html':
         this.view.viewTree?.audio.pause();
+        this.clearTimer();
         this.view.goToToysPage(this.model.getFilterData(), this.model.getChosenToys());
         break;
 
@@ -62,5 +65,9 @@ export default class Router {
       default:
       //
     }
+  }
+
+  clearTimer(): void {
+    clearInterval((this.view.viewTree as ViewTree).timerSnow as NodeJS.Timer);
   }
 }
