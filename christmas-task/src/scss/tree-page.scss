@@ -31,9 +31,19 @@
   // .tree__tree-container
   &__tree-container {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center bottom;
+  }
+
+  &__main-tree {
+    display: block;
+    max-width: 80%;
+    max-height: 90%;
+    margin-bottom: 20px;
   }
 
   &__snowflakes {
