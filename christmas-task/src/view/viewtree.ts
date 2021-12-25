@@ -30,6 +30,8 @@ export default class ViewTree {
     this.initBgForChoice();
     this.addListenersForGarlands();
     this.initTreeContainer();
+    this.initToys();
+    this.initReadyTrees();
   }
 
   initSettings(): void {
@@ -235,5 +237,23 @@ export default class ViewTree {
     mainTree.className = 'tree__main-tree';
     mainTree.useMap = '#tree-map';
     treeContainer.append(mainTree);
+  }
+
+  initToys(): void {
+
+  }
+
+  initReadyTrees(): void {
+    const decorTreesContainer = document.querySelector('.decor-trees__container') as HTMLElement;
+
+    decorTreesContainer.innerHTML = '';
+
+    for (let i = 1; i <= TREE_NUMBER; i += 1) {
+      const div = document.createElement('div');
+      div.className = "decor-trees__tree";
+      div.dataset.tree = i.toString();
+      div.style.backgroundImage = `url('./public/tree/${i}.webp')`;
+      decorTreesContainer.append(div);
+    }
   }
 }
