@@ -19,7 +19,7 @@ export default class App {
   }
 
   start(): void {
-    this.turnOffPreloader();
+    /* this.turnOffPreloader(); */
     sayHi();
 
     this.controller.initRouter();

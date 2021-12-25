@@ -236,7 +236,11 @@ export default class ViewTree {
     mainTree.className = 'tree__main-tree';
     mainTree.useMap = '#tree-map';
     mainTree.onload = this.handleResizeWindow;
-    treeContainer.append(mainTree);
+
+    const mainContainerTree = document.createElement('div');
+    mainContainerTree.className = 'tree__main-container-tree';
+    mainContainerTree.append(mainTree);
+    treeContainer.append(mainContainerTree);
 
     const snowflakesContainer = document.createElement('div');
     snowflakesContainer.className = 'tree__snowflakes';
