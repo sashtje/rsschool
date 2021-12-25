@@ -30,15 +30,42 @@
 
   // .tree__tree-container
   &__tree-container {
-    // background-image: url('./../assets/bg/1.webp');
+    position: relative;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center bottom;
   }
 
+  &__snowflakes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    --bottom: 105vh;
+
+    &_is_hiding {
+      visibility: hidden;
+    }
+
+    &-item {
+      color: #ffffff;
+      position: absolute;
+      top: -20px;
+      animation: fall linear forwards;
+    }
+  }
+
   // .tree__decor
   &__decor {
     padding-bottom: 10px;
+  }
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(var(--bottom));
   }
 }
 
@@ -305,8 +332,11 @@
   // .decor-toys__number-toys
   &__number-toys {
     position: absolute;
-    display: block;
-    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     left: 0;
     bottom: 0;

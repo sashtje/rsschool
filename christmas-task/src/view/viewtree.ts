@@ -9,6 +9,12 @@ export default class ViewTree {
 
   audio: HTMLAudioElement;
 
+  timerSnow?: NodeJS.Timer;
+
+  snowContainerWidth?: number;
+
+  snowContainerHeight?: number;
+
   constructor(controllerTree: ControllerTree, rootElem: HTMLElement) {
     this.controllerTree = controllerTree;
     this.rootElem = rootElem;
@@ -45,17 +51,6 @@ export default class ViewTree {
     }
 
     sound.addEventListener('change', this.handleSoundOnOff);
-
-
-    const snow = document.getElementById('snow') as HTMLInputElement;
-    const isSnowOn = this.controllerTree.getSnowSettings();
-
-    if (isSnowOn) {
-      snow.checked = true;
-      //start snow
-    }
-
-    snow.addEventListener('change', this.handleSnowOnOff);
 
     const trash = document.querySelector('.tree-controls__btn') as HTMLElement;
 
@@ -100,10 +95,10 @@ export default class ViewTree {
 
     if (target.checked) {
       this.controllerTree.changeSnowSettings(true);
-      //start snow
+      this.turnOnSnow();
     } else {
       this.controllerTree.changeSnowSettings(false);
-      //stop snow
+      this.turnOffSnow();
     }
   }
 
@@ -115,6 +110,9 @@ export default class ViewTree {
     sound.checked = false;
 
     const snow = document.getElementById('snow') as HTMLInputElement;
+    if (snow.checked) {
+      this.turnOffSnow();
+    }
     snow.checked = false;
 
     const prevActiveTree = document.querySelector('.tree-settings__item_is_active') as HTMLElement;
@@ -238,6 +236,37 @@ export default class ViewTree {
     mainTree.className = 'tree__main-tree';
     mainTree.useMap = '#tree-map';
     treeContainer.append(mainTree);
+
+    const snowflakesContainer = document.createElement('div');
+    snowflakesContainer.className = 'tree__snowflakes';
+    treeContainer.append(snowflakesContainer);
+
+    window.addEventListener('resize', this.handleResizeWindow);
+
+    this.snowContainerWidth = snowflakesContainer.offsetWidth;
+    this.snowContainerHeight = snowflakesContainer.offsetHeight;
+
+    const snow = document.getElementById('snow') as HTMLInputElement;
+    const isSnowOn = this.controllerTree.getSnowSettings();
+
+    if (isSnowOn) {
+      snow.checked = true;
+      this.turnOnSnow();
+    }
+
+    snow.addEventListener('change', this.handleSnowOnOff);
+  }
+
+  handleResizeWindow = (): void => {
+    const snowflakesContainer = document.querySelector('.tree__snowflakes') as HTMLElement;
+
+    if (snowflakesContainer === null) {
+      window.removeEventListener('resize', this.handleResizeWindow);
+      return;
+    }
+
+    this.snowContainerWidth = snowflakesContainer.offsetWidth;
+    this.snowContainerHeight = snowflakesContainer.offsetHeight;
   }
 
   initToys(): void {
@@ -285,5 +314,41 @@ export default class ViewTree {
       div.style.backgroundImage = `url('./public/tree/${i}.webp')`;
       decorTreesContainer.append(div);
     }
+  }
+
+  turnOnSnow(): void {
+    const snowflakesContainer = document.querySelector('.tree__snowflakes') as HTMLElement;
+
+    if (snowflakesContainer.classList.contains('tree__snowflakes_is_hiding')) {
+      snowflakesContainer.classList.remove('tree__snowflakes_is_hiding');
+    }
+    this.timerSnow = setInterval(this.createSnowflake, 50);
+  }
+
+  createSnowflake = (): void => {
+    const snowflakesContainer = document.querySelector('.tree__snowflakes') as HTMLElement;
+    const snowFlake = document.createElement('i');
+
+    snowFlake.className = 'bi bi-snow2 tree__snowflakes-item';
+    snowFlake.style.left = Math.random() * this.snowContainerWidth! + 'px';
+    snowFlake.style.animationDuration = Math.random() * 3 + 4 + 's';
+    snowFlake.style.fontSize = Math.random() * 10 + 10 + 'px';
+
+    snowflakesContainer.style.setProperty('--bottom', this.snowContainerHeight! + 50 + 'px');
+
+    snowflakesContainer.append(snowFlake);
+
+    setTimeout(() => {
+      try {
+        snowFlake.remove();
+      } catch {}
+    }, 7000);
+  }
+
+  turnOffSnow(): void {
+    clearInterval(this.timerSnow as NodeJS.Timer);
+    const snowflakesContainer = document.querySelector('.tree__snowflakes') as HTMLElement;
+    snowflakesContainer.classList.add('tree__snowflakes_is_hiding');
+    snowflakesContainer.innerHTML = '';
   }
 }
