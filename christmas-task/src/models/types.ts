@@ -40,6 +40,10 @@ export const DEFAULT_BG = '1';
 export const TREE_NUMBER = 6;
 export const BG_NUMBER = 10;
 
+export const MAX_WIDTH_TREE = 500;
+export const MAX_HEIGHT_TREE = 714;
+export const NUM_GARLAND_ROPES = 8;
+
 export enum SortTypes {
   NoSort = 'nosort',
   NameInc = 'sort-name-inc',

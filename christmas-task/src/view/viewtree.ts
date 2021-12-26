@@ -1,6 +1,5 @@
 import ControllerTree from '../controller/controllertree';
-import data from '../models/data';
-import { TREE_NUMBER, BG_NUMBER, DEFAULT_TREE, DEFAULT_BG } from '../models/types';
+import { TREE_NUMBER, BG_NUMBER, DEFAULT_TREE, DEFAULT_BG, MAX_WIDTH_TREE, MAX_HEIGHT_TREE, NUM_GARLAND_ROPES } from '../models/types';
 
 export default class ViewTree {
   controllerTree: ControllerTree;
@@ -221,7 +220,27 @@ export default class ViewTree {
   }
 
   addListenersForGarlands(): void {
-    
+    const garlandSettingsContainer = document.querySelector('.garland-settings__container') as HTMLElement;
+
+    garlandSettingsContainer.addEventListener('change', this.handleChangeSettingsGarland);
+  }
+
+  handleChangeSettingsGarland = (e: Event): void => {
+    const target = e.target as HTMLInputElement;
+    const garlandCheckbox = document.querySelector('.garland-settings__checkbox') as HTMLInputElement;
+    const garlandContainer = document.querySelector('.tree__garland') as HTMLElement;
+
+    if (target.type == 'radio') {
+      if (garlandCheckbox.checked) {
+        this.showGarland();
+      }
+    } else if (target.type == 'checkbox') {
+      if (target.checked) {
+        this.showGarland();
+      } else {
+        garlandContainer.innerHTML = '';
+      }
+    }
   }
 
   initTreeContainer(): void {
@@ -268,11 +287,15 @@ export default class ViewTree {
 
     if (snowflakesContainer === null) {
       window.removeEventListener('resize', this.handleResizeWindow);
-      return;
+    } else {
+      this.snowContainerWidth = snowflakesContainer.offsetWidth;
+      this.snowContainerHeight = snowflakesContainer.offsetHeight;
     }
 
-    this.snowContainerWidth = snowflakesContainer.offsetWidth;
-    this.snowContainerHeight = snowflakesContainer.offsetHeight;
+    const garlandCheckbox = document.querySelector('.garland-settings__checkbox') as HTMLInputElement;
+    if (garlandCheckbox !== null && garlandCheckbox.checked) {
+      this.showGarland();
+    }
   }
 
   initToys(): void {
@@ -356,5 +379,98 @@ export default class ViewTree {
     const snowflakesContainer = document.querySelector('.tree__snowflakes') as HTMLElement;
     snowflakesContainer.classList.add('tree__snowflakes_is_hiding');
     snowflakesContainer.innerHTML = '';
+  }
+
+  showGarland(): void {
+    const garlandContainer = document.querySelector('.tree__garland') as HTMLElement;
+    garlandContainer.innerHTML = '';
+    const radioGarland = document.querySelector('.garland-settings__radio:checked') as HTMLElement;
+    let colorGarland = radioGarland.id;
+    let widthTree;
+    let heightTree;
+    let chunk;
+    let marginBottom = 20;
+    
+    if (this.snowContainerWidth! >= 625) {
+      widthTree = MAX_WIDTH_TREE;
+      heightTree = MAX_HEIGHT_TREE;
+    } else {
+      widthTree = this.snowContainerWidth! / 100 * 80;
+      heightTree = widthTree * MAX_HEIGHT_TREE / MAX_WIDTH_TREE;
+    }
+
+    chunk = heightTree / 9;
+
+    for (let i = 1; i <= NUM_GARLAND_ROPES; i += 1) {
+      const rope = document.createElement('ul');
+      rope.className = 'tree__garland-lightrope';
+      rope.style.bottom = marginBottom + chunk * i + 'px';
+      const widthSquare = (heightTree - chunk * i) * 2;
+      const radius = widthSquare / 2;
+      rope.style.width = widthSquare + 'px';
+      rope.style.height = widthSquare + 'px';
+
+      const lightbulb = document.createElement('li');
+
+      lightbulb.className = `tree__garland-lightrope-item tree__garland-lightrope-item_is_${colorGarland === 'rainbow' ? this.getRandomColor() : colorGarland}`;
+      lightbulb.style.transform = `rotate(90deg) translate(${widthSquare / 2 + 'px'})`;
+
+      rope.append(lightbulb);
+
+      let angleBase = 90;
+      let angleStep = 15 * 360 / (2 * Math.PI * radius);
+      let newAngleBig = angleBase + angleStep;
+      let newAngleSmall = angleBase - angleStep;
+
+      while (newAngleBig <= 107.5) {
+        const newLightbulbBig = document.createElement('li');
+
+        newLightbulbBig.className = `tree__garland-lightrope-item tree__garland-lightrope-item_is_${colorGarland === 'rainbow' ? this.getRandomColor() : colorGarland}`;
+        newLightbulbBig.style.transform = `rotate(${newAngleBig + 'deg'}) translate(${widthSquare / 2 + 'px'})`;
+
+        rope.append(newLightbulbBig);
+
+        const newLightbulbSmall = document.createElement('li');
+
+        newLightbulbSmall.className = `tree__garland-lightrope-item tree__garland-lightrope-item_is_${colorGarland === 'rainbow' ? this.getRandomColor() : colorGarland}`;
+        newLightbulbSmall.style.transform = `rotate(${newAngleSmall + 'deg'}) translate(${widthSquare / 2 + 'px'})`;
+
+        rope.append(newLightbulbSmall);
+
+        newAngleBig += angleStep;
+        newAngleSmall -= angleStep;
+      }
+
+      garlandContainer.append(rope);
+    }
+
+  }
+
+  getRandomColor(): string {
+    let random = Math.floor(Math.random() * 4) + 1;
+    let color = '';
+
+    switch(random) {
+      case 1:
+        color = 'red';
+        break;
+
+      case 2:
+        color = 'blue';
+        break;
+
+      case 3:
+        color = 'green';
+        break;
+
+      case 4:
+        color = 'yellow';
+        break;
+      
+      default:
+        //
+    }
+
+    return color;
   }
 }
