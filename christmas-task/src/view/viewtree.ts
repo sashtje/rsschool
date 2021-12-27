@@ -24,6 +24,8 @@ export default class ViewTree {
     this.audio.loop = true;
 
     this.map = map;
+
+    window.addEventListener('dragend', this.handleWindowDrop);
   }
 
   async showPage(): Promise<void> {
@@ -325,10 +327,13 @@ export default class ViewTree {
     area.coords = coords.join(',');
 
     if (imgMap === null) {
+      const mapContainer = document.createElement('div');
+      mapContainer.className = 'tree__map-container';
       const imgMapNew = document.createElement('map');
       imgMapNew.name = 'tree-map';
       imgMapNew.append(area);
-      treeContainer.append(imgMapNew);
+      mapContainer.append(imgMapNew);
+      treeContainer.append(mapContainer);
 
       area.addEventListener('dragover', this.handleOverDrop);
       area.ondrop = this.handleDrop;
@@ -527,6 +532,10 @@ export default class ViewTree {
     e.preventDefault();
 
     const target = e.target as HTMLElement;
+    
+    if (target.nodeName == 'IMG') {
+      return;
+    }
     const area = target.closest('area') as HTMLElement;
 
     const draggedId = (e as DragEvent).dataTransfer!.getData('idToy');
@@ -545,6 +554,8 @@ export default class ViewTree {
     draggedToy.style.top = top + '%';
 
     area.appendChild(draggedToy);
+
+    this.showNumberToys(draggedToy.dataset.imgnum as string);
   }
 
   handleDragStart = (e: Event): void => {
@@ -555,5 +566,17 @@ export default class ViewTree {
 
   handleOverDrop = (e: Event): void => {
     e.preventDefault();
+  }
+
+  handleWindowDrop = (e: Event): void => {
+    console.log('hello');
+  }
+
+  showNumberToys(number: string): void {
+    const toySlot = document.querySelector(`.decor-toys__container [data-num = '${number}']`) as HTMLElement;
+    const toysInSlot = toySlot.querySelectorAll('img').length;
+    const numberToysSpan = toySlot.querySelector('.decor-toys__number-toys') as HTMLElement;
+
+    numberToysSpan.textContent = toysInSlot.toString();
   }
 }

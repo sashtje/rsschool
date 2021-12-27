@@ -106,20 +106,21 @@ body {
   }
 }
 
-map {
-  display: block;
+.tree__map-container {
   position: absolute;
   width: 500px;
   bottom: 20px;
+  pointer-events: none;
+}
 
-  area {
-    display: block;
-    padding-bottom: 142.8%;
-  }
+map {
+  display: block;
+  padding-bottom: 142.8%;
+  pointer-events: none;
 }
 
 @media screen and (max-width: 1325px) {
-  map {
+  .tree__map-container {
       width: 80%;
     }
   }
