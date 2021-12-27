@@ -1,4 +1,5 @@
 import ControllerTree from '../controller/controllertree';
+import { IMap, map } from '../models/data';
 import { TREE_NUMBER, BG_NUMBER, DEFAULT_TREE, DEFAULT_BG, MAX_WIDTH_TREE, MAX_HEIGHT_TREE, NUM_GARLAND_ROPES } from '../models/types';
 
 export default class ViewTree {
@@ -14,11 +15,15 @@ export default class ViewTree {
 
   snowContainerHeight?: number;
 
+  map: IMap[];
+
   constructor(controllerTree: ControllerTree, rootElem: HTMLElement) {
     this.controllerTree = controllerTree;
     this.rootElem = rootElem;
     this.audio = new Audio('./public/audio/audio.mp3');
     this.audio.loop = true;
+
+    this.map = map;
   }
 
   async showPage(): Promise<void> {
@@ -270,6 +275,7 @@ export default class ViewTree {
 
     this.snowContainerWidth = snowflakesContainer.offsetWidth;
     this.snowContainerHeight = snowflakesContainer.offsetHeight;
+    this.addOrChangeImgMap();
 
     const snow = document.getElementById('snow') as HTMLInputElement;
     const isSnowOn = this.controllerTree.getSnowSettings();
@@ -290,11 +296,43 @@ export default class ViewTree {
     } else {
       this.snowContainerWidth = snowflakesContainer.offsetWidth;
       this.snowContainerHeight = snowflakesContainer.offsetHeight;
+      this.addOrChangeImgMap();
     }
 
     const garlandCheckbox = document.querySelector('.garland-settings__checkbox') as HTMLInputElement;
     if (garlandCheckbox !== null && garlandCheckbox.checked) {
       this.showGarland();
+    }
+  }
+
+  addOrChangeImgMap(): void {
+    const imgMap = document.querySelector('map') as HTMLElement;
+    const coords: number[] = [];
+    const treeContainer = document.querySelector('.tree__tree-container') as HTMLElement;
+    let { widthTree, heightTree } = this.getSizeTree();
+
+    const area = document.createElement('area');
+    area.shape = 'poly';
+    area.href = "google.com";
+
+    for (let i = 0; i < this.map.length; i += 1) {
+      let dotX = Math.round(widthTree * this.map[i].x / MAX_WIDTH_TREE);
+      coords.push(dotX);
+
+      let dotY = Math.round(heightTree * this.map[i].y / MAX_HEIGHT_TREE);
+      coords.push(dotY);
+    }
+
+    area.coords = coords.join(',');
+
+    if (imgMap === null) {
+      const imgMapNew = document.createElement('map');
+      imgMapNew.name = 'tree-map';
+      imgMapNew.append(area);
+      treeContainer.prepend(imgMapNew);
+    } else {
+      imgMap.innerHTML = '';
+      imgMap.append(area);
     }
   }
 
@@ -386,18 +424,9 @@ export default class ViewTree {
     garlandContainer.innerHTML = '';
     const radioGarland = document.querySelector('.garland-settings__radio:checked') as HTMLElement;
     let colorGarland = radioGarland.id;
-    let widthTree;
-    let heightTree;
+    let { heightTree } = this.getSizeTree();
     let chunk;
     let marginBottom = 20;
-    
-    if (this.snowContainerWidth! >= 625) {
-      widthTree = MAX_WIDTH_TREE;
-      heightTree = MAX_HEIGHT_TREE;
-    } else {
-      widthTree = this.snowContainerWidth! / 100 * 80;
-      heightTree = widthTree * MAX_HEIGHT_TREE / MAX_WIDTH_TREE;
-    }
 
     chunk = heightTree / 9;
 
@@ -443,7 +472,21 @@ export default class ViewTree {
 
       garlandContainer.append(rope);
     }
+  }
 
+  getSizeTree(): {widthTree: number, heightTree: number} {
+    let widthTree;
+    let heightTree;
+
+    if (this.snowContainerWidth! >= 625) {
+      widthTree = MAX_WIDTH_TREE;
+      heightTree = MAX_HEIGHT_TREE;
+    } else {
+      widthTree = this.snowContainerWidth! / 100 * 80;
+      heightTree = widthTree * MAX_HEIGHT_TREE / MAX_WIDTH_TREE;
+    }
+
+    return { widthTree, heightTree };
   }
 
   getRandomColor(): string {

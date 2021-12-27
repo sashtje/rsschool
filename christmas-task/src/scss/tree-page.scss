@@ -55,6 +55,7 @@
     overflow: hidden;
     display: flex;
     justify-content: center;
+    pointer-events: none;
 
     &-lightrope {
       position: absolute;
@@ -79,6 +80,7 @@
       animation-fill-mode: both;
       animation-iteration-count: infinite;
       animation-duration: 2s;
+      pointer-events: none;
 
       &:nth-child(2n + 1) {
         animation-duration: 1.8s;
@@ -118,12 +120,14 @@
     left: 0;
     overflow: hidden;
     --bottom: 105vh;
+    pointer-events: none;
 
     &_is_hiding {
       visibility: hidden;
     }
 
     &-item {
+      pointer-events: none;
       color: #ffffff;
       position: absolute;
       top: -20px;
@@ -460,6 +464,7 @@
     left: 0;
     bottom: 0;
     background-color: #5c5c5c;
+    pointer-events: none;
   }
 }
 
