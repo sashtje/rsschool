@@ -313,7 +313,6 @@ export default class ViewTree {
 
     const area = document.createElement('area');
     area.shape = 'poly';
-    area.href = "google.com";
 
     for (let i = 0; i < this.map.length; i += 1) {
       let dotX = Math.round(widthTree * this.map[i].x / MAX_WIDTH_TREE);
@@ -329,11 +328,16 @@ export default class ViewTree {
       const imgMapNew = document.createElement('map');
       imgMapNew.name = 'tree-map';
       imgMapNew.append(area);
-      treeContainer.prepend(imgMapNew);
+      treeContainer.append(imgMapNew);
+
+      area.addEventListener('dragover', this.handleOverDrop);
+      area.ondrop = this.handleDrop;
     } else {
-      imgMap.innerHTML = '';
-      imgMap.append(area);
+      const oldArea = document.querySelector('area') as HTMLAreaElement;
+      oldArea.coords = area.coords;
     }
+
+    
   }
 
   initToys(): void {
@@ -358,6 +362,8 @@ export default class ViewTree {
         img.dataset.imgnum = num;
 
         div.append(img);
+
+        img.addEventListener('dragstart', this.handleDragStart);
       }
 
       let span = document.createElement('span');
@@ -515,5 +521,39 @@ export default class ViewTree {
     }
 
     return color;
+  }
+
+  handleDrop = (e: Event): void => {
+    e.preventDefault();
+
+    const target = e.target as HTMLElement;
+    const area = target.closest('area') as HTMLElement;
+
+    const draggedId = (e as DragEvent).dataTransfer!.getData('idToy');
+    const draggedToy = document.getElementById(draggedId) as HTMLElement;
+
+    draggedToy.parentElement!.removeChild(draggedToy);
+
+    draggedToy.style.width = '12%';
+    draggedToy.style.height = '8.4%';
+
+    //calc top and left coords in %
+    let { widthTree, heightTree } = this.getSizeTree();
+    let left = (e as MouseEvent).offsetX * 100 / widthTree;
+    let top = (e as MouseEvent).offsetY * 100 / heightTree;
+    draggedToy.style.left = left + '%';
+    draggedToy.style.top = top + '%';
+
+    area.appendChild(draggedToy);
+  }
+
+  handleDragStart = (e: Event): void => {
+    const target = e.target as HTMLElement;
+
+    (e as DragEvent).dataTransfer!.setData('idToy', target.id);
+  }
+
+  handleOverDrop = (e: Event): void => {
+    e.preventDefault();
   }
 }

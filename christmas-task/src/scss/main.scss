@@ -105,3 +105,21 @@ body {
     flex-direction: column;
   }
 }
+
+map {
+  display: block;
+  position: absolute;
+  width: 500px;
+  bottom: 20px;
+
+  area {
+    display: block;
+    padding-bottom: 142.8%;
+  }
+}
+
+@media screen and (max-width: 1325px) {
+  map {
+      width: 80%;
+    }
+  }
