@@ -305,6 +305,19 @@ export default class ViewTree {
     if (garlandCheckbox !== null && garlandCheckbox.checked) {
       this.showGarland();
     }
+
+    const toysInArea = document.querySelectorAll('area img');
+
+    if (toysInArea !== null && toysInArea.length > 0) {
+      let { widthTree, heightTree } = this.getSizeTree();
+
+      for (let i = 0; i < toysInArea.length; i += 1) {
+        (toysInArea[i] as HTMLElement).style.width = widthTree / 100 * 12 + 'px';
+        (toysInArea[i] as HTMLElement).style.height = (toysInArea[i] as HTMLElement).style.width;
+        
+        //change coords
+      }
+    }
   }
 
   addOrChangeImgMap(): void {
@@ -547,11 +560,15 @@ export default class ViewTree {
     /* draggedToy.style.width = '12%';
     draggedToy.style.height = '8.4%'; */
 
-    draggedToy.style.width = '50px';
-    draggedToy.style.height = '50px';
+    /* draggedToy.style.width = '50px';
+    draggedToy.style.height = '50px'; */
 
     //calc top and left coords in %
     let { widthTree, heightTree } = this.getSizeTree();
+
+    draggedToy.style.width = widthTree / 100 * 12 + 'px';
+    draggedToy.style.height = draggedToy.style.width;
+
     let left = (e as MouseEvent).offsetX * 100 / widthTree;
     let top = (e as MouseEvent).offsetY * 100 / heightTree;
     // draggedToy.style.left = left + '%';
