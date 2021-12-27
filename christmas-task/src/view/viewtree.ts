@@ -25,7 +25,7 @@ export default class ViewTree {
 
     this.map = map;
 
-    window.addEventListener('dragend', this.handleWindowDrop);
+    window.addEventListener('dragend', this.handleWindowDragEnd);
   }
 
   async showPage(): Promise<void> {
@@ -327,13 +327,14 @@ export default class ViewTree {
     area.coords = coords.join(',');
 
     if (imgMap === null) {
-      const mapContainer = document.createElement('div');
-      mapContainer.className = 'tree__map-container';
+      /* const mapContainer = document.createElement('div');
+      mapContainer.className = 'tree__map-container'; */
       const imgMapNew = document.createElement('map');
       imgMapNew.name = 'tree-map';
       imgMapNew.append(area);
-      mapContainer.append(imgMapNew);
-      treeContainer.append(mapContainer);
+      /* mapContainer.append(imgMapNew);
+      treeContainer.append(mapContainer); */
+      treeContainer.append(imgMapNew);
 
       area.addEventListener('dragover', this.handleOverDrop);
       area.ondrop = this.handleDrop;
@@ -543,15 +544,22 @@ export default class ViewTree {
 
     draggedToy.parentElement!.removeChild(draggedToy);
 
-    draggedToy.style.width = '12%';
-    draggedToy.style.height = '8.4%';
+    /* draggedToy.style.width = '12%';
+    draggedToy.style.height = '8.4%'; */
+
+    draggedToy.style.width = '50px';
+    draggedToy.style.height = '50px';
 
     //calc top and left coords in %
     let { widthTree, heightTree } = this.getSizeTree();
     let left = (e as MouseEvent).offsetX * 100 / widthTree;
     let top = (e as MouseEvent).offsetY * 100 / heightTree;
-    draggedToy.style.left = left + '%';
-    draggedToy.style.top = top + '%';
+    // draggedToy.style.left = left + '%';
+    // draggedToy.style.top = top + '%';
+    draggedToy.style.left = (e as Event).layerX + 'px';
+    draggedToy.style.top = (e as MouseEvent).layerY + 'px';
+
+    console.log(e);
 
     area.appendChild(draggedToy);
 
@@ -568,8 +576,27 @@ export default class ViewTree {
     e.preventDefault();
   }
 
-  handleWindowDrop = (e: Event): void => {
-    console.log('hello');
+  handleWindowDragEnd = (e: Event): void => {
+    const target = e.target as HTMLElement;
+
+    if (!target.classList.contains('decor-toys__toy-img')) {
+      return;
+    }
+
+    // remove toys from the tree
+    if (target.parentNode!.nodeName == 'AREA' && (e as DragEvent).dataTransfer!.dropEffect == 'none') {
+      target.parentElement!.removeChild(target);
+      const num = target.dataset.imgnum as string;
+      const toysSlot = document.querySelector(`.decor-toys__container [data-num='${num}']`) as HTMLElement;
+      target.style.top = '50%';
+      target.style.left = '50%';
+      target.style.width = 'auto';
+      target.style.height = 'auto';
+
+      toysSlot.prepend(target);
+
+      this.showNumberToys(num);
+    }
   }
 
   showNumberToys(number: string): void {

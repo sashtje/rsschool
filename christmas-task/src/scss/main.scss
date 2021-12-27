@@ -106,7 +106,7 @@ body {
   }
 }
 
-.tree__map-container {
+/* .tree__map-container {
   position: absolute;
   width: 500px;
   bottom: 20px;
@@ -119,8 +119,16 @@ map {
   pointer-events: none;
 }
 
+area {
+  pointer-events: none;
+}
+
+area img {
+  cursor: move;
+}
+
 @media screen and (max-width: 1325px) {
   .tree__map-container {
       width: 80%;
     }
-  }
+  } */
