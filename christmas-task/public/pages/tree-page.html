@@ -1,3 +1,66 @@
 <section class="tree">
-  <h1 class="tree__title">К сожалению данная страница пока недоступна</h1>
+  <div class="tree__settings">
+    <div class="tree__settings-controls tree-controls">
+      <input class="tree-controls__input" type="checkbox" name="sound" id="sound">
+      <label class="tree-controls__label" for="sound" title="Включить/выключить музыку">
+        <img src="./public/svg/audio.svg" alt="sound">
+      </label>
+
+      <input class="tree-controls__input" type="checkbox" name="snow" id="snow">
+      <label class="tree-controls__label" for="snow" title="Включить/выключить снег">
+        <img src="./public/svg/snow.svg" alt="snow">
+      </label>
+
+      <button class="tree-controls__btn" title="Очистить local storage">
+        <img src="./public/svg/trash.svg" alt="trash">
+      </button>
+    </div>
+
+    <section class="tree__settings-tree tree-settings">
+      <h2 class="title-section">Выберите ёлку</h2>
+      <div class="tree-settings__container"></div>
+    </section>
+
+    <section class="tree__settings-bg bg-settings">
+      <h2 class="title-section">Выберите фон</h2>
+      <div class="bg-settings__container"></div>
+    </section>
+
+    <section class="tree__settings-garland garland-settings">
+      <h2 class="title-section">Гирлянда</h2>
+      <div class="garland-settings__container">
+        <input class="garland-settings__radio" type="radio" name="garland" value="rainbow" id="rainbow" checked>
+        <label class="garland-settings__radio-label garland-settings__radio-label_is_rainbow" for="rainbow"></label>
+
+        <input class="garland-settings__radio" type="radio" name="garland" value="red" id="red">
+        <label class="garland-settings__radio-label garland-settings__radio-label_is_red" for="red"></label>
+
+        <input class="garland-settings__radio" type="radio" name="garland" value="blue" id="blue">
+        <label class="garland-settings__radio-label garland-settings__radio-label_is_blue" for="blue"></label>
+
+        <input class="garland-settings__radio" type="radio" name="garland" value="yellow" id="yellow">
+        <label class="garland-settings__radio-label garland-settings__radio-label_is_yellow" for="yellow"></label>
+
+        <input class="garland-settings__radio" type="radio" name="garland" value="green" id="green">
+        <label class="garland-settings__radio-label garland-settings__radio-label_is_green" for="green"></label>
+
+        <input class="garland-settings__checkbox" type="checkbox" name="garland-switch" id="garland-switch">
+        <label class="garland-settings__checkbox-label" for="garland-switch"></label>
+      </div>
+    </section>
+  </div>
+
+  <div class="tree__tree-container"></div>
+
+  <div class="tree__decor">
+    <section class="decor-toys">
+      <h2 class="title-section">Игрушки</h2>
+      <div class="decor-toys__container"></div>
+    </section>
+
+    <section class="decor-trees">
+      <h2 class="title-section">Вы нарядили</h2>
+      <div class="decor-trees__container"></div>
+    </section>
+  </div>
 </section>
