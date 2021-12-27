@@ -1,5 +1,17 @@
 import { IData, data } from './data';
-import { IFilter, ISettings, MIN_COUNT, MAX_COUNT, MIN_YEAR, MAX_YEAR, SortTypes, DEFAULT_TREE, DEFAULT_BG, IDataPrint, MAX_CHOSEN_TOYS } from './types';
+import {
+  IFilter,
+  ISettings,
+  MIN_COUNT,
+  MAX_COUNT,
+  MIN_YEAR,
+  MAX_YEAR,
+  SortTypes,
+  DEFAULT_TREE,
+  DEFAULT_BG,
+  IDataPrint,
+  MAX_CHOSEN_TOYS,
+} from './types';
 
 export default class Model {
   data: IData[];
@@ -7,6 +19,7 @@ export default class Model {
   chosenToys: string[];
 
   filterObject: IFilter;
+
   treeSettings: ISettings;
 
   constructor() {
@@ -47,7 +60,7 @@ export default class Model {
     }
 
     if (localStorage.getItem('*treeSettings')) {
-      this.treeSettings = JSON.parse(localStorage.getItem('*treeSettings') as string);
+      this.treeSettings = JSON.parse(localStorage.getItem('*treeSettings') as string) as ISettings;
     }
   }
 
@@ -299,32 +312,31 @@ export default class Model {
   getToysToPrint(): IDataPrint[] {
     if (this.chosenToys.length === 0) {
       return this.getDefaultToysToPrint();
-    } else {
-      return this.getChosenToysToPrint();
     }
+    return this.getChosenToysToPrint();
   }
 
   getDefaultToysToPrint(): IDataPrint[] {
-    let dataToPrint = [];
+    const dataToPrint = [];
 
     for (let i = 0; i < MAX_CHOSEN_TOYS; i += 1) {
-      let num = this.data[i].num;
-      let count = this.data[i].count;
+      const { num } = this.data[i];
+      const { count } = this.data[i];
 
-      dataToPrint.push({num, count});
+      dataToPrint.push({ num, count });
     }
 
     return dataToPrint;
   }
 
   getChosenToysToPrint(): IDataPrint[] {
-    let dataToPrint = [];
+    const dataToPrint = [];
 
     for (let i = 0; i < this.chosenToys.length; i += 1) {
-      let num = this.chosenToys[i];
-      let count = this.getToyCount(num);
+      const num = this.chosenToys[i];
+      const count = this.getToyCount(num);
 
-      dataToPrint.push({num, count});
+      dataToPrint.push({ num, count });
     }
 
     return dataToPrint;

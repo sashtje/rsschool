@@ -1,9 +1,10 @@
-import Model from "../models/model";
-import { IDataPrint } from "../models/types";
-import View from "../view/view";
+import Model from '../models/model';
+import { IDataPrint } from '../models/types';
+import View from '../view/view';
 
 export default class ControllerTree {
   model: Model;
+
   view: View;
 
   constructor(model: Model, view: View) {

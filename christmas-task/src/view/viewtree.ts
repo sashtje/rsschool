@@ -1,6 +1,14 @@
 import ControllerTree from '../controller/controllertree';
 import { IMap, map } from '../models/data';
-import { TREE_NUMBER, BG_NUMBER, DEFAULT_TREE, DEFAULT_BG, MAX_WIDTH_TREE, MAX_HEIGHT_TREE, NUM_GARLAND_ROPES } from '../models/types';
+import {
+  TREE_NUMBER,
+  BG_NUMBER,
+  DEFAULT_TREE,
+  DEFAULT_BG,
+  MAX_WIDTH_TREE,
+  MAX_HEIGHT_TREE,
+  NUM_GARLAND_ROPES,
+} from '../models/types';
 
 export default class ViewTree {
   controllerTree: ControllerTree;
@@ -72,7 +80,7 @@ export default class ViewTree {
     }
 
     window.removeEventListener('click', this.handleClickWindow);
-  }
+  };
 
   handleSoundOnOff = (e: Event): void => {
     const target = e.target as HTMLInputElement;
@@ -84,7 +92,7 @@ export default class ViewTree {
       this.controllerTree.changeSoundSettings(false);
       this.pauseSound();
     }
-  }
+  };
 
   playSound(): void {
     this.audio.currentTime = 0;
@@ -107,7 +115,7 @@ export default class ViewTree {
       this.controllerTree.changeSnowSettings(false);
       this.turnOffSnow();
     }
-  }
+  };
 
   handleClickTrash = (): void => {
     this.controllerTree.clearTreeSettings();
@@ -128,7 +136,6 @@ export default class ViewTree {
     const firstTree = document.querySelector('.tree-settings__item') as HTMLElement;
     firstTree.classList.add('tree-settings__item_is_active');
 
-
     const prevActiveBg = document.querySelector('.bg-settings__item_is_active') as HTMLElement;
     prevActiveBg.classList.remove('bg-settings__item_is_active');
 
@@ -137,20 +144,22 @@ export default class ViewTree {
 
     this.changeTree(DEFAULT_TREE);
     this.changeBg(DEFAULT_BG);
-  }
+  };
 
   initTreesForChoice(): void {
-    const treeSettingsContainer = document.querySelector('.tree-settings__container') as HTMLElement;
+    const treeSettingsContainer = document.querySelector(
+      '.tree-settings__container',
+    ) as HTMLElement;
     const activeTree = this.controllerTree.getActiveTreeNumber();
 
     treeSettingsContainer.innerHTML = '';
 
     for (let i = 1; i <= TREE_NUMBER; i += 1) {
       const div = document.createElement('div');
-      if (+activeTree == i) {
-        div.className = "tree-settings__item tree-settings__item_is_active";
+      if (+activeTree === i) {
+        div.className = 'tree-settings__item tree-settings__item_is_active';
       } else {
-        div.className = "tree-settings__item";
+        div.className = 'tree-settings__item';
       }
       div.dataset.tree = i.toString();
       div.style.backgroundImage = `url('./public/tree/${i}.webp')`;
@@ -175,12 +184,12 @@ export default class ViewTree {
     this.controllerTree.changeActiveTree(value);
 
     this.changeTree(value);
-  }
+  };
 
   changeTree(value: string) {
     const treeImg = document.querySelector('.tree__main-tree') as HTMLMediaElement;
 
-    treeImg.src = `./public/tree/${value}.webp`;;
+    treeImg.src = `./public/tree/${value}.webp`;
   }
 
   initBgForChoice(): void {
@@ -191,10 +200,10 @@ export default class ViewTree {
 
     for (let i = 1; i <= BG_NUMBER; i += 1) {
       const div = document.createElement('div');
-      if (+activeBg == i) {
-        div.className = "bg-settings__item bg-settings__item_is_active";
+      if (+activeBg === i) {
+        div.className = 'bg-settings__item bg-settings__item_is_active';
       } else {
-        div.className = "bg-settings__item";
+        div.className = 'bg-settings__item';
       }
       div.dataset.bg = i.toString();
       div.style.backgroundImage = `url('./public/bg/${i}.webp')`;
@@ -219,7 +228,7 @@ export default class ViewTree {
     this.controllerTree.changeActiveBg(value);
 
     this.changeBg(value);
-  }
+  };
 
   changeBg(value: string) {
     const treeContainer = document.querySelector('.tree__tree-container') as HTMLElement;
@@ -228,28 +237,32 @@ export default class ViewTree {
   }
 
   addListenersForGarlands(): void {
-    const garlandSettingsContainer = document.querySelector('.garland-settings__container') as HTMLElement;
+    const garlandSettingsContainer = document.querySelector(
+      '.garland-settings__container',
+    ) as HTMLElement;
 
     garlandSettingsContainer.addEventListener('change', this.handleChangeSettingsGarland);
   }
 
   handleChangeSettingsGarland = (e: Event): void => {
     const target = e.target as HTMLInputElement;
-    const garlandCheckbox = document.querySelector('.garland-settings__checkbox') as HTMLInputElement;
+    const garlandCheckbox = document.querySelector(
+      '.garland-settings__checkbox',
+    ) as HTMLInputElement;
     const garlandContainer = document.querySelector('.tree__garland') as HTMLElement;
 
-    if (target.type == 'radio') {
+    if (target.type === 'radio') {
       if (garlandCheckbox.checked) {
         this.showGarland();
       }
-    } else if (target.type == 'checkbox') {
+    } else if (target.type === 'checkbox') {
       if (target.checked) {
         this.showGarland();
       } else {
         garlandContainer.innerHTML = '';
       }
     }
-  }
+  };
 
   initTreeContainer(): void {
     const treeContainer = document.querySelector('.tree__tree-container') as HTMLElement;
@@ -303,7 +316,9 @@ export default class ViewTree {
       this.addOrChangeImgMap();
     }
 
-    const garlandCheckbox = document.querySelector('.garland-settings__checkbox') as HTMLInputElement;
+    const garlandCheckbox = document.querySelector(
+      '.garland-settings__checkbox',
+    ) as HTMLInputElement;
     if (garlandCheckbox !== null && garlandCheckbox.checked) {
       this.showGarland();
     }
@@ -316,32 +331,36 @@ export default class ViewTree {
       const coordTree = this.getCoords('.tree__main-tree');
 
       for (let i = 0; i < toysInArea.length; i += 1) {
-        (toysInArea[i] as HTMLElement).style.width = widthTree / 100 * 12 + 'px';
+        (toysInArea[i] as HTMLElement).style.width = `${(widthTree / 100) * 12}px`;
         (toysInArea[i] as HTMLElement).style.height = (toysInArea[i] as HTMLElement).style.width;
-        
-        //change coords
-        let perX = +(toysInArea[i] as HTMLElement).dataset.perx!;
-        let perY = +(toysInArea[i] as HTMLElement).dataset.pery!;
-        (toysInArea[i] as HTMLElement).style.left = coordTree.left - coordTreeContainer.left + perX * widthTree + 'px';
-        (toysInArea[i] as HTMLElement).style.top = coordTree.top - coordTreeContainer.top + perY * heightTree + 'px';
+
+        // change coords
+        const perX = +((toysInArea[i] as HTMLElement).dataset.perx as string);
+        const perY = +((toysInArea[i] as HTMLElement).dataset.pery as string);
+        (toysInArea[i] as HTMLElement).style.left = `${
+          coordTree.left - coordTreeContainer.left + perX * widthTree
+        }px`;
+        (toysInArea[i] as HTMLElement).style.top = `${
+          coordTree.top - coordTreeContainer.top + perY * heightTree
+        }px`;
       }
     }
-  }
+  };
 
   addOrChangeImgMap(): void {
     const imgMap = document.querySelector('map') as HTMLElement;
     const coords: number[] = [];
     const treeContainer = document.querySelector('.tree__tree-container') as HTMLElement;
-    let { widthTree, heightTree } = this.getSizeTree();
+    const { widthTree, heightTree } = this.getSizeTree();
 
     const area = document.createElement('area');
     area.shape = 'poly';
 
     for (let i = 0; i < this.map.length; i += 1) {
-      let dotX = Math.round(widthTree * this.map[i].x / MAX_WIDTH_TREE);
+      const dotX = Math.round((widthTree * this.map[i].x) / MAX_WIDTH_TREE);
       coords.push(dotX);
 
-      let dotY = Math.round(heightTree * this.map[i].y / MAX_HEIGHT_TREE);
+      const dotY = Math.round((heightTree * this.map[i].y) / MAX_HEIGHT_TREE);
       coords.push(dotY);
     }
 
@@ -363,24 +382,22 @@ export default class ViewTree {
       const oldArea = document.querySelector('area') as HTMLAreaElement;
       oldArea.coords = area.coords;
     }
-
-    
   }
 
   initToys(): void {
     const decorToysContainer = document.querySelector('.decor-toys__container') as HTMLElement;
-    let dataToPrint = this.controllerTree.getToysToPrint();
+    const dataToPrint = this.controllerTree.getToysToPrint();
 
     for (let i = 0; i < dataToPrint.length; i += 1) {
-      let num = dataToPrint[i].num;
-      let count = dataToPrint[i].count;
-      let div = document.createElement('div');
+      const { num } = dataToPrint[i];
+      const { count } = dataToPrint[i];
+      const div = document.createElement('div');
 
       div.className = 'decor-toys__toy';
       div.dataset.num = num;
 
       for (let j = +count; j >= 1; j -= 1) {
-        let img = document.createElement('img');
+        const img = document.createElement('img');
         img.className = 'decor-toys__toy-img';
         img.src = `./public/toys/${num}.webp`;
         img.alt = 'toy';
@@ -393,7 +410,7 @@ export default class ViewTree {
         img.addEventListener('dragstart', this.handleDragStart);
       }
 
-      let span = document.createElement('span');
+      const span = document.createElement('span');
       span.className = 'decor-toys__number-toys';
       span.textContent = count;
       div.append(span);
@@ -409,7 +426,7 @@ export default class ViewTree {
 
     for (let i = 1; i <= TREE_NUMBER; i += 1) {
       const div = document.createElement('div');
-      div.className = "decor-trees__tree";
+      div.className = 'decor-trees__tree';
       div.dataset.tree = i.toString();
       div.style.backgroundImage = `url('./public/tree/${i}.webp')`;
       decorTreesContainer.append(div);
@@ -430,20 +447,25 @@ export default class ViewTree {
     const snowFlake = document.createElement('i');
 
     snowFlake.className = 'bi bi-snow2 tree__snowflakes-item';
-    snowFlake.style.left = Math.random() * this.snowContainerWidth! + 'px';
-    snowFlake.style.animationDuration = Math.random() * 3 + 4 + 's';
-    snowFlake.style.fontSize = Math.random() * 10 + 10 + 'px';
+    snowFlake.style.left = `${Math.random() * (this.snowContainerWidth as number)}px`;
+    snowFlake.style.animationDuration = `${Math.random() * 3 + 4}s`;
+    snowFlake.style.fontSize = `${Math.random() * 10 + 10}px`;
 
-    snowflakesContainer.style.setProperty('--bottom', this.snowContainerHeight! + 50 + 'px');
+    snowflakesContainer.style.setProperty(
+      '--bottom',
+      `${(this.snowContainerHeight as number) + 50}px`,
+    );
 
     snowflakesContainer.append(snowFlake);
 
     setTimeout(() => {
       try {
         snowFlake.remove();
-      } catch {}
+      } catch {
+        console.log('error');
+      }
     }, 7000);
-  }
+  };
 
   turnOffSnow(): void {
     clearInterval(this.timerSnow as NodeJS.Timer);
@@ -456,46 +478,55 @@ export default class ViewTree {
     const garlandContainer = document.querySelector('.tree__garland') as HTMLElement;
     garlandContainer.innerHTML = '';
     const radioGarland = document.querySelector('.garland-settings__radio:checked') as HTMLElement;
-    let colorGarland = radioGarland.id;
-    let { heightTree } = this.getSizeTree();
-    let chunk;
-    let marginBottom = 20;
+    const colorGarland = radioGarland.id;
+    const { heightTree } = this.getSizeTree();
+    const marginBottom = 20;
 
-    chunk = heightTree / 9;
+    const chunk = heightTree / 9;
 
     for (let i = 1; i <= NUM_GARLAND_ROPES; i += 1) {
       const rope = document.createElement('ul');
       rope.className = 'tree__garland-lightrope';
-      rope.style.bottom = marginBottom + chunk * i + 'px';
+      rope.style.bottom = `${marginBottom + chunk * i}px`;
       const widthSquare = (heightTree - chunk * i) * 2;
       const radius = widthSquare / 2;
-      rope.style.width = widthSquare + 'px';
-      rope.style.height = widthSquare + 'px';
+      rope.style.width = `${widthSquare}px`;
+      rope.style.height = `${widthSquare}px`;
 
       const lightbulb = document.createElement('li');
 
-      lightbulb.className = `tree__garland-lightrope-item tree__garland-lightrope-item_is_${colorGarland === 'rainbow' ? this.getRandomColor() : colorGarland}`;
-      lightbulb.style.transform = `rotate(90deg) translate(${widthSquare / 2 + 'px'})`;
+      lightbulb.className = `tree__garland-lightrope-item tree__garland-lightrope-item_is_${
+        colorGarland === 'rainbow' ? this.getRandomColor() : colorGarland
+      }`;
+      lightbulb.style.transform = `rotate(90deg) translate(${`${widthSquare / 2}px`})`;
 
       rope.append(lightbulb);
 
-      let angleBase = 90;
-      let angleStep = 15 * 360 / (2 * Math.PI * radius);
+      const angleBase = 90;
+      const angleStep = (15 * 360) / (2 * Math.PI * radius);
       let newAngleBig = angleBase + angleStep;
       let newAngleSmall = angleBase - angleStep;
 
       while (newAngleBig <= 107.5) {
         const newLightbulbBig = document.createElement('li');
 
-        newLightbulbBig.className = `tree__garland-lightrope-item tree__garland-lightrope-item_is_${colorGarland === 'rainbow' ? this.getRandomColor() : colorGarland}`;
-        newLightbulbBig.style.transform = `rotate(${newAngleBig + 'deg'}) translate(${widthSquare / 2 + 'px'})`;
+        newLightbulbBig.className = `tree__garland-lightrope-item tree__garland-lightrope-item_is_${
+          colorGarland === 'rainbow' ? this.getRandomColor() : colorGarland
+        }`;
+        newLightbulbBig.style.transform = `rotate(${`${newAngleBig}deg`}) translate(${`${
+          widthSquare / 2
+        }px`})`;
 
         rope.append(newLightbulbBig);
 
         const newLightbulbSmall = document.createElement('li');
 
-        newLightbulbSmall.className = `tree__garland-lightrope-item tree__garland-lightrope-item_is_${colorGarland === 'rainbow' ? this.getRandomColor() : colorGarland}`;
-        newLightbulbSmall.style.transform = `rotate(${newAngleSmall + 'deg'}) translate(${widthSquare / 2 + 'px'})`;
+        newLightbulbSmall.className = `tree__garland-lightrope-item tree__garland-lightrope-item_is_${
+          colorGarland === 'rainbow' ? this.getRandomColor() : colorGarland
+        }`;
+        newLightbulbSmall.style.transform = `rotate(${`${newAngleSmall}deg`}) translate(${`${
+          widthSquare / 2
+        }px`})`;
 
         rope.append(newLightbulbSmall);
 
@@ -507,26 +538,26 @@ export default class ViewTree {
     }
   }
 
-  getSizeTree(): {widthTree: number, heightTree: number} {
+  getSizeTree(): { widthTree: number; heightTree: number } {
     let widthTree;
     let heightTree;
 
-    if (this.snowContainerWidth! >= 625) {
+    if ((this.snowContainerWidth as number) >= 625) {
       widthTree = MAX_WIDTH_TREE;
       heightTree = MAX_HEIGHT_TREE;
     } else {
-      widthTree = this.snowContainerWidth! / 100 * 80;
-      heightTree = widthTree * MAX_HEIGHT_TREE / MAX_WIDTH_TREE;
+      widthTree = ((this.snowContainerWidth as number) / 100) * 80;
+      heightTree = (widthTree * MAX_HEIGHT_TREE) / MAX_WIDTH_TREE;
     }
 
     return { widthTree, heightTree };
   }
 
   getRandomColor(): string {
-    let random = Math.floor(Math.random() * 4) + 1;
+    const random = Math.floor(Math.random() * 4) + 1;
     let color = '';
 
-    switch(random) {
+    switch (random) {
       case 1:
         color = 'red';
         break;
@@ -542,9 +573,9 @@ export default class ViewTree {
       case 4:
         color = 'yellow';
         break;
-      
+
       default:
-        //
+      //
     }
 
     return color;
@@ -554,33 +585,33 @@ export default class ViewTree {
     e.preventDefault();
 
     const target = e.target as HTMLElement;
-    
-    if (target.nodeName == 'IMG') {
+
+    if (target.nodeName === 'IMG') {
       return;
     }
     const area = target.closest('area') as HTMLElement;
 
-    const draggedId = (e as DragEvent).dataTransfer!.getData('idToy');
-    const draggedToy = document.getElementById(draggedId) as HTMLElement;
+    const draggedId = (e as DragEvent).dataTransfer?.getData('idToy');
+    const draggedToy = document.getElementById(draggedId as string) as HTMLElement;
 
-    draggedToy.parentElement!.removeChild(draggedToy);
+    draggedToy.parentElement?.removeChild(draggedToy);
 
-    //calc top and left coords in %
+    // calc top and left coords in %
     const { widthTree, heightTree } = this.getSizeTree();
 
-    draggedToy.style.width = widthTree / 100 * 12 + 'px';
+    draggedToy.style.width = `${(widthTree / 100) * 12}px`;
     draggedToy.style.height = draggedToy.style.width;
 
     const coordTreeContainer = this.getCoords('.tree__tree-container');
 
-    draggedToy.style.left = (e as MouseEvent).pageX - coordTreeContainer.left + 'px';
-    draggedToy.style.top = (e as MouseEvent).pageY - coordTreeContainer.top + 'px';
+    draggedToy.style.left = `${(e as MouseEvent).pageX - coordTreeContainer.left}px`;
+    draggedToy.style.top = `${((e as MouseEvent).pageY - coordTreeContainer.top).toString()}px`;
 
     const coordTree = this.getCoords('.tree__main-tree');
     let perX = (e as MouseEvent).pageX - coordTree.left;
-    perX = perX / widthTree;
+    perX /= widthTree;
     let perY = (e as MouseEvent).pageY - coordTree.top;
-    perY = perY / heightTree;
+    perY /= heightTree;
 
     draggedToy.dataset.perx = perX.toString();
     draggedToy.dataset.pery = perY.toString();
@@ -588,17 +619,17 @@ export default class ViewTree {
     area.appendChild(draggedToy);
 
     this.showNumberToys(draggedToy.dataset.imgnum as string);
-  }
+  };
 
   handleDragStart = (e: Event): void => {
     const target = e.target as HTMLElement;
 
-    (e as DragEvent).dataTransfer!.setData('idToy', target.id);
-  }
+    (e as DragEvent).dataTransfer?.setData('idToy', target.id);
+  };
 
   handleOverDrop = (e: Event): void => {
     e.preventDefault();
-  }
+  };
 
   handleWindowDragEnd = (e: Event): void => {
     const target = e.target as HTMLElement;
@@ -608,10 +639,15 @@ export default class ViewTree {
     }
 
     // remove toys from the tree
-    if (target.parentNode!.nodeName == 'AREA' && (e as DragEvent).dataTransfer!.dropEffect == 'none') {
-      target.parentElement!.removeChild(target);
+    if (
+      target.parentNode?.nodeName === 'AREA' &&
+      (e as DragEvent).dataTransfer?.dropEffect === 'none'
+    ) {
+      target.parentElement?.removeChild(target);
       const num = target.dataset.imgnum as string;
-      const toysSlot = document.querySelector(`.decor-toys__container [data-num='${num}']`) as HTMLElement;
+      const toysSlot = document.querySelector(
+        `.decor-toys__container [data-num='${num}']`,
+      ) as HTMLElement;
       target.style.top = '50%';
       target.style.left = '50%';
       target.style.width = 'auto';
@@ -621,17 +657,19 @@ export default class ViewTree {
 
       this.showNumberToys(num);
     }
-  }
+  };
 
   showNumberToys(number: string): void {
-    const toySlot = document.querySelector(`.decor-toys__container [data-num = '${number}']`) as HTMLElement;
+    const toySlot = document.querySelector(
+      `.decor-toys__container [data-num = '${number}']`,
+    ) as HTMLElement;
     const toysInSlot = toySlot.querySelectorAll('img').length;
     const numberToysSpan = toySlot.querySelector('.decor-toys__number-toys') as HTMLElement;
 
     numberToysSpan.textContent = toysInSlot.toString();
   }
 
-  getCoords(elem: string): {top: number, left: number} {
+  getCoords(elem: string): { top: number; left: number } {
     const container = document.querySelector(elem) as HTMLElement;
     const box = container.getBoundingClientRect();
 
