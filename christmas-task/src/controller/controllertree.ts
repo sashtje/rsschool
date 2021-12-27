@@ -47,7 +47,15 @@ export default class ControllerTree {
     this.model.changeActiveBg(value);
   }
 
+  getActiveBg(): string {
+    return this.model.getActiveBg();
+  }
+
   getToysToPrint(): IDataPrint[] {
     return this.model.getToysToPrint();
+  }
+
+  getNumberChosenToys(): number {
+    return this.model.getNumberChosenToys();
   }
 }

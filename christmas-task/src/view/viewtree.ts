@@ -45,6 +45,7 @@ export default class ViewTree {
     this.initTreeContainer();
     this.initToys();
     this.initReadyTrees();
+    this.showNumberChosenToys();
   }
 
   initSettings(): void {
@@ -253,7 +254,8 @@ export default class ViewTree {
   initTreeContainer(): void {
     const treeContainer = document.querySelector('.tree__tree-container') as HTMLElement;
 
-    treeContainer.style.backgroundImage = `url('./public/bg/${DEFAULT_BG}.webp')`;
+    const activeBg = this.controllerTree.getActiveBg();
+    treeContainer.style.backgroundImage = `url('./public/bg/${activeBg}.webp')`;
 
     const activeTree = this.controllerTree.getActiveTreeNumber();
     const mainTree = document.createElement('img');
@@ -309,13 +311,19 @@ export default class ViewTree {
     const toysInArea = document.querySelectorAll('area img');
 
     if (toysInArea !== null && toysInArea.length > 0) {
-      let { widthTree, heightTree } = this.getSizeTree();
+      const { widthTree, heightTree } = this.getSizeTree();
+      const coordTreeContainer = this.getCoords('.tree__tree-container');
+      const coordTree = this.getCoords('.tree__main-tree');
 
       for (let i = 0; i < toysInArea.length; i += 1) {
         (toysInArea[i] as HTMLElement).style.width = widthTree / 100 * 12 + 'px';
         (toysInArea[i] as HTMLElement).style.height = (toysInArea[i] as HTMLElement).style.width;
         
         //change coords
+        let perX = +(toysInArea[i] as HTMLElement).dataset.perx!;
+        let perY = +(toysInArea[i] as HTMLElement).dataset.pery!;
+        (toysInArea[i] as HTMLElement).style.left = coordTree.left - coordTreeContainer.left + perX * widthTree + 'px';
+        (toysInArea[i] as HTMLElement).style.top = coordTree.top - coordTreeContainer.top + perY * heightTree + 'px';
       }
     }
   }
@@ -557,26 +565,25 @@ export default class ViewTree {
 
     draggedToy.parentElement!.removeChild(draggedToy);
 
-    /* draggedToy.style.width = '12%';
-    draggedToy.style.height = '8.4%'; */
-
-    /* draggedToy.style.width = '50px';
-    draggedToy.style.height = '50px'; */
-
     //calc top and left coords in %
-    let { widthTree, heightTree } = this.getSizeTree();
+    const { widthTree, heightTree } = this.getSizeTree();
 
     draggedToy.style.width = widthTree / 100 * 12 + 'px';
     draggedToy.style.height = draggedToy.style.width;
 
-    let left = (e as MouseEvent).offsetX * 100 / widthTree;
-    let top = (e as MouseEvent).offsetY * 100 / heightTree;
-    // draggedToy.style.left = left + '%';
-    // draggedToy.style.top = top + '%';
-    draggedToy.style.left = (e as Event).layerX + 'px';
-    draggedToy.style.top = (e as MouseEvent).layerY + 'px';
+    const coordTreeContainer = this.getCoords('.tree__tree-container');
 
-    console.log(e);
+    draggedToy.style.left = (e as MouseEvent).pageX - coordTreeContainer.left + 'px';
+    draggedToy.style.top = (e as MouseEvent).pageY - coordTreeContainer.top + 'px';
+
+    const coordTree = this.getCoords('.tree__main-tree');
+    let perX = (e as MouseEvent).pageX - coordTree.left;
+    perX = perX / widthTree;
+    let perY = (e as MouseEvent).pageY - coordTree.top;
+    perY = perY / heightTree;
+
+    draggedToy.dataset.perx = perX.toString();
+    draggedToy.dataset.pery = perY.toString();
 
     area.appendChild(draggedToy);
 
@@ -622,5 +629,21 @@ export default class ViewTree {
     const numberToysSpan = toySlot.querySelector('.decor-toys__number-toys') as HTMLElement;
 
     numberToysSpan.textContent = toysInSlot.toString();
+  }
+
+  getCoords(elem: string): {top: number, left: number} {
+    const container = document.querySelector(elem) as HTMLElement;
+    const box = container.getBoundingClientRect();
+
+    return {
+      top: box.top + window.scrollY,
+      left: box.left + window.scrollX,
+    };
+  }
+
+  showNumberChosenToys(): void {
+    const toyNumberChosenToys = document.querySelector('.header__favorite-toys') as HTMLElement;
+
+    toyNumberChosenToys.textContent = this.controllerTree.getNumberChosenToys().toString();
   }
 }

@@ -292,6 +292,10 @@ export default class Model {
     this.treeSettings.bg = value;
   }
 
+  getActiveBg(): string {
+    return this.treeSettings.bg;
+  }
+
   getToysToPrint(): IDataPrint[] {
     if (this.chosenToys.length === 0) {
       return this.getDefaultToysToPrint();
