@@ -38,13 +38,9 @@ body {
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  @extend %reset-indentions;
 
-  font-family: $main-font;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
