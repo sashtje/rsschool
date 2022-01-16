@@ -1,0 +1,151 @@
+.garage-page {
+  // .garage-page_margin
+  &_margin_top {
+    margin-top: 20px;
+  }
+
+  // .garage-page__settings
+  &__settings {
+  }
+
+  // .garage-page__cars
+  &__cars {
+    margin-top: 50px;
+  }
+
+  // .garage-page__title
+  &__title {
+  }
+
+  // .garage-page__total-car-number
+  &__total-car-number {
+  }
+
+  // .garage-page__subtitle
+  &__subtitle {
+  }
+
+  // .garage-page__number-page
+  &__number-page {
+  }
+
+  // .garage-page__cars-container
+  &__cars-container {
+    margin: 40px 0;
+  }
+}
+
+.settings {
+  &__update-car {
+    margin: 15px 0;
+  }
+}
+
+.input-car-name {
+  padding: 3px 5px;
+}
+
+.input-color {
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.title {
+  margin: 0;
+  font-size: 1.7rem;
+  margin-bottom: 20px;
+
+  // .title__number
+  &__number {
+  }
+}
+
+.subtitle {
+  font-size: 1.3rem;
+
+  // .subtitle__number
+  &__number {
+  }
+}
+
+.car {
+  border-bottom: 2px dashed #000000;
+
+  // .car__controls
+  &__controls {
+    display: flex;
+    align-items: center;
+  }
+
+  // .car__name
+  &__name {
+    font-weight: bold;
+    font-style: italic;
+    margin-left: 20px;
+    font-size: 1.25rem;
+    color: #a90202;
+  }
+
+  // .car__track
+  &__track {
+    display: flex;
+    height: 70px;
+  }
+
+  &__picture {
+    width: 90px;
+    height: 30px;
+    align-self: flex-end;
+  }
+
+  // .car__engine-btns
+  &__engine-btns {
+    align-self: flex-start;
+  }
+}
+
+.car + .car {
+  margin-top: 30px;
+}
+
+.finish-flag {
+  width: 50px;
+  margin-left: auto;
+  margin-right: 90px;
+  transform: translateY(5px);
+  align-self: flex-end;
+}
+
+.pagination {
+}
+
+.notification {
+  opacity: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 20px 10px;
+  transform: translateX(-50%) translateY(-50%);
+
+  font-size: 1.5rem;
+  background-color: rgba(236, 13, 13, 0.5);
+  color: #fff;
+  text-align: center;
+  text-shadow: 2px 2px 3px rgb(72, 79, 3);
+  border-radius: 10px;
+  border: 1px solid #ff0000;
+  transition: opacity 0.5s;
+
+  &_is_hidden {
+    visibility: hidden;
+  }
+
+  &_is_shown {
+    visibility: visible;
+    opacity: 1;
+  }
+}

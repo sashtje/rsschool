@@ -10,28 +10,28 @@
 <body>
   <header class="header">
     <nav class="control-panel">
-      <button class="btn btn_is_main-btn">To garage</button>
+      <button class="btn btn_is_main-btn" disabled>To garage</button>
       <button class="btn btn_is_main-btn">To winners</button>
     </nav>
   </header>
 
-  <main class="garage-page">
+  <main class="garage-page garage-page_margin_top">
     <div class="garage-page__settings settings">
-      <div class="control-panel">
+      <div class="settings__create-car control-panel">
         <input class="input-car-name" type="text" name="car-name">
-        <input class="input-color" type="color" name="car-color" value="#ffffff">
-        <button class="btn">Create</button>
+        <input class="input-color" type="color" name="car-color" value="#000000">
+        <button class="btn" disabled>Create</button>
       </div>
 
-      <div class="control-panel">
-        <input class="input-car-name" type="text" name="car-name">
-        <input class="input-color" type="color" name="car-color" value="#ffffff">
-        <button class="btn">Update</button>
+      <div class="settings__update-car control-panel">
+        <input class="input-car-name" type="text" name="car-name" disabled>
+        <input class="input-color" type="color" name="car-color" value="#000000" disabled>
+        <button class="btn" disabled>Update</button>
       </div>
 
-      <div class="control-panel">
+      <div class="settings__controls control-panel">
         <button class="btn btn_is_main-btn">Race</button>
-        <button class="btn btn_is_main-btn">Reset</button>
+        <button class="btn btn_is_main-btn" disabled>Reset</button>
         <button class="btn">Generate cars</button>
       </div>
     </div>
@@ -51,12 +51,12 @@
           </div>
 
           <div class="car__track">
-            <div class="car__engine-btns">
-              <button class="engine-btn">A</button>
-              <button class="engine-btn">B</button>
+            <div class="car__engine-btns control-panel">
+              <button class="btn btn_style_engine">A</button>
+              <button class="btn btn_style_engine" disabled>B</button>
             </div>
 
-            <svg xmlns="http://www.w3.org/2000/svg"
+            <svg class="car__picture" xmlns="http://www.w3.org/2000/svg"
               width="1280.000000pt" height="640.000000pt" viewBox="0 0 1280.000000 640.000000"
               preserveAspectRatio="xMidYMid meet">
               <g fill="#000000" stroke="#000000" stroke-width="5" transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)">
@@ -155,11 +155,13 @@
       </div>
 
       <div class="control-panel pagination">
-        <button class="btn">Prev</button>
+        <button class="btn" disabled>Prev</button>
         <button class="btn">Next</button>
       </div>
     </section>
   </main>
+
+  <div class="notification notification_is_hidden">Our winner is Ferrari</div>
 
   <main class="winners-page" style="display: none;">
     <h1 class="winners-page__title title">Winners (<span class="winners-page__number-winners title__number">6</span>)</h1>
