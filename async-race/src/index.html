@@ -15,8 +15,8 @@
     </nav>
   </header>
 
-  <main class="garage-page garage-page_margin_top">
-    <div class="garage-page__settings settings">
+  <main class="garage-page garage-page_margin_top" style="display: none;">
+    <div class="settings">
       <div class="settings__create-car control-panel">
         <input class="input-car-name" type="text" name="car-name">
         <input class="input-color" type="color" name="car-color" value="#000000">
@@ -37,8 +37,8 @@
     </div>
 
     <section class="garage-page__cars">
-      <h1 class="garage-page__title title">Garage (<span class="garage-page__total-car-number title__number">4</span>)</h1>
-      <div class="garage-page__subtitle subtitle">Page #<span class="garage-page__number-page subtitle__number">1</span></div>
+      <h1 class="title">Garage (<span>4</span>)</h1>
+      <div class="subtitle">Page #<span>1</span></div>
 
       <div class="garage-page__cars-container">
         <div class="car">
@@ -154,18 +154,18 @@
         </div>
       </div>
 
-      <div class="control-panel pagination">
+      <div class="control-panel">
         <button class="btn" disabled>Prev</button>
         <button class="btn">Next</button>
       </div>
     </section>
   </main>
 
-  <div class="notification notification_is_hidden">Our winner is Ferrari</div>
+  <div class="notification notification_is_hidden"></div>
 
-  <main class="winners-page" style="display: none;">
-    <h1 class="winners-page__title title">Winners (<span class="winners-page__number-winners title__number">6</span>)</h1>
-    <div class="winners-page__subtitle subtitle">Page #<span class="winners-page__number-page subtitle__number">1</span></div>
+  <main class="winners-page winners-page_margin_top">
+    <h1 class="title">Winners (<span>6</span>)</h1>
+    <div class="subtitle">Page #<span>1</span></div>
 
     <table class="winners-page__table winners">
       <tbody>
@@ -262,7 +262,7 @@
               130 22 193 51 l64 29 -19 23 c-65 82 -198 227 -209 227 -7 0 -15 -4 -19 -9z"/>
               </g>
             </svg></td>
-          <td class="winner__name">Tesla</td>
+          <td class="winner__name">Tesla Norway Renault</td>
           <td class="winner__wins">1</td>
           <td class="winner__time">1.0</td>
         </tr>
@@ -659,8 +659,9 @@
           <td class="winner__time">1.0</td>
         </tr>
       </tbody>
+
       <thead>
-        <tr>
+        <tr class="winners__header-tr">
           <th>Number</th>
           <th>Car</th>
           <th>Name</th>
@@ -670,7 +671,7 @@
       </thead>
     </table>
 
-    <div class="control-panel pagination">
+    <div class="control-panel">
       <button class="btn">Prev</button>
       <button class="btn">Next</button>
     </div>

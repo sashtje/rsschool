@@ -1,0 +1,62 @@
+.winners-page {
+  // .winners-page_margin
+  &_margin_top {
+    margin-top: 20px;
+  }
+
+  // .winners-page__table
+  &__table {
+    margin: 40px 0;
+  }
+}
+
+.winners {
+  border-collapse: collapse;
+  border: 1px solid #000000;
+  max-width: 480px;
+
+  &__header-tr {
+    background-color: rgb(21, 123, 224);
+    color: #ffffff;
+
+    th {
+      padding: 10px 20px;
+    }
+  }
+}
+
+.winner {
+  text-align: center;
+  border-top: 1px solid #000000;
+
+  // .winner__number
+  &__number {
+    padding: 10px 5px;
+  }
+
+  // .winner__car
+  &__car {
+    text-align: center;
+    padding: 10px 5px;
+
+    svg {
+      width: 80px;
+      height: 30px;
+    }
+  }
+
+  // .winner__name
+  &__name {
+    padding: 10px 5px;
+  }
+
+  // .winner__wins
+  &__wins {
+    padding: 10px 5px;
+  }
+
+  // .winner__time
+  &__time {
+    padding: 10px 5px;
+  }
+}

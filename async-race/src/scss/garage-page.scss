@@ -4,29 +4,9 @@
     margin-top: 20px;
   }
 
-  // .garage-page__settings
-  &__settings {
-  }
-
   // .garage-page__cars
   &__cars {
     margin-top: 50px;
-  }
-
-  // .garage-page__title
-  &__title {
-  }
-
-  // .garage-page__total-car-number
-  &__total-car-number {
-  }
-
-  // .garage-page__subtitle
-  &__subtitle {
-  }
-
-  // .garage-page__number-page
-  &__number-page {
   }
 
   // .garage-page__cars-container
@@ -57,18 +37,10 @@
   margin: 0;
   font-size: 1.7rem;
   margin-bottom: 20px;
-
-  // .title__number
-  &__number {
-  }
 }
 
 .subtitle {
   font-size: 1.3rem;
-
-  // .subtitle__number
-  &__number {
-  }
 }
 
 .car {
@@ -117,9 +89,6 @@
   margin-right: 90px;
   transform: translateY(5px);
   align-self: flex-end;
-}
-
-.pagination {
 }
 
 .notification {
