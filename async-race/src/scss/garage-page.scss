@@ -6,7 +6,7 @@
 
   // .garage-page__cars
   &__cars {
-    margin-top: 50px;
+    margin: 50px 0 30px 0;
   }
 
   // .garage-page__cars-container
@@ -68,9 +68,13 @@
   }
 
   &__picture {
-    width: 90px;
-    height: 30px;
     align-self: flex-end;
+    line-height: 0;
+
+    svg {
+      width: 90px;
+      height: 30px;
+    }
   }
 
   // .car__engine-btns
@@ -80,15 +84,18 @@
 }
 
 .car + .car {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .finish-flag {
-  width: 50px;
   margin-left: auto;
   margin-right: 90px;
-  transform: translateY(5px);
   align-self: flex-end;
+
+  svg {
+    width: 50px;
+    transform: translateY(5px);
+  }
 }
 
 .notification {
