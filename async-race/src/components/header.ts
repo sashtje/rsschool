@@ -20,16 +20,16 @@ class Header {
   }
 
   handleClickGarage = (): void => {
-    (this.btnGarage as HTMLButtonElement).disabled = false;
-    (this.btnWinners as HTMLButtonElement).disabled = true;
+    (this.btnGarage as HTMLButtonElement).disabled = true;
+    (this.btnWinners as HTMLButtonElement).disabled = false;
 
     const event = new Event('show-garage-page', {bubbles: true});
     this.btnGarage!.dispatchEvent(event);
   };
 
   handleClickWinners = (): void => {
-    (this.btnGarage as HTMLButtonElement).disabled = true;
-    (this.btnWinners as HTMLButtonElement).disabled = false;
+    (this.btnGarage as HTMLButtonElement).disabled = false;
+    (this.btnWinners as HTMLButtonElement).disabled = true;
 
     const event = new Event('show-winners-page', {bubbles: true});
     this.btnWinners!.dispatchEvent(event);

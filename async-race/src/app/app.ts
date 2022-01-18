@@ -34,10 +34,10 @@ export default class App {
   }
 
   showGaragePage = (): void => {
-    //
+    this.garagePage.showPage();
   };
 
   showWinnersPage = (): void => {
-    //
+    this.winnersPage.showPage();
   };
 }

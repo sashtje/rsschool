@@ -18,6 +18,8 @@ export default class GaragePage {
   curPageNumberElem?: HTMLElement;
   arrCars?: Car[];
   selectCar: number;
+  btnPrev?: HTMLElement;
+  btnNext?: HTMLElement;
 
   constructor(rootElem: HTMLElement) {
     this.rootElem = rootElem;
@@ -192,15 +194,15 @@ export default class GaragePage {
     const pagination = document.createElement('div');
     pagination.className = 'control-panel';
 
-    const btnPrev = getNewBtn(BtnClasses.Btn, 'Prev', this.handlePrevClick, true);
+    this.btnPrev = getNewBtn(BtnClasses.Btn, 'Prev', this.handlePrevClick, true);
     let btnNextDisabled = true;
 
     if (this.totalCars! > MAX_CARS_PER_PAGE) {
       btnNextDisabled = false;
     }
-    const btnNext = getNewBtn(BtnClasses.Btn, 'Next', this.handleNextClick, btnNextDisabled);
+    this.btnNext = getNewBtn(BtnClasses.Btn, 'Next', this.handleNextClick, btnNextDisabled);
 
-    pagination.append(btnPrev, btnNext);
+    pagination.append(this.btnPrev, this.btnNext);
 
     return pagination;
   }
