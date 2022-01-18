@@ -1,4 +1,5 @@
 import getNewBtn, { BtnClasses } from "./btn";
+import {RANGE_TOO_LIGHT_COLOR} from './../data/data';
 
 export default class Car {
   car: HTMLElement;
@@ -11,6 +12,7 @@ export default class Car {
   btnStartEngine?: HTMLElement;
   btnStopEngine?: HTMLElement;
   carPictureEl?: HTMLElement;
+  carTrackEl?: HTMLElement;
 
 
   constructor(id: number, name: string, color: string) {
@@ -22,9 +24,9 @@ export default class Car {
     this.color = color;
 
     const carControls = this.getCarControls();
-    const carTrack = this.getCarTrack();
+    this.setCarTrack();
 
-    this.car.append(carControls, carTrack);
+    this.car.append(carControls, this.carTrackEl!);
   }
 
   getCarControls(): HTMLElement {
@@ -56,9 +58,9 @@ export default class Car {
 
   };
 
-  getCarTrack(): HTMLElement {
-    const carTrack = document.createElement('div');
-    carTrack.className = 'car__track';
+  setCarTrack(): void {
+    this.carTrackEl = document.createElement('div');
+    this.setColorForCarTrackEl();
 
     const carEngineBtnsBlock = this.getCarEngineBtnsBlock();
     this.carPictureEl = document.createElement('div');
@@ -69,9 +71,27 @@ export default class Car {
     flagPicture.className = 'finish-flag';
     flagPicture.innerHTML = this.getFlagPicture();
 
-    carTrack.append(carEngineBtnsBlock, this.carPictureEl, flagPicture);
+    this.carTrackEl.append(carEngineBtnsBlock, this.carPictureEl, flagPicture);
+  }
 
-    return carTrack;
+  isCarColorTooLight(): boolean {
+    if (this.color.length !== 7) return false;
+
+    const r = 255 - parseInt(this.color.slice(1, 3), 16);
+    const g = 255 - parseInt(this.color.slice(3, 5), 16);
+    const b = 255 - parseInt(this.color.slice(5), 16);
+
+    if (r < RANGE_TOO_LIGHT_COLOR && g < RANGE_TOO_LIGHT_COLOR && b < RANGE_TOO_LIGHT_COLOR) return true;
+
+    return false;
+  }
+
+  setColorForCarTrackEl(): void {
+    if (this.isCarColorTooLight()) {
+      this.carTrackEl!.className = 'car__track car__track_is_dark';
+    } else {
+      this.carTrackEl!.className = 'car__track';
+    }
   }
 
   getCarEngineBtnsBlock(): HTMLElement {
@@ -95,6 +115,7 @@ export default class Car {
   };
 
   changeCarPictureColor() {
+    this.setColorForCarTrackEl();
     this.carPictureEl!.innerHTML = this.getCarPicture();
   }
 

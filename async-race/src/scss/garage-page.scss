@@ -65,6 +65,10 @@
   &__track {
     display: flex;
     height: 70px;
+
+    &_is_dark {
+      background-color: #777777;
+    }
   }
 
   &__picture {
