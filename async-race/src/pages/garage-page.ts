@@ -1,7 +1,7 @@
 import serverNotification from './../components/server-notification';
 import Car from './../components/car';
 import header from './../components/header';
-import {getCars} from './../api/api';
+import {getCars, createCar, createBundleCars} from './../api/api';
 import {MAX_CARS_PER_PAGE, IGetCars, ISetCar, ISetBtns, START_PAGE, NO_SELECT} from './../data/data';
 import getNewBtn, {BtnClasses} from './../components/btn';
 
@@ -20,6 +20,7 @@ export default class GaragePage {
   selectCar: number;
   btnPrev?: HTMLElement;
   btnNext?: HTMLElement;
+  carsContainer?: HTMLElement;
 
   constructor(rootElem: HTMLElement) {
     this.rootElem = rootElem;
@@ -27,14 +28,15 @@ export default class GaragePage {
     this.selectCar = NO_SELECT;
   }
 
-  initPage(): void {
-    getCars(START_PAGE, MAX_CARS_PER_PAGE).then((res: IGetCars) => {
+  async initPage(): Promise<void> {
+    try{
+      const res = await getCars(START_PAGE, MAX_CARS_PER_PAGE);
       this.generatePage(res);
-    }, (err: Error) => {
-      if (err.message === 'Failed to fetch') {
+    } catch(err: any) {
+      if (err instanceof TypeError && err.message === 'Failed to fetch') {
         serverNotification.showServerNotification();
       }
-    });
+    }
   }
 
   generatePage(res: IGetCars): void {
@@ -71,12 +73,41 @@ export default class GaragePage {
     return setCreateCar;
   }
 
-  handleClickCreateCar = (): void => {
+  handleClickCreateCar = async (): Promise<void> => {
+    try {
+      const carName = (this.setCreateCar?.inputName as HTMLInputElement).value;
+      const carColor = (this.setCreateCar?.inputColor as HTMLInputElement).value;
+      const newCar = await createCar(carName, carColor);
 
+      this.totalCars!++;
+      this.updateTotalCarsElem();
+
+
+      if (this.arrCars!.length < MAX_CARS_PER_PAGE) {
+        const newCarElem = new Car(newCar.id, newCar.name, newCar.color);
+        this.arrCars?.push(newCarElem);
+        this.carsContainer?.append(newCarElem.car);
+      } else {
+        (this.btnNext as HTMLButtonElement).disabled = false;
+      }
+
+      (this.setCreateCar?.inputName as HTMLInputElement).value = '';
+      (this.setCreateCar?.inputColor as HTMLInputElement).value = '#000000';
+      (this.setCreateCar!.btn as HTMLButtonElement).disabled = true;
+    } catch(e: any) {}
   };
 
-  handleInputNameCreate = (): void => {
+  updateTotalCarsElem(): void {
+    this.totalCarsElem!.textContent = this.totalCars?.toString() as string;
+  }
 
+  handleInputNameCreate = (): void => {
+    const btnCreate = this.setCreateCar?.btn as HTMLButtonElement;
+    if ((this.setCreateCar?.inputName as HTMLInputElement).value !== '') {
+      btnCreate.disabled = false;
+    } else {
+      btnCreate.disabled = true;
+    }
   };
 
   fillSetCar(setCar: HTMLElement, btnContent: string, handleBtn: () => void, handleInputName: () => void): ISetCar {
@@ -149,8 +180,24 @@ export default class GaragePage {
 
   };
 
-  handleGenerateCars = (): void => {
+  handleGenerateCars = async (): Promise<void> => {
+    try {
+      await createBundleCars();
 
+      this.totalCars! += 100;
+      this.updateTotalCarsElem();
+      (this.btnNext as HTMLButtonElement).disabled = false;
+
+      //update cars on cur page
+      if (this.arrCars!.length < MAX_CARS_PER_PAGE) {
+        const cars = (await getCars(this.curPageNumber, MAX_CARS_PER_PAGE)).cars;
+
+        for (let i = this.arrCars!.length; i < MAX_CARS_PER_PAGE; i++) {
+          const newCar = new Car(cars[i].id, cars[i].name, cars[i].color);
+          this.carsContainer?.append(newCar.car);
+        }
+      }
+    } catch {};
   };
 
   getSectionCars(res: IGetCars): HTMLElement {
@@ -160,7 +207,8 @@ export default class GaragePage {
     const title = document.createElement('h1');
     title.className = 'title';
     this.totalCarsElem = document.createElement('span');
-    this.totalCarsElem.textContent = res.total.toString();
+    this.totalCars = res.total;
+    this.totalCarsElem.textContent = this.totalCars.toString();
     title.append('Garage (', this.totalCarsElem, ')');
 
     const subtitle = document.createElement('div');
@@ -169,26 +217,24 @@ export default class GaragePage {
     this.curPageNumberElem.textContent = this.curPageNumber.toString();
     subtitle.append('Page #', this.curPageNumberElem);
 
-    const carsContainer = this.getCarsContainer(res);
+    this.fillCarsContainer(res);
     const pagination = this.getPagination();
 
-    sectionCars.append(title, subtitle, carsContainer, pagination);
+    sectionCars.append(title, subtitle, this.carsContainer!, pagination);
 
     return sectionCars;
   }
 
-  getCarsContainer(res: IGetCars): HTMLElement {
-    const carsContainer = document.createElement('div');
-    carsContainer.className = 'garage-page__cars-container';
+  fillCarsContainer(res: IGetCars) {
+    this.carsContainer = document.createElement('div');
+    this.carsContainer.className = 'garage-page__cars-container';
 
     this.arrCars = res.cars.map((car) => new Car(car.id, car.name, car.color));
 
     this.arrCars.forEach((car) => {
-      carsContainer.append(car.car);
+      this.carsContainer!.append(car.car);
     });
-
-    return carsContainer;
-  }
+}
 
   getPagination(): HTMLElement {
     const pagination = document.createElement('div');
@@ -208,12 +254,56 @@ export default class GaragePage {
   }
 
   handlePrevClick = (): void => {
+    this.curPageNumber--;
+    this.updateNumberPage();
+    if (this.curPageNumber === START_PAGE) {
+      (this.btnPrev as HTMLButtonElement).disabled = true;
+    } else {
+      (this.btnPrev as HTMLButtonElement).disabled = false;
+    }
+    if (this.isOnLastPageNow()) {
+      (this.btnNext as HTMLButtonElement).disabled = true;
+    } else {
+      (this.btnNext as HTMLButtonElement).disabled = false;
+    }
 
+    this.showPrevNextPage();
   };
 
   handleNextClick = (): void => {
+    this.curPageNumber++;
+    this.updateNumberPage();
+    if (this.isOnLastPageNow()) {
+      (this.btnNext as HTMLButtonElement).disabled = true;
+    } else {
+      (this.btnNext as HTMLButtonElement).disabled = false;
+    }
+    (this.btnPrev as HTMLButtonElement).disabled = false;
 
+    this.showPrevNextPage();
   };
+
+  isOnLastPageNow = (): boolean => {
+    return this.curPageNumber === Math.ceil(this.totalCars! / MAX_CARS_PER_PAGE);
+  };
+
+  showPrevNextPage = async(): Promise<void> => {
+    try {
+      const cars = (await getCars(this.curPageNumber, MAX_CARS_PER_PAGE)).cars;
+
+      this.carsContainer!.innerHTML = '';
+      this.arrCars = cars.map((car) => {
+        return new Car(car.id, car.name, car.color);
+      });
+      this.arrCars.forEach((car) => {
+        this.carsContainer?.append(car.car);
+      });
+    } catch {}
+  };
+
+  updateNumberPage(): void {
+    this.curPageNumberElem!.textContent = this.curPageNumber.toString();
+  }
 
   showPage(): void {
     this.rootElem.textContent = '';

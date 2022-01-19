@@ -1,4 +1,6 @@
-import {IGetCars, IGetWinners, StatusEngine, Sort, OrderSort, ICar, IWinner, IEngineAnswer} from './../data/data';
+import {IGetCars, IGetWinners, StatusEngine, Sort, OrderSort, ICar, IWinner, IEngineAnswer, NUMBER_IN_BUNDLE} from './../data/data';
+import brandsCars from './../data/brands-cars';
+import modelsCars from './../data/models-cars';
 
 const base = 'http://127.0.0.1:3000';
 const garage = `${base}/garage`;
@@ -36,6 +38,17 @@ export const createCar = async (name: string, color: string): Promise<ICar> => {
   const car = await resp.json();
 
   return car;
+};
+
+export const createBundleCars = async (): Promise<void> => {
+  const promises = [];
+  for (let i = 0; i < NUMBER_IN_BUNDLE; i++) {
+    const newCarName = generateRandomName();
+    const newCarColor = generateRandomColor();
+    promises.push(createCar(newCarName, newCarColor));
+  }
+
+  Promise.all(promises);
 };
 
 export const deleteCar = async (id: number): Promise<{}> => {
@@ -146,3 +159,25 @@ export const updateWinner = async (id: number, wins: number, time: number): Prom
 
   return winner;
 };
+
+/* functions for create bundle cars */
+function generateRandomName(): string {
+  const brandInd = getRandomIntInclusive(0, brandsCars.length - 1);
+  const modelInd = getRandomIntInclusive(0, modelsCars.length - 1);
+
+  return `${brandsCars[brandInd]} ${modelsCars[modelInd]}`;
+};
+
+function generateRandomColor(): string {
+  const r = getRandomIntInclusive(0, 255).toString(16);
+  const g = getRandomIntInclusive(0, 255).toString(16);
+  const b = getRandomIntInclusive(0, 255).toString(16);
+
+  return `#${r}${g}${b}`;
+};
+
+function getRandomIntInclusive(min: number, max: number) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}

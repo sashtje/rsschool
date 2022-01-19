@@ -61,3 +61,5 @@ export const START_PAGE = 1;
 export const NO_SELECT = -1;
 
 export const RANGE_TOO_LIGHT_COLOR = 50;
+
+export const NUMBER_IN_BUNDLE = 100;
