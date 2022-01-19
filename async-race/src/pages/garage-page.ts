@@ -1,7 +1,7 @@
 import serverNotification from './../components/server-notification';
 import Car from './../components/car';
 import header from './../components/header';
-import {getCars, createCar, createBundleCars, updateCar} from './../api/api';
+import {getCars, createCar, createBundleCars, updateCar, deleteWinner, deleteCar} from './../api/api';
 import {MAX_CARS_PER_PAGE, IGetCars, ISetCar, ISetBtns, START_PAGE, NO_SELECT, START_COLOR} from './../data/data';
 import getNewBtn, {BtnClasses} from './../components/btn';
 
@@ -225,16 +225,22 @@ export default class GaragePage {
 
       //update cars on cur page
       if (this.arrCars!.length < MAX_CARS_PER_PAGE) {
-        const cars = (await getCars(this.curPageNumber, MAX_CARS_PER_PAGE)).cars;
-
-        for (let i = this.arrCars!.length; i < MAX_CARS_PER_PAGE; i++) {
-          const newCar = new Car(cars[i].id, cars[i].name, cars[i].color);
-          this.arrCars?.push(newCar);
-          this.carsContainer?.append(newCar.car);
-        }
+        this.updateCarsOnCurPage();
       }
     } catch {};
   };
+
+  updateCarsOnCurPage = async (): Promise<void> => {
+    try {
+      const cars = (await getCars(this.curPageNumber, MAX_CARS_PER_PAGE)).cars;
+
+      for (let i = this.arrCars!.length; i < MAX_CARS_PER_PAGE; i++) {
+        const newCar = new Car(cars[i].id, cars[i].name, cars[i].color);
+        this.arrCars?.push(newCar);
+        this.carsContainer?.append(newCar.car);
+      }
+    } catch {}
+};
 
   getSectionCars(res: IGetCars): HTMLElement {
     const sectionCars = document.createElement('section');
@@ -391,7 +397,29 @@ export default class GaragePage {
   }
 
   handleRemoveCar = async (car: Car, carInd: number): Promise<void> => {
+    try {
+      //check for chosen for update
+      if (this.selectCar === car.id) {
+        this.resetSelectedCar();
+      }
 
+      //check if this car is in winners db
+      await deleteWinner(car.id);
+    } catch {}
+
+    try {
+      await deleteCar(car.id);
+    } catch {}
+
+    this.arrCars = this.arrCars?.slice(0, carInd).concat(this.arrCars.slice(carInd + 1));
+    car.car.remove();
+    this.totalCars!--;
+    this.updateTotalCarsElem();
+
+    if (this.isOnLastPageNow()) {
+      (this.btnNext as HTMLButtonElement).disabled = true;
+    }
+    await this.updateCarsOnCurPage();
   };
 
   resetSelectedCar = (): void => {
