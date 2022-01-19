@@ -149,28 +149,34 @@ export default class GaragePage {
     try {
       const inputName = this.setUpdateCar?.inputName as HTMLInputElement;
       const inputColor = this.setUpdateCar?.inputColor as HTMLInputElement;
-      const curCar = this.getChoosenCarById(this.selectCar)!;
+      const curCar = this.getChoosenCarById(this.selectCar);
 
-      if (curCar.name === inputName.value && curCar.color === inputColor.value) {
+      if (curCar && curCar.name === inputName.value && curCar.color === inputColor.value) {
         this.resetSelectedCar();
         return;
       }
 
       const updatedCar = await updateCar(this.selectCar, inputName.value, inputColor.value);
 
-      curCar.name = updatedCar.name;
-      curCar.color = updatedCar.color;
-      curCar.changeCarPictureColor();
-      curCar.changeNameCar();
+      if (curCar) {
+        curCar.name = updatedCar.name;
+        curCar.color = updatedCar.color;
+        curCar.changeCarPictureColor();
+        curCar.changeNameCar();
+      }
 
       this.resetSelectedCar();
     } catch {}
   };
 
   getChoosenCarById(id: number) {
-    return this.arrCars?.filter((car) => {
+    const filterArr = this.arrCars?.filter((car) => {
       return car.id === id;
-    })[0];
+    });
+    if (filterArr?.length! > 0) {
+      return filterArr![0];
+    }
+    return undefined;
   }
 
   handleInputNameUpdate = (): void => {
