@@ -36,8 +36,8 @@ export default class Car {
     const controlPanel = document.createElement('div');
     controlPanel.className = 'control-panel';
 
-    this.btnSelect = getNewBtn(BtnClasses.Btn, 'Select', this.handleClickSelect, false);
-    this.btnRemove = getNewBtn(BtnClasses.Btn, 'Remove', this.handleClickRemove, false);
+    this.btnSelect = getNewBtn(BtnClasses.SelectBtn, 'Select', null, false);
+    this.btnRemove = getNewBtn(BtnClasses.RemoveBtn, 'Remove', null, false);
 
     controlPanel.append(this.btnSelect, this.btnRemove);
 
@@ -49,14 +49,6 @@ export default class Car {
 
     return carControls;
   }
-
-  handleClickSelect = (): void => {
-
-  };
-
-  handleClickRemove = (): void => {
-
-  };
 
   setCarTrack(): void {
     this.carTrackEl = document.createElement('div');
@@ -98,25 +90,21 @@ export default class Car {
     const carEngineBtnsBlock = document.createElement('div');
     carEngineBtnsBlock.className = 'car__engine-btns control-panel';
 
-    this.btnStartEngine = getNewBtn(BtnClasses.EngineBtn, 'A', this.handleClickStartEngine, false);
-    this.btnStopEngine = getNewBtn(BtnClasses.EngineBtn, 'B', this.handleClickStopEngine, true);
+    this.btnStartEngine = getNewBtn(BtnClasses.EngineStartBtn, 'A', null, false);
+    this.btnStopEngine = getNewBtn(BtnClasses.EngineStopBtn, 'B', null, true);
 
     carEngineBtnsBlock.append(this.btnStartEngine, this.btnStopEngine);
 
     return carEngineBtnsBlock;
   }
 
-  handleClickStartEngine = (): void => {
-
-  };
-
-  handleClickStopEngine = (): void => {
-
-  };
-
-  changeCarPictureColor() {
+  changeCarPictureColor(): void {
     this.setColorForCarTrackEl();
     this.carPictureEl!.innerHTML = this.getCarPicture();
+  }
+
+  changeNameCar(): void {
+    this.nameCarEl!.textContent = this.name;
   }
 
   getCarPicture(): string {

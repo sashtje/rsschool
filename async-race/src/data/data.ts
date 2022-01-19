@@ -58,6 +58,7 @@ export const MAX_CARS_PER_PAGE = 7;
 export const MAX_WINNERS_PER_PAGE = 10;
 
 export const START_PAGE = 1;
+export const START_COLOR = '#000000';
 export const NO_SELECT = -1;
 
 export const RANGE_TOO_LIGHT_COLOR = 50;

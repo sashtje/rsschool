@@ -1,8 +1,8 @@
 import serverNotification from './../components/server-notification';
 import Car from './../components/car';
 import header from './../components/header';
-import {getCars, createCar, createBundleCars} from './../api/api';
-import {MAX_CARS_PER_PAGE, IGetCars, ISetCar, ISetBtns, START_PAGE, NO_SELECT} from './../data/data';
+import {getCars, createCar, createBundleCars, updateCar} from './../api/api';
+import {MAX_CARS_PER_PAGE, IGetCars, ISetCar, ISetBtns, START_PAGE, NO_SELECT, START_COLOR} from './../data/data';
 import getNewBtn, {BtnClasses} from './../components/btn';
 
 
@@ -92,7 +92,7 @@ export default class GaragePage {
       }
 
       (this.setCreateCar?.inputName as HTMLInputElement).value = '';
-      (this.setCreateCar?.inputColor as HTMLInputElement).value = '#000000';
+      (this.setCreateCar?.inputColor as HTMLInputElement).value = START_COLOR;
       (this.setCreateCar!.btn as HTMLButtonElement).disabled = true;
     } catch(e: any) {}
   };
@@ -121,7 +121,7 @@ export default class GaragePage {
     inputColor.className = 'input-color';
     inputColor.type = 'color';
     inputColor.name = 'car-color';
-    inputColor.value = '#000000';
+    inputColor.value = START_COLOR;
 
     const btn = getNewBtn(BtnClasses.Btn, btnContent, handleBtn, true);
 
@@ -145,12 +145,41 @@ export default class GaragePage {
     return setUpdateCar;
   }
 
-  handleClickUpdateCar = (): void => {
+  handleClickUpdateCar = async (): Promise<void> => {
+    try {
+      const inputName = this.setUpdateCar?.inputName as HTMLInputElement;
+      const inputColor = this.setUpdateCar?.inputColor as HTMLInputElement;
+      const curCar = this.getChoosenCarById(this.selectCar)!;
 
+      if (curCar.name === inputName.value && curCar.color === inputColor.value) {
+        this.resetSelectedCar();
+        return;
+      }
+
+      const updatedCar = await updateCar(this.selectCar, inputName.value, inputColor.value);
+
+      curCar.name = updatedCar.name;
+      curCar.color = updatedCar.color;
+      curCar.changeCarPictureColor();
+      curCar.changeNameCar();
+
+      this.resetSelectedCar();
+    } catch {}
   };
 
-  handleInputNameUpdate = (): void => {
+  getChoosenCarById(id: number) {
+    return this.arrCars?.filter((car) => {
+      return car.id === id;
+    })[0];
+  }
 
+  handleInputNameUpdate = (): void => {
+    const btnUpdate = this.setUpdateCar?.btn as HTMLButtonElement;
+    if ((this.setUpdateCar?.inputName as HTMLInputElement).value !== '') {
+      btnUpdate.disabled = false;
+    } else {
+      btnUpdate.disabled = true;
+    }
   };
 
   getSetControls(): HTMLElement {
@@ -194,6 +223,7 @@ export default class GaragePage {
 
         for (let i = this.arrCars!.length; i < MAX_CARS_PER_PAGE; i++) {
           const newCar = new Car(cars[i].id, cars[i].name, cars[i].color);
+          this.arrCars?.push(newCar);
           this.carsContainer?.append(newCar.car);
         }
       }
@@ -228,6 +258,7 @@ export default class GaragePage {
   fillCarsContainer(res: IGetCars) {
     this.carsContainer = document.createElement('div');
     this.carsContainer.className = 'garage-page__cars-container';
+    this.carsContainer!.addEventListener('click', this.handleClickCarsContainer);
 
     this.arrCars = res.cars.map((car) => new Car(car.id, car.name, car.color));
 
@@ -309,6 +340,74 @@ export default class GaragePage {
     this.rootElem.textContent = '';
     this.rootElem.append(header.header, this.rootPageElem!);
   }
+
+  handleClickCarsContainer = (e: Event): void => {
+    const target = e.target as HTMLElement;
+    const btnSelect = target.closest('.btn-select');
+    const btnRemove = target.closest('.btn-remove');
+    const btnStartEngine = target.closest('.btn-start');
+    const btnStopEngine = target.closest('.btn-stop');
+    const curCar = target.closest('.car') as HTMLElement;
+
+    if (!btnSelect && !btnRemove && !btnStartEngine && !btnStopEngine) return;
+
+    let car: Car = this.arrCars![0];
+    let carInd = 0;
+    this.arrCars?.forEach((carItem, ind) => {
+      if (carItem.car === curCar) {
+        car = carItem;
+        carInd = ind;
+      }
+    });
+
+    if (btnSelect) {
+      this.handleSelectCar(car);
+    } else if (btnRemove) {
+      this.handleRemoveCar(car, carInd);
+    } else if (btnStartEngine) {
+      this.handleStartCar(car);
+    } else {
+      this.handleStopCar(car);
+    }
+  };
+
+  handleSelectCar(car: Car): void {
+    const inputName = this.setUpdateCar?.inputName as HTMLInputElement;
+    const inputColor = this.setUpdateCar?.inputColor as HTMLInputElement;
+
+    this.selectCar = car.id;
+
+    inputName.value = car.name;
+    inputColor.value = car.color;
+    inputName.disabled = false;
+    inputColor.disabled = false;
+    (this.setUpdateCar?.btn as HTMLButtonElement).disabled = false;
+  }
+
+  handleRemoveCar = async (car: Car, carInd: number): Promise<void> => {
+
+  };
+
+  resetSelectedCar = (): void => {
+    const inputName = this.setUpdateCar?.inputName as HTMLInputElement;
+    const inputColor = this.setUpdateCar?.inputColor as HTMLInputElement;
+
+    inputName.value = '';
+    inputColor.value = START_COLOR;
+    inputName.disabled = true;
+    inputColor.disabled = true;
+    (this.setUpdateCar?.btn as HTMLButtonElement).disabled = true;
+
+    this.selectCar = NO_SELECT;
+  };
+
+  handleStartCar = async (car: Car): Promise<void> => {
+
+  };
+
+  handleStopCar = async (car: Car): Promise<void> => {
+
+  };
 }
 
 
