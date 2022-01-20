@@ -74,6 +74,7 @@
   &__picture {
     align-self: flex-end;
     line-height: 0;
+    animation-fill-mode: forwards;
 
     svg {
       width: 90px;

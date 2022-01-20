@@ -1,9 +1,10 @@
 import serverNotification from './../components/server-notification';
 import Car from './../components/car';
 import header from './../components/header';
-import {getCars, createCar, createBundleCars, updateCar, deleteWinner, deleteCar} from './../api/api';
-import {MAX_CARS_PER_PAGE, IGetCars, ISetCar, ISetBtns, START_PAGE, NO_SELECT, START_COLOR} from './../data/data';
+import {getCars, createCar, createBundleCars, updateCar, deleteWinner, deleteCar, startStopEngine, switchToDriveMode, getWinner, createWinner, updateWinner} from './../api/api';
+import {MAX_CARS_PER_PAGE, IGetCars, ISetCar, ISetBtns, START_PAGE, NO_SELECT, START_COLOR, StatusEngine, IWinner, MAX_NUMBER_RACE} from './../data/data';
 import getNewBtn, {BtnClasses} from './../components/btn';
+import CustomNotification from './../components/notification';
 
 
 export default class GaragePage {
@@ -21,11 +22,18 @@ export default class GaragePage {
   btnPrev?: HTMLElement;
   btnNext?: HTMLElement;
   carsContainer?: HTMLElement;
+  carWinner?: number;
+  notification: CustomNotification;
+  isReset: boolean;
+  numberRace: number;
 
   constructor(rootElem: HTMLElement) {
     this.rootElem = rootElem;
     this.curPageNumber = START_PAGE;
     this.selectCar = NO_SELECT;
+    this.notification = new CustomNotification();
+    this.isReset = true;
+    this.numberRace = 0;
   }
 
   async initPage(): Promise<void> {
@@ -208,11 +216,121 @@ export default class GaragePage {
   }
 
   handleRace = (): void => {
+    this.isReset = false;
+    this.numberRace++;
+    if(this.numberRace > MAX_NUMBER_RACE) {
+      this.numberRace = 0;
+    }
+    //make all buttons not active
+    (this.settingsBtns?.btnRace as HTMLButtonElement).disabled = true;
+    (this.settingsBtns?.btnReset as HTMLButtonElement).disabled = false;
+    (this.settingsBtns?.btnGenerate as HTMLButtonElement).disabled = true;
+    (this.setCreateCar?.inputName as HTMLInputElement).disabled = true;
+    (this.btnNext as HTMLButtonElement).disabled = true;
+    (this.btnPrev as HTMLButtonElement).disabled = true;
+    this.arrCars?.forEach((car) => {
+      (car.btnSelect as HTMLButtonElement).disabled = true;
+      (car.btnRemove as HTMLButtonElement).disabled = true;
+      (car.btnStartEngine as HTMLButtonElement).disabled = true;
 
+      this.startRace(car, this.numberRace);
+    });
   };
 
-  handleReset = (): void => {
+  startRace = async (car: Car, curNumberRace: number): Promise<void> => {
+    let params;
+    try {
+      if (!this.isReset && curNumberRace === this.numberRace) {
+        params = await startStopEngine(car.id, StatusEngine.Started);
+      } else {
+        return;
+      }
+    } catch { return;}
 
+    if (!this.isReset && curNumberRace === this.numberRace) {
+      car.time = params.distance / params.velocity;
+      car.setAnimation();
+      car.animation!.play();
+    } else return;
+
+    try {
+      let answer;
+      if (!this.isReset && curNumberRace === this.numberRace) {
+        answer = await switchToDriveMode(car.id);
+      } else {
+        return;
+      }
+
+      if (this.carWinner === undefined && answer.success && !this.isReset && curNumberRace === this.numberRace) {
+        this.carWinner = car.id;
+        const message = `${car.name} went first [${(car.time! / 1000).toFixed(2)}s]`;
+
+        this.notification.changeMessage(message);
+        this.notification.showNotification();
+
+        //add winner to db
+        this.addWinnerToDB(car);
+      }
+    } catch {
+      if (!this.isReset && curNumberRace === this.numberRace) {
+        car.animation!.pause();
+      }
+    }
+  };
+
+  addWinnerToDB = async (car: Car): Promise<void> => {
+    let winner: IWinner | {} = {};
+    try {
+      winner = await getWinner(car.id);
+      // such winner already exists
+    } catch {
+      //it's a new winner
+    }
+    if (!Object.keys(winner).length) {
+      try {
+        await createWinner(car.id, 1, car.time! / 1000);
+      } catch {}
+    } else {
+      try {
+        const newWins = (winner as IWinner).wins + 1;
+        const newTime = (car.time! / 1000 < (winner as IWinner).time)? car.time! / 1000 : (winner as IWinner).time;
+        await updateWinner(car.id, newWins, newTime);
+      } catch {}
+    }
+  };
+
+  handleReset = async (): Promise<void> => {
+    (this.settingsBtns?.btnReset as HTMLButtonElement).disabled = true;
+    this.isReset = true;
+    try {
+      const promises = this.arrCars?.map((car) => startStopEngine(car.id, StatusEngine.Stopped));
+      await Promise.all(promises!);
+
+      this.arrCars?.forEach((car) => {
+        car.animation?.cancel();
+      });
+    } catch {}
+
+    if (this.carWinner !== undefined) {
+      this.carWinner = undefined;
+      this.notification.closeNotification();
+    }
+
+    //make all buttons active again
+    (this.settingsBtns?.btnRace as HTMLButtonElement).disabled = false;
+    (this.settingsBtns?.btnGenerate as HTMLButtonElement).disabled = false;
+    (this.setCreateCar?.inputName as HTMLInputElement).disabled = false;
+    if (this.curPageNumber !== START_PAGE) {
+      (this.btnPrev as HTMLButtonElement).disabled = false;
+    }
+    if (!this.isOnLastPageNow()) {
+      (this.btnNext as HTMLButtonElement).disabled = false;
+    }
+    this.arrCars?.forEach((car) => {
+      (car.btnSelect as HTMLButtonElement).disabled = false;
+      (car.btnRemove as HTMLButtonElement).disabled = false;
+      (car.btnStartEngine as HTMLButtonElement).disabled = false;
+    });
   };
 
   handleGenerateCars = async (): Promise<void> => {
@@ -342,6 +460,8 @@ export default class GaragePage {
         this.carsContainer?.append(car.car);
       });
     } catch {}
+
+    (this.settingsBtns?.btnRace as HTMLButtonElement).disabled = false;
   };
 
   updateNumberPage(): void {
@@ -350,7 +470,7 @@ export default class GaragePage {
 
   showPage(): void {
     this.rootElem.textContent = '';
-    this.rootElem.append(header.header, this.rootPageElem!);
+    this.rootElem.append(header.header, this.rootPageElem!, this.notification.elem);
   }
 
   handleClickCarsContainer = (e: Event): void => {
@@ -377,7 +497,7 @@ export default class GaragePage {
     } else if (btnRemove) {
       this.handleRemoveCar(car, carInd);
     } else if (btnStartEngine) {
-      this.handleStartCar(car);
+      this.handleStartCar(car, car.numberStart);
     } else {
       this.handleStopCar(car);
     }
@@ -435,12 +555,48 @@ export default class GaragePage {
     this.selectCar = NO_SELECT;
   };
 
-  handleStartCar = async (car: Car): Promise<void> => {
+  handleStartCar = async (car: Car, numberStart: number): Promise<void> => {
+    let params;
 
+    car.isStopped = false;
+
+    (this.settingsBtns?.btnRace as HTMLButtonElement).disabled = true;
+    try {
+      (car.btnStartEngine as HTMLButtonElement).disabled = true;
+
+      params = await startStopEngine(car.id, StatusEngine.Started);
+    } catch { return;}
+
+    car.time = params.distance / params.velocity;
+    car.setAnimation();
+    car.animation!.play();
+
+    (car.btnStopEngine as HTMLButtonElement).disabled = false;
+
+    try {
+      const answer = await switchToDriveMode(car.id);
+    } catch {
+      if (car.numberStart === numberStart) {
+        car.animation!.pause();
+      }
+    }
   };
 
   handleStopCar = async (car: Car): Promise<void> => {
+    (car.btnStopEngine as HTMLButtonElement).disabled = true;
+    car.isStopped = true;
+    car.numberStart++;
+    if (car.numberStart > MAX_NUMBER_RACE) {
+      car.numberStart = 0;
+    }
 
+    try {
+      await startStopEngine(car.id, StatusEngine.Stopped);
+      car.animation!.cancel();
+    } catch {}
+
+    (car.btnStartEngine as HTMLButtonElement).disabled = false;
+    (this.settingsBtns?.btnRace as HTMLButtonElement).disabled = false;
   };
 }
 

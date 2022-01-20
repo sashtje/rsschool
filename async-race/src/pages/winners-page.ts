@@ -1,5 +1,6 @@
+import { getCar, getWinners } from "../api/api";
 import getNewBtn, { BtnClasses } from "../components/btn";
-import { START_PAGE } from "../data/data";
+import { MAX_WINNERS_PER_PAGE, OrderSort, Sort, START_PAGE } from "../data/data";
 import header from './../components/header';
 
 export default class WinnersPage {
@@ -11,10 +12,17 @@ export default class WinnersPage {
   curPageNumberElem?: HTMLElement;
   btnPrev?: HTMLElement;
   btnNext?: HTMLElement;
+  tbody?: HTMLElement;
+  isSort: boolean;
+  typeSort: Sort;
+  orderSort: OrderSort;
 
   constructor(rootElem: HTMLElement) {
     this.rootElem = rootElem;
     this.curPageNumber = START_PAGE;
+    this.isSort = false;
+    this.typeSort = Sort.Id;
+    this.orderSort = OrderSort.Asc;
 
     this.initPage();
   }
@@ -29,9 +37,10 @@ export default class WinnersPage {
 
     const title = this.getTitle();
     const subtitle = this.getSubtitle();
+    const table = this.getTableSkeleton();
     const pagination = this.getPagination();
 
-    this.rootPageElem.append(title, subtitle, pagination);
+    this.rootPageElem.append(title, subtitle, table, pagination);
   }
 
   getTitle(): HTMLElement {
@@ -58,6 +67,28 @@ export default class WinnersPage {
     return subtitle;
   }
 
+  getTableSkeleton(): HTMLElement {
+    const table = document.createElement('table');
+    table.className = 'winners-page__table winners';
+
+    this.tbody = document.createElement('tbody');
+    const thead = document.createElement('thead');
+    const trHead = document.createElement('tr');
+    trHead.className = 'winners__header-tr header-tr';
+    trHead.innerHTML = `<th>Number</th>
+          <th>Car</th>
+          <th>Name</th>
+          <th class="header-tr-wins">Wins</th>
+          <th class="header-tr-time">Best time (seconds)</th>`;
+    trHead.addEventListener('click', this.handleClickTrHead);
+
+    thead.append(trHead);
+
+    table.append(this.tbody, thead);
+
+    return table;
+  }
+
   getPagination(): HTMLElement {
     const pagination = document.createElement('div');
     pagination.className = 'control-panel';
@@ -70,6 +101,10 @@ export default class WinnersPage {
     return pagination;
   }
 
+  handleClickTrHead = (): void => {
+
+  };
+
   handleClickPrev = (): void => {
 
   };
@@ -78,8 +113,27 @@ export default class WinnersPage {
 
   };
 
-  showPage(): void {
+  showPage = async (): Promise<void> => {
     this.rootElem.textContent = '';
     this.rootElem.append(header.header, this.rootPageElem!);
+    this.tbody!.innerHTML = '';
+
+    try {
+      const winners = await getWinners(this.curPageNumber, MAX_WINNERS_PER_PAGE, this.typeSort, this.orderSort);
+
+      this.totalWin = winners.total;
+      this.updateTotalWinElem();
+
+      const promises = await Promise.all(winners.winners.map((winner) => getCar(winner.id)));
+      
+    } catch {}
   }
+
+  updateTotalWinElem(): void {
+    this.totalWinElem!.textContent = this.totalWin?.toString() as string;
+  }
+
+  isOnLastPageNow = (): boolean => {
+    return this.curPageNumber === Math.ceil(this.totalWin! / MAX_WINNERS_PER_PAGE);
+  };
 }
