@@ -27,7 +27,32 @@
 
 .header-tr-wins,
 .header-tr-time {
+  position: relative;
   cursor: pointer;
+
+  &::after {
+    position: absolute;
+    content: '';
+    right: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    color: #ffffff;
+  }
+}
+
+.header-tr-wins_is_sort-asc,
+.header-tr-time_is_sort-asc {
+  &::after {
+    content: '\25B2';
+  }
+}
+
+.header-tr-wins_is_sort-desc,
+.header-tr-time_is_sort-desc {
+  &::after {
+    content: '\25BC';
+  }
 }
 
 .winner {

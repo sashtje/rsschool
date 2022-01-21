@@ -14,14 +14,14 @@ export default class WinnersPage {
   btnPrev?: HTMLElement;
   btnNext?: HTMLElement;
   tbody?: HTMLElement;
-  isSort: boolean;
   typeSort: Sort;
   orderSort: OrderSort;
+  trWinsElem?: HTMLElement;
+  trTimeElem?: HTMLElement;
 
   constructor(rootElem: HTMLElement) {
     this.rootElem = rootElem;
     this.curPageNumber = START_PAGE;
-    this.isSort = false;
     this.typeSort = Sort.Id;
     this.orderSort = OrderSort.Asc;
 
@@ -78,9 +78,15 @@ export default class WinnersPage {
     trHead.className = 'winners__header-tr header-tr';
     trHead.innerHTML = `<th>Number</th>
           <th>Car</th>
-          <th>Name</th>
-          <th class="header-tr-wins">Wins</th>
-          <th class="header-tr-time">Best time (seconds)</th>`;
+          <th>Name</th>`;
+    this.trWinsElem = document.createElement('th');
+    this.trWinsElem.className = 'header-tr-wins';
+    this.trWinsElem.textContent = 'Wins';
+    this.trTimeElem = document.createElement('th');
+    this.trTimeElem.className = 'header-tr-time';
+    this.trTimeElem.textContent = 'Best time (seconds)';
+
+    trHead.append(this.trWinsElem, this.trTimeElem);
     trHead.addEventListener('click', this.handleClickTrHead);
 
     thead.append(trHead);
@@ -102,8 +108,75 @@ export default class WinnersPage {
     return pagination;
   }
 
-  handleClickTrHead = (): void => {
-    
+  handleClickTrHead = (e: Event): void => {
+    const target = e.target as HTMLElement;
+    const wins = target.closest('.header-tr-wins');
+    const time = target.closest('.header-tr-time');
+    if (!wins && !time) {
+      if (this.typeSort !== Sort.Id) {
+        this.typeSort = Sort.Id;
+        this.orderSort = OrderSort.Asc;
+        this.trWinsElem!.className = 'header-tr-wins';
+        this.trTimeElem!.className = 'header-tr-time';
+
+        this.fillWinners();
+      }
+      return;
+    }
+
+    if (wins) {
+      switch(this.typeSort) {
+        case Sort.Id:
+          this.typeSort = Sort.Wins;
+          this.orderSort = OrderSort.Asc;
+          this.trWinsElem!.className = 'header-tr-wins header-tr-wins_is_sort-asc';
+          break;
+
+        case Sort.Wins:
+          if (this.orderSort === OrderSort.Asc) {
+            this.orderSort = OrderSort.Desc;
+            this.trWinsElem!.className = 'header-tr-wins header-tr-wins_is_sort-desc';
+          } else {
+            this.orderSort = OrderSort.Asc;
+            this.trWinsElem!.className = 'header-tr-wins header-tr-wins_is_sort-asc';
+          }
+          break;
+
+        case Sort.Time:
+          this.trTimeElem!.className = 'header-tr-time';
+          this.trWinsElem!.className = 'header-tr-wins header-tr-wins_is_sort-asc';
+          this.typeSort = Sort.Wins;
+          this.orderSort = OrderSort.Asc;
+          break;
+      }
+    } else {
+      switch(this.typeSort) {
+        case Sort.Id:
+          this.typeSort = Sort.Time;
+          this.orderSort = OrderSort.Asc;
+          this.trTimeElem!.className = 'header-tr-time header-tr-time_is_sort-asc';
+          break;
+
+        case Sort.Wins:
+          this.trWinsElem!.className = 'header-tr-wins';
+          this.trTimeElem!.className = 'header-tr-time header-tr-time_is_sort-asc';
+          this.typeSort = Sort.Time;
+          this.orderSort = OrderSort.Asc;
+          break;
+
+        case Sort.Time:
+          if (this.orderSort === OrderSort.Asc) {
+            this.orderSort = OrderSort.Desc;
+            this.trTimeElem!.className = 'header-tr-time header-tr-time_is_sort-desc';
+          } else {
+            this.orderSort = OrderSort.Asc;
+            this.trTimeElem!.className = 'header-tr-time header-tr-time_is_sort-asc';
+          }
+          break;
+      }
+    }
+
+    this.fillWinners();
   };
 
   handleClickPrev = (): void => {
