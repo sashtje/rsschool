@@ -385,15 +385,13 @@ export default class GaragePage {
 
   addWinnerToDB = async (car: Car): Promise<void> => {
     let winner: IWinner | undefined;
-    let isWinnerAlreadyExists = false;
     try {
       winner = await getWinner(car.id);
-      isWinnerAlreadyExists = true;
-      // such winner already exists
     } catch {
-      // it's a new winner
+      //
     }
-    if (!isWinnerAlreadyExists) {
+
+    if (winner !== undefined && !Object.keys(winner).length) {
       try {
         await createWinner(car.id, 1, (car.time as number) / ONE_SECOND);
       } catch {
