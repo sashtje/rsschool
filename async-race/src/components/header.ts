@@ -1,8 +1,10 @@
-import getNewBtn, {BtnClasses} from './../components/btn';
+import getNewBtn, { BtnClasses } from '../components/btn';
 
 class Header {
   header: HTMLElement;
+
   btnGarage: HTMLElement;
+
   btnWinners: HTMLElement;
 
   constructor() {
@@ -23,16 +25,16 @@ class Header {
     (this.btnGarage as HTMLButtonElement).disabled = true;
     (this.btnWinners as HTMLButtonElement).disabled = false;
 
-    const event = new Event('show-garage-page', {bubbles: true});
-    this.btnGarage!.dispatchEvent(event);
+    const event = new Event('show-garage-page', { bubbles: true });
+    this.btnGarage.dispatchEvent(event);
   };
 
   handleClickWinners = (): void => {
     (this.btnGarage as HTMLButtonElement).disabled = false;
     (this.btnWinners as HTMLButtonElement).disabled = true;
 
-    const event = new Event('show-winners-page', {bubbles: true});
-    this.btnWinners!.dispatchEvent(event);
+    const event = new Event('show-winners-page', { bubbles: true });
+    this.btnWinners.dispatchEvent(event);
   };
 }
 

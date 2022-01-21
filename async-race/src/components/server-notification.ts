@@ -1,19 +1,19 @@
 export enum ServNotClasses {
   IsHidden = 'server-notification_is_hidden',
   IsShown = 'server-notification_is_shown',
-};
+}
 
 class ServerNotification {
   elem: HTMLElement;
 
-  constructor () {
+  constructor() {
     this.elem = document.createElement('div');
     this.elem.className = `server-notification ${ServNotClasses.IsHidden}`;
     this.elem.innerHTML = this.getInnerLayout();
 
     this.elem.addEventListener('click', this.closeServerNotification);
   }
-  
+
   getInnerLayout(): string {
     return `
     <div class="server-notification__message">
@@ -36,7 +36,7 @@ class ServerNotification {
   hideServerNotification = (): void => {
     this.elem.classList.add(ServNotClasses.IsHidden);
   };
-};
+}
 
 const serverNotification = new ServerNotification();
 

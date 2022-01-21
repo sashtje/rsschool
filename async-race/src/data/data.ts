@@ -2,27 +2,27 @@ export interface ICar {
   name: string;
   color: string;
   id: number;
-};
+}
 
 export interface IGetCars {
   total: number;
   cars: ICar[];
-};
+}
 
 export interface IWinner {
   wins: number;
   time: number;
   id: number;
-};
+}
 
 export interface IGetWinners {
   total: number;
   winners: IWinner[];
-};
+}
 
 export interface IEngineAnswer {
-  "velocity": number,
-  "distance": number,
+  velocity: number;
+  distance: number;
 }
 
 export interface ISetCar {

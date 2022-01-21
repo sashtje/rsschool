@@ -1,8 +1,9 @@
-import getNewBtn, {BtnClasses} from './../components/btn';
-import serverNotification from './../components/server-notification';
+import getNewBtn, { BtnClasses } from '../components/btn';
+import serverNotification from '../components/server-notification';
 
 export default class StartPage {
   rootElem: HTMLElement;
+
   btnStart?: HTMLElement;
 
   constructor(rootElem: HTMLElement) {
@@ -18,11 +19,11 @@ export default class StartPage {
   }
 
   handleClickStart = (): void => {
-    const event = new Event('init-garage-page', {bubbles: true});
-    this.btnStart!.dispatchEvent(event);
+    const event = new Event('init-garage-page', { bubbles: true });
+    (this.btnStart as HTMLElement).dispatchEvent(event);
   };
 
-  getPageLayout(btn: HTMLElement):HTMLElement {
+  getPageLayout(btn: HTMLElement): HTMLElement {
     const main = document.createElement('main');
     main.className = 'start-page';
 

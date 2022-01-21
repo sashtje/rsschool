@@ -1,22 +1,34 @@
-import { getCar, getWinners } from "../api/api";
-import getNewBtn, { BtnClasses } from "../components/btn";
-import { MAX_WINNERS_PER_PAGE, OrderSort, Sort, START_PAGE } from "../data/data";
-import header from './../components/header';
-import Car from './../components/car';
+import { getCar, getWinners } from '../api/api';
+import getNewBtn, { BtnClasses } from '../components/btn';
+import { MAX_WINNERS_PER_PAGE, OrderSort, Sort, START_PAGE } from '../data/data';
+import header from '../components/header';
+import Car from '../components/car';
 
 export default class WinnersPage {
   rootElem: HTMLElement;
+
   rootPageElem?: HTMLElement;
+
   totalWin?: number;
+
   totalWinElem?: HTMLElement;
+
   curPageNumber: number;
+
   curPageNumberElem?: HTMLElement;
+
   btnPrev?: HTMLElement;
+
   btnNext?: HTMLElement;
+
   tbody?: HTMLElement;
+
   typeSort: Sort;
+
   orderSort: OrderSort;
+
   trWinsElem?: HTMLElement;
+
   trTimeElem?: HTMLElement;
 
   constructor(rootElem: HTMLElement) {
@@ -116,50 +128,57 @@ export default class WinnersPage {
       if (this.typeSort !== Sort.Id) {
         this.typeSort = Sort.Id;
         this.orderSort = OrderSort.Asc;
-        this.trWinsElem!.className = 'header-tr-wins';
-        this.trTimeElem!.className = 'header-tr-time';
+        (this.trWinsElem as HTMLElement).className = 'header-tr-wins';
+        (this.trTimeElem as HTMLElement).className = 'header-tr-time';
 
-        this.fillWinners();
+        this.fillWinners().catch((err: Error) => {
+          console.log(err);
+        });
       }
       return;
     }
 
     if (wins) {
-      switch(this.typeSort) {
+      switch (this.typeSort) {
         case Sort.Id:
           this.typeSort = Sort.Wins;
           this.orderSort = OrderSort.Asc;
-          this.trWinsElem!.className = 'header-tr-wins header-tr-wins_is_sort-asc';
+          (this.trWinsElem as HTMLElement).className = 'header-tr-wins header-tr-wins_is_sort-asc';
           break;
 
         case Sort.Wins:
           if (this.orderSort === OrderSort.Asc) {
             this.orderSort = OrderSort.Desc;
-            this.trWinsElem!.className = 'header-tr-wins header-tr-wins_is_sort-desc';
+            (this.trWinsElem as HTMLElement).className =
+              'header-tr-wins header-tr-wins_is_sort-desc';
           } else {
             this.orderSort = OrderSort.Asc;
-            this.trWinsElem!.className = 'header-tr-wins header-tr-wins_is_sort-asc';
+            (this.trWinsElem as HTMLElement).className =
+              'header-tr-wins header-tr-wins_is_sort-asc';
           }
           break;
 
         case Sort.Time:
-          this.trTimeElem!.className = 'header-tr-time';
-          this.trWinsElem!.className = 'header-tr-wins header-tr-wins_is_sort-asc';
+          (this.trTimeElem as HTMLElement).className = 'header-tr-time';
+          (this.trWinsElem as HTMLElement).className = 'header-tr-wins header-tr-wins_is_sort-asc';
           this.typeSort = Sort.Wins;
           this.orderSort = OrderSort.Asc;
           break;
+
+        default:
+        //
       }
     } else {
-      switch(this.typeSort) {
+      switch (this.typeSort) {
         case Sort.Id:
           this.typeSort = Sort.Time;
           this.orderSort = OrderSort.Asc;
-          this.trTimeElem!.className = 'header-tr-time header-tr-time_is_sort-asc';
+          (this.trTimeElem as HTMLElement).className = 'header-tr-time header-tr-time_is_sort-asc';
           break;
 
         case Sort.Wins:
-          this.trWinsElem!.className = 'header-tr-wins';
-          this.trTimeElem!.className = 'header-tr-time header-tr-time_is_sort-asc';
+          (this.trWinsElem as HTMLElement).className = 'header-tr-wins';
+          (this.trTimeElem as HTMLElement).className = 'header-tr-time header-tr-time_is_sort-asc';
           this.typeSort = Sort.Time;
           this.orderSort = OrderSort.Asc;
           break;
@@ -167,32 +186,41 @@ export default class WinnersPage {
         case Sort.Time:
           if (this.orderSort === OrderSort.Asc) {
             this.orderSort = OrderSort.Desc;
-            this.trTimeElem!.className = 'header-tr-time header-tr-time_is_sort-desc';
+            (this.trTimeElem as HTMLElement).className =
+              'header-tr-time header-tr-time_is_sort-desc';
           } else {
             this.orderSort = OrderSort.Asc;
-            this.trTimeElem!.className = 'header-tr-time header-tr-time_is_sort-asc';
+            (this.trTimeElem as HTMLElement).className =
+              'header-tr-time header-tr-time_is_sort-asc';
           }
           break;
+
+        default:
+        //
       }
     }
 
-    this.fillWinners();
+    this.fillWinners().catch((err: Error) => {
+      console.log(err);
+    });
   };
 
   handleClickPrev = (): void => {
-    this.curPageNumber--;
+    this.curPageNumber -= 1;
     this.handleClickPrevNext();
   };
 
   handleClickNext = (): void => {
-    this.curPageNumber++;
+    this.curPageNumber += 1;
     this.handleClickPrevNext();
   };
 
   handleClickPrevNext = (): void => {
     this.updateNumberPage();
     this.updatePaginationButtons();
-    this.fillWinners();
+    this.fillWinners().catch((e: Error) => {
+      console.log(e);
+    });
   };
 
   updatePaginationButtons(): void {
@@ -210,32 +238,37 @@ export default class WinnersPage {
 
   showPage = async (): Promise<void> => {
     this.rootElem.textContent = '';
-    this.rootElem.append(header.header, this.rootPageElem!);
+    this.rootElem.append(header.header, this.rootPageElem as HTMLElement);
 
     await this.fillWinners();
-  }
+  };
 
   fillWinners = async (): Promise<void> => {
-    this.tbody!.innerHTML = '';
+    (this.tbody as HTMLElement).innerHTML = '';
 
     if (this.isCurPageNoLongerExists()) {
-      //in case we deleted some cars,
-      //and we don't have this page anymore
+      // in case we deleted some cars,
+      // and we don't have this page anymore
       this.curPageNumber = START_PAGE;
       this.updateNumberPage();
     }
 
     try {
-      const winners = await getWinners(this.curPageNumber, MAX_WINNERS_PER_PAGE, this.typeSort, this.orderSort);
+      const winners = await getWinners(
+        this.curPageNumber,
+        MAX_WINNERS_PER_PAGE,
+        this.typeSort,
+        this.orderSort,
+      );
 
       this.totalWin = winners.total;
       this.updateTotalWinElem();
 
       const cars = await Promise.all(winners.winners.map((winner) => getCar(winner.id)));
-      let startInd = (this.curPageNumber - 1) * MAX_WINNERS_PER_PAGE + 1;
-      let countWin = winners.winners.length;
+      const startInd = (this.curPageNumber - 1) * MAX_WINNERS_PER_PAGE + 1;
+      const countWin = winners.winners.length;
 
-      for (let i = 0; i < countWin; i++) {
+      for (let i = 0; i < countWin; i += 1) {
         const trWinner = document.createElement('tr');
         let classCar = '';
 
@@ -251,24 +284,24 @@ export default class WinnersPage {
 
         this.tbody?.append(trWinner);
       }
-    } catch {}
+    } catch {
+      console.log('error');
+    }
 
     this.updatePaginationButtons();
   };
 
   updateNumberPage(): void {
-    this.curPageNumberElem!.textContent = this.curPageNumber.toString();
+    (this.curPageNumberElem as HTMLElement).textContent = this.curPageNumber.toString();
   }
 
   updateTotalWinElem(): void {
-    this.totalWinElem!.textContent = this.totalWin?.toString() as string;
+    (this.totalWinElem as HTMLElement).textContent = this.totalWin?.toString() as string;
   }
 
-  isOnLastPageNow = (): boolean => {
-    return this.curPageNumber === Math.ceil(this.totalWin! / MAX_WINNERS_PER_PAGE);
-  };
+  isOnLastPageNow = (): boolean =>
+    this.curPageNumber === Math.ceil((this.totalWin as number) / MAX_WINNERS_PER_PAGE);
 
-  isCurPageNoLongerExists = (): boolean => {
-    return this.curPageNumber > Math.ceil(this.totalWin! / MAX_WINNERS_PER_PAGE);
-  };
+  isCurPageNoLongerExists = (): boolean =>
+    this.curPageNumber > Math.ceil((this.totalWin as number) / MAX_WINNERS_PER_PAGE);
 }
