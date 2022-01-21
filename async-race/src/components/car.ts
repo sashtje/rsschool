@@ -72,12 +72,12 @@ export default class Car {
     this.carTrackEl.append(carEngineBtnsBlock, this.carPictureEl, flagPicture);
   }
 
-  isCarColorTooLight(): boolean {
-    if (this.color.length !== 7) return false;
+  static isCarColorTooLight(color: string): boolean {
+    if (color.length !== 7) return false;
 
-    const r = 255 - parseInt(this.color.slice(1, 3), 16);
-    const g = 255 - parseInt(this.color.slice(3, 5), 16);
-    const b = 255 - parseInt(this.color.slice(5), 16);
+    const r = 255 - parseInt(color.slice(1, 3), 16);
+    const g = 255 - parseInt(color.slice(3, 5), 16);
+    const b = 255 - parseInt(color.slice(5), 16);
 
     if (r < RANGE_TOO_LIGHT_COLOR && g < RANGE_TOO_LIGHT_COLOR && b < RANGE_TOO_LIGHT_COLOR) return true;
 
@@ -85,7 +85,7 @@ export default class Car {
   }
 
   setColorForCarTrackEl(): void {
-    if (this.isCarColorTooLight()) {
+    if (Car.isCarColorTooLight(this.color)) {
       this.carTrackEl!.className = 'car__track car__track_is_dark';
     } else {
       this.carTrackEl!.className = 'car__track';

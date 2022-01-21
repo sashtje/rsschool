@@ -2,6 +2,7 @@ import { getCar, getWinners } from "../api/api";
 import getNewBtn, { BtnClasses } from "../components/btn";
 import { MAX_WINNERS_PER_PAGE, OrderSort, Sort, START_PAGE } from "../data/data";
 import header from './../components/header';
+import Car from './../components/car';
 
 export default class WinnersPage {
   rootElem: HTMLElement;
@@ -102,21 +103,54 @@ export default class WinnersPage {
   }
 
   handleClickTrHead = (): void => {
-
+    
   };
 
   handleClickPrev = (): void => {
-
+    this.curPageNumber--;
+    this.handleClickPrevNext();
   };
 
   handleClickNext = (): void => {
-
+    this.curPageNumber++;
+    this.handleClickPrevNext();
   };
+
+  handleClickPrevNext = (): void => {
+    this.updateNumberPage();
+    this.updatePaginationButtons();
+    this.fillWinners();
+  };
+
+  updatePaginationButtons(): void {
+    if (this.curPageNumber === START_PAGE) {
+      (this.btnPrev as HTMLButtonElement).disabled = true;
+    } else {
+      (this.btnPrev as HTMLButtonElement).disabled = false;
+    }
+    if (this.isOnLastPageNow()) {
+      (this.btnNext as HTMLButtonElement).disabled = true;
+    } else {
+      (this.btnNext as HTMLButtonElement).disabled = false;
+    }
+  }
 
   showPage = async (): Promise<void> => {
     this.rootElem.textContent = '';
     this.rootElem.append(header.header, this.rootPageElem!);
+
+    await this.fillWinners();
+  }
+
+  fillWinners = async (): Promise<void> => {
     this.tbody!.innerHTML = '';
+
+    if (this.isCurPageNoLongerExists()) {
+      //in case we deleted some cars,
+      //and we don't have this page anymore
+      this.curPageNumber = START_PAGE;
+      this.updateNumberPage();
+    }
 
     try {
       const winners = await getWinners(this.curPageNumber, MAX_WINNERS_PER_PAGE, this.typeSort, this.orderSort);
@@ -124,9 +158,33 @@ export default class WinnersPage {
       this.totalWin = winners.total;
       this.updateTotalWinElem();
 
-      const promises = await Promise.all(winners.winners.map((winner) => getCar(winner.id)));
-      
+      const cars = await Promise.all(winners.winners.map((winner) => getCar(winner.id)));
+      let startInd = (this.curPageNumber - 1) * MAX_WINNERS_PER_PAGE + 1;
+      let countWin = winners.winners.length;
+
+      for (let i = 0; i < countWin; i++) {
+        const trWinner = document.createElement('tr');
+        let classCar = '';
+
+        if (Car.isCarColorTooLight(cars[i].color)) {
+          classCar = ' winner__car_is_dark';
+        }
+        trWinner.className = 'winner';
+        trWinner.innerHTML = `<td class="winner__number">${startInd + i}</td>
+          <td class="winner__car${classCar}">${Car.getCarPicture(cars[i].color)}</td>
+          <td class="winner__name">${cars[i].name}</td>
+          <td class="winner__wins">${winners.winners[i].wins}</td>
+          <td class="winner__time">${winners.winners[i].time.toFixed(2)}</td>`;
+
+        this.tbody?.append(trWinner);
+      }
     } catch {}
+
+    this.updatePaginationButtons();
+  };
+
+  updateNumberPage(): void {
+    this.curPageNumberElem!.textContent = this.curPageNumber.toString();
   }
 
   updateTotalWinElem(): void {
@@ -135,5 +193,9 @@ export default class WinnersPage {
 
   isOnLastPageNow = (): boolean => {
     return this.curPageNumber === Math.ceil(this.totalWin! / MAX_WINNERS_PER_PAGE);
+  };
+
+  isCurPageNoLongerExists = (): boolean => {
+    return this.curPageNumber > Math.ceil(this.totalWin! / MAX_WINNERS_PER_PAGE);
   };
 }

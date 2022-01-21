@@ -25,6 +25,11 @@
   }
 }
 
+.header-tr-wins,
+.header-tr-time {
+  cursor: pointer;
+}
+
 .winner {
   text-align: center;
   border-top: 1px solid #000000;
@@ -38,6 +43,10 @@
   &__car {
     text-align: center;
     padding: 10px 5px;
+
+    &_is_dark {
+      background-color: #777777;
+    }
 
     svg {
       width: 80px;
