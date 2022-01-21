@@ -2,7 +2,7 @@ import serverNotification from './../components/server-notification';
 import Car from './../components/car';
 import header from './../components/header';
 import {getCars, createCar, createBundleCars, updateCar, deleteWinner, deleteCar, startStopEngine, switchToDriveMode, getWinner, createWinner, updateWinner} from './../api/api';
-import {MAX_CARS_PER_PAGE, IGetCars, ISetCar, ISetBtns, START_PAGE, NO_SELECT, START_COLOR, StatusEngine, IWinner, MAX_NUMBER_RACE} from './../data/data';
+import {MAX_CARS_PER_PAGE, IGetCars, ISetCar, ISetBtns, START_PAGE, NO_SELECT, START_COLOR, StatusEngine, IWinner, MAX_NUMBER_RACE, NUMBER_IN_BUNDLE, ONE_SECOND} from './../data/data';
 import getNewBtn, {BtnClasses} from './../components/btn';
 import CustomNotification from './../components/notification';
 import brandsCars from './../data/brands-cars';
@@ -308,12 +308,12 @@ export default class GaragePage {
     }
     if (!Object.keys(winner).length) {
       try {
-        await createWinner(car.id, 1, car.time! / 1000);
+        await createWinner(car.id, 1, car.time! / ONE_SECOND);
       } catch {}
     } else {
       try {
         const newWins = (winner as IWinner).wins + 1;
-        const newTime = (car.time! / 1000 < (winner as IWinner).time)? car.time! / 1000 : (winner as IWinner).time;
+        const newTime = (car.time! / ONE_SECOND < (winner as IWinner).time)? car.time! / ONE_SECOND : (winner as IWinner).time;
         await updateWinner(car.id, newWins, newTime);
       } catch {}
     }
@@ -357,7 +357,7 @@ export default class GaragePage {
     try {
       await createBundleCars();
 
-      this.totalCars! += 100;
+      this.totalCars! += NUMBER_IN_BUNDLE;
       this.updateTotalCarsElem();
       (this.btnNext as HTMLButtonElement).disabled = false;
 

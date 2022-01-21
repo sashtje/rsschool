@@ -65,3 +65,4 @@ export const RANGE_TOO_LIGHT_COLOR = 50;
 
 export const NUMBER_IN_BUNDLE = 100;
 export const MAX_NUMBER_RACE = 1000000;
+export const ONE_SECOND = 1000;
