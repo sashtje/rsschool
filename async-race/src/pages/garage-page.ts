@@ -5,7 +5,8 @@ import {getCars, createCar, createBundleCars, updateCar, deleteWinner, deleteCar
 import {MAX_CARS_PER_PAGE, IGetCars, ISetCar, ISetBtns, START_PAGE, NO_SELECT, START_COLOR, StatusEngine, IWinner, MAX_NUMBER_RACE} from './../data/data';
 import getNewBtn, {BtnClasses} from './../components/btn';
 import CustomNotification from './../components/notification';
-
+import brandsCars from './../data/brands-cars';
+import modelsCars from './../data/models-cars';
 
 export default class GaragePage {
   rootElem: HTMLElement;
@@ -64,6 +65,8 @@ export default class GaragePage {
     settings.className = 'settings';
 
     const setCreateCar = this.getSetCreateCar();
+    const dataList = this.getDataList();
+    setCreateCar.append(dataList);
     const setUpdateCar = this.getSetUpdateCar();
     const setControls = this.getSetControls();
 
@@ -71,6 +74,22 @@ export default class GaragePage {
 
     return settings;
   }
+
+  getDataList = (): HTMLElement => {
+    const dataList = document.createElement('datalist');
+    dataList.id = 'data-list-cars';
+
+    for (let i = 0; i < brandsCars.length; i++) {
+      for (let j = 0; j < modelsCars.length; j++) {
+        const option = document.createElement('option');
+        option.value = `${brandsCars[i]} ${modelsCars[j]}`;
+
+        dataList.append(option);
+      }
+    }
+
+    return dataList;
+  };
 
   getSetCreateCar(): HTMLElement {
     const setCreateCar = document.createElement('div');
@@ -123,6 +142,7 @@ export default class GaragePage {
     inputName.className = 'input-car-name';
     inputName.type = 'text';
     inputName.name = 'car-name';
+    inputName.setAttribute('list', 'data-list-cars');
     inputName.addEventListener('input', handleInputName);
 
     const inputColor = document.createElement('input');
@@ -599,7 +619,3 @@ export default class GaragePage {
     (this.settingsBtns?.btnRace as HTMLButtonElement).disabled = false;
   };
 }
-
-
-
-// serverNotification.showServerNotification();
