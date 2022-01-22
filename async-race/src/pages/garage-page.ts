@@ -307,6 +307,7 @@ export default class GaragePage {
   }
 
   handleRace = (): void => {
+    const endPos = Car.getAnimationEndPos((this.arrCars as Car[])[0]);
     this.isReset = false;
     this.numberRace += 1;
     if (this.numberRace > MAX_NUMBER_RACE) {
@@ -327,13 +328,13 @@ export default class GaragePage {
       const btnStartEngine = car.btnStartEngine as HTMLButtonElement;
       btnStartEngine.disabled = true;
 
-      this.startRace(car, this.numberRace).catch((err: Error) => {
+      this.startRace(car, this.numberRace, endPos).catch((err: Error) => {
         console.log(err);
       });
     });
   };
 
-  startRace = async (car: Car, curNumberRace: number): Promise<void> => {
+  startRace = async (car: Car, curNumberRace: number, endPos: string): Promise<void> => {
     let params;
     try {
       if (!this.isReset && curNumberRace === this.numberRace) {
@@ -347,7 +348,7 @@ export default class GaragePage {
 
     if (!this.isReset && curNumberRace === this.numberRace) {
       car.setCarTime(params.distance / params.velocity);
-      car.setAnimation();
+      car.setAnimation(endPos);
       (car.animation as Animation).play();
     } else return;
 
@@ -485,14 +486,21 @@ export default class GaragePage {
   updateCarsOnCurPage = async (): Promise<void> => {
     try {
       const { cars } = await getCars(this.curPageNumber, MAX_CARS_PER_PAGE);
+      const { length } = this.arrCars as Car[];
 
-      for (let i = (this.arrCars as Car[]).length; i < MAX_CARS_PER_PAGE; i += 1) {
+      for (let i = length; i < cars.length; i += 1) {
         const newCar = new Car(cars[i].id, cars[i].name, cars[i].color);
         this.arrCars?.push(newCar);
         this.carsContainer?.append(newCar.car);
       }
-    } catch {
-      console.log('error');
+
+      if (!(this.arrCars as Car[]).length) {
+        (this.settingsBtns?.btnRace as HTMLButtonElement).disabled = true;
+      } else {
+        (this.settingsBtns?.btnRace as HTMLButtonElement).disabled = false;
+      }
+    } catch (err) {
+      console.log('error', err);
     }
   };
 
@@ -588,6 +596,7 @@ export default class GaragePage {
     this.curPageNumber === Math.ceil((this.totalCars as number) / MAX_CARS_PER_PAGE);
 
   showPrevNextPage = async (): Promise<void> => {
+    (this.settingsBtns?.btnRace as HTMLButtonElement).disabled = false;
     try {
       const { cars } = await getCars(this.curPageNumber, MAX_CARS_PER_PAGE);
 
@@ -681,6 +690,7 @@ export default class GaragePage {
     }
 
     this.arrCars = this.arrCars?.slice(0, carInd).concat(this.arrCars.slice(carInd + 1));
+
     car.car.remove();
     (this.totalCars as number) -= 1;
     this.updateTotalCarsElem();
@@ -706,6 +716,7 @@ export default class GaragePage {
 
   handleStartCar = async (car: Car, numberStart: number): Promise<void> => {
     let params;
+    const endPos = Car.getAnimationEndPos(car);
 
     car.setIsStopped(false);
 
@@ -722,7 +733,7 @@ export default class GaragePage {
     }
 
     car.setCarTime(params.distance / params.velocity);
-    car.setAnimation();
+    car.setAnimation(endPos);
     (car.animation as Animation).play();
 
     const btnStartEngine = car.btnStopEngine as HTMLButtonElement;
@@ -756,8 +767,14 @@ export default class GaragePage {
 
     const btnStartEngine = car.btnStartEngine as HTMLButtonElement;
     btnStartEngine.disabled = false;
-    (this.settingsBtns?.btnRace as HTMLButtonElement).disabled = false;
     const btnRemove = car.btnRemove as HTMLButtonElement;
     btnRemove.disabled = false;
+
+    if (this.areAllCarsStopped()) {
+      (this.settingsBtns?.btnRace as HTMLButtonElement).disabled = false;
+    }
   };
+
+  areAllCarsStopped = (): boolean =>
+    (this.arrCars as Car[]).every((car) => !(car.btnStartEngine as HTMLButtonElement).disabled);
 }

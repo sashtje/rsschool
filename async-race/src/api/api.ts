@@ -58,9 +58,9 @@ function getRandomIntInclusive(min: number, max: number) {
 }
 
 function generateRandomColor(): string {
-  const r = getRandomIntInclusive(0, 255).toString(16);
-  const g = getRandomIntInclusive(0, 255).toString(16);
-  const b = getRandomIntInclusive(0, 255).toString(16);
+  const r = getRandomIntInclusive(0, 255).toString(16).padStart(2, '0');
+  const g = getRandomIntInclusive(0, 255).toString(16).padStart(2, '0');
+  const b = getRandomIntInclusive(0, 255).toString(16).padStart(2, '0');
 
   return `#${r}${g}${b}`;
 }
