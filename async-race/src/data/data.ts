@@ -61,7 +61,7 @@ export const START_PAGE = 1;
 export const START_COLOR = '#000000';
 export const NO_SELECT = -1;
 
-export const RANGE_TOO_LIGHT_COLOR = 50;
+export const RANGE_TOO_LIGHT_COLOR = 25;
 
 export const NUMBER_IN_BUNDLE = 100;
 export const MAX_NUMBER_RACE = 1000000;

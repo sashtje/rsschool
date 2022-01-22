@@ -17,7 +17,7 @@ export default class App {
     document.body.prepend(this.rootElem);
 
     this.addListenersToDocument();
-}
+  }
 
   start(): void {
     this.startPage = new StartPage(this.rootElem);

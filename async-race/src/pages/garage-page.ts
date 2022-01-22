@@ -378,6 +378,7 @@ export default class GaragePage {
       }
     } catch {
       if (!this.isReset && curNumberRace === this.numberRace) {
+        console.log('Engine of', car.name, 'broke down');
         (car.animation as Animation).pause();
       }
     }
@@ -709,6 +710,8 @@ export default class GaragePage {
     car.setIsStopped(false);
 
     (this.settingsBtns?.btnRace as HTMLButtonElement).disabled = true;
+    const btnRemove = car.btnRemove as HTMLButtonElement;
+    btnRemove.disabled = true;
     try {
       const btnStartEngine = car.btnStartEngine as HTMLButtonElement;
       btnStartEngine.disabled = true;
@@ -729,6 +732,7 @@ export default class GaragePage {
       await switchToDriveMode(car.id);
     } catch {
       if (car.numberStart === numberStart) {
+        console.log('Engine of', car.name, 'broke down');
         (car.animation as Animation).pause();
       }
     }
@@ -753,5 +757,7 @@ export default class GaragePage {
     const btnStartEngine = car.btnStartEngine as HTMLButtonElement;
     btnStartEngine.disabled = false;
     (this.settingsBtns?.btnRace as HTMLButtonElement).disabled = false;
+    const btnRemove = car.btnRemove as HTMLButtonElement;
+    btnRemove.disabled = false;
   };
 }
