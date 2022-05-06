@@ -4,6 +4,14 @@
 
 This repo consists of 6 my main works and some other stuff.
 
+## 6 main works:
+- Museum
+- Momentum
+- Art quiz
+- News Api
+- Christmas task
+- Async Race
+
 ## Museum 
 Analogue of the Louvre website
 
