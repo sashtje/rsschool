@@ -3,7 +3,7 @@ function setBg() {
     let date = new Date();
     let timeOfDay = getTimeOfDay(date);
     let bgNum = String(randomNum).padStart(2, "0");
-    let url = `https://raw.githubusercontent.com/sashtje/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.webp`;
+    let url = `https://raw.githubusercontent.com/sashtje/rsschool/assets/images/${timeOfDay}/${bgNum}.webp`;
     const img = new Image();
     img.src = url;
     img.onload = () => {
