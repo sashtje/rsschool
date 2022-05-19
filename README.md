@@ -51,7 +51,7 @@ A task for [migration app from js to ts](https://github.com/rolling-scopes-schoo
 [Deploy](https://sashtje.github.io/rsschool/migration-newip-to-ts/)
 
 #### Used technologies:
-- html, scss, js
+- html, scss, js, ts
 - webpack
 
 ## Christmas task
