@@ -61,12 +61,17 @@ Analogue of this [app](https://www.karusel-tv.ru/games/tree)
 [Deploy](https://sashtje.github.io/rsschool/christmas-task/)
 
 #### Used technologies:
-- html, scss, js
+- html, scss, ts
 - webpack
 - [noUiSlider](https://refreshless.com/nouislider/)
 
 ## Async Race
 [Description of task](https://github.com/rolling-scopes-school/tasks/blob/master/tasks/async-race.md)
+
+#### Used technologies:
+- html, scss, ts
+- webpack
+- api
 
 To use this app you will need to start [the server](https://github.com/sashtje/async-race-api) locally.
 
