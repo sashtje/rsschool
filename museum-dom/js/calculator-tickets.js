@@ -43,13 +43,13 @@ numberUp.forEach((item) => {
 });
 
 function fillTicketsSection() {
-  let ticketTypeStorage = localStorage.getItem("ticketTypeStorage");
+  let ticketTypeStorage = localStorage.getItem("sashtje_rsschool_museum_ticketTypeStorage");
 
   if (ticketTypeStorage) {
     document.getElementById(ticketTypeStorage).checked = true;
-    basicNumber.value = localStorage.getItem("basicNumberStorage");
-    seniorNumber.value = localStorage.getItem("seniorNumberStorage");
-    ticketsPrice.innerText = localStorage.getItem("totalPriceStorage");
+    basicNumber.value = localStorage.getItem("sashtje_rsschool_museum_basicNumberStorage");
+    seniorNumber.value = localStorage.getItem("sashtje_rsschool_museum_seniorNumberStorage");
+    ticketsPrice.innerText = localStorage.getItem("sashtje_rsschool_museum_totalPriceStorage");
   }
 }
 
@@ -57,8 +57,8 @@ fillTicketsSection();
 
 //before switching to an adjacent tab or closing this tab
 window.onunload = function () {
-  localStorage.setItem("ticketTypeStorage", getTicketTypeInputChecked().value);
-  localStorage.setItem("basicNumberStorage", basicNumber.value);
-  localStorage.setItem("seniorNumberStorage", seniorNumber.value);
-  localStorage.setItem("totalPriceStorage", ticketsPrice.innerText);
+  localStorage.setItem("sashtje_rsschool_museum_ticketTypeStorage", getTicketTypeInputChecked().value);
+  localStorage.setItem("sashtje_rsschool_museum_basicNumberStorage", basicNumber.value);
+  localStorage.setItem("sashtje_rsschool_museum_seniorNumberStorage", seniorNumber.value);
+  localStorage.setItem("sashtje_rsschool_museum_totalPriceStorage", ticketsPrice.innerText);
 };
