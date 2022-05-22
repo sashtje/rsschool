@@ -61,21 +61,21 @@ function showTime() {
 }
 
 function setLocalStorage() {
-  localStorage.setItem("name", personName.value);
-  localStorage.setItem("city", cityWeather.value);
-  localStorage.setItem("settings", JSON.stringify(settingsState));
+  localStorage.setItem("sashtje_rsschool_momentum_name", personName.value);
+  localStorage.setItem("sashtje_rsschool_momentum_city", cityWeather.value);
+  localStorage.setItem("sashtje_rsschool_momentum_settings", JSON.stringify(settingsState));
 }
 
 function getLocalStorage() {
-  if (localStorage.getItem("name")) {
-    personName.value = localStorage.getItem("name");
+  if (localStorage.getItem("sashtje_rsschool_momentum_name")) {
+    personName.value = localStorage.getItem("sashtje_rsschool_momentum_name");
   }
-  if (localStorage.getItem("city")) {
-    cityWeather.value = localStorage.getItem("city");
+  if (localStorage.getItem("sashtje_rsschool_momentum_city")) {
+    cityWeather.value = localStorage.getItem("sashtje_rsschool_momentum_city");
   }
 
-  if (localStorage.getItem("settings")) {
-    settingsState = JSON.parse(localStorage.getItem("settings"));
+  if (localStorage.getItem("sashtje_rsschool_momentum_settings")) {
+    settingsState = JSON.parse(localStorage.getItem("sashtje_rsschool_momentum_settings"));
   }
 
   setBg();
